@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Model;
+namespace App\Model\Entity;
 
 /**
- * @Entity
+ * @Entity(repositoryClass="App\Model\Repo\EventRepo")
  * @Table(name="event")
  */
 class Event

@@ -33,7 +33,7 @@ class DoctrineService
     public function register()
     {
 
-        $paths = [APP_DIR . '/src/App/Module'];
+        $paths = [APP_DIR . '/src/App/Module/Entity'];
         $isDevMode = false;
         $dbParams = [
             'driver'   => 'pdo_mysql',

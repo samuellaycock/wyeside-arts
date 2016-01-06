@@ -22,4 +22,10 @@ $twigService->register();
 $doctrineService = new App\Service\DoctrineService($di);
 $em = $doctrineService->register();
 
+
+$repo = $em->getRepository('App\Model\Entity\Event');
+echo "<pre>";
+print_r($repo->getGenres());
+die();
+
 $app->run();
