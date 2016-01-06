@@ -1,0 +1,4 @@
+*.lock
+*.local.php
+cache/
+vendor/
