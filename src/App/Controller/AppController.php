@@ -36,4 +36,14 @@ class AppController
         $this->response->getBody()->write($string);
     }
 
+    /**
+     * @param $view
+     */
+    protected function writeView($view, array $data = [])
+    {
+        $twig = $this->di->get('twig');
+        $this->response->getBody()->write($twig->render($view, $data));
+    }
+
+
 }

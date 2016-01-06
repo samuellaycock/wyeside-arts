@@ -11,7 +11,7 @@ class IndexController extends AppController
 
     public function indexAction()
     {
-        $this->writeString('Hello, World!');
+        $this->writeView('frontend/index.twig');
     }
 
 }
