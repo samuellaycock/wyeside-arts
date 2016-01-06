@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Twig;
+namespace App\Service;
 
 
 use Slim\Container;
