@@ -6,7 +6,7 @@ return [
         'methods' => ['get'],
         'pattern' => '/',
         'paths' => [
-            'controller' => '\Controller\AppController',
+            'controller' => '\Frontend\Controller\IndexController',
             'action' => 'indexAction'
         ]
     ]

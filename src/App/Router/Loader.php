@@ -1,6 +1,6 @@
 <?php
 
-namespace Router;
+namespace App\Router;
 
 
 use Slim\App;
@@ -33,8 +33,8 @@ class Loader
                 $config['methods'],
                 $config['pattern'],
                 function(ServerRequestInterface $request, ResponseInterface $response, array $args) use ($app){
-                    $controller = new $args['paths']['controller']($app);
-                    return $controller->{$args['paths']['action']}();
+                    $controller = new $args['paths']['controller']($app->getContainer(), $response);
+                    $controller->{$args['paths']['action']}();
                 }
             )->setArgument('paths', $config['paths']);
         }
