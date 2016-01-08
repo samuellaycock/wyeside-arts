@@ -3,7 +3,7 @@
 return [
 
     [
-        'methods' => ['get'],
+        'methods' => ['GET'],
         'pattern' => '/',
         'paths' => [
             'controller' => '\Frontend\Controller\IndexController',

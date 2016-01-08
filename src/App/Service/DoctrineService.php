@@ -1,9 +1,12 @@
 <?php
+/**
+ * @author James Dobb <james.dobb@gmil.com>
+ */
 
 namespace App\Service;
 
 
-use Slim\Container;
+use Slim\Slim;
 
 use Doctrine\ORM\Tools\Setup;
 use Doctrine\ORM\EntityManager;
@@ -12,17 +15,16 @@ use Doctrine\ORM\EntityManager;
 class DoctrineService
 {
 
-    /** @var Container */
-    protected $container;
-
+    /** @var Slim */
+    protected $app;
 
     /**
      * DoctrineService constructor.
-     * @param Container $container
+     * @param Slim $app
      */
-    public function __construct(Container $container)
+    public function __construct(Slim $app)
     {
-        $this->container = $container;
+        $this->app = $app;
     }
 
 
@@ -32,20 +34,19 @@ class DoctrineService
      */
     public function register()
     {
-
         $paths = [APP_DIR . '/src/App/Module/Entity'];
         $isDevMode = false;
         $dbParams = [
             'driver'   => 'pdo_mysql',
-            'host'     => $this->container->settings['db_host'],
-            'user'     => $this->container->settings['db_user'],
-            'password' => $this->container->settings['db_password'],
-            'dbname'   => $this->container->settings['db_name']
+            'host'     => $this->app->config('db.host'),
+            'user'     => $this->app->config('db.user'),
+            'password' => $this->app->config('db.password'),
+            'dbname'   => $this->app->config('db.name')
         ];
 
         $config = Setup::createAnnotationMetadataConfiguration($paths, $isDevMode);
         $em = EntityManager::create($dbParams, $config);
-        $this->container->offsetSet('em', $em);
+        $this->app->container->offsetSet('em', $em);
         return $em;
     }
 

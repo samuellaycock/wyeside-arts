@@ -3,47 +3,23 @@
 namespace App\Controller;
 
 
-use Slim\Container;
-use Psr\Http\Message\ResponseInterface;
+use Slim\Slim;
 
 
 class AppController
 {
 
-    /** @var Container */
-    protected $di;
-
-    /** @var ResponseInterface*/
-    protected $response;
+    /** @var Slim*/
+    protected $app;
 
 
     /**
      * AppController constructor.
-     * @param Container $di
-     * @param ResponseInterface $response
+     * @param Slim $app
      */
-    public function __construct(Container $di, ResponseInterface $response)
+    public function __construct(Slim $app)
     {
-        $this->di = $di;
-        $this->response = $response;
+        $this->app = $app;
     }
-
-    /**
-     * @param $string
-     */
-    protected function writeString($string)
-    {
-        $this->response->getBody()->write($string);
-    }
-
-    /**
-     * @param $view
-     */
-    protected function writeView($view, array $data = [])
-    {
-        $twig = $this->di->get('twig');
-        $this->response->getBody()->write($twig->render($view, $data));
-    }
-
 
 }

@@ -30,9 +30,12 @@ $app = new Slim\Slim([
     'view' => new \Slim\Views\Twig
 ]);
 
-$app->get('/', function() use ($app) {
-    $app->render('frontend/index.twig');
-});
+
+$routerService = new App\Service\RouterService($app);
+$em = $routerService->loadRoutes(require APP_DIR . '/config/routes.php');
+
+$doctrineService = new App\Service\DoctrineService($app);
+$em = $doctrineService->register();
 
 $app->run();
 
@@ -44,8 +47,7 @@ $routeLoader->loadRoutes(require(APP_DIR . '/config/routes.php'));
 $twigService = new App\Service\TwigService($di);
 $twigService->register();
 
-$doctrineService = new App\Service\DoctrineService($di);
-$em = $doctrineService->register();
+
 
 
 $repo = $em->getRepository('App\Model\Entity\Event');
