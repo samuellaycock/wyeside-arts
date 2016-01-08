@@ -26,12 +26,10 @@ class RouterService
     {
         $app = $this->app;
         foreach($routeConfigs as $config){
-            $this->app->map($config['pattern'],
-                function() use ($app, $config){
-                    $controller = new $config['paths']['controller']($app);
-                    $controller->{$config['paths']['action']}();
-                }
-            )->via($config['methods']);
+            $this->app->map($config['pattern'], function() use ($app, $config){
+                $controller = new $config['paths']['controller']($app);
+                $controller->{$config['paths']['action']}();
+            })->via($config['methods']);
         }
     }
 
