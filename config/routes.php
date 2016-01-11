@@ -11,10 +11,10 @@ return [
         ]
     ],
     [
-        'pattern' => '/test2',
+        'pattern' => '/system',
         'methods' => ['GET'],
         'paths' => [
-            'controller' => '\Frontend\Controller\IndexController',
+            'controller' => '\Backend\Controller\IndexController',
             'action' => 'indexAction'
         ]
     ],

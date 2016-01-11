@@ -1,4 +1,7 @@
 <?php
+/**
+ * @author James Dobb <james.dobb@gmail.com>
+ */
 
 namespace App\Model\Repo;
 
