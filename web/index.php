@@ -24,11 +24,7 @@ if (APP_ENV != 'production') {
 require '../vendor/autoload.php';
 
 
-$app = new Slim\Slim([
-    'mode' => APP_ENV,
-    'templates.path' => APP_DIR . '/views',
-    'view' => new \Slim\Views\Twig
-]);
+$app = new Slim\Slim(require APP_DIR . '/config/config.php');
 
 
 $routerService = new App\Service\RouterService($app);
@@ -38,22 +34,3 @@ $doctrineService = new App\Service\DoctrineService($app);
 $em = $doctrineService->register();
 
 $app->run();
-
-
-/**
-$routeLoader = new \App\Router\Loader($app);
-$routeLoader->loadRoutes(require(APP_DIR . '/config/routes.php'));
-
-$twigService = new App\Service\TwigService($di);
-$twigService->register();
-
-
-
-
-$repo = $em->getRepository('App\Model\Entity\Event');
-echo "<pre>";
-print_r($repo->getGenres());
-die();
-
-$app->run();
- * */

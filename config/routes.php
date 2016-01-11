@@ -18,5 +18,13 @@ return [
             'action' => 'indexAction'
         ]
     ],
+    [
+        'pattern' => '/system/events',
+        'methods' => ['GET'],
+        'paths' => [
+            'controller' => '\Backend\Controller\EventsController',
+            'action' => 'indexAction'
+        ]
+    ],
 
 ];

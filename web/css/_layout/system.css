@@ -4,7 +4,7 @@
 }
 
 html, body {
-    font-family: "Lucida Grande", "Lucida Sans Unicode", Verdana, Arial, Helvetica, sans-serif;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 #sidebar {
@@ -42,9 +42,6 @@ html, body {
 }
 
 #content {
-    float: left;
-}
-
-#footer {
-    clear: both;
+    padding-left:230px;
+    padding-top:20px;
 }

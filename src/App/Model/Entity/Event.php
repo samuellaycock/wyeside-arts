@@ -369,5 +369,53 @@ class Event
     }
 
 
+    /**
+     * @return string
+     */
+    public function getTypeName()
+    {
+        switch($this->getType())
+        {
+            case 1:
+                return 'Cinema';
+            case 2:
+                return 'Live';
+            case 3:
+                return 'Community';
+            case 4:
+                return 'Satellite Live!';
+            case 5:
+                return 'Workshop';
+            case 6:
+                return 'Gallery';
+            default:
+                return 'Unknown';
+        }
+    }
+
+    /**
+     * @return string
+     */
+    public function getTypePrimaryColor()
+    {
+        switch($this->getType())
+        {
+            case 1:
+                return '#B0D817';
+            case 2:
+                return '#01B6AD';
+            case 3:
+                return '#CCCCCC';
+            case 4:
+                return '#E30769';
+            case 5:
+                return '#CCCCCC';
+            case 6:
+                return '#A14DB2';
+            default:
+                return '#000000';
+        }
+    }
+
 
 }

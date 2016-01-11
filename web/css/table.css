@@ -1,0 +1,19 @@
+.system-table{
+    border-spacing: 0;
+    font-size: 0.9em;
+}
+.system-table tr th{
+    text-align: left;
+    background-color: #31373F;
+    color: #fff;
+    padding: 10px 10px 7px 10px;
+    border-bottom: solid 3px #F53617;
+}
+.system-table tr td {
+    border-bottom: dashed 1px #ddd;
+    padding: 6px 10px 6px 10px;
+    color: #333;
+}
+.system-table tr:hover td {
+    background-color: #F3FACD;
+}
