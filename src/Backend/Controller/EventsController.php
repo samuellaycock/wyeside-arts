@@ -28,10 +28,14 @@ class EventsController extends AppController
 
     public function indexAction()
     {
+        if(null !== $this->app->request->get('page')){
+            $page = $this->app->request->get('page');
+        }else{
+            $page = 1;
+        }
+
         $pageinator = new Pagination($this->getEventRepo()->getQueryAllSortedByTitle(), $this->app->request->getResourceUri());
-        $data = [
-          'eventsPaginated' => $pageinator->getPage(1)
-        ];
+        $data = ['eventsPaginated' => $pageinator->getPage($page)];
 
         if($this->app->request->isAjax()) {
             $this->app->render('backend/events/_events-table.twig', $data);

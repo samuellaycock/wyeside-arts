@@ -1,7 +1,7 @@
 $pageinator = new Paginator();
 $( document ).ready(function() {
     $pageinator.ready();
-}
+});
 
 
 function Paginator()
@@ -19,7 +19,7 @@ Paginator.prototype.ready = function()
     $('.page-number').click(function(){
         me.loadPage(this);
     });
-});
+};
 
 
 /**
@@ -28,17 +28,17 @@ Paginator.prototype.ready = function()
  */
 Paginator.prototype.loadPage = function(domElement)
 {
-    var me = this;
-
     var pageNumber = $(domElement).data("page");
     var parent = $(domElement).parent();
     var refreshUrl = $(parent).data("refreshurl");
     var replaceDom = $(parent).data("domelement");
 
+    var me = this;
     $.ajax({
         url: refreshUrl + "?page=" + pageNumber,
         success: function(result){
             $("#" + replaceDom).html(result);
+            me.ready();
         }
     });
-}
+};

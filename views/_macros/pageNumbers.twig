@@ -2,7 +2,7 @@
     {% set displayNumber = 10 %}
     {% set siblingNumber = 3 %}
 
-    <div class="pages" -data-refreshurl="{{ refreshUrl }}" -data-domelement="{{ domElement }}">
+    <div class="pages" data-refreshurl="{{ refreshUrl }}" data-domelement="{{ domElement }}">
         {% if(totalPages <= displayNumber) %}
 
             {% for i in 1..totalPages %}
@@ -11,19 +11,15 @@
 
         {% else %}
 
-            {% if(currentPage != 1) %}
-                {{ _self.renderNumber(1, currentPage) }}
-            {% endif %}
+            {{ _self.renderNumber(1, currentPage) }}
 
             {% for i in currentPage-siblingNumber..currentPage+siblingNumber %}
-                {% if(i >= 1 and i <= totalPages) %}
+                {% if(i > 1 and i < totalPages) %}
                     {{ _self.renderNumber(i, currentPage) }}
                 {% endif %}
             {% endfor %}
 
-            {% if(currentPage != totalPages) %}
-                {{ _self.renderNumber(totalPages, currentPage) }}
-            {% endif %}
+            {{ _self.renderNumber(totalPages, currentPage) }}
 
         {% endif %}
     </div>
@@ -37,5 +33,5 @@
     {% else %}
         {% set class = 'page-number' %}
     {% endif %}
-    <div class="{{ class }}" -data-page="{{ number }}">{{ number }}</div>
+    <div class="{{ class }}" data-page="{{ number }}">{{ number }}</div>
 {% endmacro %}
