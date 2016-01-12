@@ -18,6 +18,10 @@ return [
             'action' => 'indexAction'
         ]
     ],
+
+    /** -----------------------------------------------------------
+     * Events
+     * ----------------------------------------------------------- */
     [
         'pattern' => '/system/events',
         'methods' => ['GET'],
@@ -26,5 +30,12 @@ return [
             'action' => 'indexAction'
         ]
     ],
-
+    [
+        'pattern' => '/system/events/create/:type',
+        'methods' => ['GET'],
+        'paths' => [
+            'controller' => '\Backend\Controller\EventsController',
+            'action' => 'createAction'
+        ]
+    ],
 ];

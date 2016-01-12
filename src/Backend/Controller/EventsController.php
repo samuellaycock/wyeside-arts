@@ -7,6 +7,7 @@ namespace Backend\Controller;
 
 
 use App\Controller\AppController;
+use App\Model\Entity\Event;
 use App\Model\Repo\EventRepo;
 use App\Pagination\Pagination;
 use Doctrine\ORM\EntityManager;
@@ -26,6 +27,7 @@ class EventsController extends AppController
     }
 
 
+
     public function indexAction()
     {
         if(null !== $this->app->request->get('page')){
@@ -42,6 +44,15 @@ class EventsController extends AppController
         }else{
             $this->app->render('backend/events/index.twig', $data);
         }
+    }
+
+
+    public function createAction()
+    {
+        $type = $this->app->router->getCurrentRoute()->getParam('type');
+        $event = new Event();
+        $event->setType($type);
+        $this->app->render('backend/events/create.twig',['event' => $event]);
     }
 
 }

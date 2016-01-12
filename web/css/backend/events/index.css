@@ -4,3 +4,28 @@
 .closed {
     color: red;
 }
+.event-button {
+    display: inline-block;
+    padding:15px 15px;
+    color:#fff;
+    cursor: pointer;
+    text-align: center;
+}
+.event-button:hover {
+    opacity:0.8;
+}
+.event-cinema {
+    background-color: #B0D817;
+}
+.event-live {
+    background-color: #01B6AD;
+}
+.event-sat-live {
+    background-color: #E30769;
+}
+.event-workshop{
+    background-color: #CCCCCC;
+}
+.event-gallery {
+    background-color: #A14DB2;
+}

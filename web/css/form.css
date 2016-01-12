@@ -1,0 +1,30 @@
+form {
+    font-size: 1.2em;
+    border-left:solid 5px #ccc;
+    padding-left: 12px;
+}
+
+label {
+    font-size: 0.8em;
+    min-width: 120px;
+    display: inline-block;
+}
+
+input, textarea, select, button {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border: solid 1px #ccc;
+    border-radius: 2px;
+    color:#333;
+    padding:5px;
+    margin-bottom: 6px;
+    width:300px;
+}
+input[type=checkbox]{
+    padding: 0;
+    margin:5px;
+    width: auto;
+}
+
+

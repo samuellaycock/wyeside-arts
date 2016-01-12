@@ -1,0 +1,45 @@
+{% extends "_layouts/system.twig" %}
+
+{% block head %}
+    <link href="/css/backend/events/create.css" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block title %}Events{% endblock %}
+
+{% block content %}
+    <h1 style="background-color: {{ event.getTypePrimaryColor() }};">+ {{ event.getTypeName() }}</h1>
+    <hr>
+    <form class="system-form">
+        <input type="text" name="title" id="title" placeholder="Title" class="dbl" style="width:100%;">
+
+        <br>
+        <label for="ticketsolve">Ticketsolve ID</label>
+        <input type="text" id="ticketsolve" name="ticketsolve">
+
+        <br>
+        <label for="certificate">Certificate</label>
+        <select id="certificate" name="certificate">
+            <option value="TBC">TBC</option>
+            <option value="TBC">U</option>
+            <option value="TBC">PG</option>
+            <option value="TBC">12A</option>
+            <option value="TBC">12</option>
+            <option value="TBC">15</option>
+            <option value="TBC">18</option>
+        </select>
+
+        <br>
+        <label for="runTime">Run Time</label>
+        <input type="text" id="runTime" name="runTime">
+
+        <br>
+        <fieldset>
+            <legend>Genres</legend>
+            <input type="checkbox" name="genre-1" id="genre-1"> <label for="genre-1">Action</label>
+        </fieldset>
+    </form>
+
+    <script type="text/javascript">
+        document.getElementById('title').focus();
+    </script>
+{% endblock %}
