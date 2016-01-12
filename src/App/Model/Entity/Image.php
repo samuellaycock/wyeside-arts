@@ -7,7 +7,7 @@ namespace App\Model\Entity;
 
 
 /**
- * @Entity
+ * @EntityrepositoryClass="App\Model\RepoImageRepo")
  * @Table(name="eventimage")
  */
 class Image

@@ -9,6 +9,7 @@ namespace Backend\Controller;
 use App\Controller\AppController;
 use App\Model\Entity\Event;
 use App\Model\Repo\EventRepo;
+use App\Model\Repo\GenreRepo;
 use App\Pagination\Pagination;
 use Doctrine\ORM\EntityManager;
 
@@ -21,9 +22,15 @@ class EventsController extends AppController
      */
     protected function getEventRepo()
     {
-        /** @var EntityManager $em */
-        $em = $this->app->container->get('em');
-        return $em->getRepository('App\Model\Entity\Event');
+        return $this->em->getRepository('App\Model\Entity\Event');
+    }
+
+    /**
+     * @return GenreRepo
+     */
+    protected function getGenreRepo()
+    {
+        return $this->em->getRepository('App\Model\Entity\Genre');
     }
 
 
@@ -52,7 +59,13 @@ class EventsController extends AppController
         $type = $this->app->router->getCurrentRoute()->getParam('type');
         $event = new Event();
         $event->setType($type);
-        $this->app->render('backend/events/create.twig',['event' => $event]);
+
+        $data = [
+            'event' => $event,
+            'genres' => $this->getGenreRepo()->getAllSortedByName()
+        ];
+
+        $this->app->render('backend/events/create.twig',$data);
     }
 
 }

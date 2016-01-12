@@ -6,7 +6,7 @@
 namespace App\Model\Entity;
 
 /**
- * @Entity
+ * @Entity(repositoryClass="App\Model\Repo\GenreRepo")
  * @Table(name="eventgenre")
  */
 class Genre

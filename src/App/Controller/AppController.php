@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 
+use Doctrine\ORM\EntityManager;
 use Slim\Slim;
 
 
@@ -12,6 +13,9 @@ class AppController
     /** @var Slim*/
     protected $app;
 
+    /** @var EntityManager */
+    protected $em;
+
 
     /**
      * AppController constructor.
@@ -20,6 +24,7 @@ class AppController
     public function __construct(Slim $app)
     {
         $this->app = $app;
+        $this->em = $this->app->container->get('em');
     }
 
 }

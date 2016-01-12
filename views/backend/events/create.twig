@@ -35,7 +35,12 @@
         <br>
         <fieldset>
             <legend>Genres</legend>
-            <input type="checkbox" name="genre-1" id="genre-1"> <label for="genre-1">Action</label>
+            {% for genre in genres %}
+                <div class="genre-block" style="width:200px;display:inline-block;">
+                    <input type="checkbox" name="genre-{{ genre.getId() }}" id="genre-{{ genre.getId() }}">
+                    <label for="genre-{{ genre.getId(0) }}">{{ genre.getName() }}</label>
+                </div>
+            {% endfor %}
         </fieldset>
     </form>
 

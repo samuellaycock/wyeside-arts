@@ -7,7 +7,7 @@ namespace App\Model\Entity;
 
 
 /**
- * @Entity
+ * @EntityrepositoryClass="App\Model\Repo\ShowingRepo")
  * @Table(name="eventdate")
  */
 class Showing

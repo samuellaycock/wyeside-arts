@@ -6,7 +6,7 @@
 namespace App\Model\Entity;
 
 /**
- * @Entity
+ * @EntityrepositoryClass="App\Model\Repo\TweetRepo")
  * @Table(name="twitter")
  */
 class Tweet
