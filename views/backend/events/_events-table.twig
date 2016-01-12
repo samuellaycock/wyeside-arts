@@ -3,18 +3,18 @@
 {{ pages.pageNumbers("events-table", eventsPaginated.getRefreshUrl(), eventsPaginated.getTotalPages(), eventsPaginated.getPage()) }}
 <table class="system-table">
     <tr>
-        <th>Type</th>
+        <th style="width:120px;">Type</th>
         <th>Event</th>
-        <th>Status</th>
+        <th>Created</th>
+        <th style="width:90px;">Status</th>
     </tr>
     {% for event in eventsPaginated.getResults() %}
         <tr>
-            <td>
-                <span class="bold" style="color:{{ event.getTypePrimaryColor() }}">
-                    {{ event.getTypeName() }}
-                </span>
+            <td style="color:#fff;background-color:{{ event.getTypePrimaryColor() }}">
+                <span class="bold">{{ event.getTypeName() }}</span>
             </td>
-            <td>{{ event.getTitle() }}</td>
+            <td><a href="/system/events/{{ event.getId() }}">{{ event.getTitle() }}</a></td>
+            <td>{{ event.getCreatedAt()|date("jS M Y \\@ g:ia") }}</td>
             <td>
                 {% if event.getStatus() == true %}
                     <span class="green-text bold">Open</span>

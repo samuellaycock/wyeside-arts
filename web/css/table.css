@@ -1,6 +1,10 @@
 .system-table{
     border-spacing: 0;
     font-size: 0.9em;
+    width:100%;
+    max-width: 1200px;
+    min-width: 300px;
+    table-layout: fixed;
 }
 .system-table tr th{
     text-align: left;
@@ -16,4 +20,12 @@
 }
 .system-table tr:hover td {
     background-color: #F3FACD;
+}
+.system-table td a {
+    color: mediumslateblue;
+    text-decoration: none;
+    font-size:0.9em;
+}
+.system-table td a:hover {
+    text-decoration: underline;
 }

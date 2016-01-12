@@ -36,4 +36,13 @@ class EventRepo extends EntityRepository
     }
 
 
+    /**
+     * @return Query
+     */
+    public function getQueryAllSortedByDateCreated()
+    {
+        return $this->createQueryBuilder('e')
+            ->orderBy('e.createdTs', 'DESC')
+            ->getQuery();
+    }
 }

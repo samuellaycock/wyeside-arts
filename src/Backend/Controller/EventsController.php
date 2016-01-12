@@ -34,7 +34,7 @@ class EventsController extends AppController
             $page = 1;
         }
 
-        $pageinator = new Pagination($this->getEventRepo()->getQueryAllSortedByTitle(), $this->app->request->getResourceUri());
+        $pageinator = new Pagination($this->getEventRepo()->getQueryAllSortedByDateCreated(), $this->app->request->getResourceUri());
         $data = ['eventsPaginated' => $pageinator->getPage($page)];
 
         if($this->app->request->isAjax()) {
