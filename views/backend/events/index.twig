@@ -1,4 +1,5 @@
 {% extends "_layouts/system.twig" %}
+{% import "_macros/pageNumbers.twig" as pages %}
 
 {% block title %}Events{% endblock %}
 
@@ -13,6 +14,7 @@
             <th>Event</th>
             <th>Status</th>
         </tr>
+        {{ pages.pageNumbers(page.getTotalPages(), page.getPage()) }}
         {% for event in page.getResults() %}
             <tr>
                 <td>
