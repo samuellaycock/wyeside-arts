@@ -8,7 +8,7 @@ namespace Backend\Controller;
 
 use App\Controller\AppController;
 use App\Model\Repo\EventRepo;
-use App\Pageinator\Pageinator;
+use App\Pagination\Pagination;
 use Doctrine\ORM\EntityManager;
 
 
@@ -28,11 +28,16 @@ class EventsController extends AppController
 
     public function indexAction()
     {
-        $pageinator = new Pageinator($this->getEventRepo()->getQueryAllSortedByTitle());
+        $pageinator = new Pagination($this->getEventRepo()->getQueryAllSortedByTitle(), $this->app->request->getResourceUri());
         $data = [
-          'page' => $pageinator->getPage(1)
+          'eventsPaginated' => $pageinator->getPage(1)
         ];
-        $this->app->render('backend/events/index.twig', $data);
+
+        if($this->app->request->isAjax()) {
+            $this->app->render('backend/events/_events-table.twig', $data);
+        }else{
+            $this->app->render('backend/events/index.twig', $data);
+        }
     }
 
 }

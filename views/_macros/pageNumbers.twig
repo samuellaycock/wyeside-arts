@@ -1,30 +1,32 @@
-{% macro pageNumbers(totalPages, currentPage)  %}
+{% macro pageNumbers(domElement, refreshUrl, totalPages, currentPage)  %}
     {% set displayNumber = 10 %}
     {% set siblingNumber = 3 %}
 
-    {% if(totalPages <= displayNumber) %}
+    <div class="pages" -data-refreshurl="{{ refreshUrl }}" -data-domelement="{{ domElement }}">
+        {% if(totalPages <= displayNumber) %}
 
-        {% for i in 1..totalPages %}
-            {{ _self.renderNumber(i, currentPage) }}
-       {% endfor %}
-
-    {% else %}
-
-        {% if(currentPage != 1) %}
-            {{ _self.renderNumber(1, currentPage) }}
-        {% endif %}
-
-        {% for i in currentPage-siblingNumber..currentPage+siblingNumber %}
-            {% if(i >= 1 and i <= totalPages) %}
+            {% for i in 1..totalPages %}
                 {{ _self.renderNumber(i, currentPage) }}
+           {% endfor %}
+
+        {% else %}
+
+            {% if(currentPage != 1) %}
+                {{ _self.renderNumber(1, currentPage) }}
             {% endif %}
-        {% endfor %}
 
-        {% if(currentPage != totalPages) %}
-            {{ _self.renderNumber(totalPages, currentPage) }}
+            {% for i in currentPage-siblingNumber..currentPage+siblingNumber %}
+                {% if(i >= 1 and i <= totalPages) %}
+                    {{ _self.renderNumber(i, currentPage) }}
+                {% endif %}
+            {% endfor %}
+
+            {% if(currentPage != totalPages) %}
+                {{ _self.renderNumber(totalPages, currentPage) }}
+            {% endif %}
+
         {% endif %}
-
-    {% endif %}
+    </div>
 
 {% endmacro %}
 
@@ -35,5 +37,5 @@
     {% else %}
         {% set class = 'page-number' %}
     {% endif %}
-    <div class="{{ class }}">{{ number }}</div>
+    <div class="{{ class }}" -data-page="{{ number }}">{{ number }}</div>
 {% endmacro %}

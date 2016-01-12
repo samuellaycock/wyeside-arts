@@ -3,18 +3,18 @@
  * @author James Dobb <james.dobb@gmail.com>
  */
 
-namespace App\Pageinator;
+namespace App\Pagination;
 
 
 use Doctrine\ORM\Query;
-use Doctrine\ORM\Tools\Pagination\Paginator as DoctrinePageinator;
+use Doctrine\ORM\Tools\Pagination\Paginator as DoctrinePaginator;
 
 
 class Result
 {
 
-    /** @var DoctrinePageinator */
-    protected $doctrinePageinator;
+    /** @var DoctrinePaginator */
+    protected $doctrinePaginator;
 
     /** @var int */
     protected $page;
@@ -22,27 +22,39 @@ class Result
     /** @var int */
     protected $perPage;
 
+    /** @var string */
+    protected $refreshUrl;
+
 
     /**
      * Result constructor.
-     * @param DoctrinePageinator $pageinator
+     * @param DoctrinePaginator $paginator
      * @param $page
      * @param $perPage
      */
-    public function __construct(DoctrinePageinator $pageinator, $page, $perPage)
+    public function __construct(DoctrinePaginator $paginator, $page, $perPage, $refreshUrl)
     {
-        $this->doctrinePageinator = $pageinator;
+        $this->doctrinePaginator = $paginator;
         $this->page = $page;
         $this->perPage = $perPage;
+        $this->refreshUrl = $refreshUrl;
     }
 
+
+    /**
+     * @return string
+     */
+    public function getRefreshUrl()
+    {
+        return $this->refreshUrl;
+    }
 
     /**
      * @return array
      */
     public function getResults()
     {
-        return $this->doctrinePageinator;
+        return $this->doctrinePaginator;
     }
 
     /**
@@ -50,7 +62,7 @@ class Result
      */
     public function getResultCount()
     {
-        return count($this->doctrinePageinator->getIterator());
+        return count($this->doctrinePaginator->getIterator());
     }
 
     /**
@@ -58,7 +70,7 @@ class Result
      */
     public function getTotal()
     {
-        return count($this->doctrinePageinator);
+        return count($this->doctrinePaginator);
     }
 
     /**

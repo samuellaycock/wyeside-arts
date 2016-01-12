@@ -1,17 +1,17 @@
 <?php
 
-namespace App\Pageinator;
+namespace App\Pagination;
 
 
 use Doctrine\ORM\Query;
-use Doctrine\ORM\Tools\Pagination\Paginator as DoctrinePageinator;
+use Doctrine\ORM\Tools\Pagination\Paginator as DoctrinePaginator;
 
 
-class Pageinator
+class Pagination
 {
 
-    /** @var Pageinator */
-    protected $doctrinePageinator;
+    /** @var DoctrinePaginator */
+    protected $doctrinePaginator;
 
     /** @var int */
     protected $defaultPerPage;
@@ -19,15 +19,20 @@ class Pageinator
     /** @var int */
     protected $results;
 
+    /** @var string */
+    protected $refreshUrl;
+
 
     /**
-     * Pageinator constructor.
+     * Pagination constructor.
      * @param Query $query
+     * @param $refreshUrl string
      */
-    public function __construct(Query $query)
+    public function __construct(Query $query, $refreshUrl)
     {
+        $this->refreshUrl = $refreshUrl;
         $this->query = $query;
-        $this->doctrinePageinator = new DoctrinePageinator($query);
+        $this->doctrinePaginator = new DoctrinePaginator($query);
         $this->defaultPerPage = 20;
     }
 
@@ -46,7 +51,7 @@ class Pageinator
         $offset = ($page * $perPage) - $perPage;
         $this->setOffsetLimit($offset, $perPage);
 
-        return new Result($this->doctrinePageinator, $page, $perPage);
+        return new Result($this->doctrinePaginator, $page, $perPage, $this->refreshUrl);
     }
 
 
@@ -57,7 +62,7 @@ class Pageinator
      */
     protected function setOffsetLimit($offset, $limit)
     {
-        $this->doctrinePageinator
+        $this->doctrinePaginator
             ->getQuery()
             ->setMaxResults($limit)
             ->setFirstResult($offset);

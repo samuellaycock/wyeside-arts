@@ -8,29 +8,7 @@
     <div class="system-btn">New Event</div>
     <hr>
 
-    <table class="system-table">
-        <tr>
-            <th>Type</th>
-            <th>Event</th>
-            <th>Status</th>
-        </tr>
-        {{ pages.pageNumbers(page.getTotalPages(), page.getPage()) }}
-        {% for event in page.getResults() %}
-            <tr>
-                <td>
-                    <span class="bold" style="color:{{ event.getTypePrimaryColor() }}">
-                        {{ event.getTypeName() }}
-                    </span>
-                </td>
-                <td>{{ event.getTitle() }}</td>
-                <td>
-                    {% if event.getStatus() == true %}
-                        <span class="green-text bold">Open</span>
-                    {% else %}
-                        <span class="red-text bold">Closed</span>
-                    {%  endif %}
-                </td>
-            </tr>
-        {% endfor %}
-    </table>
+    <div id="events-table">
+        {% include "backend/events/_events-table.twig" %}
+    </div>
 {% endblock %}

@@ -1,0 +1,25 @@
+.page-number {
+    font-size: 0.9em;
+    display: inline-block;
+    padding: 6px 9px 6px 9px;
+    border-radius: 2px;
+    background-color: limegreen;
+    color:#fff;
+    cursor: pointer;
+}
+.page-number:hover {
+    opacity: 0.8;
+}
+.page-active {
+    background-color: green;
+}
+.pages {
+    display: block;
+    padding: 5px 0 5px 0;
+}
+.pages > .page-number:first-child {
+    padding-right: 25px;
+}
+.pages > .page-number:last-child {
+    padding-left: 25px;
+}
