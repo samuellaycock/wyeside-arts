@@ -8,6 +8,7 @@ namespace App\Model\Repo;
 
 use App\Model\Entity\Event;
 use Doctrine\ORM\EntityRepository;
+use Doctrine\ORM\Query;
 
 
 class EventRepo extends EntityRepository
@@ -25,13 +26,14 @@ class EventRepo extends EntityRepository
 
 
     /**
-     * @return Event[]
+     * @return Query
      */
-    public function getAllSortedByTitle()
+    public function getQueryAllSortedByTitle()
     {
         return $this->createQueryBuilder('e')
             ->orderBy('e.title')
-            ->getQuery()->getResult();
+            ->getQuery();
     }
+
 
 }

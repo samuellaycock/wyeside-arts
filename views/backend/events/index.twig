@@ -13,7 +13,7 @@
             <th>Event</th>
             <th>Status</th>
         </tr>
-        {% for event in events %}
+        {% for event in page.getResults() %}
             <tr>
                 <td>
                     <span class="bold" style="color:{{ event.getTypePrimaryColor() }}">
