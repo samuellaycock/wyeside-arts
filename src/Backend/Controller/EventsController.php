@@ -7,6 +7,7 @@ namespace Backend\Controller;
 
 
 use App\Controller\AppController;
+use App\Hydrator;
 use App\Model\Entity\Event;
 use App\Model\Repo\EventRepo;
 use App\Model\Repo\GenreRepo;
@@ -59,6 +60,16 @@ class EventsController extends AppController
         $type = $this->app->router->getCurrentRoute()->getParam('type');
         $event = new Event();
         $event->setType($type);
+
+        if($this->app->request->isPost()){
+            $hydrator = new Hydrator;
+            $hydrator->hydrate($event, $this->app->request->params());
+            // validate event
+            $event->setCreatedTs(new \DateTime());
+            $this->em->persist($event);
+            $this->em->flush();
+            $this->app->redirect('/system/events', 302);
+        }
 
         $data = [
             'event' => $event,

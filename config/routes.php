@@ -32,7 +32,7 @@ return [
     ],
     [
         'pattern' => '/system/events/create/:type',
-        'methods' => ['GET'],
+        'methods' => ['GET', 'POST'],
         'paths' => [
             'controller' => '\Backend\Controller\EventsController',
             'action' => 'createAction'

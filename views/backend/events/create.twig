@@ -9,7 +9,7 @@
 {% block content %}
     <h1 style="background-color: {{ event.getTypePrimaryColor() }};">+ {{ event.getTypeName() }}</h1>
     <hr>
-    <form class="system-form">
+    <form class="system-form" method="post">
         <input type="text" name="title" id="title" placeholder="Title" class="dbl" style="width:100%;">
 
         <br>
@@ -40,8 +40,8 @@
             </select>
 
             <br>
-            <label for="runTime">Run Time</label>
-            <input type="text" id="runTime" name="runTime">
+            <label for="runningTime">Run Time</label>
+            <input type="text" id="runningTime" name="runningTime">
 
             <br>
             <label for="director">Director</label>
@@ -67,7 +67,7 @@
         <textarea id="description" name="description" placeholder="Event Description"></textarea>
 
         <br>
-        <button type="button" id="createBtn">Create Event</button>
+        <button type="submit" id="createBtn">Create Event</button>
 
     </form>
 
