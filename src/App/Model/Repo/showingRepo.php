@@ -9,7 +9,7 @@ namespace App\Model\Repo;
 use Doctrine\ORM\EntityRepository;
 
 
-class GenreRepo extends EntityRepository
+class ShowingRepo extends EntityRepository
 {
 
 
