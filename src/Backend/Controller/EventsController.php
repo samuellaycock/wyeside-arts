@@ -8,6 +8,7 @@ namespace Backend\Controller;
 
 use App\Controller\AppController;
 use App\Hydrator;
+use App\Model\Entity\Genre;
 use App\Model\Entity\Event;
 use App\Model\Repo\EventRepo;
 use App\Model\Repo\GenreRepo;
@@ -32,6 +33,21 @@ class EventsController extends AppController
     protected function getGenreRepo()
     {
         return $this->em->getRepository('App\Model\Entity\Genre');
+    }
+
+    /**
+     * @param Genre[] $genres
+     * @param Event $event
+     */
+    protected function updateEventGenres(array $genres, Event $event)
+    {
+        $event->clearGenres();
+        foreach($genres as $genre){
+            $keyName = 'genre-' . $genre->getId();
+            if(null !== $this->app->request->post($keyName)){
+                $event->addGenre($genre);
+            }
+        }
     }
 
 
@@ -59,14 +75,26 @@ class EventsController extends AppController
     {
         $id = $this->app->router->getCurrentRoute()->getParam('id');
         $event = $this->getEventRepo()->find($id);
+        $genres = $this->getGenreRepo()->getAllSortedByName();
+
+        if($this->app->request->isPost()){
+            $hydrator = new Hydrator;
+            $hydrator->hydrate($event, $this->app->request->params());
+            $this->updateEventGenres($genres, $event);
+            $this->em->persist($event);
+            $this->em->flush();
+        }else{
+
+        }
 
         $data = [
             'event' => $event,
-            'genres' => $this->getGenreRepo()->getAllSortedByName()
+            'genres' => $genres
         ];
 
         $this->app->render('backend/events/edit.twig', $data);
     }
+
 
 
     public function createAction()
@@ -74,10 +102,12 @@ class EventsController extends AppController
         $type = $this->app->router->getCurrentRoute()->getParam('type');
         $event = new Event();
         $event->setType($type);
+        $genres = $this->getGenreRepo()->getAllSortedByName();
 
         if($this->app->request->isPost()){
             $hydrator = new Hydrator;
             $hydrator->hydrate($event, $this->app->request->params());
+            $this->updateEventGenres($genres, $event);
             $event->setCreatedTs(new \DateTime());
             $this->em->persist($event);
             $this->em->flush();
@@ -86,7 +116,7 @@ class EventsController extends AppController
 
         $data = [
             'event' => $event,
-            'genres' => $this->getGenreRepo()->getAllSortedByName()
+            'genres' => $genres
         ];
 
         $this->app->render('backend/events/create.twig',$data);
