@@ -115,8 +115,8 @@ class Event
      * @ManyToMany(targetEntity="App\Model\Entity\Genre", inversedBy="events")
      * @JoinTable(
      *      name="eventgenrelink",
-     *      joinColumns={@JoinColumn(name="eventID", referencedColumnName="id")},
-     *      inverseJoinColumns={@JoinColumn(name="genreID", referencedColumnName="id")}
+     *      joinColumns={@JoinColumn(name="eventID", referencedColumnName="eventID")},
+     *      inverseJoinColumns={@JoinColumn(name="genreID", referencedColumnName="genreID")}
      * )
      * @var Genre[]
      */

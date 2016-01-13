@@ -78,7 +78,6 @@ class EventsController extends AppController
         if($this->app->request->isPost()){
             $hydrator = new Hydrator;
             $hydrator->hydrate($event, $this->app->request->params());
-            // validate event
             $event->setCreatedTs(new \DateTime());
             $this->em->persist($event);
             $this->em->flush();

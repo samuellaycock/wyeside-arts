@@ -43,9 +43,13 @@
         <br>
         <fieldset>
             <legend>Genres</legend>
+            {% set activeGenreIds = [] %}
+            {% for genre in event.getGenres() %}
+                {% set activeGenreIds = activeGenreIds|merge([genre.getId()]) %}
+            {% endfor %}
             {% for genre in genres %}
                 <div class="genre-block" style="width:200px;display:inline-block;">
-                    <input type="checkbox" name="genre-{{ genre.getId() }}" id="genre-{{ genre.getId() }}">
+                        <input{% if(genre.getId() in activeGenreIds) %} checked{% endif %} type="checkbox" name="genre-{{ genre.getId() }}" id="genre-{{ genre.getId() }}">
                     <label for="genre-{{ genre.getId(0) }}">{{ genre.getName() }}</label>
                 </div>
             {% endfor %}
