@@ -13,7 +13,6 @@ use App\Model\Entity\Event;
 use App\Model\Repo\EventRepo;
 use App\Model\Repo\GenreRepo;
 use App\Pagination\Pagination;
-use Doctrine\ORM\EntityManager;
 
 
 class EventsController extends AppController

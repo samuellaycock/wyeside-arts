@@ -1,19 +1,21 @@
 .tab-group {
-    display:block;
-    padding-top: 5px;
+    display:inline-block;
+    margin-top: 5px;
     font-size:0.9em;
+    border:solid 1px #777;
+    border-radius: 2px;
+
 }
 .tab-object {
     display: inline-block;
     background-color: #333;
     color:#fff;
     padding: 10px 20px 10px 30px;
-    margin-right:3px;
     cursor: pointer;
     position: relative;
-}
-.tab-object:hover {
-    opacity: 0.8;
+    -webkit-user-select: none;
+    -moz-user-select: -moz-none;
+    user-select: none;
 }
 .tab-active:before,
 .tab-object:hover:before {
@@ -24,10 +26,12 @@
     width: 0;
     height: 0;
     border-top: 8px solid transparent;
-    border-left: 8px solid #ffffff;
+    border-left: 8px solid #777;
     border-bottom: 8px solid transparent;
 }
-
+.tab-active:before{
+    border-left: 8px solid #ffffff !important;
+}
 .tab-page {
     display: none;
 }

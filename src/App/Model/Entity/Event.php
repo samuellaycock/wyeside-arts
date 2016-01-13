@@ -122,6 +122,12 @@ class Event
      */
     protected $genres;
 
+    /**
+     * @OneToMany(targetEntity="App\Model\Entity\Image", mappedBy="event")
+     * @var Image[]
+     */
+    protected $images;
+
 
     /**
      * @return int
@@ -401,6 +407,31 @@ class Event
         $this->genres = [];
     }
 
+
+    /**
+     * @return string
+     */
+    public function getBannerImageUrl()
+    {
+        $imageName = $this->getBanner() . $this->getBannerExt();
+        return $imageName;
+    }
+
+    /**
+     * @return Image[]
+     */
+    public function getImages()
+    {
+        return $this->images;
+    }
+
+    /**
+     * @param Image $image
+     */
+    public function addImage(Image $image)
+    {
+        $this->images[] = $image;
+    }
 
 
 

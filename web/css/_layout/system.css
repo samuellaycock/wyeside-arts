@@ -8,16 +8,20 @@ html, body {
 }
 
 #sidebar {
-    width: 220px;
+    width: 175px;
+    border-right: solid 5px #171313;
     position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
     background-color: #31373F;
+    padding-top:80px;
 }
 
 #logo {
-    padding:20px;
+    position: absolute;
+    left:10px;
+    top:20px;
 }
 
 #navigation {
@@ -29,12 +33,13 @@ html, body {
 }
 
 #navigation ul li a {
+    text-align: right;
     display: block;
     text-decoration: none;
     color:#fff;
     padding-top:8px;
     padding-bottom:8px;
-    padding-left:12px;
+    padding-right:12px;
 }
 
 #navigation ul li a:hover {
@@ -42,7 +47,9 @@ html, body {
 }
 
 #content {
-    padding-left:230px;
+    margin-left:180px;
+    padding-left: 10px;
     padding-top:20px;
     padding-right: 10px;
+    position: relative;
 }

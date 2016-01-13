@@ -7,7 +7,7 @@ namespace App\Model\Entity;
 
 
 /**
- * @EntityrepositoryClass="App\Model\RepoImageRepo")
+ * @Entity(repositoryClass="App\Model\RepoImageRepo")
  * @Table(name="eventimage")
  */
 class Image
@@ -38,6 +38,13 @@ class Image
      * @var int
      */
     protected $isMain;
+
+    /**
+     * @ManyToOne(targetEntity="App\Model\Entity\Event", inversedBy="images")
+     * @JoinColumn(name="eventID", referencedColumnName="eventID")
+     */
+    protected $event;
+
 
     /**
      * @return int
@@ -104,6 +111,21 @@ class Image
     }
 
 
+    /**
+     * @return string
+     */
+    public function getUrl()
+    {
+        return '/event-assets/images/' . $this->getName() . '' . $this->getExt();
+    }
+
+    /**
+     * @return string
+     */
+    public function getThumbnailUrl()
+    {
+        return '/event-assets/thumbnails/' . $this->getName() . '' . $this->getExt();
+    }
 
 
 }
