@@ -1,0 +1,65 @@
+<form method="post">
+    <input type="text" name="title" id="title" placeholder="Title" class="dbl" value="{{ event.getTitle() }}" style="width:100%;">
+
+    <br>
+    <label for="ticketsolve">Ticketsolve ID</label>
+    <input type="text" id="ticketsolve" name="ticketsolve" value="{{ event.getTicketsolve() }}" >
+
+    <br>
+    <label for="trailer">YouTube Trailer</label>
+    <input type="text" id="trailer" name="trailer" value="{{ event.getTrailer() }}" >
+
+    {% if event.getType() != 1 %}
+        <br>
+        <label for="eventLink">Event Link</label>
+        <input type="text" id="eventLink" name="eventLink" value="{{ event.getLink() }}" >
+    {% endif %}
+
+    {% if event.getType() == 1 %}
+        <br>
+        <label for="certificate">Certificate</label>
+        <select id="certificate" name="certificate">
+            <option value="TBC">TBC</option>
+            <option value="TBC">U</option>
+            <option value="TBC">PG</option>
+            <option value="TBC">12A</option>
+            <option value="TBC">12</option>
+            <option value="TBC">15</option>
+            <option value="TBC">18</option>
+        </select>
+
+        <br>
+        <label for="runningTime">Run Time</label>
+        <input type="text" id="runningTime" name="runningTime" value="{{ event.getRunningTime() }}" >
+
+        <br>
+        <label for="director">Director</label>
+        <input type="text" id="director" name="director" value="{{ event.getDirector() }}" >
+
+        <br>
+        <label for="starring">Starring</label>
+        <input type="text" id="starring" name="starring" value="{{ event.getStarring() }}" >
+
+        <br>
+        <fieldset>
+            <legend>Genres</legend>
+            {% for genre in genres %}
+                <div class="genre-block" style="width:200px;display:inline-block;">
+                    <input type="checkbox" name="genre-{{ genre.getId() }}" id="genre-{{ genre.getId() }}">
+                    <label for="genre-{{ genre.getId(0) }}">{{ genre.getName() }}</label>
+                </div>
+            {% endfor %}
+        </fieldset>
+    {% endif %}
+
+    <br>
+    <textarea id="description" name="description" placeholder="Event Description">{{ event.getDescription() }}</textarea>
+
+    <br>
+    {% if(event.getId) %}
+        <button type="submit" id="createBtn">Save Event</button>
+    {% else %}
+        <button type="submit" id="createBtn">Create Event</button>
+    {% endif %}
+
+</form>

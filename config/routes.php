@@ -31,6 +31,14 @@ return [
         ]
     ],
     [
+        'pattern' => '/system/events/:id',
+        'methods' => ['GET'],
+        'paths' => [
+            'controller' => '\Backend\Controller\EventsController',
+            'action' => 'editAction'
+        ]
+    ],
+    [
         'pattern' => '/system/events/create/:type',
         'methods' => ['GET', 'POST'],
         'paths' => [

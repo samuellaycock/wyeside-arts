@@ -65,4 +65,12 @@ class Genre
         $this->name = $name;
     }
 
+    /**
+     * @return Event[]
+     */
+    public function getEvents()
+    {
+        return $this->events;
+    }
+
 }

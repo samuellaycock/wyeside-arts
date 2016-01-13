@@ -55,6 +55,20 @@ class EventsController extends AppController
     }
 
 
+    public function editAction()
+    {
+        $id = $this->app->router->getCurrentRoute()->getParam('id');
+        $event = $this->getEventRepo()->find($id);
+
+        $data = [
+            'event' => $event,
+            'genres' => $this->getGenreRepo()->getAllSortedByName()
+        ];
+
+        $this->app->render('backend/events/edit.twig', $data);
+    }
+
+
     public function createAction()
     {
         $type = $this->app->router->getCurrentRoute()->getParam('type');
