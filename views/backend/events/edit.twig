@@ -7,7 +7,10 @@
 {% block title %}Events{% endblock %}
 
 {% block content %}
-    <img style="position:absolute;left:0;top:0;right:0;width:100%;z-index:-1;" src="/event-assets/images/{{ event.getBannerImageUrl() }}" >
+    <div id="banner-wrapper">
+        <img style="position:absolute;left:0;top:0;right:0;width:100%;z-index:-1;" src="/event-assets/images/{{ event.getBannerImageUrl() }}" >
+    </div>
+
     <h1 style="background-color: {{ event.getTypePrimaryColor() }};">{{ event.getTypeName() }}</h1>
 
     <br>
@@ -37,10 +40,18 @@
         </form>
 
         <div style="clear:both;"></div>
-        <hr>
+        <br>
 
         {% for image in event.getImages() %}
-            <img src="{{ image.getUrl() }}">
+            <div class="image-wrapper">
+                <div class="image-controls">
+                    {% if not image.getIsMain() %}
+                        <a href="#">Set Main</a> |
+                    {% endif %}
+                    <a href="#">Delete</a>
+                </div>
+                <img src="{{ image.getThumbnailUrl() }}" style="width:240px;height:240px;">
+            </div>
         {% endfor %}
 
     </div>
