@@ -19,18 +19,15 @@
         <br>
         <label for="certificate">Certificate</label>
         <select id="certificate" name="certificate">
-            <option value="TBC">TBC</option>
-            <option value="TBC">U</option>
-            <option value="TBC">PG</option>
-            <option value="TBC">12A</option>
-            <option value="TBC">12</option>
-            <option value="TBC">15</option>
-            <option value="TBC">18</option>
+            {% set certs = ['TBC','U','PG','12A','12','15','18'] %}
+            {% for cert in certs %}
+                <option{% if event.getCertificate() == cert %} selected="selected"{% endif %} value="{{ cert }}">{{ cert }}</option>
+            {% endfor %}
         </select>
 
         <br>
         <label for="runningTime">Run Time</label>
-        <input type="text" id="runningTime" name="runningTime" value="{{ event.getRunningTime() }}" >
+        <input type="text" id="runningTime" name="runningTime" value="{{ event.getRunningTime() }}" style="width:120px;"> <span style="font-size:0.7em;">Minutes</span>
 
         <br>
         <label for="director">Director</label>
