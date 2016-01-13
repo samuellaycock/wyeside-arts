@@ -27,3 +27,10 @@
     border-left: 8px solid #ffffff;
     border-bottom: 8px solid transparent;
 }
+
+.tab-page {
+    display: none;
+}
+.tab-page-active {
+    display: block;
+}

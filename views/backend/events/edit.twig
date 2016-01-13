@@ -9,12 +9,22 @@
 {% block content %}
     <h1 style="background-color: {{ event.getTypePrimaryColor() }};">{{ event.getTypeName() }}</h1>
     <div class="tab-group">
-        <div class="tab-object tab-active">Details</div>
-        <div class="tab-object">Images</div>
-        <div class="tab-object">Dates &amp; Times</div>
+        <div class="tab-object tab-active" data-tabgroup="event" data-element="tab-page-details">Details</div>
+        <div class="tab-object" data-tabgroup="event" data-element="tab-page-images">Images</div>
+        <div class="tab-object" data-tabgroup="event" data-element="tab-page-dates">Dates &amp; Times</div>
     </div>
     <hr>
 
-    {% include "backend/events/_events-form.twig" %}
+    <div class="tab-page tab-page-active" id="tab-page-details">
+        {% include "backend/events/_events-form.twig" %}
+    </div>
+
+    <div class="tab-page" id="tab-page-images">
+        Images
+    </div>
+
+    <div class="tab-page" id="tab-page-dates">
+        Dates &amp; Times
+    </div>
 
 {% endblock %}
