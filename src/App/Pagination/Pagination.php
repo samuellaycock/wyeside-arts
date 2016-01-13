@@ -33,7 +33,7 @@ class Pagination
         $this->refreshUrl = $refreshUrl;
         $this->query = $query;
         $this->doctrinePaginator = new DoctrinePaginator($query);
-        $this->defaultPerPage = 20;
+        $this->defaultPerPage = 25;
     }
 
 

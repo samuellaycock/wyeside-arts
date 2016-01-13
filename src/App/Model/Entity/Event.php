@@ -111,6 +111,17 @@ class Event
      */
     protected $ticketsolve;
 
+    /**
+     * @ManyToMany(targetEntity="App\Model\Entity\Genre", inversedBy="events")
+     * @JoinTable(
+     *      name="eventgenrelink",
+     *      joinColumns={@JoinColumn(name="eventID", referencedColumnName="id")},
+     *      inverseJoinColumns={@JoinColumn(name="genreID", referencedColumnName="id")}
+     * )
+     * @var Genre[]
+     */
+    protected $genres;
+
 
     /**
      * @return int
@@ -367,6 +378,30 @@ class Event
     {
         $this->ticketsolve = $ticketsolve;
     }
+
+
+    /**
+     * @return Genre[]
+     */
+    public function getGenres()
+    {
+        return $this->genres;
+    }
+
+    /**
+     * @param Genre $genre
+     */
+    public function addGenre(Genre $genre)
+    {
+        $this->genres[] = $genre;
+    }
+
+    public function clearGenres()
+    {
+        $this->genres = [];
+    }
+
+
 
 
     /**

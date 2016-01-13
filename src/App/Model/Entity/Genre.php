@@ -26,6 +26,12 @@ class Genre
      */
     protected $name;
 
+    /**
+     * @ManyToMany(targetEntity="App\Model\Entity\Event", mappedBy="genres")
+     * @var Event[]
+     */
+    protected $events;
+
 
     /**
      * @return int

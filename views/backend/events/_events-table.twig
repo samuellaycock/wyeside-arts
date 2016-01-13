@@ -5,7 +5,7 @@
     <tr>
         <th style="width:120px;">Type</th>
         <th>Event</th>
-        <th>Created</th>
+        <th style="width:200px;">Created</th>
         <th style="width:90px;">Status</th>
     </tr>
     {% for event in eventsPaginated.getResults() %}
@@ -14,7 +14,7 @@
                 <span class="bold">{{ event.getTypeName() }}</span>
             </td>
             <td><a href="/system/events/{{ event.getId() }}">{{ event.getTitle() }}</a></td>
-            <td>{{ event.getCreatedAt()|date("jS M Y \\@ g:ia") }}</td>
+            <td>{{ event.getCreatedTs()|date("jS M Y \\@ g:ia") }}</td>
             <td>
                 {% if event.getStatus() == true %}
                     <span class="green-text bold">Open</span>
