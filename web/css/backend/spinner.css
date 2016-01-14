@@ -1,0 +1,22 @@
+.spinner-wrapper {
+    display: none;
+    text-align: center;
+    overflow: hidden;
+}
+.spinner-wrapper,
+.spinner-blanket {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+}
+.spinner-blanket {
+    opacity: 0.3;
+    background-color: #333;
+}
+.spinner-icon {
+    display: inline-block;
+    margin-top:10px;
+}
+

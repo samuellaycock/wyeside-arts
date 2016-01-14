@@ -26,4 +26,16 @@ abstract class StringUtil
         return $string;
     }
 
+
+    /**
+     * @param $string
+     * @return mixed
+     */
+    public static function getExtension($string)
+    {
+        $parts = explode('.', $string);
+        return array_pop($parts);
+    }
+
+
 }

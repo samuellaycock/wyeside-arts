@@ -414,7 +414,7 @@ class Event
     public function getBannerImageUrl()
     {
         $imageName = '/event-assets/images/' . $this->getBanner() . $this->getBannerExt();
-        if(!file_exists($imageName)){
+        if (!is_file(APP_DIR . '/web' . $imageName)) {
             return '/img/event-assets/default-banner.jpg';
         }
         return $imageName;
@@ -436,6 +436,18 @@ class Event
         $this->images[] = $image;
     }
 
+    /**
+     *
+     */
+    public function removeCurrentBannerIfExists()
+    {
+        $imageName = APP_DIR . '/web' . '/event-assets/images/' . $this->getBanner() . $this->getBannerExt();
+        if (is_file($imageName)) {
+            @unlink($imageName);
+        }
+        $this->setBanner('');
+        $this->setBannerExt('');
+    }
 
 
     /**
@@ -443,8 +455,7 @@ class Event
      */
     public function getTypeName()
     {
-        switch($this->getType())
-        {
+        switch ($this->getType()) {
             case 1:
                 return 'Cinema';
             case 2:
@@ -467,8 +478,7 @@ class Event
      */
     public function getTypePrimaryColor()
     {
-        switch($this->getType())
-        {
+        switch ($this->getType()) {
             case 1:
                 return '#B0D817';
             case 2:

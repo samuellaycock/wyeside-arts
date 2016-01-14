@@ -15,6 +15,18 @@ class EventRepo extends EntityRepository
 {
 
     /**
+     * @param mixed $id
+     * @param null $lockMode
+     * @param null $lockVersion
+     * @return Event|null
+     */
+    public function find($id, $lockMode = null, $lockVersion = null)
+    {
+        return parent::find($id, $lockMode = null, $lockVersion = null);
+    }
+
+
+    /**
      * @return array
      */
     public function getGenres(){

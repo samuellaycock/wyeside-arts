@@ -39,6 +39,14 @@ return [
         ]
     ],
     [
+        'pattern' => '/system/events/:id/banner-upload',
+        'methods' => ['POST'],
+        'paths' => [
+            'controller' => '\Backend\Controller\EventImagesController',
+            'action' => 'bannerAction'
+        ]
+    ],
+    [
         'pattern' => '/system/events/create/:type',
         'methods' => ['GET', 'POST'],
         'paths' => [
