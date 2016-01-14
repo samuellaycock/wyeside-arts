@@ -438,6 +438,19 @@ class Event
     }
 
     /**
+     * @param Image $image
+     */
+    public function removeImage(Image $image)
+    {
+        foreach($this->images as $key => $i){
+            if($i == $image){
+                unset($this->images[$key]);
+                return;
+            }
+        }
+    }
+
+    /**
      *
      */
     public function removeCurrentBannerIfExists()

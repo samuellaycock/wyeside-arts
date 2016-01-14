@@ -7,7 +7,7 @@ namespace App\Model\Entity;
 
 
 /**
- * @Entity(repositoryClass="App\Model\RepoImageRepo")
+ * @Entity(repositoryClass="App\Model\Repo\ImageRepo")
  * @Table(name="eventimage")
  */
 class Image
@@ -111,7 +111,7 @@ class Image
     }
 
     /**
-     * @return mixed
+     * @return Event
      */
     public function getEvent()
     {

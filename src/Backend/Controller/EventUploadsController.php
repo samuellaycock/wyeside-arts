@@ -13,7 +13,8 @@ use App\Model\Repo\EventRepo;
 use App\Util\ImageUploader;
 use App\Util\StringUtil;
 
-class EventImagesController extends AppController
+
+class EventUploadsController extends AppController
 {
 
     /**
@@ -63,7 +64,7 @@ class EventImagesController extends AppController
 
         $this->em->flush();
 
-        $this->app->render('backend/events/_partials/event-images.twig', [
+        $this->app->render('backend/events/_partials/event-images-response.twig', [
             'event' => $event,
             'imageReload' => true
         ]);

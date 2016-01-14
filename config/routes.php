@@ -39,10 +39,34 @@ return [
         ]
     ],
     [
+        'pattern' => '/system/events/:id/images',
+        'methods' => ['GET'],
+        'paths' => [
+            'controller' => '\Backend\Controller\EventsController',
+            'action' => 'getImagesAction'
+        ]
+    ],
+    [
+        'pattern' => '/system/images/:id',
+        'methods' => ['DELETE'],
+        'paths' => [
+            'controller' => '\Backend\Controller\EventsController',
+            'action' => 'deleteImageAction'
+        ]
+    ],
+    [
+        'pattern' => '/system/images/:id/set-main',
+        'methods' => ['PATCH'],
+        'paths' => [
+            'controller' => '\Backend\Controller\EventsController',
+            'action' => 'setImageMainAction'
+        ]
+    ],
+    [
         'pattern' => '/system/events/:id/banner-upload',
         'methods' => ['POST'],
         'paths' => [
-            'controller' => '\Backend\Controller\EventImagesController',
+            'controller' => '\Backend\Controller\EventUploadsController',
             'action' => 'bannerAction'
         ]
     ],
@@ -50,7 +74,7 @@ return [
         'pattern' => '/system/events/:id/image-upload',
         'methods' => ['POST'],
         'paths' => [
-            'controller' => '\Backend\Controller\EventImagesController',
+            'controller' => '\Backend\Controller\EventUploadsController',
             'action' => 'imageAction'
         ]
     ],

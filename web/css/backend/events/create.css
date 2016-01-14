@@ -22,6 +22,9 @@ h1 {
     font-size:0.8em;
     color:#fff;
 }
+.image-main .image-controls{
+    background-color: red;
+}
 .image-controls a {
     color:#fff;
     text-decoration: none;
