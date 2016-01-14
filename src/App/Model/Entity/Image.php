@@ -110,6 +110,22 @@ class Image
         $this->isMain = $isMain;
     }
 
+    /**
+     * @return mixed
+     */
+    public function getEvent()
+    {
+        return $this->event;
+    }
+
+    /**
+     * @param Event $event
+     */
+    public function setEvent(Event $event)
+    {
+        $this->event = $event;
+    }
+
 
     /**
      * @return string

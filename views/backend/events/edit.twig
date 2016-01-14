@@ -37,26 +37,20 @@
             {% include "backend/_partials/spinner.twig" %}
         </form>
 
-        <form id="image-upload-form" class="upload-form" method="post" enctype="multipart/form-data" style="float:left;">
+        <form id="image-upload-form" class="upload-form" method="post" target="upload-iframe-images" action="/system/events/{{ event.getId() }}/image-upload" enctype="multipart/form-data" style="float:left;">
             <p style="font-size:0.8em;color:#333;">You may select multiple files.</p>
             <input type="file" name="file[]" multiple>
-            <button type="submit" name="submit">Upload Image</button>
+            <button type="submit" name="submit">Upload Images</button>
+            <iframe id="upload-iframe-images" name="upload-iframe-images" style="display:none;"></iframe>
+            {% include "backend/_partials/spinner.twig" %}
         </form>
 
         <div style="clear:both;"></div>
         <br>
 
-        {% for image in event.getImages() %}
-            <div class="image-wrapper">
-                <div class="image-controls">
-                    {% if not image.getIsMain() %}
-                        <a href="#">Set Main</a> |
-                    {% endif %}
-                    <a href="#">Delete</a>
-                </div>
-                <img src="{{ image.getThumbnailUrl() }}" style="width:240px;height:240px;">
-            </div>
-        {% endfor %}
+        <div id="event-images">
+            {% include "backend/events/_partials/event-images.twig" %}
+        </div>
 
     </div>
 

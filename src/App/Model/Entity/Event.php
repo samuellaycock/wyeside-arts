@@ -433,6 +433,7 @@ class Event
      */
     public function addImage(Image $image)
     {
+        $image->setEvent($this);
         $this->images[] = $image;
     }
 

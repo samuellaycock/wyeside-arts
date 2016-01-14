@@ -47,6 +47,14 @@ return [
         ]
     ],
     [
+        'pattern' => '/system/events/:id/image-upload',
+        'methods' => ['POST'],
+        'paths' => [
+            'controller' => '\Backend\Controller\EventImagesController',
+            'action' => 'imageAction'
+        ]
+    ],
+    [
         'pattern' => '/system/events/create/:type',
         'methods' => ['GET', 'POST'],
         'paths' => [
