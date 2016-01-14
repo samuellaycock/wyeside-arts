@@ -8,7 +8,7 @@
 
 {% block content %}
     <div id="banner-wrapper">
-        <img style="position:absolute;left:0;top:0;right:0;width:100%;z-index:-1;" src="/event-assets/images/{{ event.getBannerImageUrl() }}" >
+        <img style="position:absolute;left:0;top:0;right:0;width:100%;z-index:-1;" src="{{ event.getBannerImageUrl() }}" >
     </div>
 
     <h1 style="background-color: {{ event.getTypePrimaryColor() }};">{{ event.getTypeName() }}</h1>

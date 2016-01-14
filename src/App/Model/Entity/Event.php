@@ -413,7 +413,10 @@ class Event
      */
     public function getBannerImageUrl()
     {
-        $imageName = $this->getBanner() . $this->getBannerExt();
+        $imageName = '/event-assets/images/' . $this->getBanner() . $this->getBannerExt();
+        if(!file_exists($imageName)){
+            return '/img/event-assets/default-banner.jpg';
+        }
         return $imageName;
     }
 
