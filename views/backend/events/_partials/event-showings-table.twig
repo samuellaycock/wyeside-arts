@@ -3,12 +3,14 @@
 <table class="system-table">
     <tr>
         <th>Date &amp; Time</th>
+        <th style="width:60px;">Type</th>
         <th>Location</th>
         <th style="width:120px;">&nbsp;</th>
     </tr>
     {% for showing in event.getShowings() %}
         <tr>
             <td>{{ showing.getTs()|date("D jS M Y \\@ g:ia") }}</td>
+            <td>{{ showing.getType() }}</td>
             <td>{{ showing.getLocationName() }}</td>
             <td><a href="javascript:ajaxDeleteShowing('{{ showing.getId() }}')">Delete</a></td>
         </tr>

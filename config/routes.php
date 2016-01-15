@@ -127,4 +127,20 @@ return [
             'action' => 'deleteShowingAction'
         ]
     ],
+
+
+
+
+    /* -----------------------------------------------------------
+     * Blog
+     * ----------------------------------------------------------- */
+    [
+        'pattern' => '/system/blog',
+        'methods' => ['GET'],
+        'paths' => [
+            'controller' => '\Backend\Controller\BlogController',
+            'action' => 'getShowingsAction'
+        ]
+    ],
+
 ];

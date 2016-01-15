@@ -47,6 +47,7 @@ class EventShowingsController extends AppController
             )
         );
         $showing->setLocation($this->app->request->post('showingLocation'));
+        $showing->setType($this->app->request->post('showingType'));
 
         $event->addShowing($showing);
         $this->em->persist($showing);

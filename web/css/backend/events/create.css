@@ -1,6 +1,6 @@
 h1 {
     color:#fff;
-    padding:10px 170px 10px 30px;
+    padding:10px 90px 10px 130px;
     position: relative;
 }
 
@@ -35,18 +35,19 @@ h1 {
 }
 .event-status {
     position: absolute;
-    right:6px;
-    top:6px;
-    bottom:6px;
+    left:0;
+    top:0;
+    bottom:0;
     color:#fff;
     font-size:0.6em;
-    border:solid 2px #fff;
-    padding:10px 20px;
+    border-right:solid 5px #fff;
+    text-align: center;
+    padding:18px 20px;
+    width: 70px;
     cursor: pointer;
-    border-radius: 2px;
 }
 .event-status:hover {
-    border-color:#333;
+    opacity: 0.8;
 }
 .status-closed{
     background-color: red;

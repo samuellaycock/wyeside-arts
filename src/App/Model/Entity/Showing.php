@@ -33,6 +33,12 @@ class Showing
      */
     protected $location;
 
+    /**
+     * @Column(type="string", name="type")
+     * @var string
+     */
+    protected $type;
+
 
     /**
      * @ManyToOne(targetEntity="App\Model\Entity\Event", inversedBy="showings")
@@ -72,6 +78,22 @@ class Showing
     public function setTs($ts)
     {
         $this->ts = $ts;
+    }
+
+    /**
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param $type
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
     }
 
     /**
