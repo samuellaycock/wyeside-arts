@@ -111,13 +111,23 @@ class Showing
 
     public function getLocationName()
     {
-        switch($this->getLocation())
-        {
-            case 1: return 'Castle Cinema';
-            case 2: return 'Market Theatre';
-            case 3: return 'Gallery';
-            default: return 'Unknown';
+        $id = $this->getLocation();
+        if(isset(self::getLocationMap()[$id])){
+            return self::getLocationMap()[$id];
         }
+        return 'Unknown';
+    }
+
+    /**
+     * @return array
+     */
+    public static function getLocationMap()
+    {
+        return [
+            0 => 'Castle Cinema',
+            1 => 'Market Theatre',
+            2 => 'Gallery'
+        ];
     }
 
 

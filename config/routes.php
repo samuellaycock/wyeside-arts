@@ -62,6 +62,14 @@ return [
             'action' => 'createAction'
         ]
     ],
+    [
+        'pattern' => '/system/events/:id/update-status/:status',
+        'methods' => ['PATCH'],
+        'paths' => [
+            'controller' => '\Backend\Controller\EventsController',
+            'action' => 'updateStatusAction'
+        ]
+    ],
 
     /* -----------------------------------------------------------
      * Events > Images

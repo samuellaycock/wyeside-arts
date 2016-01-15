@@ -1,6 +1,7 @@
 h1 {
     color:#fff;
-    padding:10px 90px 10px 30px;
+    padding:10px 170px 10px 30px;
+    position: relative;
 }
 
 .image-wrapper {
@@ -31,4 +32,25 @@ h1 {
 }
 .image-controls a:hover {
     text-decoration: underline;
+}
+.event-status {
+    position: absolute;
+    right:6px;
+    top:6px;
+    bottom:6px;
+    color:#fff;
+    font-size:0.6em;
+    border:solid 2px #fff;
+    padding:10px 20px;
+    cursor: pointer;
+    border-radius: 2px;
+}
+.event-status:hover {
+    border-color:#333;
+}
+.status-closed{
+    background-color: red;
+}
+.status-open{
+    background-color: green;
 }

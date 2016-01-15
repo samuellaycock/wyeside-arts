@@ -15,7 +15,14 @@
         {% include "backend/events/_partials/banner-image.twig" %}
     </div>
 
-    <h1 style="background-color: {{ event.getTypePrimaryColor() }};">{{ event.getTitle() }}</h1>
+    <h1 style="background-color: {{ event.getTypePrimaryColor() }};">
+        {{ event.getTitle() }}
+        {% if event.getStatus() %}
+            <div class="event-status status-open">Open</div>
+        {% else %}
+            <div class="event-status status-closed">Closed</div>
+        {% endif %}
+    </h1>
 
     <br>
     {% spaceless %}
@@ -66,9 +73,9 @@
             <br>
             <label for="location">Location</label>
             <select name="showingLocation" id="showingLocation">
-                <option value="1">Castle Cinema</option>
-                <option value="2">Market Theatre</option>
-                <option value="3">Gallery</option>
+                <option value="0">Castle Cinema</option>
+                <option value="1">Market Theatre</option>
+                <option value="2">Gallery</option>
             </select>
 
             <br>

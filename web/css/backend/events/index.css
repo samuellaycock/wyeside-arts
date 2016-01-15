@@ -6,10 +6,11 @@
 }
 .event-button {
     display: inline-block;
-    padding:15px 15px;
+    padding:15px 40px;
     color:#fff;
     cursor: pointer;
     text-align: center;
+    font-size: 1.1em;
 }
 .event-button:hover {
     opacity:0.8;

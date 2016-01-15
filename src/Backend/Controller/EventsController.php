@@ -105,6 +105,19 @@ class EventsController extends AppController
     }
 
 
+    public function updateStatusAction()
+    {
+        $id = $this->app->router->getCurrentRoute()->getParam('id');
+        $event = $this->getEventRepo()->find($id);
+        $status = $this->app->router->getCurrentRoute()->getParam('status');
+
+        $event->setStatus($status);
+        $this->em->persist($event);
+        $this->em->flush();
+    }
+
+
+
 
     public function createAction()
     {

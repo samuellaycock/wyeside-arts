@@ -7,12 +7,34 @@ $( document ).ready(function() {
     $("#createShowingBtn").bind('click', function(){
         ajaxCreateShowing(eventId);
     });
+    $(".event-status").bind("click", function(){
+        ajaxToggleStatus(this, eventId);
+    });
 });
 
 
+function ajaxToggleStatus(element, eventId)
+{
+    if($(element).hasClass('status-open')){
+        $('.event-status').removeClass('status-open');
+        $('.event-status').addClass('status-closed');
+        $('.event-status').html('Closed');
+        var status = 0;
+    }else{
+        $('.event-status').removeClass('status-closed');
+        $('.event-status').addClass('status-open');
+        $('.event-status').html('Open');
+        var status = 1;
+    }
 
+    $.ajax({
+        url: '/system/events/'+eventId+'/update-status/'+status,
+        method: 'PATCH'
+    });
+}
 
-function resetSpinner(formId){
+function resetSpinner(formId)
+{
     $("#"+formId).find('.spinner-wrapper').css('display', 'none');
     $("#"+formId).trigger("reset");
 }
