@@ -9,6 +9,7 @@ namespace Backend\Controller;
 use App\Controller\AppController;
 use App\Model\Repo\EventRepo;
 use App\Model\Repo\UserRepo;
+use App\Model\Entity\User;
 
 
 class LoginController extends AppController
@@ -31,6 +32,11 @@ class LoginController extends AppController
     }
 
 
+    protected function login(User $user)
+    {
+        $_SESSION['wyeside-user'] = $user;
+    }
+
 
     public function loginAction()
     {
@@ -41,6 +47,7 @@ class LoginController extends AppController
             $password = $this->app->request->post('password');
             $user = $this->getUserRepo()->findByUsernameOrEmail($username);
             if($user && $user->validatePassword($password)){
+                $this->login($user);
                 $this->app->redirect('/system', 302);
                 return;
             }else{
@@ -55,6 +62,13 @@ class LoginController extends AppController
             'event' => $event,
             'error' => $error
         ]);
+    }
+
+
+    public function logoutAction()
+    {
+        unset($_SESSION['wyeside-user']);
+        $this->app->redirect('/system/login', 302);
     }
 
 

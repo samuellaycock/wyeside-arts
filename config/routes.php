@@ -25,6 +25,14 @@ return [
         ]
     ],
     [
+        'pattern' => '/system/logout',
+        'methods' => ['GET'],
+        'paths' => [
+            'controller' => '\Backend\Controller\LoginController',
+            'action' => 'logoutAction'
+        ]
+    ],
+    [
         'pattern' => '/system',
         'methods' => ['GET'],
         'paths' => [

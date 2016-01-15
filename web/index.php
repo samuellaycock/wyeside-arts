@@ -3,6 +3,20 @@
  * @author James Dobb <james.dobb@gmail.com>
  */
 
+// todo: improve this auth system!
+session_start();
+$uri_parts = explode('/', ltrim($_SERVER['REQUEST_URI'],'/'));
+if($uri_parts[0] == 'system'){
+    if($uri_parts[1] != 'login') {
+        if(!isset($_SESSION['wyeside-user'])) {
+            header('Location: /system/login');
+            die();
+        }
+    }
+}
+
+
+
 define('APP_DIR', realpath(__DIR__ . '/../'));
 
 /**
@@ -22,7 +36,6 @@ if (APP_ENV != 'production') {
 }
 
 require '../vendor/autoload.php';
-
 
 $app = new Slim\Slim(require APP_DIR . '/config/config.php');
 
