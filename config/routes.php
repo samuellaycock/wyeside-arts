@@ -19,7 +19,7 @@ return [
         ]
     ],
 
-    /** -----------------------------------------------------------
+    /* -----------------------------------------------------------
      * Events
      * ----------------------------------------------------------- */
     [
@@ -36,30 +36,6 @@ return [
         'paths' => [
             'controller' => '\Backend\Controller\EventsController',
             'action' => 'editAction'
-        ]
-    ],
-    [
-        'pattern' => '/system/events/:id/images',
-        'methods' => ['GET'],
-        'paths' => [
-            'controller' => '\Backend\Controller\EventsController',
-            'action' => 'getImagesAction'
-        ]
-    ],
-    [
-        'pattern' => '/system/images/:id',
-        'methods' => ['DELETE'],
-        'paths' => [
-            'controller' => '\Backend\Controller\EventsController',
-            'action' => 'deleteImageAction'
-        ]
-    ],
-    [
-        'pattern' => '/system/images/:id/set-main',
-        'methods' => ['PATCH'],
-        'paths' => [
-            'controller' => '\Backend\Controller\EventsController',
-            'action' => 'setImageMainAction'
         ]
     ],
     [
@@ -84,6 +60,63 @@ return [
         'paths' => [
             'controller' => '\Backend\Controller\EventsController',
             'action' => 'createAction'
+        ]
+    ],
+
+    /* -----------------------------------------------------------
+     * Events > Images
+     * ----------------------------------------------------------- */
+    [
+        'pattern' => '/system/events/:id/images',
+        'methods' => ['GET'],
+        'paths' => [
+            'controller' => '\Backend\Controller\EventImagesController',
+            'action' => 'getImagesAction'
+        ]
+    ],
+    [
+        'pattern' => '/system/images/:id',
+        'methods' => ['DELETE'],
+        'paths' => [
+            'controller' => '\Backend\Controller\EventImagesController',
+            'action' => 'deleteImageAction'
+        ]
+    ],
+    [
+        'pattern' => '/system/images/:id/set-main',
+        'methods' => ['PATCH'],
+        'paths' => [
+            'controller' => '\Backend\Controller\EventImagesController',
+            'action' => 'setImageMainAction'
+        ]
+    ],
+
+
+    /* -----------------------------------------------------------
+     * Events > Showings
+     * ----------------------------------------------------------- */
+    [
+        'pattern' => '/system/events/:id/showings',
+        'methods' => ['GET'],
+        'paths' => [
+            'controller' => '\Backend\Controller\EventShowingsController',
+            'action' => 'getShowingsAction'
+        ]
+    ],
+    [
+        'pattern' => '/system/events/:id/showings',
+        'methods' => ['POST'],
+        'paths' => [
+            'controller' => '\Backend\Controller\EventShowingsController',
+            'action' => 'createShowingsAction'
+        ]
+    ],
+    [
+        'pattern' => '/system/showings/:id',
+        'methods' => ['DELETE'],
+        'paths' => [
+            'controller' => '\Backend\Controller\EventShowingsController',
+            'action' => 'deleteShowingAction'
         ]
     ],
 ];

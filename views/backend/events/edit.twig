@@ -3,6 +3,9 @@
 {% block head %}
     <link href="/css/backend/events/create.css" rel="stylesheet" type="text/css">
     <script src="/js/backend/events/edit.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var eventId = "{{ event.getId() }}";
+    </script>
 {% endblock %}
 
 {% block title %}Events{% endblock %}
@@ -12,7 +15,7 @@
         {% include "backend/events/_partials/banner-image.twig" %}
     </div>
 
-    <h1 style="background-color: {{ event.getTypePrimaryColor() }};">{{ event.getTypeName() }}</h1>
+    <h1 style="background-color: {{ event.getTypePrimaryColor() }};">{{ event.getTitle() }}</h1>
 
     <br>
     {% spaceless %}
@@ -55,7 +58,29 @@
     </div>
 
     <div class="tab-page" id="tab-page-dates">
-        Dates &amp; Times
+        <form id="newShowingForm" onsubmit="return false;">
+            <label for="dateTime">Date &amp; Time</label>
+            <input id="showingDate" name="showingDate" type="date" class="form-input-mini" value="{{ "now"|date("Y-m-d") }}">
+            <input id="showingTime" name="showingTime" type="time" class="form-input-mini" value="19:00">
+
+            <br>
+            <label for="location">Location</label>
+            <select name="showingLocation" id="showingLocation">
+                <option value="1">Castle Cinema</option>
+                <option value="2">Market Theatre</option>
+                <option value="3">Gallery</option>
+            </select>
+
+            <br>
+            <label>&nbsp;</label>
+            <button type="button" id="createShowingBtn">Add Showing</button>
+
+        </form>
+        <form>
+        <div id="event-showings-table">
+            {% include "backend/events/_partials/event-showings-table.twig" %}
+        </div>
+        </form>
     </div>
 
 {% endblock %}

@@ -7,7 +7,7 @@ namespace App\Model\Entity;
 
 
 /**
- * @EntityrepositoryClass="App\Model\Repo\ShowingRepo")
+ * @Entity(repositoryClass="App\Model\Repo\ShowingRepo")
  * @Table(name="eventdate")
  */
 class Showing
@@ -32,6 +32,15 @@ class Showing
      * @var int
      */
     protected $location;
+
+
+    /**
+     * @ManyToOne(targetEntity="App\Model\Entity\Event", inversedBy="showings")
+     * @JoinColumn(name="eventID", referencedColumnName="eventID")
+     * @var Event
+     */
+    protected $event;
+
 
     /**
      * @return int
@@ -79,6 +88,36 @@ class Showing
     public function setLocation($location)
     {
         $this->location = $location;
+    }
+
+
+    /**
+     * @return Event
+     */
+    public function getEvent()
+    {
+        return $this->event;
+    }
+
+    /**
+     * @param Event $event
+     */
+    public function setEvent(Event $event)
+    {
+        $this->event = $event;
+    }
+
+
+
+    public function getLocationName()
+    {
+        switch($this->getLocation())
+        {
+            case 1: return 'Castle Cinema';
+            case 2: return 'Market Theatre';
+            case 3: return 'Gallery';
+            default: return 'Unknown';
+        }
     }
 
 

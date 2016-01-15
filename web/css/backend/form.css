@@ -66,4 +66,8 @@ fieldset legend {
     top:0;
     right:0;
 }
+.form-input-mini {
+    width: 145px;
+    margin-right: 10px;
+}
 

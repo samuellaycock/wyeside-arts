@@ -128,6 +128,12 @@ class Event
      */
     protected $images;
 
+    /**
+     * @OneToMany(targetEntity="App\Model\Entity\Showing", mappedBy="event")
+     * @OrderBy({"ts" = "DESC"})
+     * @var Showing[]
+     */
+    protected $showings;
 
     /**
      * @return int
@@ -449,6 +455,27 @@ class Event
             }
         }
     }
+
+
+    /**
+     * @return Image[]
+     */
+    public function getShowings()
+    {
+        return $this->showings;
+    }
+
+    /**
+     * @param Showing $showing
+     */
+    public function addShowing(Showing $showing)
+    {
+        $showing->setEvent($this);
+        $this->showings[] = $showing;
+    }
+
+
+
 
     /**
      *
