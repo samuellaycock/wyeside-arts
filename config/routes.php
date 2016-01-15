@@ -10,6 +10,20 @@ return [
             'action' => 'indexAction'
         ]
     ],
+
+
+
+    /* -----------------------------------------------------------
+     * Login System
+     * ----------------------------------------------------------- */
+    [
+        'pattern' => '/system/login',
+        'methods' => ['GET'],
+        'paths' => [
+            'controller' => '\Backend\Controller\LoginController',
+            'action' => 'loginAction'
+        ]
+    ],
     [
         'pattern' => '/system',
         'methods' => ['GET'],
@@ -142,5 +156,6 @@ return [
             'action' => 'getShowingsAction'
         ]
     ],
+
 
 ];

@@ -1,4 +1,4 @@
-{% import "_macros/pageNumbers.twig" as pages %}
+{% import "backend/_macros/pageNumbers.twig" as pages %}
 
 {{ pages.pageNumbers("events-table", eventsPaginated.getRefreshUrl(), eventsPaginated.getTotalPages(), eventsPaginated.getPage()) }}
 <table class="system-table">
