@@ -5,6 +5,7 @@
 
 // todo: improve this auth system!
 session_start();
+session_regenerate_id();
 $uri_parts = explode('/', ltrim($_SERVER['REQUEST_URI'],'/'));
 if($uri_parts[0] == 'system'){
     if($uri_parts[1] != 'login') {
@@ -14,7 +15,7 @@ if($uri_parts[0] == 'system'){
         }
     }
 }
-
+// end of auth
 
 
 define('APP_DIR', realpath(__DIR__ . '/../'));
