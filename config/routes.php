@@ -18,7 +18,7 @@ return [
      * ----------------------------------------------------------- */
     [
         'pattern' => '/system/login',
-        'methods' => ['GET'],
+        'methods' => ['GET', 'POST'],
         'paths' => [
             'controller' => '\Backend\Controller\LoginController',
             'action' => 'loginAction'

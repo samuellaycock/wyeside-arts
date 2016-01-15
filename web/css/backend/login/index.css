@@ -1,0 +1,39 @@
+#wrapper {
+    text-align: left;
+}
+#banner {
+    width:100%;
+}
+#loginForm .error{
+    color:red;
+    font-size:0.9em;
+    font-weight:bold;
+    padding-bottom: 5px;
+}
+#loginForm{
+    border:solid 6px #000;
+    width: 400px;
+    display: inline-block;
+    margin:0;
+    text-align: left;
+    border-radius: 3px;
+}
+#loginForm h1 {
+    font-size:1.1em;
+    color:#333;
+}
+#loginForm p {
+    font-size:0.9em;
+    color:#777;
+}
+#loginForm input {
+    padding:12px;
+    font-size:1.1em;
+    width:100%;
+}
+#heading {
+    background-color: #31373F;
+    border-bottom: solid 3px #171313;
+    padding:20px;
+    height:70px;
+}

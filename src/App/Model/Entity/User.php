@@ -8,7 +8,7 @@ namespace App\Model\Entity;
 
 /**
  * @Entity(repositoryClass="App\Model\Repo\UserRepo")
- * @Table(name="eventgenre")
+ * @Table(name="_swoop_user")
  */
 class User
 {
@@ -40,13 +40,13 @@ class User
     protected $email;
 
     /**
-     * @Column(type="string")
+     * @Column(type="string", name="first_name")
      * @var string
      */
     protected $firstName;
 
     /**
-     * @Column(type="string")
+     * @Column(type="string", name="last_name")
      * @var string
      */
     protected $lastName;
@@ -169,5 +169,26 @@ class User
         $this->salt = $salt;
     }
 
+
+    /**
+     * @param $password
+     * @return bool
+     */
+    public function validatePassword($password)
+    {
+        if($this->encodePassword($password) == $this->getPassword()){
+            return true;
+        }
+        return false;
+    }
+
+    /**
+     * @param $password
+     * @return string
+     */
+    protected function encodePassword($password)
+    {
+        return hash("sha512", $this->salt . $password . 'F<x[n@R=Y_w.');
+    }
 
 }

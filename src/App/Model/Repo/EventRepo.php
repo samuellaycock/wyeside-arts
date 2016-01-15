@@ -57,4 +57,20 @@ class EventRepo extends EntityRepository
             ->orderBy('e.createdTs', 'DESC')
             ->getQuery();
     }
+
+
+    /**
+     * @return Event[]
+     */
+    public function getXUpcoming($num)
+    {
+        return $this->_em->createQuery('
+            SELECT DISTINCT e FROM App\Model\Entity\Event e
+            LEFT JOIN App\Model\Entity\Showing s WHERE e.id=s.event
+            WHERE e.status = 1
+            AND s.ts >= CURRENT_DATE()
+            ORDER BY s.ts ASC
+        ')->setMaxResults($num)->getResult();
+    }
+
 }
