@@ -85,6 +85,14 @@ return [
         ]
     ],
     [
+        'pattern' => '/system/events/import/ticketsolve',
+        'methods' => ['GET', 'POST'],
+        'paths' => [
+            'controller' => '\Backend\Controller\EventsController',
+            'action' => 'importAction'
+        ]
+    ],
+    [
         'pattern' => '/system/events/:id/update-status/:status',
         'methods' => ['PATCH'],
         'paths' => [

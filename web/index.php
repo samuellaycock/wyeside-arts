@@ -17,7 +17,6 @@ if($uri_parts[0] == 'system'){
 }
 // end of auth
 
-
 define('APP_DIR', realpath(__DIR__ . '/../'));
 
 /**
@@ -25,7 +24,7 @@ define('APP_DIR', realpath(__DIR__ . '/../'));
  */
 $envFile = APP_DIR . '/config/environment.local.php';
 if (!file_exists($envFile)) {
-    throw new \Exception('Unable to run app! Please create the required config/environment.local.php file.');
+    die('Unable to run app! Please create the required config/environment.local.php file.');
 } else {
     define('APP_ENV', require $envFile);
 }

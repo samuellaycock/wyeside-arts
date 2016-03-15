@@ -10,6 +10,7 @@ use App\Controller\AppController;
 use App\Hydrator;
 use App\Model\Entity\Genre;
 use App\Model\Entity\Event;
+use App\Model\Provider\Ticketsolve;
 use App\Model\Repo\EventRepo;
 use App\Model\Repo\GenreRepo;
 use App\Model\Repo\ShowingRepo;
@@ -142,6 +143,15 @@ class EventsController extends AppController
         ];
 
         $this->app->render('backend/events/create.twig',$data);
+    }
+
+
+
+    public function importAction()
+    {
+        $feed = new Ticketsolve();
+        $data = $feed->downloadFeed();
+        $this->app->render('backend/events/import.twig', ['data' => $data]);
     }
 
 }

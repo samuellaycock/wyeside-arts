@@ -4,3 +4,4 @@
 cache/
 vendor/
 web/event-assets/*
+_files/*
