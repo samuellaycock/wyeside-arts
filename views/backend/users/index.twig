@@ -7,21 +7,26 @@
 {% block title %}Users{% endblock %}
 
 {% block content %}
-    <h1>Users</h1>
-    <hr>
-    <div class="title-button" onclick="window.location.href='/system/users/create'">
-        Create A New User
+    <div class="block-dark">
+        <h1>Users</h1>
+        <div class="title-button" onclick="window.location.href='/system/users/create'">
+            <img src="/img/backend/icons/add-user-64.png" style="width:24px;height:24px;">
+            <span style="vertical-align:baseline;padding-left:10px;">New User</span>
+        </div>
     </div>
-    <table class="system-table">
-        <tr>
-            <th style="width:120px;">Username</th>
-            <th>Email</th>
-        </tr>
-        {% for user in users %}
+
+    <div class="block-light">
+        <table class="system-table table-striped">
             <tr>
-                <td>{{ user.getUsername() }}</td>
-                <td>{{ user.getEmail() }}</td>
+                <th style="width:120px;">Username</th>
+                <th>Email</th>
             </tr>
-        {% endfor %}
-    </table>
+            {% for user in users %}
+                <tr>
+                    <td>{{ user.getUsername() }}</td>
+                    <td>{{ user.getEmail() }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    </div>
 {% endblock %}
