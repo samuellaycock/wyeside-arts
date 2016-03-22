@@ -185,6 +185,14 @@ return [
             'action' => 'indexAction'
         ]
     ],
+    [
+        'pattern' => '/system/users/create',
+        'methods' => ['GET', 'POST'],
+        'paths' => [
+            'controller' => '\Backend\Controller\UsersController',
+            'action' => 'createAction'
+        ]
+    ],
 
 
 

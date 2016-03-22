@@ -10,6 +10,10 @@ use Doctrine\ORM\EntityRepository;
 use App\Model\Entity\Showing;
 
 
+/**
+ * Class ShowingRepo
+ * @package App\Model\Repo
+ */
 class ShowingRepo extends EntityRepository
 {
 

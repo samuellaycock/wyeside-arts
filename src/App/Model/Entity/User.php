@@ -4,6 +4,7 @@
  */
 
 namespace App\Model\Entity;
+use App\Util\StringUtil;
 
 
 /**
@@ -102,7 +103,8 @@ class User
      */
     public function setPassword($password)
     {
-        $this->password = $password;
+        $this->salt = $this->generateSalt();
+        $this->password = $this->encodePassword($password);
     }
 
     /**
@@ -189,6 +191,14 @@ class User
     protected function encodePassword($password)
     {
         return hash("sha512", $this->salt . $password . 'F<x[n@R=Y_w.');
+    }
+
+    /**
+     * @return string
+     */
+    protected function generateSalt()
+    {
+        return StringUtil::genRndStr(8);
     }
 
 }
