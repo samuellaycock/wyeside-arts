@@ -169,9 +169,23 @@ return [
         'methods' => ['GET'],
         'paths' => [
             'controller' => '\Backend\Controller\BlogController',
-            'action' => 'getShowingsAction'
+            'action' => 'indexAction'
         ]
     ],
+
+
+    /* -----------------------------------------------------------
+    * Users
+    * ----------------------------------------------------------- */
+    [
+        'pattern' => '/system/users',
+        'methods' => ['GET'],
+        'paths' => [
+            'controller' => '\Backend\Controller\UsersController',
+            'action' => 'indexAction'
+        ]
+    ],
+
 
 
 ];

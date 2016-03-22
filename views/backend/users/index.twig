@@ -1,0 +1,24 @@
+{% extends "backend/_layouts/system.twig" %}
+
+{% block head %}
+
+{% endblock %}
+
+{% block title %}Users{% endblock %}
+
+{% block content %}
+    <h1>Users</h1>
+    <hr>
+    <table class="system-table">
+        <tr>
+            <th style="width:120px;">Username</th>
+            <th>Email</th>
+        </tr>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.getUsername() }}</td>
+                <td>{{ user.getEmail() }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
