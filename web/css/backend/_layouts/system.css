@@ -4,17 +4,16 @@
 }
 
 html, body {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: "open sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 #sidebar {
-    width: 175px;
-    border-right: solid 5px #171313;
+    width: 180px;
     position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
-    background-color: #31373F;
+    background-color: #273A4A;
     padding-top:80px;
 }
 
@@ -26,6 +25,7 @@ html, body {
 
 #navigation {
     padding-top:20px;
+    letter-spacing: 1px;
 }
 
 #navigation ul {
@@ -33,23 +33,51 @@ html, body {
 }
 
 #navigation ul li a {
-    text-align: right;
     display: block;
     text-decoration: none;
-    color:#fff;
-    padding-top:8px;
-    padding-bottom:8px;
-    padding-right:12px;
+    color:#a7b1c2;
+    padding-top:12px;
+    padding-bottom:12px;
+    padding-left:12px;
+    font-size:0.9em;
+    font-weight:bold;
+    border-bottom: dashed 1px transparent;
+    border-top: dashed 1px transparent;
 }
 
 #navigation ul li a:hover {
-   background-color: #414953;
+   background-color: #385470;
 }
+#navigation ul .current-module a {
+    background-color: #385470;
+    border-color:#ccc;
+}
+
+#navigation ul li a img {
+    width:24px;
+    height:24px;
+    margin-right:10px;
+    vertical-align: middle;
+}
+
 
 #content {
     margin-left:180px;
-    padding-left: 10px;
-    padding-top:20px;
-    padding-right: 10px;
     position: relative;
 }
+
+.block-dark, .block-light {
+    padding:15px;
+    position: relative;
+}
+
+.block-dark {
+    background-color: #F3F3F4;
+    border-bottom: solid 1px #ccc;
+}
+
+.block-light {
+    background-color: #FFFFFF;
+    border-bottom: solid 1px #ccc;
+}
+

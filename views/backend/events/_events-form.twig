@@ -1,18 +1,30 @@
 <form method="post">
-    <input type="text" name="title" id="title" placeholder="Title" class="dbl" value="{{ event.getTitle() }}" style="width:100%;">
+    <input type="text" name="title" id="title" placeholder="Title" class="dbl" value="{{ event.getTitle() }}"
+           style="width:100%;">
 
     <br>
     <label for="ticketsolve">Ticketsolve ID</label>
-    <input type="text" id="ticketsolve" name="ticketsolve" value="{{ event.getTicketsolve() }}" >
+    <input type="text" id="ticketsolve" name="ticketsolve" value="{{ event.getTicketsolve() }}">
+
+    <br>
+    <label for="ticketsolve">Ticketsolve 3D</label>
+    <input type="text" id="ticketsolve3D" name="ticketsolve3D" value="{{ event.getTicketsolve3D() }}">
 
     <br>
     <label for="trailer">YouTube Trailer</label>
-    <input type="text" id="trailer" name="trailer" value="{{ event.getTrailer() }}" >
+    <input type="text" id="trailer" name="trailer" value="{{ event.getTrailer() }}">
+    <img
+        src="/img/backend/youtube-play.png"
+        style="height:26px;vertical-align: middle;"
+        alt="Search YouTube"
+        title="Search YouTube"
+        onclick="window.open('https://www.youtube.com/results?search_query='+$('#title').val()+' Trailer')"
+    >
 
     {% if event.getType() != 1 %}
         <br>
         <label for="eventLink">Event Link</label>
-        <input type="text" id="eventLink" name="eventLink" value="{{ event.getLink() }}" >
+        <input type="text" id="eventLink" name="eventLink" value="{{ event.getLink() }}">
     {% endif %}
 
     {% if event.getType() == 1 %}
@@ -21,21 +33,23 @@
         <select id="certificate" name="certificate">
             {% set certs = ['TBC','U','PG','12A','12','15','18'] %}
             {% for cert in certs %}
-                <option{% if event.getCertificate() == cert %} selected="selected"{% endif %} value="{{ cert }}">{{ cert }}</option>
+                <option{% if event.getCertificate() == cert %} selected="selected"{% endif %}
+                        value="{{ cert }}">{{ cert }}</option>
             {% endfor %}
         </select>
 
         <br>
         <label for="runningTime">Run Time</label>
-        <input type="text" id="runningTime" name="runningTime" value="{{ event.getRunningTime() }}" style="width:120px;"> <span style="font-size:0.7em;">Minutes</span>
+        <input type="text" id="runningTime" name="runningTime" value="{{ event.getRunningTime() }}"
+               style="width:120px;"> <span style="font-size:0.7em;">Minutes</span>
 
         <br>
         <label for="director">Director</label>
-        <input type="text" id="director" name="director" value="{{ event.getDirector() }}" >
+        <input type="text" id="director" name="director" value="{{ event.getDirector() }}">
 
         <br>
         <label for="starring">Starring</label>
-        <input type="text" id="starring" name="starring" value="{{ event.getStarring() }}" >
+        <input type="text" id="starring" name="starring" value="{{ event.getStarring() }}">
 
         <br>
         <fieldset>
@@ -46,7 +60,9 @@
             {% endfor %}
             {% for genre in genres %}
                 <div class="genre-block" style="width:200px;display:inline-block;">
-                        <input{% if(genre.getId() in activeGenreIds) %} checked{% endif %} type="checkbox" name="genre-{{ genre.getId() }}" id="genre-{{ genre.getId() }}">
+                    <input{% if(genre.getId() in activeGenreIds) %} checked{% endif %} type="checkbox"
+                                                                                       name="genre-{{ genre.getId() }}"
+                                                                                       id="genre-{{ genre.getId() }}">
                     <label for="genre-{{ genre.getId(0) }}">{{ genre.getName() }}</label>
                 </div>
             {% endfor %}
@@ -54,7 +70,8 @@
     {% endif %}
 
     <br>
-    <textarea id="description" name="description" placeholder="Event Description">{{ event.getDescription() }}</textarea>
+    <textarea id="description" name="description"
+              placeholder="Event Description">{{ event.getDescription() }}</textarea>
 
     <br>
     {% if(event.getId) %}

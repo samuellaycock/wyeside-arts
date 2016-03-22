@@ -24,13 +24,7 @@
         <div id="user" style="text-align: right;padding-right: 10px;">
             <a href="/system/logout" style="color:greenyellow;text-decoration: none;">Logout</a>
         </div>
-        <div id="navigation">
-            <ul>
-                <li><a href="/system/events">Events</a></li>
-                <li><a href="/system/blog">Blog</a></li>
-                <li><a href="/system/users">Users</a></li>
-            </ul>
-        </div>
+        {% include 'backend/_partials/navigation.twig' %}
     </div>
     <div id="content">
         {% block content %}{% endblock %}

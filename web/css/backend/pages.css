@@ -3,7 +3,7 @@
     display: inline-block;
     padding: 6px 9px 6px 9px;
     border-radius: 2px;
-    background-color: limegreen;
+    background-color: #18A689;
     color:#fff;
     cursor: pointer;
 }
@@ -11,7 +11,7 @@
     opacity: 0.8;
 }
 .page-active {
-    background-color: green;
+    background-color: #0a6350;
 }
 .pages {
     display: block;

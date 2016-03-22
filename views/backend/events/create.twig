@@ -7,10 +7,13 @@
 {% block title %}Events{% endblock %}
 
 {% block content %}
-    <h1 style="background-color: {{ event.getTypePrimaryColor() }};">+ {{ event.getTypeName() }}</h1>
-    <hr>
+    <div class="block-dark">
+        <h1 style="background-color: {{ event.getTypePrimaryColor() }};">+ {{ event.getTypeName() }}</h1>
+    </div>
 
-    {% include "backend/events/_events-form.twig" %}
+    <div class="block-light">
+        {% include "backend/events/_events-form.twig" %}
+    </div>
 
     <script type="text/javascript">
         document.getElementById('title').focus();

@@ -13,5 +13,5 @@ class IndexController extends AppController
     {
         $this->app->render('frontend/index.twig');
     }
-
+    
 }

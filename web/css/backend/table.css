@@ -1,31 +1,40 @@
-.system-table{
+.system-table {
     border-spacing: 0;
-    font-size: 0.9em;
-    width:100%;
+    width: 100%;
     max-width: 1800px;
     min-width: 300px;
     table-layout: fixed;
 }
-.system-table tr th{
+
+.system-table tr th {
     text-align: left;
-    background-color: #31373F;
+    background-color: #273A4A;
     color: #fff;
-    padding: 10px 10px 7px 10px;
-    border-bottom: solid 3px #F53617;
+    padding: 12px 12px;
+    border-right: solid 1px #fff;
+    letter-spacing: 2px;
+    font-size: 0.9em;
 }
+
 .system-table tr td {
     border-bottom: dashed 1px #ddd;
-    padding: 6px 10px 6px 10px;
+    padding: 12px 10px;
     color: #333;
+    letter-spacing: 1px;
 }
-.system-table tr:hover td {
-    background-color: #F3FACD;
-}
-.system-table td a {
-    color: mediumslateblue;
-    text-decoration: none;
-    font-size:0.9em;
-}
+
 .system-table td a:hover {
     text-decoration: underline;
+}
+
+.table-striped tr:nth-child(even) td {
+    background-color: #FFFFFF;
+}
+
+.table-striped tr:nth-child(odd) td {
+    background-color: #F9F9F9;
+}
+
+.system-table tr:hover td {
+    background-color: lemonchiffon;
 }

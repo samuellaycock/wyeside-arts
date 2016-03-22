@@ -119,7 +119,6 @@ class EventsController extends AppController
 
 
 
-
     public function createAction()
     {
         $type = $this->app->router->getCurrentRoute()->getParam('type');

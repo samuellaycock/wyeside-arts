@@ -1,16 +1,24 @@
-{% import "backend/_macros/pageNumbers.twig" as pages %}
-
-<table class="system-table">
+<table class="system-table table-striped" style="font-size:0.9em;">
     <tr>
         <th>Date &amp; Time</th>
-        <th style="width:60px;">Type</th>
+        <th style="width:100px;">Type</th>
         <th>Location</th>
-        <th style="width:120px;">&nbsp;</th>
+        <th style="width:100px;">&nbsp;</th>
     </tr>
     {% for showing in event.getShowings() %}
-        <tr>
+        <tr style="font-size:0.9em;">
             <td>{{ showing.getTs()|date("D jS M Y \\@ g:ia") }}</td>
-            <td>{{ showing.getType() }}</td>
+            <td>
+                {% if showing.getType() == null %}
+                    <select style="width:auto;">
+                        <option value="">Select...</option>
+                        <option value="2D">2D</option>
+                        <option value="3D">3D</option>
+                    </select>
+                {% else %}
+                    {{ showing.getType() }}
+                {% endif %}
+            </td>
             <td>{{ showing.getLocationName() }}</td>
             <td><a href="javascript:ajaxDeleteShowing('{{ showing.getId() }}')">Delete</a></td>
         </tr>

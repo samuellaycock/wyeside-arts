@@ -112,6 +112,12 @@ class Event
     protected $ticketsolve;
 
     /**
+     * @Column(type="string")
+     * @var string
+     */
+    protected $ticketsolve3D;
+
+    /**
      * @ManyToMany(targetEntity="App\Model\Entity\Genre", inversedBy="events")
      * @JoinTable(
      *      name="eventgenrelink",
@@ -384,6 +390,14 @@ class Event
     }
 
     /**
+     * @return string
+     */
+    public function getTicketsolve3D()
+    {
+        return $this->ticketsolve3D;
+    }
+
+    /**
      * @param string $ticketsolve
      */
     public function setTicketsolve($ticketsolve)
@@ -391,6 +405,13 @@ class Event
         $this->ticketsolve = $ticketsolve;
     }
 
+    /**
+     * @param $ticketsolve
+     */
+    public function setTicketsolve3D($ticketsolve)
+    {
+        $this->ticketsolve3D = $ticketsolve;
+    }
 
     /**
      * @return Genre[]
@@ -412,7 +433,6 @@ class Event
     {
         $this->genres = [];
     }
-
 
     /**
      * @return string
@@ -456,7 +476,6 @@ class Event
         }
     }
 
-
     /**
      * @return Image[]
      */
@@ -473,9 +492,6 @@ class Event
         $showing->setEvent($this);
         $this->showings[] = $showing;
     }
-
-
-
 
     /**
      *
