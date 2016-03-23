@@ -1,4 +1,7 @@
 <?php
+/**
+ * @author James Dobb <james.dobb@gmail.com>
+ */
 
 namespace App\Controller;
 
@@ -6,11 +9,14 @@ namespace App\Controller;
 use Doctrine\ORM\EntityManager;
 use Slim\Slim;
 
-
+/**
+ * Class AppController
+ * @package App\Controller
+ */
 class AppController
 {
 
-    /** @var Slim*/
+    /** @var Slim */
     protected $app;
 
     /** @var EntityManager */
@@ -24,25 +30,7 @@ class AppController
     public function __construct(Slim $app)
     {
         $this->app = $app;
-        $this->setModule();
         $this->em = $this->app->container->get('em');
-    }
-
-
-    protected function setModule()
-    {
-        $module = '';
-        $url = $this->app->request->getPath();
-
-        if(strpos($url, 'events')){
-            $module = 'events';
-        }elseif(strpos($url, 'blog')){
-            $module = 'blog';
-        }elseif(strpos($url, 'users')){
-            $module = 'users';
-        }
-
-        $this->app->flashNow('module', $module);
     }
 
 }

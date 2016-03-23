@@ -6,18 +6,15 @@
 namespace Backend\Controller;
 
 
-use App\Controller\AppController;
 use App\Hydrator;
 use App\Model\Entity\User;
 use App\Model\Repo\EventRepo;
-use App\Pagination\Pagination;
-
 
 /**
  * Class UsersController
  * @package Backend\Controller
  */
-class UsersController extends AppController
+class UsersController extends BackendController
 {
 
     /**

@@ -6,12 +6,14 @@
 namespace Backend\Controller;
 
 
-use App\Controller\AppController;
 use App\Model\Repo\EventRepo;
 use App\Model\Repo\ImageRepo;
 
-
-class EventImagesController extends AppController
+/**
+ * Class EventImagesController
+ * @package Backend\Controller
+ */
+class EventImagesController extends BackendController
 {
 
     /**

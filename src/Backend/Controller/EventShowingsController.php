@@ -11,8 +11,11 @@ use App\Model\Entity\Showing;
 use App\Model\Repo\EventRepo;
 use App\Model\Repo\ShowingRepo;
 
-
-class EventShowingsController extends AppController
+/**
+ * Class EventShowingsController
+ * @package Backend\Controller
+ */
+class EventShowingsController extends BackendController
 {
 
     /**

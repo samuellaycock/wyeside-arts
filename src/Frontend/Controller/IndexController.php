@@ -1,12 +1,15 @@
 <?php
-
+/**
+ * @author James Dobb <james.dobb@gmail.com>
+ */
 namespace Frontend\Controller;
 
 
-use App\Controller\AppController;
-
-
-class IndexController extends AppController
+/**
+ * Class IndexController
+ * @package Frontend\Controller
+ */
+class IndexController extends FrontendController
 {
 
     public function indexAction()

@@ -6,7 +6,6 @@
 namespace Backend\Controller;
 
 
-use App\Controller\AppController;
 use App\Hydrator;
 use App\Model\Entity\Genre;
 use App\Model\Entity\Event;
@@ -16,8 +15,11 @@ use App\Model\Repo\GenreRepo;
 use App\Model\Repo\ShowingRepo;
 use App\Pagination\Pagination;
 
-
-class EventsController extends AppController
+/**
+ * Class EventsController
+ * @package Backend\Controller
+ */
+class EventsController extends BackendController
 {
 
     /**

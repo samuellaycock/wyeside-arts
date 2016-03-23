@@ -6,15 +6,17 @@
 namespace Backend\Controller;
 
 
-use App\Controller\AppController;
 use App\Model\Entity\Event;
 use App\Model\Entity\Image;
 use App\Model\Repo\EventRepo;
 use App\Util\ImageUploader;
 use App\Util\StringUtil;
 
-
-class EventUploadsController extends AppController
+/**
+ * Class EventUploadsController
+ * @package Backend\Controller
+ */
+class EventUploadsController extends BackendController
 {
 
     /**
