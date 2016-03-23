@@ -55,30 +55,29 @@ class EventsController extends BackendController
     protected function updateEventGenres(array $genres, Event $event)
     {
         $event->clearGenres();
-        foreach($genres as $genre){
+        foreach ($genres as $genre) {
             $keyName = 'genre-' . $genre->getId();
-            if(null !== $this->app->request->post($keyName)){
+            if (null !== $this->app->request->post($keyName)) {
                 $event->addGenre($genre);
             }
         }
     }
 
 
-
     public function indexAction()
     {
-        if(null !== $this->app->request->get('page')){
+        if (null !== $this->app->request->get('page')) {
             $page = $this->app->request->get('page');
-        }else{
+        } else {
             $page = 1;
         }
 
         $pageinator = new Pagination($this->getEventRepo()->getQueryAllSortedByDateCreated(), $this->app->request->getResourceUri());
         $data = ['eventsPaginated' => $pageinator->getPage($page)];
 
-        if($this->app->request->isAjax()) {
+        if ($this->app->request->isAjax()) {
             $this->app->render('backend/events/_events-table.twig', $data);
-        }else{
+        } else {
             $this->app->render('backend/events/index.twig', $data);
         }
     }
@@ -91,7 +90,7 @@ class EventsController extends BackendController
         $genres = $this->getGenreRepo()->getAllSortedByName();
 
 
-        if($this->app->request->isPost()){
+        if ($this->app->request->isPost()) {
             $hydrator = new Hydrator;
             $hydrator->hydrate($event, $this->app->request->params());
             $this->updateEventGenres($genres, $event);
@@ -120,7 +119,6 @@ class EventsController extends BackendController
     }
 
 
-
     public function createAction()
     {
         $type = $this->app->router->getCurrentRoute()->getParam('type');
@@ -128,7 +126,7 @@ class EventsController extends BackendController
         $event->setType($type);
         $genres = $this->getGenreRepo()->getAllSortedByName();
 
-        if($this->app->request->isPost()){
+        if ($this->app->request->isPost()) {
             $hydrator = new Hydrator;
             $hydrator->hydrate($event, $this->app->request->params());
             $this->updateEventGenres($genres, $event);
@@ -143,16 +141,31 @@ class EventsController extends BackendController
             'genres' => $genres
         ];
 
-        $this->app->render('backend/events/create.twig',$data);
+        $this->app->render('backend/events/create.twig', $data);
     }
-
 
 
     public function importAction()
     {
+        $eventRepo = $this->getEventRepo();
+
         $feed = new Ticketsolve();
-        $data = $feed->downloadFeed();
-        $this->app->render('backend/events/import.twig', ['data' => $data]);
+        $models = $feed->downloadFeedModels();
+
+        $unSyncedEvents = [];
+        $syncedEvents = [];
+        foreach ($models as $model) {
+            if ($eventRepo->eventExistsForTicketsolve($model->getTicketsolveId())) {
+                $syncedEvents[] = $model;
+            } else {
+                $unSyncedEvents[] = $model;
+            }
+        }
+
+        $this->app->render('backend/events/import.twig', [
+            'syncedEvents' => $syncedEvents,
+            'unSyncedEvents' => $unSyncedEvents
+        ]);
     }
 
 }

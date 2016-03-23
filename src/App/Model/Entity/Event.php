@@ -525,26 +525,29 @@ class Event
 
 
     /**
+     * @return array
+     */
+    public static function getEventTypes()
+    {
+        return [
+            1 => 'Cinema',
+            2 => 'Live',
+            3 => 'Community',
+            4 => 'Satellite Live',
+            5 => 'Workshop',
+            6 => 'Gallery'
+        ];
+    }
+
+    /**
      * @return string
      */
     public function getTypeName()
     {
-        switch ($this->getType()) {
-            case 1:
-                return 'Cinema';
-            case 2:
-                return 'Live';
-            case 3:
-                return 'Community';
-            case 4:
-                return 'Satellite Live!';
-            case 5:
-                return 'Workshop';
-            case 6:
-                return 'Gallery';
-            default:
-                return 'Unknown';
+        if (isset(self::getEventTypes()[$this->getType()])) {
+            return self::getEventTypes()[$this->getType()];
         }
+        return 'Unknown';
     }
 
     /**

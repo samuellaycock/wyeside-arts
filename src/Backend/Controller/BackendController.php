@@ -6,6 +6,7 @@
 namespace Backend\Controller;
 
 use App\Controller\AppController;
+use App\Model\Entity\Event;
 use Slim\Slim;
 
 /**
@@ -23,6 +24,7 @@ class BackendController extends AppController
     {
         parent::__construct($app);
         $this->setModule($app);
+        $this->setEventTypes($app);
     }
 
 
@@ -43,6 +45,15 @@ class BackendController extends AppController
         }
 
         $app->flashNow('module', $module);
+    }
+
+
+    /**
+     * @param Slim $app
+     */
+    protected function setEventTypes(Slim $app)
+    {
+        $app->flashNow('eventTypes', Event::getEventTypes());
     }
 
 }

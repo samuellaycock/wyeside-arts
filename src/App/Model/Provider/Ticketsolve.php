@@ -6,6 +6,7 @@
 namespace App\Model\Provider;
 use App\Model\Entity\Event;
 use App\Model\Entity\Showing;
+use App\Model\Provider\Ticketsolve\TicketsolveModel;
 
 /**
  * Class Ticketsolve
@@ -34,48 +35,21 @@ class Ticketsolve
     }
 
     /**
-     * @return mixed
+     * @return TicketsolveModel[]
      */
-    public function downloadFeed()
+    public function downloadFeedModels()
     {
         $rawData = file_get_contents($this->feedUrl);
         $xml = simplexml_load_string($rawData);
 
         $events = [];
         foreach($xml->show as $show){
-            $events[] = $this->buildEvent($show);
+            $events[] = new TicketsolveModel($show, true);
         }
 
-        echo "<pre>";
-        print_r($events);
-        die();
-
-        return print_r($events, 1);
+        return $events;
     }
 
 
-    /**
-     * @param \SimpleXMLElement $show
-     * @return Event
-     */
-    protected function buildEvent(\SimpleXMLElement $show)
-    {
-        //todo:event number
-        $event = new Event();
-        $event->setTicketsolve((string)$show->id);
-        $event->setTitle(trim((string)$show->name));
-        $event->setType((string)$show->event_category); //todo convert to db int
-        $event->setDescription((string)$show->long_description);
-
-        if(isset($show->upcoming_events->event)) {
-            foreach ($show->upcoming_events->event as $showingData) {
-                $showing = new Showing();
-                $showing->setTs(new \DateTime($showingData->date));
-                $event->addShowing($showing);
-            }
-        }
-
-        return $event;
-    }
 
 }

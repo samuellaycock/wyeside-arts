@@ -73,4 +73,24 @@ class EventRepo extends EntityRepository
         ')->setMaxResults($num)->getResult();
     }
 
+
+    /**
+     * @param $ticketsolveId
+     * @return bool
+     */
+    public function eventExistsForTicketsolve($ticketsolveId)
+    {
+        $results = $this->_em->createQuery('
+            SELECT e FROM App\Model\Entity\Event e
+            WHERE e.ticketsolve = :ticketsolve
+            OR e.ticketsolve3D = :ticketsolve
+        ')->setParameters([
+            'ticketsolve' => $ticketsolveId,
+        ])->setMaxResults(1)->execute();
+
+        if(count($results) == 0){
+            return false;
+        }
+        return true;
+    }
 }
