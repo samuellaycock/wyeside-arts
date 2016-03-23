@@ -21,8 +21,8 @@ class BackendController extends AppController
      */
     public function __construct(Slim $app)
     {
-        $this->setModule($app);
         parent::__construct($app);
+        $this->setModule($app);
     }
 
 

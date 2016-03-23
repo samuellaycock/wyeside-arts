@@ -9,12 +9,13 @@ namespace Frontend\Controller;
  * Class IndexController
  * @package Frontend\Controller
  */
-class IndexController extends FrontendController
+class HomeController extends FrontendController
 {
 
-    public function indexAction()
+
+    public function homeAction()
     {
-        $this->app->render('frontend/index.twig');
+        $this->app->render('frontend/home.twig', []);
     }
     
 }

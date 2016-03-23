@@ -468,8 +468,8 @@ class Event
      */
     public function removeImage(Image $image)
     {
-        foreach($this->images as $key => $i){
-            if($i == $image){
+        foreach ($this->images as $key => $i) {
+            if ($i == $image) {
                 unset($this->images[$key]);
                 return;
             }
@@ -504,6 +504,23 @@ class Event
         }
         $this->setBanner('');
         $this->setBannerExt('');
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getEventUrl()
+    {
+        return
+            '/events/' . $this->getId() . '/'
+            . urlencode(
+                strtolower(
+                    str_replace(" ", '-',
+                        trim($this->getTitle(), ' ')
+                    )
+                )
+            );
     }
 
 

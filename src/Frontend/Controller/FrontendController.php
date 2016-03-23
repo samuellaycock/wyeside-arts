@@ -6,7 +6,10 @@
 namespace Frontend\Controller;
 
 use App\Controller\AppController;
+use App\Model\Entity\Event;
+use App\Model\Repo\EventRepo;
 use Slim\Slim;
+
 
 /**
  * Class FrontendController
@@ -21,17 +24,29 @@ class FrontendController extends AppController
      */
     public function __construct(Slim $app)
     {
-        $this->setViewGlobals($app);
         parent::__construct($app);
+        $this->setViewGlobals($app);
     }
 
+    /**
+     * @return EventRepo
+     */
+    protected function getEventRepo()
+    {
+        return $this->em->getRepository(Event::class);
+    }
 
     /**
      * @param Slim $app
      */
     protected function setViewGlobals(Slim $app)
     {
+        $eventRepo = $this->getEventRepo();
+        echo "<pre>";
+        print_r($eventRepo->getXUpcoming(10));die();
 
+        $app->flashNow('upcomingEvents', $eventRepo->getXUpcoming(10));
+        $app->flashNow('brochureUrl', 'http://wyeside.co.uk'); // todo: we need to store the latest brochure URL somewhere!
     }
 
 }
