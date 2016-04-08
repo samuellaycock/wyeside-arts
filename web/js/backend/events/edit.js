@@ -99,3 +99,16 @@ function ajaxDeleteShowing(showingId)
         }
     });
 }
+
+
+function ajaxUpdateDateType(showingId, element)
+{
+    $.ajax({
+        url: '/system/showings/'+showingId,
+        method: 'PATCH',
+        data: {
+            type: $(element).val()
+        }
+    });
+    $(element).parent().html($(element).val());
+}

@@ -2,6 +2,7 @@
 
 {% block head %}
     <link href="/css/backend/events/create.css" rel="stylesheet" type="text/css">
+    <script src="/js/backend/events/import.js" type="text/javascript"></script>
 {% endblock %}
 
 {% block title %}Events{% endblock %}
@@ -12,33 +13,12 @@
     </div>
 
     <div class="block-light">
-        <table class="system-table table-striped">
-            <tr>
-                <th style="width:140px;">Ticketsolve ID</th>
-                <th>Title</th>
-                <th>Action</th>
-            </tr>
-            {% for eventModel in unSyncedEvents %}
-                <tr>
-                    <td>{{ eventModel.getTicketsolveId() }}</td>
-                    <td>{{ eventModel.getTitle() }}</td>
-                    <td>
-                        <select>
-                            <option>Do Nothing</option>
-                            <option>Create New Event</option>
-                            <option>Link to Existing Event</option>
-                        </select>
-                    </td>
-                </tr>
-            {% endfor %}
-        </table>
-
-        <h2>Already Synced:</h2>
-        <ul>
-            {% for eventModel in syncedEvents %}
-                <li>{{ eventModel.getTitle() }}</li>
-            {% endfor %}
-        </ul>
+        <div id="import-events">
+            <div style="text-align: center">
+                <img src="/img/backend/spinner.gif">
+                <p style="padding-top:10px;font-size:1.5em;">Querying Ticketsolve...</p>
+            </div>
+        </div>
     </div>
 
 {% endblock %}

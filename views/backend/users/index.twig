@@ -1,7 +1,7 @@
 {% extends "backend/_layouts/system.twig" %}
 
 {% block head %}
-
+    <script src="/js/backend/users/index.js" type="text/javascript"></script>
 {% endblock %}
 
 {% block title %}Users{% endblock %}
@@ -20,11 +20,26 @@
             <tr>
                 <th style="width:120px;">Username</th>
                 <th>Email</th>
+                <th style="width:120px;">Actions</th>
             </tr>
             {% for user in users %}
                 <tr>
                     <td>{{ user.getUsername() }}</td>
                     <td>{{ user.getEmail() }}</td>
+                    <td>
+                        <img src="/img/backend/icons/dark/edit-3-64.png"
+                             title="edit"
+                             class="fade-on-hover pointer"
+                             style="padding:5px;width:24px;height:24px;"
+                             onclick="editUser({{ user.getId() }})"
+                        >
+                        <img
+                                src="/img/backend/icons/dark/x-mark-3-64.png"
+                                title="delete" class="fade-on-hover pointer"
+                                style="padding:5px;width:24px;height:24px;"
+                                onclick="deleteUser({{ user.getId() }}, '{{ user.getUsername() }}')"
+                        >
+                    </td>
                 </tr>
             {% endfor %}
         </table>
