@@ -10,7 +10,7 @@
             <td>{{ showing.getTs()|date("D jS M Y \\@ g:ia") }}</td>
             <td>
                 {% if showing.getType() == null %}
-                    <select style="width:auto;">
+                    <select style="width:auto;" onchange="ajaxUpdateDateType('{{ showing.getId() }}', this)">
                         <option value="">Select...</option>
                         <option value="2D">2D</option>
                         <option value="3D">3D</option>

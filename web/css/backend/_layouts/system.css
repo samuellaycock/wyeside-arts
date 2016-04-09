@@ -102,3 +102,10 @@ html, body {
     background-color: #3B8273;
 }
 
+.pointer {
+    cursor: pointer;
+}
+.fade-on-hover:hover {
+    opacity: 0.8;
+}
+

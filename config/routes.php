@@ -184,7 +184,14 @@ return [
             'action' => 'deleteShowingAction'
         ]
     ],
-
+    [
+        'pattern' => '/system/showings/:id',
+        'methods' => ['PATCH'],
+        'paths' => [
+            'controller' => '\Backend\Controller\EventShowingsController',
+            'action' => 'editShowingAction'
+        ]
+    ],
 
     /* -----------------------------------------------------------
      * Blog
@@ -208,6 +215,22 @@ return [
         'paths' => [
             'controller' => '\Backend\Controller\UsersController',
             'action' => 'indexAction'
+        ]
+    ],
+    [
+        'pattern' => '/system/users/:id',
+        'methods' => ['DELETE'],
+        'paths' => [
+            'controller' => '\Backend\Controller\UsersController',
+            'action' => 'deleteAction'
+        ]
+    ],
+    [
+        'pattern' => '/system/users/:id/edit',
+        'methods' => ['GET', 'POST'],
+        'paths' => [
+            'controller' => '\Backend\Controller\UsersController',
+            'action' => 'editAction'
         ]
     ],
     [

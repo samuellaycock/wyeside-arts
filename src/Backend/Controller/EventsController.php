@@ -149,23 +149,28 @@ class EventsController extends BackendController
     {
         $eventRepo = $this->getEventRepo();
 
-        $feed = new Ticketsolve();
-        $models = $feed->downloadFeedModels();
+        if ($this->app->request->isAjax()) {
+            $feed = new Ticketsolve();
+            $models = $feed->downloadFeedModels();
+            
 
-        $unSyncedEvents = [];
-        $syncedEvents = [];
-        foreach ($models as $model) {
-            if ($eventRepo->eventExistsForTicketsolve($model->getTicketsolveId())) {
-                $syncedEvents[] = $model;
-            } else {
-                $unSyncedEvents[] = $model;
+            $unSyncedEvents = [];
+            $syncedEvents = [];
+            foreach ($models as $model) {
+                if ($eventRepo->eventExistsForTicketsolve($model->getTicketsolveId())) {
+                    $syncedEvents[] = $model;
+                } else {
+                    $unSyncedEvents[] = $model;
+                }
             }
-        }
 
-        $this->app->render('backend/events/import.twig', [
-            'syncedEvents' => $syncedEvents,
-            'unSyncedEvents' => $unSyncedEvents
-        ]);
+            $this->app->render('backend/events/_partials/import-events.twig', [
+                'syncedEvents' => $syncedEvents,
+                'unSyncedEvents' => $unSyncedEvents
+            ]);
+        }else{
+            $this->app->render('backend/events/import.twig', []);
+        }
     }
 
 }

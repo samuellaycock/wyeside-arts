@@ -1,0 +1,27 @@
+<table class="system-table table-striped">
+    <tr>
+        <th style="width:140px;">Ticketsolve ID</th>
+        <th>Title</th>
+        <th>Action</th>
+    </tr>
+    {% for eventModel in unSyncedEvents %}
+        <tr>
+            <td>{{ eventModel.getTicketsolveId() }}</td>
+            <td>{{ eventModel.getTitle() }}</td>
+            <td>
+                <select>
+                    <option>Do Nothing</option>
+                    <option>Create New Event</option>
+                    <option>Link to Existing Event</option>
+                </select>
+            </td>
+        </tr>
+    {% endfor %}
+</table>
+
+<h2>Already Synced:</h2>
+<ul>
+    {% for eventModel in syncedEvents %}
+        <li>{{ eventModel.getTitle() }}</li>
+    {% endfor %}
+</ul>

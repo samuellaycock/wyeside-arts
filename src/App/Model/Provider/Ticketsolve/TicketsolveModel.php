@@ -50,6 +50,23 @@ class TicketsolveModel
     }
 
 
+    protected function chooseAction()
+    {
+        /**
+         * options:
+         *  - Find an existing event that looks like a match
+         *  - Suggest Creating a new event
+         *  - Do Nothing
+         *
+         * Look at similar events (we might want to combine 2d and 3d events)
+         */
+        
+        
+        
+        
+    }
+
+
 
     /**
      * @param \SimpleXMLElement $show
