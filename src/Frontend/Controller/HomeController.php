@@ -12,9 +12,9 @@ namespace Frontend\Controller;
 class HomeController extends FrontendController
 {
 
-
     public function homeAction()
     {
+		$this->getBanners(5, 'all');
         $this->app->render('frontend/home.twig', []);
     }
     

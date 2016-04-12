@@ -72,6 +72,66 @@ class EventRepo extends EntityRepository
             ORDER BY s.ts ASC
         ')->setMaxResults($num)->getResult();
     }
+	
+	/**
+     * @return Event[]
+     */
+    public function getXBannerImages($num, $type)
+    {
+		if(!$type || $type == 'all'){
+			return $this->getXUpcoming($num);
+		}elseif($type){
+			switch($type){
+				case 'cinema':
+					return $this->_em->createQuery('
+						SELECT DISTINCT e FROM App\Model\Entity\Event e
+						LEFT JOIN App\Model\Entity\Showing s WHERE e.id=s.event
+						WHERE e.status = 1
+						AND e.type = 1
+						AND s.ts >= CURRENT_DATE()
+						ORDER BY s.ts ASC
+					')->setMaxResults($num)->getResult();
+				case 'live':
+					return $this->_em->createQuery('
+						SELECT DISTINCT e FROM App\Model\Entity\Event e
+						LEFT JOIN App\Model\Entity\Showing s WHERE e.id=s.event
+						WHERE e.status = 1
+						AND e.type = 2
+						AND s.ts >= CURRENT_DATE()
+						ORDER BY s.ts ASC
+					')->setMaxResults($num)->getResult();
+				case 'workshop':
+					return $this->_em->createQuery('
+						SELECT DISTINCT e FROM App\Model\Entity\Event e
+						LEFT JOIN App\Model\Entity\Showing s WHERE e.id=s.event
+						WHERE e.status = 1
+						AND e.type = 3
+						AND s.ts >= CURRENT_DATE()
+						ORDER BY s.ts ASC
+					')->setMaxResults($num)->getResult();
+				case 'satellite':
+					return $this->_em->createQuery('
+						SELECT DISTINCT e FROM App\Model\Entity\Event e
+						LEFT JOIN App\Model\Entity\Showing s WHERE e.id=s.event
+						WHERE e.status = 1
+						AND e.type = 4
+						AND s.ts >= CURRENT_DATE()
+						ORDER BY s.ts ASC
+					')->setMaxResults($num)->getResult();
+				case 'gallery':
+					return $this->_em->createQuery('
+						SELECT DISTINCT e FROM App\Model\Entity\Event e
+						LEFT JOIN App\Model\Entity\Showing s WHERE e.id=s.event
+						WHERE e.status = 1
+						AND e.type = 6
+						AND s.ts >= CURRENT_DATE()
+						ORDER BY s.ts ASC
+					')->setMaxResults($num)->getResult();
+				default:
+					return null;
+			}
+		}
+    }
 
 
     /**

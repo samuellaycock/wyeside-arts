@@ -1,0 +1,112 @@
+/* --------------------------------
+   Event Detail
+-------------------------------- */
+.wy-details {
+	position: relative;
+	padding: 1.2em 1em 1em;
+	width: 100%;
+	background: #fff; }
+	@media screen and (min-width: 1023px) {
+		.wy-details {
+			position: absolute;
+			top: 0;
+			right: 0;
+			background: rgba(255,255,255,0.9);
+			width: calc((100% - 320px) / 2);
+			z-index: 5;
+			-webkit-transform: translatey(-100%);
+			transform: translatey(-100%); }
+	}
+.wy-details__title {
+	display: inline;
+	padding: 0.1em 0;
+	text-transform: uppercase;
+	font-weight: 800; }
+.wy-details__title.type--1 {
+	padding: 0.1em 0;
+	background: transparent; }
+.wy-details__cert {
+	vertical-align: top;
+	opacity: 0.7;
+	font-weight: 200; }
+.wy-details__info {
+	margin: 1em 0 0.5em;
+}
+.wy-details__info--film {
+	margin: 0.5em 0 0.5em;
+}
+.wy-details__info-item {
+	margin: 0 0 0.5em; }
+.wy-details__info-item--film,
+.wy-details__info-item--divider,
+.wy-details__info-item--trailer {
+	display: inline; }
+.wy-details__info-item--film {
+	color: #B0D817 }
+.wy-details__info-item--genre::after {
+	content: ','; }
+.wy-details__info-item--genre:last-child::after {
+	content: ''; }
+.wy-details__info-item--trailer a::before {
+	content: 'b ';
+	font-family: 'wyeside';
+	vertical-align: middle; }
+.wy-details__info-item--divider {
+	opacity: 0.3; }
+.wy-details__info-item--star {
+	margin-bottom: 0.3em; }
+.wy-details__info-item--director {
+	font-style: italic; }
+.wy-details__button {
+	display: inline-block;
+	margin: 1.5em 0 0.5em;
+	padding: 0.6em 1.8em;
+	background: #292f33;
+	border-radius: 3px;
+	font-size: 1.2em;
+	font-weight: 700;
+	text-transform: uppercase;
+	-webkit-transition: all 0.2s ease-out;
+	transition: all 0.2s ease-out; }
+	.wy-details__button:hover {
+		background: #424c52; }
+.wy-desc {
+	}
+.wy-showings {
+	padding: 1em 1em 2em;
+	text-align: center; }
+.wy-showings__title {
+	text-transform: uppercase;
+	font-weight: 200; }
+.wy-showings__list {
+	display: inline-block; }
+.wy-showings__list-item {
+}
+.wy-synopsis {
+	padding: 1em;
+	background: #fff;
+	border-top: 1px solid #ddd; }
+	@media screen and (min-width: 1023px) {
+		.wy-synopsis {
+			padding: 1em;
+			border-left: 1px solid #ddd;
+			text-align: left; }
+	}
+.wy-synopsis__title {
+	text-transform: uppercase;
+	font-weight: 200; }
+.wy-synopsis__text {}
+.wy-book {
+	display: inline-block;
+	padding: 1em;
+	width: 100%;
+	border-top: 1px solid #ddd; }
+	@media screen and (min-width: 1024px) {
+		.wy-book {
+			text-align: center;
+		}
+	}
+.wy-book__title {
+	color: #f53617;
+	text-transform: uppercase;
+	font-weight: 200; }

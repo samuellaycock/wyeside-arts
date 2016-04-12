@@ -1,0 +1,49 @@
+/* --------------------------------
+   Utilities
+-------------------------------- */
+
+
+/* --------------------------------
+   Generic Utilities
+-------------------------------- */
+.u-text-replace {
+	/* replace text with image */
+	color: transparent;
+	text-indent: 100%;
+	overflow: hidden;
+	white-space: nowrap;
+}
+
+/* --------------------------------
+   Wyeside Utilities
+-------------------------------- */
+.type--1 {
+	color: #444; }
+.type--2,
+.type--3,
+.type--4,
+.type--5,
+.type--6 {
+	color: #FFF; }
+.type--1 {
+	background: #B0D817; }
+.type__text--1 {
+	color: #B0D817; }
+.type--4 {
+	background: #E30769; }
+.type__text--4{
+	color: #E30769; }
+.type--2 {
+	background: #01B6AD; }
+.type__text--2 {
+	color: #01B6AD; }
+.type--6 {
+	background: #A14DB2; }
+.type__text--6 {
+	color: #A14DB2; }
+.type--3,
+.type--5 {
+	background: #999; }
+.type__text--3,
+.type__text--5 {
+	color: #999; }

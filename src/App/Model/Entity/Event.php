@@ -477,7 +477,7 @@ class Event
     }
 
     /**
-     * @return Image[]
+     * @return Showing[]
      */
     public function getShowings()
     {

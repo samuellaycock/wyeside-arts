@@ -1,0 +1,66 @@
+/* --------------------------------
+   Layout
+-------------------------------- */
+/* --------------------------------
+   Generic Layout
+-------------------------------- */
+.l-50 {
+	display: inline-block;
+	width: 100%;
+	float: left; }
+	@media only screen and (min-width: 1024px) {
+		.l-50 {
+			width: 50%; }
+	}
+
+/* --------------------------------
+   Wyeside Layout
+-------------------------------- */
+/* --------------------------------
+   Core
+-------------------------------- */
+.wy-main,
+.wy-nav {
+	position: relative;
+	-webkit-transform: translateZ(0);
+	-moz-transform: translateZ(0);
+	-ms-transform: translateZ(0);
+	-o-transform: translateZ(0);
+	transform: translateZ(0);
+	will-change: transform;
+	-webkit-transition: -webkit-transform 0.3s;
+	-moz-transition: -moz-transform 0.3s;
+	transition: transform 0.3s; }
+.wy-content {
+	position: relative; }
+/* --------------------------------
+   Nav
+-------------------------------- */
+
+/* --------------------------------
+   Main
+-------------------------------- */
+@media only screen and (max-width: 1023px) {
+	.wy-showings {
+		display: none;
+	}
+}
+@media screen and (min-width: 1024px) {
+	.wy-body {
+		order: 2;
+		width: calc(100% - 320px);
+	}
+	.wy-side {
+		order: 1;
+		width: 320px; }
+}
+/* --------------------------------
+   Sidebar
+-------------------------------- */
+
+/* --------------------------------
+   Footer
+-------------------------------- */
+.wy-foot {
+	display: block;
+	width: 100%; }

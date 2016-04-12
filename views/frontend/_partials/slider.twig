@@ -1,0 +1,13 @@
+<section class="wy-slider">
+	<ul class="wy-slider__container">
+		{% for event in flash.bannerImages %}
+		<li class="wy-slider__slide">
+			<a href="{{ event.getEventUrl() }}">
+				<img src="/img/event-assets/default-banner.jpg" alt="{{ event.getTitle() }}">
+				<h1 class="wy-slider__title type--{{ event.getType() }}">{{ event.getTitle() }}</h1>
+				<div class="wy-slider__overlay"></div>
+			</a>
+		</li>
+		{% endfor %}
+	</ul>
+</section>

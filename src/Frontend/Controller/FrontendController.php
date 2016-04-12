@@ -42,8 +42,17 @@ class FrontendController extends AppController
     protected function setViewGlobals(Slim $app)
     {
         $eventRepo = $this->getEventRepo();
-        $app->flashNow('upcomingEvents', $eventRepo->getXUpcoming(10));
+        $app->flashNow('upcomingEvents', $eventRepo->getXUpcoming(12));
         $app->flashNow('brochureUrl', 'http://wyeside.co.uk'); // todo: we need to store the latest brochure URL somewhere!
     }
-
+	
+	/**
+     * @return Event[]
+     */
+    protected function getBanners($num, $type)
+    {
+		$eventRepo = $this->getEventRepo();
+		$this->app->flashNow('bannerImages', $eventRepo->getXBannerImages($num, $type));
+    }
+  
 }

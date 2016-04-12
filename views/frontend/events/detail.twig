@@ -1,9 +1,114 @@
 {% extends "frontend/_layouts/main.twig" %}
 
+{% block head %}
+	<link rel="stylesheet" href="/css/frontend/vendor/lity.css">
+	<link rel="stylesheet" href="/css/frontend/events/detail.css">
+{% endblock %}
+
 {% block title %}
-    Event Detail
+    {{ event.getTitle() }}
+{% endblock %}
+
+{% block slider %}
+<section class="wy-slider">
+	<ul class="wy-slider__container">
+		<li class="wy-slider__slide">
+			<img src="/img/event-assets/default-banner.jpg" alt="{{ event.getTitle() }}">
+		</li>
+		<li class="wy-slider__slide">
+			<img src="/img/event-assets/default-banner.jpg" alt="{{ event.getTitle() }}">
+		</li>
+		<li class="wy-slider__slide">
+			<img src="/img/event-assets/default-banner.jpg" alt="{{ event.getTitle() }}">
+		</li>
+	</ul>
+</section>
 {% endblock %}
 
 {% block content %}
-    <h1>Wyeside Event Detail</h1>
+	<section class="wy-details">
+		<h1 class="wy-details__title type--{{ event.type() }}">{{ event.getTitle() }}
+			{% if event.getCertificate() %}
+			<span class="wy-details__cert">{{ "(#{event.getCertificate()})" }}</span>
+			{% endif %}
+		</h1>
+		{% if event.getType() == 1 %}
+		<ul class="wy-details__info--film">
+			<li class="wy-details__info-item--film">
+				{% for genre in event.getGenres() %}
+				<span class="wy-details__info-item--genre">{{ genre.getName() }}</span>
+				{% endfor %}
+			</li>
+			<li class="wy-details__info-item--divider"> | </li>
+			{% if event.getRunningTime() %}
+			<li class="wy-details__info-item--film">{{ event.getRunningTime() }} mins.</li>
+			<li class="wy-details__info-item--divider"> | </li>
+			{% endif %}
+			<li class="wy-details__info-item--trailer"><a href="https://www.youtube.com/watch?v={{ event.getTrailer() }}" data-lity>Watch Trailer</a></li>
+		</ul>
+		<ul class="wy-details__info--talent">
+			<li class="wy-details__info-item--star">
+				{{ event.getStarring() }}
+			</li>
+			<li class="wy-details__info-item--director">Dir. {{ event.getDirector() }}</li>
+		</ul>
+		{% endif %}
+		{% if event.getType() > 1 %}
+		<ul class="wy-details__info">
+			{% for showing in event.getShowings()|slice(0, 1) %}
+			<li class="wy-details__info-item">{{ showing.getTs()|date('l jS F: g:ia') }}</li>
+			<li class="wy-details__info-item">{{ showing.getLocationName() }}</li>
+			{% endfor %}
+			<li class="wy-details__info-item">{{ event.getPrices() }}</li>
+		</ul>
+		{% endif %}
+		<a class="wy-details__button" href="#book-online">Book Online</a>
+	</section>
+	<section class="wy-body">
+		<div class="wy-showings l-50 type--{{ event.getType() }}">
+			<h2 class="wy-showings__title">Upcoming Showings</h2>
+			<table class="wy-showings__list">
+				{% for showing in event.getShowings()|slice(0, 5) %}
+				<tr>
+					<td class="wy-showings__list-item">{{ showing.getTs()|date('l jS F: g:ia') }}</td>
+					<td>| {{ showing.getLocationName() }}</td>
+				</tr>
+				{% endfor %}
+			</table>
+		</div>
+		<div class="wy-synopsis l-50">
+			<h2 class="wy-synopsis__title type__text--{{ event.getType() }}">Synopsis</h2>
+			<p class="wy-synopsis__text">{{ event.getDescription() }}</p>
+		</div>
+		<div id="book-online" class="wy-book">
+			<h2 class="wy-book__title">Book Tickets</h2>
+			<table>
+				<tr>
+					<td>One</td>
+					<td>One</td>
+					<td>One</td>
+				</tr>
+				<tr>
+					<td>One</td>
+					<td>One</td>
+					<td>One</td>
+				</tr>
+				<tr>
+					<td>One</td>
+					<td>One</td>
+					<td>One</td>
+				</tr>
+				<tr>
+					<td>One</td>
+					<td>One</td>
+					<td>One</td>
+				</tr>
+			</table>
+		</div>
+	</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="/plugin/lity/lity.min.js" type="text/javascript"></script>
+
 {% endblock %}

@@ -43,7 +43,7 @@ class BackendController extends AppController
         }elseif(strpos($url, 'users')){
             $module = 'users';
         }
-
+ 
         $app->flashNow('module', $module);
     }
 
