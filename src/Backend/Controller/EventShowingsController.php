@@ -6,7 +6,6 @@
 namespace Backend\Controller;
 
 
-use App\Controller\AppController;
 use App\Hydrator;
 use App\Model\Entity\Showing;
 use App\Model\Repo\EventRepo;

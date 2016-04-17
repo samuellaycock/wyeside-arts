@@ -74,7 +74,7 @@ class EventsController extends BackendController
 
         $pageinator = new Pagination($this->getEventRepo()->getQueryAllSortedByDateCreated(), $this->app->request->getResourceUri());
         $data = ['eventsPaginated' => $pageinator->getPage($page)];
-
+        
         if ($this->app->request->isAjax()) {
             $this->app->render('backend/events/_events-table.twig', $data);
         } else {
@@ -143,34 +143,7 @@ class EventsController extends BackendController
 
         $this->app->render('backend/events/create.twig', $data);
     }
-
-
-    public function importAction()
-    {
-        $eventRepo = $this->getEventRepo();
-
-        if ($this->app->request->isAjax()) {
-            $feed = new Ticketsolve();
-            $models = $feed->downloadFeedModels();
-            
-
-            $unSyncedEvents = [];
-            $syncedEvents = [];
-            foreach ($models as $model) {
-                if ($eventRepo->eventExistsForTicketsolve($model->getTicketsolveId())) {
-                    $syncedEvents[] = $model;
-                } else {
-                    $unSyncedEvents[] = $model;
-                }
-            }
-
-            $this->app->render('backend/events/_partials/import-events.twig', [
-                'syncedEvents' => $syncedEvents,
-                'unSyncedEvents' => $unSyncedEvents
-            ]);
-        }else{
-            $this->app->render('backend/events/import.twig', []);
-        }
-    }
+    
+    
 
 }

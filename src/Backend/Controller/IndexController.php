@@ -15,7 +15,7 @@ class IndexController extends BackendController
 
     public function indexAction()
     {
-        $this->app->render('backend/index.twig');
+        $this->app->redirect('/system/events');
     }
 
 }

@@ -273,19 +273,31 @@ return [
         ]
     ],
     [
-        'pattern' => '/system/events/import/ticketsolve',
-        'methods' => ['GET', 'POST'],
-        'paths' => [
-            'controller' => '\Backend\Controller\EventsController',
-            'action' => 'importAction'
-        ]
-    ],
-    [
         'pattern' => '/system/events/:id/update-status/:status',
         'methods' => ['PATCH'],
         'paths' => [
             'controller' => '\Backend\Controller\EventsController',
             'action' => 'updateStatusAction'
+        ]
+    ],
+
+    /* -----------------------------------------------------------
+     * Events > Ticketsolve
+     * ----------------------------------------------------------- */
+    [
+        'pattern' => '/system/events/import/ticketsolve',
+        'methods' => ['GET', 'POST'],
+        'paths' => [
+            'controller' => '\Backend\Controller\TicketsolveController',
+            'action' => 'importAction'
+        ]
+    ],
+    [
+        'pattern' => '/system/events/import/ticketsolve/create',
+        'methods' => ['POST'],
+        'paths' => [
+            'controller' => '\Backend\Controller\TicketsolveController',
+            'action' => 'createAction'
         ]
     ],
 

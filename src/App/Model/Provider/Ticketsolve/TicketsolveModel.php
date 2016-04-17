@@ -50,22 +50,40 @@ class TicketsolveModel
     }
 
 
-    protected function chooseAction()
+    /**
+     * @return array
+     */
+    public function view()
     {
-        /**
-         * options:
-         *  - Find an existing event that looks like a match
-         *  - Suggest Creating a new event
-         *  - Do Nothing
-         *
-         * Look at similar events (we might want to combine 2d and 3d events)
-         */
-        
-        
-        
-        
+        $modelView = [
+            'ticketsolve' => (string)$this->getDataValue('id'),
+            'title' => trim((string)$this->getDataValue('name'), "\r\n "),
+            'description' => htmlentities(trim((string)$this->getDataValue('long_description'), "\r\n ")),
+        ];
+
+        $modelView['showings'] = [];
+        foreach($this->getDataValue('upcoming_events', [])->event as $upcomingShowing){
+            $date = new \DateTime((string)$upcomingShowing->date);
+            $modelView['showings'][] = [
+                'date' => $date->format('Y-m-d H:i:s')
+            ];
+        }
+
+        return $modelView;
     }
 
+    /**
+     * @param $key
+     * @param null $default
+     * @return null|\SimpleXMLElement[]
+     */
+    protected function getDataValue($key, $default = null)
+    {
+        if(isset($this->data->{$key})){
+            return $this->data->{$key};
+        }
+        return $default;
+    }
 
 
     /**

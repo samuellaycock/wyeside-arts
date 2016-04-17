@@ -58,6 +58,26 @@ class Ticketsolve
         return $events;
     }
 
+    /**
+     * @param $ticksolveId
+     * @return TicketsolveModel
+     * @throws \Exception
+     */
+    public function downloadFeedModelForId($ticksolveId)
+    {
+        $rawData = file_get_contents($this->feedUrl);
+        $xml = simplexml_load_string($rawData);
+
+        foreach($xml->show as $show){
+            $event = new TicketsolveModel($show, true);
+            if($event->getTicketsolveId() == $ticksolveId){
+                return $event;
+            }
+        }
+
+        throw new \Exception("Ticketsolve event not found for id: " . $ticksolveId);
+    }
+
 
     public function estimateFeedActions()
     {
