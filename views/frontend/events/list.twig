@@ -1,12 +1,224 @@
 {% extends "frontend/_layouts/main.twig" %}
 
+{% block head %}
+	<link rel="stylesheet" href="/css/frontend/events/list.css">
+{% endblock %}
+
 {% block title %}
-    Events
+    {% if type == 'all' %}
+    All Events
+    {% elseif type == 'satellite' %}
+    {{ type|capitalize }} Live!
+    {% else %}
+    {{ type|capitalize }}
+    {% endif %}
 {% endblock %}
 
 {% block slider %}
-	{% include 'frontend/_partials/slider.twig' %}
+    {% include 'frontend/_partials/slider.twig' %}
+{% endblock %}
+
+{% block banner %}
+<section class="wy-banner type--{{ type }}">
+    <img src="
+		{% if type == 'all' %}
+		/img/wyeside-logo.png
+		{% else %}
+		/img/wyeside-logo-white.png
+		{% endif %}
+		" alt="Wyeside
+		{% if type == 'all' %}
+		Arts Centre
+		{% elseif type == 'satellite' %}
+		{{ type| capitalize}} Live!
+		{% else %}
+		{{ type| capitalize}}
+		{% endif %}
+		"/>
+    <h1>{% if type == 'all' %}
+		Arts<br />Centre
+		{% elseif type == 'satellite' %}
+		{{ type| capitalize}}<br />Live!
+		{% else %}
+		{{ type| capitalize}}
+		{% endif %}
+	</h1>
+</section>
 {% endblock %}
 
 {% block content %}
+<section class="wy-body">
+    <h2 class="wy-body__title">Showing in the next 7 Days</h2>
+    <ul class="wy-shows--this-week">
+        {% if flash.thisWeek|length < 1 %}
+        <p>No shows this week.</p>
+        {% endif %}
+        {% for event in flash.thisWeek %}
+        <a href="{{ event.getEventUrl() }}">
+            <li class="wy-shows__show" style="border: 2px solid {{ event.getTypePrimaryColor() }}">
+                <div class="wy-show__img-container" style="background: url('/img/event-assets/default-banner.jpg') no-repeat center center">
+                    <span class="u-text-replace">{{ event.getTitle() }}</span>
+                </div>
+                <ul class="wy-show__showings type--{{ event.getType() }}">
+                    <li class="wy-showings__title" >Upcoming Shows:</li>
+                    {% for showing in event.getShowings()|slice(0, 3) %}
+            		<li>{{ showing.getTs()|date('l jS F: g:ia') }}</li>
+                    {% endfor %}
+                </ul>
+                <section class="wy-show__body">
+                    <h3 class="wy-show__title type--{{ event.getType() }}">
+                        {{ event.getTitle() }}
+                        {% if event.getCertificate() %}
+                        <span class="wy-show__cert">{{ "(#{event.getCertificate()})" }}</span>
+                        {% endif %}
+                    </h3>
+
+                    {% if event.getType() == 1 %}
+                  	<ul class="wy-details__info--film">
+                        <li class="wy-details__info-item--film">
+                            {% for genre in event.getGenres() %}
+                            <span class="wy-details__info-item--genre">{{ genre.getName() }}</span>
+                            {% endfor %}
+                		</li>
+                		{% if event.getRunningTime() %}
+                        <li class="wy-details__info-item--divider"> | </li>
+                        <li class="wy-details__info-item--film">{{ event.getRunningTime() }} mins.</li>
+                		{% endif %}
+                  	</ul>
+                    <ul class="wy-details__info--talent">
+                		<li class="wy-details__info-item--star">
+                  			{{ event.getStarring() }}
+                		</li>
+                  	</ul>
+                  	{% else %}
+                	<ul class="wy-details__info">
+                		<li class="wy-details__info-item">{{ event.getPrices() }}</li>
+						{% if event.getType() == 3 %}
+						<li class="wy-details__info-item">Wyeside Community</li>
+						{% elseif event.getType() == 5 %}
+						<li class="wy-details__info-item">Wyeside Workshop</li>
+						{% endif %}
+                	</ul>
+                	{% endif %}
+                </section>
+            </li>
+        </a>
+        {% endfor %}
+    </ul>
+    <hr />
+    <h2 class="wy-body__title">Showing in the next Fortnight</h2>
+    <ul class="wy-shows--next-week">
+        {% if flash.nextWeek|length < 1 %}
+        <p>No shows next week.</p>
+        {% endif %}
+        {% for event in flash.nextWeek %}
+        <a href="{{ event.getEventUrl() }}">
+            <li class="wy-shows__show" style="border: 2px solid {{ event.getTypePrimaryColor() }}">
+                <div class="wy-show__img-container" style="background: url('/img/event-assets/default-banner.jpg') no-repeat center center">
+                    <span class="u-text-replace">{{ event.getTitle() }}</span>
+                </div>
+                <ul class="wy-show__showings type--{{ event.getType() }}">
+                    <li class="wy-showings__title" >Upcoming Shows:</li>
+                    {% for showing in event.getShowings()|slice(0, 3) %}
+            		<li>{{ showing.getTs()|date('l jS F: g:ia') }}</li>
+                    {% endfor %}
+                </ul>
+                <section class="wy-show__body">
+                    <h3 class="wy-show__title type--{{ event.getType() }}">
+                        {{ event.getTitle() }}
+                        {% if event.getCertificate() %}
+                        <span class="wy-show__cert">{{ "(#{event.getCertificate()})" }}</span>
+                        {% endif %}
+                    </h3>
+
+                    {% if event.getType() == 1 %}
+                  	<ul class="wy-details__info--film">
+                        <li class="wy-details__info-item--film">
+                            {% for genre in event.getGenres() %}
+                            <span class="wy-details__info-item--genre">{{ genre.getName() }}</span>
+                            {% endfor %}
+                		</li>
+                		{% if event.getRunningTime() %}
+                        <li class="wy-details__info-item--divider"> | </li>
+                        <li class="wy-details__info-item--film">{{ event.getRunningTime() }} mins.</li>
+                		{% endif %}
+                  	</ul>
+                    <ul class="wy-details__info--talent">
+                		<li class="wy-details__info-item--star">
+                  			{{ event.getStarring() }}
+                		</li>
+                  	</ul>
+                  	{% else %}
+                	<ul class="wy-details__info">
+                		<li class="wy-details__info-item">{{ event.getPrices() }}</li>
+                	</ul>
+                	{% endif %}
+                </section
+            </li>
+        </a>
+        {% endfor %}
+    </ul>
+
+    {% if flash.thisWeek|length < 1 and flash.nextWeek|length < 3 %}
+    <hr />
+    <h2 class="wy-body__title">Coming Soon</h2>
+    <ul class="wy-shows--coming-soon">
+        {% if flash.bannerImages|length < 1 %}
+        <p>There are no {{ type|capitalize }} shows booked yet. Check back again soon.</p>
+        {% endif %}
+        {% for event in flash.bannerImages|slice(flash.nextWeek|length, flash.nextWeek|length + 3) %}
+        <a href="{{ event.getEventUrl() }}">
+            <li class="wy-shows__show" style="border: 2px solid {{ event.getTypePrimaryColor() }}">
+                <div class="wy-show__img-container" style="background: url('/img/event-assets/default-banner.jpg') no-repeat center center">
+                    <span class="u-text-replace">{{ event.getTitle() }}</span>
+                </div>
+                <ul class="wy-show__showings type--{{ event.getType() }}">
+                    <li class="wy-showings__title" >Upcoming Shows:</li>
+                    {% for showing in event.getShowings()|slice(0, 3) %}
+                    <li>{{ showing.getTs()|date('l jS F: g:ia') }}</li>
+                    {% endfor %}
+                </ul>
+                <section class="wy-show__body">
+                    <h3 class="wy-show__title type--{{ event.getType() }}">
+                        {{ event.getTitle() }}
+                        {% if event.getCertificate() %}
+                        <span class="wy-show__cert">{{ "(#{event.getCertificate()})" }}</span>
+                        {% endif %}
+                    </h3>
+
+                    {% if event.getType() == 1 %}
+                    <ul class="wy-details__info--film">
+                        <li class="wy-details__info-item--film">
+                            {% for genre in event.getGenres() %}
+                            <span class="wy-details__info-item--genre">{{ genre.getName() }}</span>
+                            {% endfor %}
+                        </li>
+                        {% if event.getRunningTime() %}
+                        <li class="wy-details__info-item--divider"> | </li>
+                        <li class="wy-details__info-item--film">{{ event.getRunningTime() }} mins.</li>
+                        {% endif %}
+                    </ul>
+                    <ul class="wy-details__info--talent">
+                        <li class="wy-details__info-item--star">
+                            {{ event.getStarring() }}
+                        </li>
+                    </ul>
+                    {% else %}
+                    <ul class="wy-details__info">
+                        <li class="wy-details__info-item">{{ event.getPrices() }}</li>
+                    </ul>
+                    {% endif %}
+                </section
+            </li>
+        </a>
+        {% endfor %}
+    </ul>
+    {% endif %}
+
+    <a href="/calendar" class="wy-button--calendar type--{{ type }}">View the Calendar</a>
+</section>
+
+{% endblock %}
+
+{% block scripts %}
 {% endblock %}

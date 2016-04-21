@@ -200,16 +200,21 @@
 			display: inline-block;
 			float: left;
 			height: 100%;
-			padding: 1.375em .4em; }
+			padding: 1.375em .4em;
+		 	cursor: pointer; }
+		.wy-nav__menu li:hover {
+			border-bottom: 1px solid #f53617;
+		}
 		.wy-nav__menu a {
 			padding: .625em .8em;
 			line-height: 0;
 			border-bottom: none; }
-		.wy-nav__menu a:hover {
-			opacity: .6; }
+		.wy-nav__menu li:hover a {
+			color: #f53617;
+		}
 	}
 
-/* -------------------------------- 
+/* --------------------------------
   Search Form
 -------------------------------- */
 .wy-search .wy-search__select {

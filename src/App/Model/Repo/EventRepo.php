@@ -62,6 +62,70 @@ class EventRepo extends EntityRepository
     /**
      * @return Event[]
      */
+    public function getAllSortedByDate()
+    {
+        return $this->_em->createQuery('
+            SELECT DISTINCT e FROM App\Model\Entity\Event e
+            LEFT JOIN App\Model\Entity\Showing s WHERE e.id=s.event
+            WHERE e.status = 1
+            AND s.ts >= CURRENT_DATE()
+            ORDER BY s.ts ASC
+        ')->getResult();
+    }
+
+
+    /**
+     * @return Event[]
+     */
+    public function getUpcomingFromXToY($from, $to, $type)
+    {
+        if($type === 0) {
+            return $this->_em->createQuery('
+                SELECT DISTINCT e FROM App\Model\Entity\Event e
+                LEFT JOIN App\Model\Entity\Showing s WHERE e.id=s.event
+                WHERE e.status = 1
+                AND s.ts >= DATE_ADD(CURRENT_DATE(), :from, \'day\')
+                AND s.ts < DATE_ADD(CURRENT_DATE(), :to, \'day\')
+                ORDER BY s.ts ASC
+            ')->setParameters([
+                'from' => $from,
+                'to' => $to,
+            ])->getResult();
+        }elseif($type > 0 && $type != 10){
+            return $this->_em->createQuery('
+                SELECT DISTINCT e FROM App\Model\Entity\Event e
+                LEFT JOIN App\Model\Entity\Showing s WHERE e.id=s.event
+                WHERE e.status = 1
+                AND e.type = :type
+                AND s.ts >= DATE_ADD(CURRENT_DATE(), :from, \'day\')
+                AND s.ts < DATE_ADD(CURRENT_DATE(), :to, \'day\')
+                ORDER BY s.ts ASC
+            ')->setParameters([
+                'type' => $type,
+                'from' => $from,
+                'to' => $to,
+            ])->getResult();
+        }
+        else{
+            return $this->_em->createQuery('
+                SELECT DISTINCT e FROM App\Model\Entity\Event e
+                LEFT JOIN App\Model\Entity\Showing s WHERE e.id=s.event
+                WHERE e.status = 1
+                AND (e.type = 3 OR e.type = 5)
+                AND s.ts >= DATE_ADD(CURRENT_DATE(), :from, \'day\')
+                AND s.ts < DATE_ADD(CURRENT_DATE(), :to, \'day\')
+                ORDER BY s.ts ASC
+            ')->setParameters([
+                'from' => $from,
+                'to' => $to,
+            ])->getResult();
+        }
+    }
+
+
+    /**
+     * @return Event[]
+     */
     public function getXUpcoming($num)
     {
         return $this->_em->createQuery('
@@ -72,65 +136,27 @@ class EventRepo extends EntityRepository
             ORDER BY s.ts ASC
         ')->setMaxResults($num)->getResult();
     }
-	
-	/**
+
+
+	  /**
      * @return Event[]
      */
     public function getXBannerImages($num, $type)
     {
-		if(!$type || $type == 'all'){
-			return $this->getXUpcoming($num);
-		}elseif($type){
-			switch($type){
-				case 'cinema':
-					return $this->_em->createQuery('
-						SELECT DISTINCT e FROM App\Model\Entity\Event e
-						LEFT JOIN App\Model\Entity\Showing s WHERE e.id=s.event
-						WHERE e.status = 1
-						AND e.type = 1
-						AND s.ts >= CURRENT_DATE()
-						ORDER BY s.ts ASC
-					')->setMaxResults($num)->getResult();
-				case 'live':
-					return $this->_em->createQuery('
-						SELECT DISTINCT e FROM App\Model\Entity\Event e
-						LEFT JOIN App\Model\Entity\Showing s WHERE e.id=s.event
-						WHERE e.status = 1
-						AND e.type = 2
-						AND s.ts >= CURRENT_DATE()
-						ORDER BY s.ts ASC
-					')->setMaxResults($num)->getResult();
-				case 'workshop':
-					return $this->_em->createQuery('
-						SELECT DISTINCT e FROM App\Model\Entity\Event e
-						LEFT JOIN App\Model\Entity\Showing s WHERE e.id=s.event
-						WHERE e.status = 1
-						AND e.type = 3
-						AND s.ts >= CURRENT_DATE()
-						ORDER BY s.ts ASC
-					')->setMaxResults($num)->getResult();
-				case 'satellite':
-					return $this->_em->createQuery('
-						SELECT DISTINCT e FROM App\Model\Entity\Event e
-						LEFT JOIN App\Model\Entity\Showing s WHERE e.id=s.event
-						WHERE e.status = 1
-						AND e.type = 4
-						AND s.ts >= CURRENT_DATE()
-						ORDER BY s.ts ASC
-					')->setMaxResults($num)->getResult();
-				case 'gallery':
-					return $this->_em->createQuery('
-						SELECT DISTINCT e FROM App\Model\Entity\Event e
-						LEFT JOIN App\Model\Entity\Showing s WHERE e.id=s.event
-						WHERE e.status = 1
-						AND e.type = 6
-						AND s.ts >= CURRENT_DATE()
-						ORDER BY s.ts ASC
-					')->setMaxResults($num)->getResult();
-				default:
-					return null;
-			}
-		}
+        if(!$type || $type == 0){
+      			return $this->getXUpcoming($num);
+    		}elseif($type > 0){
+  					return $this->_em->createQuery('
+    						SELECT DISTINCT e FROM App\Model\Entity\Event e
+    						LEFT JOIN App\Model\Entity\Showing s WHERE e.id=s.event
+    						WHERE e.status = 1
+    						AND e.type = :type
+    						AND s.ts >= CURRENT_DATE()
+    						ORDER BY s.ts ASC
+  					')->setParameters([
+                'type' => $type,
+            ])->setMaxResults($num)->getResult();
+  			}
     }
 
 
@@ -153,4 +179,5 @@ class EventRepo extends EntityRepository
         }
         return true;
     }
+
 }

@@ -8,5 +8,113 @@
 	{% include 'frontend/_partials/slider.twig' %}
 {% endblock %}
 
+{% block banner %}
+<section class="wy-banner">
+    <img src="img/wyeside-logo.png" alt="Wyeside Arts Centre" />
+    <h1>Arts<br />Centre</h1>
+</section>
+{% endblock %}
+
 {% block content %}
+    <section class="wy-body">
+        <section>
+            <h2 class="wy-body__title">Explore What's On</h2>
+            <ul clas="u-clearfix">
+                <li class="wy-button--logo">
+                    <a href="/events/cinema">
+                        <img src="/img/frontend/logos/cinema-logo.jpg" alt="Wyeside Cinema" />
+                    </a>
+                </li>
+                <li class="wy-button--logo">
+                    <a href="/events/live">
+                        <img src="/img/frontend/logos/live-logo.jpg" alt="Wyeside Live" />
+                    </a>
+                </li>
+                <li class="wy-button--logo">
+                    <a href="/events/satellite">
+                        <img src="/img/frontend/logos/satellite-logo.jpg" alt="Wyeside Satellite Live!" />
+                    </a>
+                </li>
+                <li class="wy-button--logo">
+                    <a href="/events/classes">
+                        <img src="/img/frontend/logos/classes-logo.jpg" alt="Wyeside Classes" />
+                    </a>
+                </li>
+                <li class="wy-button--logo">
+                    <a href="/events/gallery">
+                        <img src="/img/frontend/logos/gallery-logo.jpg" alt="Wyeside Gallery" />
+                    </a>
+                </li>
+                <li class="wy-button--logo wy-logo--cal">
+                    <a href="/calendar">
+                        <img src="/img/frontend/logos/calendar-logo.jpg" alt="Wyeside Gallery" />
+                    </a>
+                </li>
+            </ul>
+            <ul class="wy-button__container u-clearfix">
+                <li class="wy-button"><a href="/events/all">Explore All Events</a></li>
+                <li class="wy-button wy-button--cal"><a href="/calendar">View Our Calendar</a></li>
+            </ul>
+            <hr />
+        </section>
+        <section>
+            <h2 class="wy-body__title">Showing in the next 7 Days</h2>
+            <ul class="wy-shows--this-week">
+                {% if flash.thisWeek|length < 1 %}
+                <p>No shows this week.</p>
+                {% endif %}
+                {% for event in flash.thisWeek %}
+                <a href="{{ event.getEventUrl() }}">
+                    <li class="wy-shows__show" style="border: 2px solid {{ event.getTypePrimaryColor() }}">
+                        <div class="wy-show__img-container" style="background: url('/img/event-assets/default-banner.jpg') no-repeat center center">
+                            <span class="u-text-replace">{{ event.getTitle() }}</span>
+                        </div>
+                        <ul class="wy-show__showings type--{{ event.getType() }}">
+                            <li class="wy-showings__title" >Upcoming Shows:</li>
+                            {% for showing in event.getShowings()|slice(0, 3) %}
+                    		<li>{{ showing.getTs()|date('l jS F: g:ia') }}</li>
+                            {% endfor %}
+                        </ul>
+                        <section class="wy-show__body">
+                            <h3 class="wy-show__title type--{{ event.getType() }}">
+                                {{ event.getTitle() }}
+                                {% if event.getCertificate() %}
+                                <span class="wy-show__cert">{{ "(#{event.getCertificate()})" }}</span>
+                                {% endif %}
+                            </h3>
+
+                            {% if event.getType() == 1 %}
+                          	<ul class="wy-details__info--film">
+                                <li class="wy-details__info-item--film">
+                                    {% for genre in event.getGenres() %}
+                                    <span class="wy-details__info-item--genre">{{ genre.getName() }}</span>
+                                    {% endfor %}
+                        		</li>
+                        		{% if event.getRunningTime() %}
+                                <li class="wy-details__info-item--divider"> | </li>
+                                <li class="wy-details__info-item--film">{{ event.getRunningTime() }} mins.</li>
+                        		{% endif %}
+                          	</ul>
+                            <ul class="wy-details__info--talent">
+                        		<li class="wy-details__info-item--star">
+                          			{{ event.getStarring() }}
+                        		</li>
+                          	</ul>
+                          	{% else %}
+                        	<ul class="wy-details__info">
+                        		<li class="wy-details__info-item">{{ event.getPrices() }}</li>
+                                {% if event.getType() == 3 %}
+        						<li class="wy-details__info-item">Wyeside Community</li>
+        						{% elseif event.getType() == 5 %}
+        						<li class="wy-details__info-item">Wyeside Workshop</li>
+        						{% endif %}
+                        	</ul>
+                        	{% endif %}
+                        </section>
+                    </li>
+                </a>
+                {% endfor %}
+            </ul>
+        </section>
+    </section>
 {% endblock %}

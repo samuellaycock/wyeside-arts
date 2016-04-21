@@ -1,0 +1,39 @@
+<script id="calendar-template" type="text/template">
+    <div class="clndr-controls">
+        <h2 class="month wy-body__title"><%= month %></h2>
+        <div class="clndr-previous-button"></div>
+        <div class="clndr-next-button"></div>
+    </div>
+    <div class="clndr-grid__contain">
+        <div class="clndr-grid">
+            <div class="days-of-the-week clearfix">
+                <% _.each(daysOfTheWeek, function(day) { %>
+                <div class="header-day"><%= day %></div>
+                <% }); %>
+            </div>
+            <div class="days clearfix">
+                <% _.each(days, function(day) { %>
+                <div class="<%= day.classes %>" id="<%= day.id %>">
+                    <span class="day-number"><%= day.day %></span>
+                </div>
+                <% }); %>
+            </div>
+        </div>
+        <div class="event-listing">
+            <h2 class="event-listing-title wy-body__title">Events in <%= month %></h2>
+            <ul class="event-list">
+            <% _.each(eventsThisMonth, function(event) { %>
+            <li>
+                <a href="<%= event.url %>">
+                    <div class="event-item type--<%= event.type %> event-item type<%= event.kategory %> date<%= typeof(event.startDate)!== 'undefined' ?  moment(event.startDate).format('YYYY-MM-DD') : moment(event.date).format('YYYY-MM-DD') %>">
+                        <div class="event-item-name"><%= event.title %></div>
+                        <div class="event-item-time"><%= event.time %></div>
+                        <div class="event-item-location"><%= event.location %></div>
+                    </div>
+                </a>
+            </li>
+            <% }); %>
+            </ul>
+        </div>
+    </div>
+</script>

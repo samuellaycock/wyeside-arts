@@ -1,0 +1,148 @@
+{% extends "frontend/_layouts/main.twig" %}
+
+{% block title %}
+    Events Calendar
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="/css/frontend/_partials/calendar.css">
+{% endblock %}
+
+{% block slider %}
+	{% include 'frontend/_partials/slider.twig' %}
+{% endblock %}
+
+{% block banner %}
+<section class="wy-banner type--{{ type }}">
+    <img src="/img/frontend/logos/calendar.png" alt="Calendar" />
+    <h1>Events<br />Calendar</h1>
+</section>
+{% endblock %}
+
+{% block content %}
+    <section class="wy-body">
+        <section class="wy-calendar cal3">
+            <div class="wy-calendar__container clndr"></div>
+        </section>
+        <section>
+            <hr />
+            <h2 class="wy-body__title">Explore What's On</h2>
+            <ul clas="u-clearfix">
+                <li class="wy-button--logo">
+                    <a href="/events/cinema">
+                        <img src="/img/frontend/logos/cinema-logo.jpg" alt="Wyeside Cinema" />
+                    </a>
+                </li>
+                <li class="wy-button--logo">
+                    <a href="/events/live">
+                        <img src="/img/frontend/logos/live-logo.jpg" alt="Wyeside Live" />
+                    </a>
+                </li>
+                <li class="wy-button--logo">
+                    <a href="/events/satellite">
+                        <img src="/img/frontend/logos/satellite-logo.jpg" alt="Wyeside Satellite Live!" />
+                    </a>
+                </li>
+                <li class="wy-button--logo">
+                    <a href="/events/classes">
+                        <img src="/img/frontend/logos/classes-logo.jpg" alt="Wyeside Classes" />
+                    </a>
+                </li>
+                <li class="wy-button--logo">
+                    <a href="/events/gallery">
+                        <img src="/img/frontend/logos/gallery-logo.jpg" alt="Wyeside Gallery" />
+                    </a>
+                </li>
+                <li class="wy-button--logo wy-logo--cal">
+                    <a href="/events/gallery">
+                        <img src="/img/frontend/logos/calendar-logo.jpg" alt="Wyeside Gallery" />
+                    </a>
+                </li>
+            </ul>
+            <ul class="wy-button__container u-clearfix">
+                <li class="wy-button"><a href="/events/all">Explore All Events</a></li>
+                <li class="wy-button wy-button--cal"><a href="/calendar">View Our Calendar</a></li>
+            </ul>
+            <hr />
+        </section>
+    </section>
+{% endblock %}
+
+{% block scripts %}
+<script src="/plugin/underscore/underscore.min.js" type="text/javascript"></script>
+<script src="/plugin/moment/moment.min.js" type="text/javascript"></script>
+<script src="/plugin/clndr/clndr.min.js" type="text/javascript"></script>
+
+{% include 'frontend/_partials/calendar.twig' %}
+
+<script>
+    var events = [ {% for event in flash.events|slice(0, flash.events|length -1) %}
+        {% for showing in event.getShowings() %}
+        {
+            date: "{{ showing.getTs()|date("Y-m-d") }}",
+            title: "{{ event.getTitle() }}",
+            time: "{{ showing.getTs()|date("l jS F: g:ia") }}",
+            location: "{{ showing.getLocationName() }}",
+            type: "{{ event.getType() }}",
+            url: "{{ event.getEventUrl() }}"
+        },
+        {% endfor %}
+        {% endfor %}
+        {% for event in flash.events|slice(flash.events|length -1, flash.events|length) %}
+        {% for showing in event.getShowings()|slice(0, event.getShowings()|length -1) %}
+        {
+            date: "{{ showing.getTs()|date("Y-m-d") }}",
+            title: "{{ event.getTitle() }}",
+            time: "{{ showing.getTs()|date("l jS F: g:ia") }}",
+            location: "{{ showing.getLocationName() }}",
+            type: "{{ event.getType() }}",
+            url: "{{ event.getEventUrl() }}"
+        },
+        {% endfor %}
+        {% for showing in event.getShowings()|slice(event.getShowings()|length -1, event.getShowings()|length) %}
+        {
+            date: "{{ showing.getTs()|date("Y-m-d") }}",
+            title: "{{ event.getTitle() }}",
+            time: "{{ showing.getTs()|date("l jS F: g:ia") }}",
+            location: "{{ showing.getLocationName() }}",
+            type: "{{ event.getType() }}",
+            url: "{{ event.getEventUrl() }}"
+        }
+        {%endfor%}
+        {% endfor %}
+    ],
+    date = new Date(),
+    y = date.getFullYear(),
+    m = date.getMonth(),
+    d= date.getDay(),
+    thisMonth = new Date(),
+    nextYear = new Date(y + 1, m, d),
+    startDate = thisMonth.toISOString().substring(0, 10),
+    endDate = nextYear.toISOString().substring(0, 10);
+
+    $('.wy-calendar__container').clndr({
+        events: events,
+        template: $('#calendar-template').html(),
+        weekOffset: 1,
+        forceSixRows: true,
+        constraints: {
+            startDate: startDate,
+            endDate: nextYear
+        },
+        clickEvents: {
+            click: function (target) {
+                if(target.events.length) {
+                  var selectedClass = '.date'+target.date.format('YYYY-MM-DD'),
+                      dateString = selectedClass.replace('.date', ''),
+                      dateParts = dateString.split('-');
+                      dateTitle = dateParts[2]+'/'+dateParts[1]+'/'+dateParts[0];
+
+                  $('.event-item:not('+selectedClass+')').hide();
+                  $('.event-item'+selectedClass).show();
+                  $('.event-listing-title').text('Events on '+dateTitle);
+                }
+            }
+        }
+    });
+</script>
+{% endblock %}

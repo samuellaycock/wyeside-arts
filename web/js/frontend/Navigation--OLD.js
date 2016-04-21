@@ -32,7 +32,7 @@ jQuery(document).ready(function($){
 		closeNav();
 	});
 
-	//close lateral menu on mobile 
+	//close lateral menu on mobile
 	$('.wy-nav__overlay').on('swiperight', function(){
 		if($('.wy-nav__menu').hasClass('nav-is-visible')) {
 			closeNav();
@@ -69,7 +69,6 @@ jQuery(document).ready(function($){
 			selected.removeClass('selected').next('ul').addClass('is-hidden').end().parent('.has-children').parent('ul').removeClass('moves-out');
 			$('.wy-nav__overlay').removeClass('is-visible');
 		}
-		toggleSearch('close');
 	});
 
 	//submenu items - go back link
@@ -91,7 +90,7 @@ jQuery(document).ready(function($){
 
 	function toggleSearch(type) {
 		if(type=="close") {
-			//close serach 
+			//close serach
 			$('.wy-nav__search').removeClass('is-visible');
 			$('.wy-nav__button--search').removeClass('search-is-visible');
 			$('.wy-nav__overlay').removeClass('search-is-visible');
@@ -107,7 +106,7 @@ jQuery(document).ready(function($){
 
 	function checkWindowWidth() {
 		//check window width (scrollbar included)
-		var e = window, 
+		var e = window,
             a = 'inner';
         if (!('innerWidth' in window )) {
             a = 'client';

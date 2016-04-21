@@ -1,6 +1,10 @@
 /* --------------------------------
    Event Detail
 -------------------------------- */
+@media screen and (min-width: 1024px) {
+    .wy-body {
+        padding: 0; }
+}
 .wy-details {
 	position: relative;
 	padding: 1.2em 1em 1em;
@@ -30,11 +34,9 @@
 	opacity: 0.7;
 	font-weight: 200; }
 .wy-details__info {
-	margin: 1em 0 0.5em;
-}
+	margin: 1em 0 0.5em; }
 .wy-details__info--film {
-	margin: 0.5em 0 0.5em;
-}
+	margin: 0.5em 0 0.5em; }
 .wy-details__info-item {
 	margin: 0 0 0.5em; }
 .wy-details__info-item--film,
@@ -83,7 +85,6 @@
 .wy-showings__list-item {
 }
 .wy-synopsis {
-	padding: 1em;
 	background: #fff;
 	border-top: 1px solid #ddd; }
 	@media screen and (min-width: 1023px) {
@@ -98,11 +99,11 @@
 .wy-synopsis__text {}
 .wy-book {
 	display: inline-block;
-	padding: 1em;
 	width: 100%;
 	border-top: 1px solid #ddd; }
 	@media screen and (min-width: 1024px) {
 		.wy-book {
+			padding: 1em;
 			text-align: center;
 		}
 	}

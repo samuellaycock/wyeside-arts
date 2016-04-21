@@ -5,6 +5,8 @@
 
 namespace Frontend\Controller;
 
+use App\Pagination\Pagination;
+
 /**
  * Class EventController
  * @package Frontend\Controller
@@ -15,8 +17,11 @@ class EventController extends FrontendController
     public function eventListAction()
     {
 		$type = $this->app->router->getCurrentRoute()->getParam('type');
-		$this->getBanners(5, $type);
-        $this->app->render('frontend/events/list.twig', []);
+        $typeInt = $this->convertTypeParam($type);
+
+        $this->getDaysFromTo(0, 7, $typeInt);
+		$this->getBanners(5, $typeInt);
+        $this->app->render('frontend/events/list.twig', ['type' => $type]);
     }
 
 
@@ -25,6 +30,31 @@ class EventController extends FrontendController
 		$id = $this->app->router->getCurrentRoute()->getParam('id');
         $event = $this->getEventRepo()->find($id);
         $this->app->render('frontend/events/detail.twig', ['event' => $event]);
+    }
+
+    /**
+     * @return integer
+     */
+    private function convertTypeParam($type)
+    {
+        if(!$type || $type == 'all'){
+            return 0;
+        }else{
+            switch($type){
+                case 'cinema':
+					return 1;
+				case 'live':
+					return 2;
+				case 'satellite':
+					return 4;
+				case 'gallery':
+					return 6;
+                case 'classes':
+                    return 10;
+				default:
+					return 99;
+            }
+        }
     }
 
 }

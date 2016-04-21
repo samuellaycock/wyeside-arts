@@ -19,15 +19,13 @@
 /* --------------------------------
    Core
 -------------------------------- */
-.wy-main,
-.wy-nav {
+.wy-main {
 	position: relative;
 	-webkit-transform: translateZ(0);
 	-moz-transform: translateZ(0);
 	-ms-transform: translateZ(0);
 	-o-transform: translateZ(0);
 	transform: translateZ(0);
-	will-change: transform;
 	-webkit-transition: -webkit-transform 0.3s;
 	-moz-transition: -moz-transform 0.3s;
 	transition: transform 0.3s; }

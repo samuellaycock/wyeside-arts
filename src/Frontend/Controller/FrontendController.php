@@ -45,14 +45,55 @@ class FrontendController extends AppController
         $app->flashNow('upcomingEvents', $eventRepo->getXUpcoming(12));
         $app->flashNow('brochureUrl', 'http://wyeside.co.uk'); // todo: we need to store the latest brochure URL somewhere!
     }
-	
-	/**
-     * @return Event[]
-     */
+
+  	/**
+       * @return Event[]
+       */
     protected function getBanners($num, $type)
     {
-		$eventRepo = $this->getEventRepo();
-		$this->app->flashNow('bannerImages', $eventRepo->getXBannerImages($num, $type));
+		    $eventRepo = $this->getEventRepo();
+		    $this->app->flashNow('bannerImages', $eventRepo->getXBannerImages($num, $type));
     }
-  
+
+    /**
+       * @return Event[]
+       */
+    protected function getDaysFromTo($from, $to, $type)
+    {
+        $eventRepo = $this->getEventRepo();
+        $this->app->flashNow('thisWeek', $eventRepo->getUpcomingFromXToY($from, $to, $type));
+        $this->app->flashNow('nextWeek', $eventRepo->getUpcomingFromXToY(($from + 7), ($to + 7), $type));
+    }
+
+    /**
+       * @return Event[]
+       */
+    protected function getAll()
+    {
+        $eventRepo = $this->getEventRepo();
+        $this->app->flashNow('events', $eventRepo->getAllSortedByDate());
+
+        /*
+        $eventRepo = $this->getEventRepo();
+        $data = array();
+
+        foreach($this->$eventRepo->getAllSortedByDate() as $event){
+            $event = array(
+                'title' => $this.getTitle(),
+                'dates' => array(),
+                'image' => $this.getBannerImageUrl() );
+
+            foreach($this.getShowings() as $showing){
+                $dateTime = $this.getTs();
+
+                array_push($event['dates'], $dateTime);
+            }
+
+            array_push($data, $event);
+
+        }
+
+        return $data;
+        */
+    }
 }
