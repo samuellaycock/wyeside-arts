@@ -4,7 +4,7 @@
 		{% for event in flash.upcomingEvents|slice(0, 5) %}
 		<li class="wy-slider__slide">
 			<a href="{{ event.getEventUrl() }}">
-				<img src="/img/event-assets/images/{{ event.getBanner() }}{{ event.getBannerExt() }}" alt="{{ event.getTitle() }}">
+				<img src="{{ event.getBannerImageUrl() }}" alt="{{ event.getTitle() }}">
 				<h1 class="wy-slider__title type--{{ event.getType() }}">{{ event.getTitle() }}</h1>
 				<div class="wy-slider__overlay"></div>
 			</a>
@@ -13,7 +13,7 @@
 		{% else %}
 		{% for event in flash.bannerImages %}
 		<li class="wy-slider__slide">
-			<img src="/img/event-assets/images/{{ event.getBanner() }}{{ event.getBannerExt() }}" alt="{{ event.getTitle() }}">
+			<img src="{{ event.getBannerImageUrl() }}" alt="{{ event.getTitle() }}">
 			<h1 class="wy-slider__title type--{{ event.getType() }}">{{ event.getTitle() }}</h1>
 			<a href="{{ event.getEventUrl() }}"><div class="wy-slider__overlay"></div></a>
 		</li>
