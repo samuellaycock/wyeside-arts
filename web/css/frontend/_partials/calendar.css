@@ -106,7 +106,7 @@
 .month {
     position: relative;
     margin: 0 auto;
-    padding: 0.75em;
+    padding: 0.75em !important;
     text-align: center;
     text-transform: uppercase;
     font-weight: 200;
