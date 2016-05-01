@@ -64,7 +64,7 @@ jQuery(document).ready(function($){
 	});
 
 	//open submenu
-	$('.is-dropdown').children('a').on('click', function(event){
+	$('.is-dropdown').children('.wy-nav__menu-link').on('click', function(event){
 		if( !checkWindowWidth() ) event.preventDefault();
 		var selected = $(this);
 		if( selected.next('ul').hasClass('is-hidden') ) {

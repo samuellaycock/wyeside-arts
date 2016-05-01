@@ -365,7 +365,8 @@ a.selected ~ ul {
 		width: 20%;
 	}
 	.wy-nav__menu-list--gallery img {
-		height: 100%;
+		width: 200px;
+    	height: auto;
 		-webkit-transition: all 0.3s ease-out;
 		transition: all 0.3s ease-out;
 	}
@@ -380,7 +381,7 @@ a.selected ~ ul {
 	}
 	.wy-nav__button--explore .wy-button {
 		display: inline-block;
-		padding: 1.5em 3em;
+		padding: 1.2em 2em;
 	}
 	.wy-nav__menu-list--icons li {
 		padding: 1em 2em;
@@ -389,7 +390,7 @@ a.selected ~ ul {
 		text-align: center;
 	}
 	.wy-nav__menu-list--icons li a {
-		padding: 1.5em 2em;
+		padding: 1.2em 2em;
 		color: #444!important;
 		border-radius: 3px;
 		border: 1px solid #ddd;
