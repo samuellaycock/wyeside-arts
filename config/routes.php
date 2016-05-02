@@ -149,6 +149,14 @@ return [
             'action' => 'historyAction'
         ]
     ],
+    [
+        'pattern' => '/about/history/:year',
+        'methods' => ['GET'],
+        'paths' => [
+            'controller' => '\Frontend\Controller\AboutController',
+            'action' => 'historyActionYear'
+        ]
+    ],
 	[
         'pattern' => '/about/team',
         'methods' => ['GET'],
@@ -193,6 +201,17 @@ return [
             'action' => 'costumeAction'
         ]
     ],
+    /* -----------------------------------------------------------
+     * Terms & Conditions
+     * ----------------------------------------------------------- */
+	[
+        'pattern' => '/terms',
+        'methods' => ['GET'],
+        'paths' => [
+            'controller' => '\Frontend\Controller\OtherController',
+            'action' => 'termsAction'
+        ]
+    ],
 
 	/* -----------------------------------------------------------
      * Sitemap
@@ -201,7 +220,7 @@ return [
         'pattern' => '/sitemap',
         'methods' => ['GET'],
         'paths' => [
-            'controller' => '\Frontend\Controller\SitemapController',
+            'controller' => '\Frontend\Controller\OtherController',
             'action' => 'sitemapAction'
         ]
     ],

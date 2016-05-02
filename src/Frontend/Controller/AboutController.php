@@ -17,29 +17,37 @@ class AboutController extends FrontendController
 		$this->getBanners(5, 'all');
         $this->app->render('frontend/about/who.twig', []);
     }
-	
+
 	public function historyAction()
     {
 		$this->getBanners(5, 'all');
         $this->app->render('frontend/about/history.twig', []);
     }
-	
+
+    public function historyActionYear()
+    {
+        $year = $this->app->router->getCurrentRoute()->getParam('year');
+
+        $this->getBanners(5, 'all');
+        $this->app->render('frontend/about/history' . $year . '.twig', []);
+    }
+
 	public function teamAction()
     {
 		$this->getBanners(5, 'all');
         $this->app->render('frontend/about/team.twig', []);
     }
-	
+
 	public function jobsAction()
     {
 		$this->getBanners(5, 'all');
         $this->app->render('frontend/about/jobs.twig', []);
     }
-	
+
 	public function newsAction()
     {
 		$this->getBanners(5, 'all');
         $this->app->render('frontend/about/news.twig', []);
     }
-	
+
 }

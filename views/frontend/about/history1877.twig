@@ -1,0 +1,32 @@
+{% extends "frontend/_layouts/main.twig" %}
+
+{% block title %}
+    Histroy: 1877 - 1911
+{% endblock %}
+
+{% block slider %}
+	{% include 'frontend/_partials/slider.twig' %}
+{% endblock %}
+
+{% block banner %}
+<section class="wy-banner type--{{ type }}">
+    <img src="/img/wyeside-logo.png" alt="Wyeside Arts Centre" />
+    <h1>History<br />1877 - 1911</h1>
+</section>
+{% endblock %}
+
+{% block content %}
+<section class="wy-body">
+    <p>The market hall thrived for more than a century – except for the occasional flood, the worst of which reached the top
+        market step. Upstairs, the Assembly Rooms became the place to be seen for Builth society. Concerts sacred and secular,
+        educational lectures and political meetings, with tea dances and social soirées, packed the programme until the first decade
+        of the 20th century. Evening dress balls saw patrons and guests arriving in their carriages, with the ladies keeping a fresh
+        supply of white gloves at their rooms in the Lion Hotel over the road, to exchange for those soiled during dancing.</p>
+
+    <hr />
+
+    <a class="wy-button" href="/about/history">Back to History</a>
+    <a class="wy-button" href="1911">On to History: 1911 - 1971</a>
+
+</section>
+{% endblock %}

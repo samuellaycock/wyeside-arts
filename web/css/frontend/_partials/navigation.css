@@ -213,14 +213,14 @@
 			display: inline-block;
 			float: left;
 			height: 100%;
-			padding: 1.375em .4em;
+			padding: 0 1em;
 		 	cursor: pointer; }
 		.wy-nav__menu li:hover {
 			border-bottom: 1px solid #f53617;
 		}
 		.wy-nav__menu a {
-			padding: .625em .8em;
-			line-height: 0;
+			padding: 0;
+			line-height: 65px;
 			border-bottom: none; }
 		.wy-nav__menu li:hover a {
 			color: #f53617;
@@ -316,6 +316,10 @@ a.selected ~ ul {
 	margin: 0;
 	font-size: 1em;
 }
+.wy-nav__phone a{
+	color: #f53617; }
+.wy-nav__phone:hover {
+	border: none!important; }
 @media screen and (min-width: 1024px) {
 	a.selected {
 		color: #f53617;
@@ -332,7 +336,7 @@ a.selected ~ ul {
 	.wy-nav__menu .wy-nav__menu-list--gallery {
 		position: absolute;
 		top: 70px;
-		padding: 2em 50% 5em !important;
+		padding: 2em 50% 3em !important;
 		width: 100vw;
 		height: auto;
 		background: #fff;
@@ -377,11 +381,13 @@ a.selected ~ ul {
 		padding-bottom: 0 !important;
 		width: 100% !important;
 		text-align: center;
-		float: none;;
+		float: none;
 	}
 	.wy-nav__button--explore .wy-button {
 		display: inline-block;
 		padding: 1.2em 2em;
+		line-height: 0;
+		font-weight: 200;
 	}
 	.wy-nav__menu-list--icons li {
 		padding: 1em 2em;
@@ -391,6 +397,8 @@ a.selected ~ ul {
 	}
 	.wy-nav__menu-list--icons li a {
 		padding: 1.2em 2em;
+		line-height: 0;
+		font-weight: 200;
 		color: #444!important;
 		border-radius: 3px;
 		border: 1px solid #ddd;
