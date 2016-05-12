@@ -4,6 +4,13 @@
     Sitemap
 {% endblock %}
 
+{% block head %}
+  <style>
+    .wy-body {
+      text-align: center; }
+  </style>
+{% endblock %}
+
 {% block slider %}
 	{% include 'frontend/_partials/slider.twig' %}
 {% endblock %}
@@ -55,7 +62,7 @@
     <h1 class="wy-body__title" style="color:#f53617">Event Pages</h1>
     <ul>
         {% for event in flash.events %}
-        <li><a href="{{ event.getUrl() }}">{{ event.getTitle() }}</a></li>
+        <li><a href="{{ event.getEventUrl() }}">{{ event.getTitle() }}</a></li>
         {% endfor %}
     </ul>
     <br />
