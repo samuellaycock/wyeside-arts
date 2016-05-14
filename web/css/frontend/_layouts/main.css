@@ -331,7 +331,7 @@ hr {
 	text-transform: uppercase;
 	text-align: left;
 	vertical-align: middle; }
-	@media screen and (min-width: 650px) and (max-width: 1199px) {
+	@media screen and (min-width: 650px) {
 		.wy-banner {
 			padding: 0.25em 0 0.5em; }
 		.wy-banner img {
@@ -341,13 +341,10 @@ hr {
 			font-size: 1.75em; }
 	}
 	@media screen and (min-width: 1200px) {
-		.wy-banner {
-			padding: 1em 0 0.75em; }
 		.wy-banner img {
-			height: 90px; }
+			height: 70px; }
 		.wy-banner h1 {
-			color: #fff;
-			font-size: 2.5em; }
+			font-size: 2em; }
 	}
 
 /* --------------------------------
@@ -413,6 +410,11 @@ hr {
 	border: none; }
 .wy-side__item--times {
 	background: #202428; }
+.wy-side__item--calendar {
+	background: #374045 url(../../../img/frontend/icons/arrow-icon.svg) no-repeat right center; }
+.wy-side__item--calendar img {
+	display: inline-block;
+	height: 40px; }
 .wy-side__item--brochure {
 	background: #01B6AD url(../../../img/frontend/icons/arrow-icon.svg) no-repeat right center; }
 .wy-side__item--email {

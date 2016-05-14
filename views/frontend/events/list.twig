@@ -48,11 +48,15 @@
 
 {% block content %}
 <section class="wy-body">
-    <h2 class="wy-body__title">Showing in the next 7 Days</h2>
+		{% if flash.thisWeek|length > 0 %}
+    <h2 class="wy-body__title">
+			{% if type == 'cinema' %}
+			Playing/Opening this Week
+			{% else %}
+			Playing this Week
+			{% endif %}
+		</h2>
     <ul class="wy-shows--this-week">
-        {% if flash.thisWeek|length < 1 %}
-        <p>No shows this week.</p>
-        {% endif %}
         {% for event in flash.thisWeek %}
         <a href="{{ event.getEventUrl() }}">
             <li class="wy-shows__show" style="border: 2px solid {{ event.getTypePrimaryColor() }}">
@@ -106,11 +110,10 @@
         {% endfor %}
     </ul>
     <hr />
-    <h2 class="wy-body__title">Showing in the next Fortnight</h2>
+		{% endif %}
+		{% if flash.nextWeek|length > 0 %}
+    <h2 class="wy-body__title">Playing this Fortnight</h2>
     <ul class="wy-shows--next-week">
-        {% if flash.nextWeek|length < 1 %}
-        <p>No shows next week.</p>
-        {% endif %}
         {% for event in flash.nextWeek %}
         <a href="{{ event.getEventUrl() }}">
             <li class="wy-shows__show" style="border: 2px solid {{ event.getTypePrimaryColor() }}">
@@ -158,8 +161,8 @@
         </a>
         {% endfor %}
     </ul>
-
-    {% if flash.thisWeek|length < 1 and flash.nextWeek|length < 3 %}
+		{% endif %}
+    {% if flash.thisWeek|length < 3 or flash.nextWeek|length < 3 %}
     <hr />
     <h2 class="wy-body__title">Coming Soon</h2>
     <ul class="wy-shows--coming-soon">

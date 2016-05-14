@@ -395,6 +395,12 @@ a.selected ~ ul {
 		text-transform: uppercase;
 		text-align: center;
 	}
+	.wy-nav__menu-list--icons.events-list li a {
+		color: #fff!important; }
+	.wy-nav__menu-list--icons.events-list li:last-child a {
+		color: #444!important; }
+	.wy-nav__menu-list--icons.events-list li:last-child a:hover {
+		color: #f53617!important; }
 	.wy-nav__menu-list--icons li a {
 		padding: 1.2em 2em;
 		line-height: 0;

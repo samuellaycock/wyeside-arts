@@ -47,7 +47,7 @@
                 </li>
                 <li class="wy-button--logo wy-logo--cal">
                     <a href="/calendar">
-                        <img src="/img/frontend/logos/calendar-logo.jpg" alt="Wyeside Gallery" />
+                        <img src="/img/frontend/logos/calendar-logo.jpg" alt="Events Calendar" />
                     </a>
                 </li>
             </ul>
@@ -58,12 +58,10 @@
             <hr />
         </section>
         <section>
-            <h2 class="wy-body__title">Showing in the next 7 Days</h2>
+          {% if flash.thisWeek|length > 0 %}
+            <h2 class="wy-body__title">Playing this week</h2>
             <ul class="wy-shows--this-week">
-                {% if flash.thisWeek|length < 1 %}
-                <p>No shows this week.</p>
-                {% endif %}
-                {% for event in flash.thisWeek %}
+                {% for event in flash.thisWeek|slice(0, 6) %}
                 <a href="{{ event.getEventUrl() }}">
                     <li class="wy-shows__show" style="border: 2px solid {{ event.getTypePrimaryColor() }}">
                         <div class="wy-show__img-container" style="background: url('/img/event-assets/default-banner.jpg') no-repeat center center">
@@ -115,6 +113,7 @@
                 </a>
                 {% endfor %}
             </ul>
+            {% endif %}
         </section>
     </section>
 {% endblock %}
