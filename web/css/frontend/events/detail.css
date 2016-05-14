@@ -149,7 +149,7 @@
     -webkit-transition: all 0.3s ease-out;
     transition: all 0.3s ease-out; }
 .wy-booking__button:hover {
-    opacity: 0.75; }
+    opacity: 0.85; }
 .wy-booking__button span:first-child {
     font-size: 1.2em; }
 .wy-booking__button span:nth-child(3) {
