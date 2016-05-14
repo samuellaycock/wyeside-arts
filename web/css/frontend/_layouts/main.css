@@ -414,7 +414,7 @@ hr {
 	background: #374045 url(../../../img/frontend/icons/arrow-icon.svg) no-repeat right center; }
 .wy-side__item--calendar img {
 	display: inline-block;
-	height: 32px;
+	height: 34px;
   vertical-align: top; }
 .wy-side__item--brochure {
 	background: #01B6AD url(../../../img/frontend/icons/arrow-icon.svg) no-repeat right center; }
@@ -446,6 +446,10 @@ hr {
 			margin-bottom: 0;
 		}
 	}
+.wy-side__item--times a {
+	font-size: 1.3em; }
+.wy-side__item--times a span {
+	font-size: 0.85em; }
 .wy-side table {
 	width: 100%; }
 .wy-side__t-row {
