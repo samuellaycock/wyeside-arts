@@ -397,9 +397,9 @@ a.selected ~ ul {
 	}
 	.wy-nav__menu-list--icons.events-list li a {
 		color: #fff!important; }
-	.wy-nav__menu-list--icons.events-list li:last-child a {
+	.wy-nav__menu-list--icons.events-list li a.normal-link {
 		color: #444!important; }
-	.wy-nav__menu-list--icons.events-list li:last-child a:hover {
+	.wy-nav__menu-list--icons.events-list li a.normal-link:hover {
 		color: #f53617!important; }
 	.wy-nav__menu-list--icons li a {
 		padding: 1.2em 2em;
@@ -418,13 +418,16 @@ a.selected ~ ul {
 	}
 
 }
-@media screen and (min-width: 1024px) and (max-width: 1400px) {
+@media screen and (min-width: 1024px) and (max-width: 1700px) {
 	.wy-nav__menu .wy-nav__menu-list--icons,
 	.wy-nav__menu .wy-nav__menu-list--gallery {
 		padding: 2em 10% 5em !important;
 	}
 	.wy-nav__menu .wy-nav__menu-list--icons li {
 		width: 50%;
+	}
+	.wy-nav__menu .wy-nav__menu-list--icons li:nth-child(7) {
+		display: none;
 	}
 }
 @media screen and (max-width: 1023px) {

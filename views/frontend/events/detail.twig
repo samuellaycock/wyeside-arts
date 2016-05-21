@@ -56,13 +56,14 @@
 		<li class="wy-details__info-item">{{ event.getPrices() }}</li>
 	</ul>
 	{% endif %}
-	<br /><a class="wy-details__button" href="#book-online">Book Online</a>
+	<br /><a class="wy-details__button" href="#book-online">Book Online <span style="vertical-align:middle" class="icon-arrow-down-c"></span></a>
 </section>
 <section class="wy-body">
 	<section class="wy-contain">
 		<div class="wy-trailer l-50">
-			<span class="icon-youtube"></span>
-			<a class="wy-button" href="https://www.youtube.com/watch?v={{ event.getTrailer() }}" data-lity>Watch Trailer</a></li>
+			<a class="wy-button" href="https://www.youtube.com/watch?v={{ event.getTrailer() }}" data-lity>
+				<span class="icon-social-youtube" style="vertical-align:middle;padding-right:5px;"></span> Watch Trailer
+			</a>
 		</div>
 		<div class="wy-showings l-50 type--{{ event.getType() }}">
 			<h2 class="wy-showings__title">Upcoming Showings</h2>
@@ -76,7 +77,6 @@
 			</table>
 		</div>
 	</section>
-	<hr />
 	<div class="wy-synopsis">
 		<h2 class="wy-synopsis__title type__text--{{ event.getType() }}">Synopsis</h2>
 		<p class="wy-synopsis__text">{{ event.getDescription() }}</p>
@@ -132,7 +132,7 @@
 	</div>
 	<hr />
 	<section style="text-align: center;">
-		<a href="/evenst/all" class="wy-button" style="margin:2em 0 3em;">Explore more Events</a>
+		<a href="/events/all" class="wy-button" style="margin:2em 0 3em;">Explore more Events</a>
 	</section>
 </section>
 {% endblock %}

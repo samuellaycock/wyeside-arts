@@ -72,28 +72,14 @@ class FrontendController extends AppController
     {
         $eventRepo = $this->getEventRepo();
         $this->app->flashNow('events', $eventRepo->getAllSortedByDate());
+    }
 
-        /*
-        $eventRepo = $this->getEventRepo();
-        $data = array();
-
-        foreach($this->$eventRepo->getAllSortedByDate() as $event){
-            $event = array(
-                'title' => $this.getTitle(),
-                'dates' => array(),
-                'image' => $this.getBannerImageUrl() );
-
-            foreach($this.getShowings() as $showing){
-                $dateTime = $this.getTs();
-
-                array_push($event['dates'], $dateTime);
-            }
-
-            array_push($data, $event);
-
-        }
-
-        return $data;
-        */
+    /**
+       * @return Showing[]
+       */
+    protected function getAllShowings()
+    {
+        $eventRepo = $this->getShowingRepo();
+        $this->app->flashNow('showings', $eventRepo->getAllSortedByDate());
     }
 }

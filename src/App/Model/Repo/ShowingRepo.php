@@ -29,4 +29,15 @@ class ShowingRepo extends EntityRepository
         return parent::find($id, $lockMode = null, $lockVersion = null);
     }
 
+    /**
+       * @return Showing[]
+       */
+    public function getAllSortedByDate() {
+      return $this->_em->createQuery('
+          SELECT DISTINCT e FROM App\Model\Entity\Showing e
+          WHERE e.ts >= CURRENT_DATE()
+          ORDER BY e.ts ASC
+      ')->getResult();
+    }
+
 }

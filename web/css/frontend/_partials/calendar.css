@@ -198,3 +198,38 @@
 .wy-button--event:hover {
     opacity: 0.9;
 }
+
+/* =====================================
+   NEW
+   =====================================*/
+
+.wy-body table {
+  width: 100%;
+  margin-bottom: 1.2em;
+  border-collapse: collapse;
+  border: 1px solid rgba(0,0,0,0.1); }
+.wy-body tr {
+  border-bottom: 1px solid rgba(0,0,0,0.1); }
+.wy-body tr:first-child {
+  background: #374045;
+  color: #fff;
+  font-size: 1.2em;
+  text-transform: uppercase; }
+.wy-body tr:last-child {
+  border: none; }
+.wy-body tr:not(:first-child):hover {
+  background: rgba(0,0,0,0.1); }
+.wy-body th {
+  text-align: left;
+  font-weight: 200; }
+.wy-body th,
+.wy-body td {
+  padding: 1em 0.5em; }
+.wy-body td ul li {
+  display: block;
+  margin-bottom: 1em; }
+.wy-body td ul li a {
+  padding: 0.3em 1em;
+  border-radius: 3px; }
+.wy-body td ul li:hover {
+  opacity: 0.75; }

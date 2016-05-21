@@ -28,7 +28,8 @@
 	font-weight: 800; }
 .wy-details__title.type--1 {
 	padding: 0.1em 0;
-	background: transparent; }
+	background: transparent;
+  color: #444; }
 .wy-details__cert {
 	vertical-align: top;
 	opacity: 0.7;
@@ -98,6 +99,20 @@
 .wy-synopsis__title {
 	text-transform: uppercase;
 	font-weight: 200; }
+.wy-trailer {
+  position: relative;
+  min-height: 100px; }
+.wy-trailer .wy-button {
+  margin: 0;
+}
+@media screen and (min-width: 1024px) {
+  .wy-trailer .wy-button {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); }
+}
 .wy-book {
 	display: inline-block;
 	width: 100%;
