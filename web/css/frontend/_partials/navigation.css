@@ -416,7 +416,6 @@ a.selected ~ ul {
 		background: #374045;
 		border-color: #374045;
 	}
-
 }
 @media screen and (min-width: 1024px) and (max-width: 1700px) {
 	.wy-nav__menu .wy-nav__menu-list--icons,
@@ -425,9 +424,6 @@ a.selected ~ ul {
 	}
 	.wy-nav__menu .wy-nav__menu-list--icons li {
 		width: 50%;
-	}
-	.wy-nav__menu .wy-nav__menu-list--icons li:nth-child(7) {
-		display: none;
 	}
 }
 @media screen and (max-width: 1023px) {
