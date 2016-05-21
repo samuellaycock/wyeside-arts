@@ -447,6 +447,18 @@ class Event
     }
 
     /**
+     * @return string
+     */
+    public function getBannerThumbnailUrl()
+    {
+        $imageName = '/event-assets/thumbnails/' . $this->getBanner() . $this->getBannerExt();
+        if (!is_file(APP_DIR . '/web' . $imageName)) {
+            return '/img/event-assets/default-banner.jpg';
+        }
+        return $imageName;
+    }
+
+    /**
      * @return Image[]
      */
     public function getImages()

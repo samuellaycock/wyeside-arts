@@ -7,7 +7,9 @@ namespace Frontend\Controller;
 
 use App\Controller\AppController;
 use App\Model\Entity\Event;
+use App\Model\Entity\Tweet;
 use App\Model\Repo\EventRepo;
+use App\Model\Repo\TweetRepo;
 use Slim\Slim;
 
 
@@ -37,12 +39,21 @@ class FrontendController extends AppController
     }
 
     /**
+     * @return TweetRepo
+     */
+    protected function getTweetRepo()
+    {
+        return $this->em->getRepository(Tweet::class);
+    }
+
+    /**
      * @param Slim $app
      */
     protected function setViewGlobals(Slim $app)
     {
         $eventRepo = $this->getEventRepo();
         $app->flashNow('upcomingEvents', $eventRepo->getXUpcoming(12));
+        $app->flashNow('latestTweet', $this->getTweetRepo()->findOneBy([]));
         $app->flashNow('brochureUrl', 'http://wyeside.co.uk'); // todo: we need to store the latest brochure URL somewhere!
     }
 
@@ -82,4 +93,5 @@ class FrontendController extends AppController
         $eventRepo = $this->getShowingRepo();
         $this->app->flashNow('showings', $eventRepo->getAllSortedByDate());
     }
+
 }
