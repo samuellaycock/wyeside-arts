@@ -109,7 +109,7 @@
         </a>
         {% endfor %}
     </ul>
-    <hr />
+		<hr />
 		{% endif %}
 		{% if flash.nextWeek|length > 0 %}
     <h2 class="wy-body__title">Playing this Fortnight</h2>
@@ -161,9 +161,9 @@
         </a>
         {% endfor %}
     </ul>
+		<hr />
 		{% endif %}
     {% if flash.thisWeek|length < 3 or flash.nextWeek|length < 3 %}
-    <hr />
     <h2 class="wy-body__title">Coming Soon</h2>
     <ul class="wy-shows--coming-soon">
         {% if flash.bannerImages|length < 1 %}
