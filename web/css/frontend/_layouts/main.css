@@ -119,16 +119,16 @@ hr {
             padding: 0.5em; }
     }
 .wy-show__title {
-    display: inline-block;
-    margin: 0;
-	padding: 0.1em 0;
-    max-width: calc(100% - 1px);
-    font-size: 1.6em;
+  display: inline-block;
+  margin: 0;
+	padding: 0.1em 0.3em;
+  max-width: calc(100% - 1px);
+  font-size: 1.6em;
 	text-transform: uppercase;
 	font-weight: 800;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis; }
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; }
 .wy-show__cert {
 	vertical-align: top;
 	opacity: 0.7;
