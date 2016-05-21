@@ -1,13 +1,16 @@
 <table class="system-table table-striped" style="font-size:0.9em;">
     <tr>
         <th>Date &amp; Time</th>
-        <th style="width:100px;">Type</th>
+        {% if event.getTypeName() == "Cinema" %}
+            <th style="width:100px;">Type</th>
+        {% endif %}
         <th>Location</th>
         <th style="width:100px;">&nbsp;</th>
     </tr>
     {% for showing in event.getShowings() %}
         <tr style="font-size:0.9em;">
             <td>{{ showing.getTs()|date("D jS M Y \\@ g:ia") }}</td>
+            {% if event.getTypeName() == "Cinema" %}
             <td>
                 {% if showing.getType() == null %}
                     <select style="width:auto;" onchange="ajaxUpdateDateType('{{ showing.getId() }}', this)">
@@ -19,6 +22,7 @@
                     {{ showing.getType() }}
                 {% endif %}
             </td>
+            {% endif %}
             <td>{{ showing.getLocationName() }}</td>
             <td><a href="javascript:ajaxDeleteShowing('{{ showing.getId() }}')">Delete</a></td>
         </tr>

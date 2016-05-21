@@ -7,6 +7,7 @@ namespace App\Model\Repo;
 
 
 use App\Model\Entity\Event;
+use Doctrine\DBAL\Query\QueryBuilder;
 use Doctrine\ORM\EntityRepository;
 use Doctrine\ORM\Query;
 
@@ -58,6 +59,10 @@ class EventRepo extends EntityRepository
             ->getQuery();
     }
 
+    public function getQueryBuilder()
+    {
+        return $this->createQueryBuilder('e');
+    }
 
     /**
      * @return Event[]

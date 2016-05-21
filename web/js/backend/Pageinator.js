@@ -1,6 +1,6 @@
-$pageinator = new Paginator();
+var pageinator = new Paginator();
 $( document ).ready(function() {
-    $pageinator.ready();
+    pageinator.ready();
 });
 
 
@@ -32,13 +32,33 @@ Paginator.prototype.loadPage = function(domElement)
     var parent = $(domElement).parent();
     var refreshUrl = $(parent).data("refreshurl");
     var replaceDom = $(parent).data("domelement");
+    var qsMethod = $(parent).data("qsmethod");
+
+    var queryParams = {};
+    if(qsMethod.length >= 1){
+        queryParams = window[qsMethod]();
+    }
+    queryParams.page = pageNumber;
+    var queryString = "?" + $.param(queryParams);
+    console.log(queryString);
 
     var me = this;
     $.ajax({
-        url: refreshUrl + "?page=" + pageNumber,
+        url: refreshUrl + queryString,
         success: function(result){
             $("#" + replaceDom).html(result);
             me.ready();
         }
     });
+};
+
+
+/**
+ * @param wrapperElementId
+ */
+Paginator.prototype.update = function(wrapperElementId)
+{
+    var activePage = $("#" + wrapperElementId + " .page-active:first-child");
+    console.log(activePage);
+    this.loadPage(activePage);
 };

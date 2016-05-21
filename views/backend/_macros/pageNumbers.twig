@@ -1,8 +1,8 @@
-{% macro pageNumbers(domElement, refreshUrl, totalPages, currentPage)  %}
+{% macro pageNumbers(domElement, refreshUrl, totalPages, currentPage, qsMethod)  %}
     {% set displayNumber = 10 %}
     {% set siblingNumber = 3 %}
 
-    <div class="pages" data-refreshurl="{{ refreshUrl }}" data-domelement="{{ domElement }}">
+    <div class="pages" data-refreshurl="{{ refreshUrl }}" data-domelement="{{ domElement }}" data-qsmethod="{{ qsMethod }}">
         {% if(totalPages <= displayNumber) %}
 
             {% for i in 1..totalPages %}
