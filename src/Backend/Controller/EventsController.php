@@ -72,7 +72,19 @@ class EventsController extends BackendController
             $page = 1;
         }
 
-        $pageinator = new Pagination($this->getEventRepo()->getQueryAllSortedByDateCreated(), $this->app->request->getResourceUri());
+        if(null !== $this->app->request->get('search')){
+            $search = $this->app->request->get('search');
+        }else{
+            $search = "";
+        }
+        
+        $queryBuilder = $this->getEventRepo()->getQueryBuilder();
+        $query = $queryBuilder
+            ->where($queryBuilder->expr()->like('e.title', ':title'))
+            ->orderBy('e.createdTs', 'DESC')
+            ->setParameter('title', '%' . $search . '%')->getQuery();
+        
+        $pageinator = new Pagination($query, $this->app->request->getResourceUri());
         $data = ['eventsPaginated' => $pageinator->getPage($page)];
         
         if ($this->app->request->isAjax()) {

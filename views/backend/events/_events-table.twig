@@ -1,6 +1,8 @@
 {% import "backend/_macros/pageNumbers.twig" as pages %}
 
-{{ pages.pageNumbers("events-table", eventsPaginated.getRefreshUrl(), eventsPaginated.getTotalPages(), eventsPaginated.getPage()) }}
+<div style="float:left;">
+{{ pages.pageNumbers("events-table", eventsPaginated.getRefreshUrl(), eventsPaginated.getTotalPages(), eventsPaginated.getPage(), "eventQueryParams") }}
+</div>
 <table class="system-table table-striped">
     <tr>
         <th style="width:120px;">Type</th>
@@ -25,4 +27,4 @@
         </tr>
     {% endfor %}
 </table>
-{{ pages.pageNumbers("events-table", eventsPaginated.getRefreshUrl(), eventsPaginated.getTotalPages(), eventsPaginated.getPage()) }}
+{{ pages.pageNumbers("events-table", eventsPaginated.getRefreshUrl(), eventsPaginated.getTotalPages(), eventsPaginated.getPage(), "eventQueryParams")  }}
