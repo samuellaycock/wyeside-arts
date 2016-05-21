@@ -23,7 +23,7 @@
 	}
 .wy-details__title {
 	display: inline;
-	padding: 0.1em 0;
+	padding: 0.1em 0.3em;
 	text-transform: uppercase;
 	font-weight: 800; }
 .wy-details__title.type--1 {
