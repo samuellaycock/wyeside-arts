@@ -10,6 +10,11 @@ $( document ).ready(function() {
     $(".event-status").bind("click", function(){
         ajaxToggleStatus(this, eventId);
     });
+
+    $('#description').trumbowyg({
+        fullscreenable: false,
+        closable: false
+    });
 });
 
 
