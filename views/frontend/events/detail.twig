@@ -63,6 +63,7 @@
 </section>
 <section class="wy-body">
 	<section class="wy-contain">
+		{% if event.getTrailer() %}
 		<div class="wy-trailer l-50"
 			 style="background-image: url(http://img.youtube.com/vi/{{ event.getTrailer() }}/hqdefault.jpg);background-repeat: no-repeat;background-size:cover;background-position: center;">
 			<a class="wy-button" href="https://www.youtube.com/watch?v={{ event.getTrailer() }}" data-lity>
@@ -70,7 +71,8 @@
 			</a>
 			<div class="wy-trailer__overlay"></div>
 		</div>
-		<div class="wy-showings l-50 type--{{ event.getType() }}">
+		{% endif %}
+		<div class="wy-showings type--{{ event.getType() }} {% if event.getTrailer() %}l-50"{% else %}" style="width: 100%; border-radius: 0 0 4px 4px;"{% endif %}>
 			<h2 class="wy-showings__title">Upcoming Showings</h2>
 			<table class="wy-showings__list">
 				{% for showing in event.getShowings()|slice(0, 5) %}
