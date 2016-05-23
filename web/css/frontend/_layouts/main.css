@@ -52,13 +52,21 @@ hr {
         .wy-shows__show {
             border: none!important; }
     }
-    @media screen and (min-width: 650px) and (max-width: 1023px) {
+		@media screen and (min-width: 650px) and (max-width: 849px) {
+			.wy-shows__show {
+					margin: 0 15px 25px 0;
+					height: 350px;
+					width: calc(50% - 20px);
+					border: 1px solid rgba(0,0,0,0.1);
+					border-radius: 5px; }
+		}
+    @media screen and (min-width: 850px) and (max-width: 1023px) {
         .wy-shows__show {
             margin: 0 15px 25px 0;
             height: 350px;
             width: calc(33.33333% - 20px);
 						border: 1px solid rgba(0,0,0,0.1);
-					 	border-radius: 5px;}
+					 	border-radius: 5px; }
     }
 	@media screen and (min-width: 1024px) and (max-width: 1299px) {
 		.wy-shows__show {
@@ -187,7 +195,7 @@ hr {
 		}
 	}
 .wy-button--logo img {
-	border-radius: 3px; }
+	border-radius: 4px; }
 .wy-button--logo:hover {
 	opacity: 0.7; }
 .wy-button__container {
@@ -195,19 +203,19 @@ hr {
 	margin: 1em 0;
 	text-align: center; }
 .wy-button {
-    display: inline-block;
+  display: inline-block;
 	float: none;
-    padding: 1em 2em;
+  padding: 0.75em 1em;
 	margin: 0.5em 1.5em;
 	min-width: 250px;
-    max-width: calc(50% - 3em);
+  max-width: calc(50% - 3em);
 	background: #374045;
-    border-radius: 3px;
-    text-align: center;
+  border-radius: 3px;
+  text-align: center;
 	cursor: pointer;
-    text-transform: uppercase;
-    -webkit-transition: all 0.3s ease-out;
-    transition: all 0.3s ease-out; }
+  text-transform: uppercase;
+  -webkit-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out; }
 .wy-button:hover {
     opacity: 0.9; }
 @media screen and (max-width: 649px) {
@@ -271,8 +279,8 @@ hr {
 	display: inline-block;
 	position: absolute;
 	top: 50%;
-	height: 80px;
-	width: 20px;
+	height: 100px;
+  width: 60px;
 	z-index: 10;
 	-webkit-transform: translatey(-40px);
 	transform: translatey(-40px); }
@@ -430,12 +438,18 @@ hr {
 	background: #fff; }
 .wy-side__item--fb {
 	background: #3b5998 url(../../../img/frontend/icons/arrow-icon.svg) no-repeat right center; }
+.wy-side__item--donate {
+	background: #A14DB2 url(../../../img/frontend/icons/arrow-icon.svg) no-repeat right center;; }
+.wy-side__item--donate img {
+	width: 110px;
+	vertical-align: top; }
 	@media screen and (max-width: 650px) {
 		.wy-side__item--email,
 		.wy-side__item--brochure,
 		.wy-side__item--twitter,
 		.wy-side__item--fb,
-		.wy-side__item--calendar {
+		.wy-side__item--calendar,
+		.wy-side__item--donate {
 			display: none;
 		}
 	}
@@ -443,7 +457,8 @@ hr {
 		.wy-side__item--brochure,
 		.wy-side__item--twitter,
 		.wy-side__item--fb,
-		.wy-side__item--calendar {
+		.wy-side__item--calendar,
+		.wy-side__item--donate {
 			display: none;
 		}
 		.wy-side__item--email {
@@ -477,7 +492,8 @@ hr {
 	color: #fff;
 	text-transform: uppercase; }
 .wy-side__item--twitter {
-	position: relative; }
+	position: relative;
+	padding-bottom: 0; }
 .wy-side__item--twitter .wy-twitter__bubble {
 	position: relative;
 	margin-bottom: 1em;
@@ -486,7 +502,8 @@ hr {
 	color: #444;
 	width: 100%;
 	min-height: 50px;
-	border-radius: 3px; }
+	border-radius: 3px;
+	line-height: 1.4em; }
 .wy-side__item--twitter .wy-twitter__bubble::after {
 	top: 100%;
 	left: 100px;
@@ -519,9 +536,9 @@ hr {
 	opacity: 0.5;
 	vertical-align: middle; }
 .wy-side__item--twitter .tweet::before {
-	content: '“'; }
+	content: '“ '; }
 .wy-side__item--twitter .tweet::after {
-	content: '”'; }
+	content: ' ”'; }
 
 
 /* --------------------------------
