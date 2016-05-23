@@ -106,7 +106,7 @@
 						{% for showing in day %}
 							<a class="wy-booking__button{% if showing.getType == "3D" %} three-d{% endif %}">
 								<span>{{ showing.getTs()|date("g.ia") }}</span><br />
-								<span>{{ showing.getLocationname() }} {{ showing.getId() }}</span>
+								<span>{{ showing.getLocationname() }}</span>
 							</a>
 						{% endfor %}
 					</td>

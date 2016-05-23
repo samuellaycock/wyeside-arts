@@ -38,7 +38,7 @@
                       <ul>
                         {% for showing in day %}
                             {% if showing.getLocation() == 0 %}
-                                <li><a class="type--{{ showing.getEvent().getType() }} type--1">{{ showing.getTs()|date("g.ia") }} : {{ showing.getEvent().getTitle() }}</a></li>
+                                <li><a href="{{ showing.getEvent().getEventUrl() }}" class="type--{{ showing.getEvent().getType() }} type--1">{{ showing.getTs()|date("g.ia") }} : {{ showing.getEvent().getTitle() }}</a></li>
                             {% endif %}
                         {% endfor %}
                       </ul>
@@ -47,7 +47,7 @@
                       <ul>
                           {% for showing in day %}
                               {% if showing.getLocation() == 1 %}
-                                  <li><a class="type--{{ showing.getEvent().getType() }} type--1">{{ showing.getTs()|date("g.ia") }} : {{ showing.getEvent().getTitle() }}</a></li>
+                                  <li><a href="{{ showing.getEvent().getEventUrl() }}" class="type--{{ showing.getEvent().getType() }} type--1">{{ showing.getTs()|date("g.ia") }} : {{ showing.getEvent().getTitle() }}</a></li>
                               {% endif %}
                           {% endfor %}
                       </ul>
@@ -56,7 +56,7 @@
                       <ul>
                           {% for showing in day %}
                               {% if showing.getLocation() == 2 %}
-                                  <li><a class="type--{{ showing.getEvent().getType() }} type--1">{{ showing.getTs()|date("g.ia") }} : {{ showing.getEvent().getTitle() }}</a></li>
+                                  <li><a href="{{ showing.getEvent().getEventUrl() }}" class="type--{{ showing.getEvent().getType() }} type--1">{{ showing.getTs()|date("g.ia") }} : {{ showing.getEvent().getTitle() }}</a></li>
                               {% endif %}
                           {% endfor %}
                       </ul>
