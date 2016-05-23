@@ -52,21 +52,13 @@ hr {
         .wy-shows__show {
             border: none!important; }
     }
-		@media screen and (min-width: 650px) and (max-width: 849px) {
-			.wy-shows__show {
-					margin: 0 15px 25px 0;
-					height: 350px;
-					width: calc(50% - 20px);
-					border: 1px solid rgba(0,0,0,0.1);
-					border-radius: 5px; }
-		}
-    @media screen and (min-width: 850px) and (max-width: 1023px) {
+    @media screen and (min-width: 650px) and (max-width: 1023px) {
         .wy-shows__show {
             margin: 0 15px 25px 0;
             height: 350px;
             width: calc(33.33333% - 20px);
 						border: 1px solid rgba(0,0,0,0.1);
-					 	border-radius: 5px; }
+					 	border-radius: 5px;}
     }
 	@media screen and (min-width: 1024px) and (max-width: 1299px) {
 		.wy-shows__show {
@@ -195,7 +187,7 @@ hr {
 		}
 	}
 .wy-button--logo img {
-	border-radius: 4px; }
+	border-radius: 3px; }
 .wy-button--logo:hover {
 	opacity: 0.7; }
 .wy-button__container {
@@ -203,19 +195,19 @@ hr {
 	margin: 1em 0;
 	text-align: center; }
 .wy-button {
-  display: inline-block;
+    display: inline-block;
 	float: none;
-  padding: 0.75em 1em;
+    padding: 1em 2em;
 	margin: 0.5em 1.5em;
 	min-width: 250px;
-  max-width: calc(50% - 3em);
+    max-width: calc(50% - 3em);
 	background: #374045;
-  border-radius: 3px;
-  text-align: center;
+    border-radius: 3px;
+    text-align: center;
 	cursor: pointer;
-  text-transform: uppercase;
-  -webkit-transition: all 0.3s ease-out;
-  transition: all 0.3s ease-out; }
+    text-transform: uppercase;
+    -webkit-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out; }
 .wy-button:hover {
     opacity: 0.9; }
 @media screen and (max-width: 649px) {
@@ -234,13 +226,25 @@ hr {
 	position: relative;
 	background: #d4dadd; }
 .wy-slider {
-	max-height: 600px;
+	max-height: 250px;
  	background: #292f33; }
 .wy-slider__slide {
 	position: relative;
- 	max-height: 600px;
+ 	max-height: 250px;
 	-webkit-transition: all 0.3s ease-out;
 	transition: all 0.3s ease-out; }
+	@media screen and (min-width: 650px) and (max-width: 1023px) {
+		.wy-slider,
+		.wy-slider__slide {
+			max-height: 450px;
+		}
+	}
+	@media screen and (min-width: 1024px) {
+		.wy-slider,
+		.wy-slider__slide {
+			max-height: 550px;
+		}
+	}
 .wy-slider__slide img {
 	width: 100%;
 	height: 100%; }
@@ -279,8 +283,8 @@ hr {
 	display: inline-block;
 	position: absolute;
 	top: 50%;
-	height: 100px;
-  width: 60px;
+	height: 80px;
+	width: 20px;
 	z-index: 10;
 	-webkit-transform: translatey(-40px);
 	transform: translatey(-40px); }
@@ -289,11 +293,12 @@ hr {
 		content: '';
 		position: absolute;
 		top: 0;
-		left: 0;
+		right: 0;
 		height: 80px;
 		width: 20px;
 		background: url(../../../img/frontend/icons/arrow-icon.svg) no-repeat center center; }
 	.unslider-arrow.prev::before {
+		left: 0;
 		-webkit-transform: rotate(180deg);
 		transform: rotate(180deg); }
 .unslider-nav {
@@ -438,18 +443,12 @@ hr {
 	background: #fff; }
 .wy-side__item--fb {
 	background: #3b5998 url(../../../img/frontend/icons/arrow-icon.svg) no-repeat right center; }
-.wy-side__item--donate {
-	background: #A14DB2 url(../../../img/frontend/icons/arrow-icon.svg) no-repeat right center;; }
-.wy-side__item--donate img {
-	width: 110px;
-	vertical-align: top; }
 	@media screen and (max-width: 650px) {
 		.wy-side__item--email,
 		.wy-side__item--brochure,
 		.wy-side__item--twitter,
 		.wy-side__item--fb,
-		.wy-side__item--calendar,
-		.wy-side__item--donate {
+		.wy-side__item--calendar {
 			display: none;
 		}
 	}
@@ -457,8 +456,7 @@ hr {
 		.wy-side__item--brochure,
 		.wy-side__item--twitter,
 		.wy-side__item--fb,
-		.wy-side__item--calendar,
-		.wy-side__item--donate {
+		.wy-side__item--calendar {
 			display: none;
 		}
 		.wy-side__item--email {
@@ -492,8 +490,7 @@ hr {
 	color: #fff;
 	text-transform: uppercase; }
 .wy-side__item--twitter {
-	position: relative;
-	padding-bottom: 0; }
+	position: relative; }
 .wy-side__item--twitter .wy-twitter__bubble {
 	position: relative;
 	margin-bottom: 1em;
@@ -502,8 +499,7 @@ hr {
 	color: #444;
 	width: 100%;
 	min-height: 50px;
-	border-radius: 3px;
-	line-height: 1.4em; }
+	border-radius: 3px; }
 .wy-side__item--twitter .wy-twitter__bubble::after {
 	top: 100%;
 	left: 100px;
@@ -536,9 +532,9 @@ hr {
 	opacity: 0.5;
 	vertical-align: middle; }
 .wy-side__item--twitter .tweet::before {
-	content: '“ '; }
+	content: '“'; }
 .wy-side__item--twitter .tweet::after {
-	content: ' ”'; }
+	content: '”'; }
 
 
 /* --------------------------------

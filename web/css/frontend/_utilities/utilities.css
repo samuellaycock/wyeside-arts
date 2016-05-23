@@ -37,36 +37,36 @@
 	color: #F53617; }
 .type--1,
 .type--cinema {
-	background: #B0D817; }
+	background-color: #B0D817; }
 .type__text--1,
 .type__text--cinema {
 	color: #B0D817; }
 .type--4,
 .type--satellite {
-	background: #E30769; }
+	background-color: #E30769; }
 .type__text--4,
 .type__text--satellite {
 	color: #E30769; }
 .type--2,
 .type--live {
-	background: #01B6AD; }
+	background-color: #01B6AD; }
 .type__text--2,
 .type__text--live {
 	color: #01B6AD; }
 .type--6,
 .type--gallery {
-	background: #A14DB2; }
+	background-color: #A14DB2; }
 .type__text--6,
 .type__text--gallery {
 	color: #A14DB2; }
 .type--3,
 .type--5,
 .type--classes {
-	background: #999; }
+	background-color: #999; }
 .type__text--3,
 .type__text--5,
 .type__text--classes {
 	color: #999; }
 .type--all {
-	background: #374045;
+	background-color: #374045;
 }
