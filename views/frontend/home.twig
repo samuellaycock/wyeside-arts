@@ -63,7 +63,7 @@
             <ul class="wy-shows--this-week">
                 {% for event in flash.thisWeek|slice(0, 6) %}
                 <a href="{{ event.getEventUrl() }}">
-                    <li class="wy-shows__show" style="border: 2px solid {{ event.getTypePrimaryColor() }}">
+                    <li class="wy-shows__show" style="border-bottom: 2px solid {{ event.getTypePrimaryColor() }}">
                         <div class="wy-show__img-container" style="background: url({{ event.getBannerImageUrl() }}) no-repeat center center">
                             <span class="u-text-replace">{{ event.getTitle() }}</span>
                         </div>

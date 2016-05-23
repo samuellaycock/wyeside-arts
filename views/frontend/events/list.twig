@@ -59,7 +59,7 @@
     <ul class="wy-shows--this-week">
         {% for event in flash.thisWeek %}
         <a href="{{ event.getEventUrl() }}">
-            <li class="wy-shows__show" style="border: 2px solid {{ event.getTypePrimaryColor() }}">
+            <li class="wy-shows__show" style="border-bottom: 2px solid {{ event.getTypePrimaryColor() }}">
                 <div class="wy-show__img-container" style="background: url('{{ event.getBannerImageUrl() }}') no-repeat center center">
                     <span class="u-text-replace">{{ event.getTitle() }}</span>
                 </div>
@@ -116,7 +116,7 @@
     <ul class="wy-shows--next-week">
         {% for event in flash.nextWeek %}
         <a href="{{ event.getEventUrl() }}">
-            <li class="wy-shows__show" style="border: 2px solid {{ event.getTypePrimaryColor() }}">
+            <li class="wy-shows__show" style="border-bottom: 2px solid {{ event.getTypePrimaryColor() }}">
                 <div class="wy-show__img-container" style="background: url('{{ event.getBannerImageUrl() }}') no-repeat center center">
                     <span class="u-text-replace">{{ event.getTitle() }}</span>
                 </div>
@@ -171,7 +171,7 @@
         {% endif %}
         {% for event in flash.bannerImages|slice(flash.nextWeek|length, flash.nextWeek|length + 3) %}
         <a href="{{ event.getEventUrl() }}">
-            <li class="wy-shows__show" style="border: 2px solid {{ event.getTypePrimaryColor() }}">
+            <li class="wy-shows__show" style="border-bottom: 2px solid {{ event.getTypePrimaryColor() }}">
                 <div class="wy-show__img-container" style="background: url('{{ event.getBannerImageUrl() }}') no-repeat center center">
                     <span class="u-text-replace">{{ event.getTitle() }}</span>
                 </div>
