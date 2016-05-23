@@ -125,7 +125,7 @@ class Tweet
 
         $date1 = $tweet->getInserted();
         $date2 = new \DateTime();
-        if (abs($date2->diff($date1)->i) > 1) {
+        if (abs($date2->diff($date1)->i) > 30) {
             self::update($repo, $em);
         }
 
