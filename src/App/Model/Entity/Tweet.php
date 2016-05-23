@@ -139,7 +139,6 @@ class Tweet
      */
     public static function update(TweetRepo $repo, EntityManager $em)
     {
-        die();
         foreach($repo->findAll() as $tweet){
             $em->remove($tweet);
         }
