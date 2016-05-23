@@ -102,9 +102,17 @@
 .wy-trailer {
   position: relative;
   min-height: 100px; }
+  @media screen and (max-width: 1023px) {
+      .wy-trailer {
+        background: none !important; }
+  }
 .wy-trailer .wy-button {
   margin: 0;
-}
+  background: #F53617;
+  color: #fff; }
+.wy-trailer .wy-button:hover {
+  opacity: 1;
+  background: #f64f34; }
 @media screen and (min-width: 1024px) {
   .wy-trailer .wy-button {
     position: absolute;
