@@ -1,24 +1,24 @@
 <section class="wy-slider">
 	<ul class="wy-slider__container">
 		{% if flash.bannerImages|length < 1 %}
-		{% for event in flash.upcomingEvents|slice(0, 5) %}
-		<li class="wy-slider__slide">
-			<a href="{{ event.getEventUrl() }}">
-				<img src="{{ event.getBannerImageUrl() }}" alt="{{ event.getTitle() }}">
-				<h1 class="wy-slider__title type--{{ event.getType() }}">{{ event.getTitle() }}</h1>
-				<div class="wy-slider__overlay"></div>
-			</a>
-		</li>
-		{% endfor %}
+			{% for event in flash.upcomingEvents|slice(0, 5) %}
+				<li class="wy-slider__slide">
+					<a href="{{ event.getEventUrl() }}">
+						<img src="{{ event.getMainImage().getUrl() }}" alt="{{ event.getTitle() }}">
+						<h1 class="wy-slider__title type--{{ event.getType() }}">{{ event.getTitle() }}</h1>
+						<div class="wy-slider__overlay"></div>
+					</a>
+				</li>
+			{% endfor %}
 		{% else %}
-		{% for event in flash.bannerImages %}
-		<li class="wy-slider__slide">
-			<a href="{{ event.getEventUrl() }}">
-				<img src="{{ event.getBannerImageUrl() }}" alt="{{ event.getTitle() }}">
-				<h1 class="wy-slider__title type--{{ event.getType() }}">{{ event.getTitle() }}</h1>
-			</a>
-		</li>
-		{% endfor %}
+			{% for event in flash.bannerImages %}
+				<li class="wy-slider__slide">
+					<a href="{{ event.getEventUrl() }}">
+						<img src="{{ event.getMainImage().getUrl() }}" alt="{{ event.getTitle() }}">
+						<h1 class="wy-slider__title type--{{ event.getType() }}">{{ event.getTitle() }}</h1>
+					</a>
+				</li>
+			{% endfor %}
 		{% endif %}
 	</ul>
 </section>

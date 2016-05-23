@@ -5,7 +5,7 @@
 			{% for event in flash.upcomingEvents %}
 			<li class="wy-foot__slide">
 				<a href="{{ event.getEventUrl() }}">
-					<img src="{{ event.getBannerImageUrl() }}" alt="{{ event.getTitle() }}"> <!-- Need to resolve image URLs -->
+					<img src="{{ event.getMainImage().getThumbnailUrl() }}" alt="{{ event.getTitle() }}"> <!-- Need to resolve image URLs -->
 					<div class="wy-foot__slide-title type--{{ event.getType() }}"><span>{{ event.getTitle() }}</span></div>
 				</a>
 			</li>
