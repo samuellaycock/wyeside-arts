@@ -76,7 +76,7 @@
 
 <script>
     var events = [ {% for event in flash.events|slice(0, flash.events|length -1) %}
-        {% for showing in event.getShowings() %}
+        {% for showing in event.getUpcomingShowings() %}
         {
             date: "{{ showing.getTs()|date("Y-m-d") }}",
             title: "{{ event.getTitle() }}",
@@ -88,7 +88,7 @@
         {% endfor %}
         {% endfor %}
         {% for event in flash.events|slice(flash.events|length -1, flash.events|length) %}
-        {% for showing in event.getShowings()|slice(0, event.getShowings()|length -1) %}
+        {% for showing in event.getUpcomingShowings()|slice(0, event.getUpcomingShowings()|length -1) %}
         {
             date: "{{ showing.getTs()|date("Y-m-d") }}",
             title: "{{ event.getTitle() }}",
@@ -98,7 +98,7 @@
             url: "{{ event.getEventUrl() }}"
         },
         {% endfor %}
-        {% for showing in event.getShowings()|slice(event.getShowings()|length -1, event.getShowings()|length) %}
+        {% for showing in event.getUpcomingShowings()|slice(event.getUpcomingShowings()|length -1, event.getUpcomingShowings()|length) %}
         {
             date: "{{ showing.getTs()|date("Y-m-d") }}",
             title: "{{ event.getTitle() }}",

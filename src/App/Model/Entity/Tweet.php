@@ -4,6 +4,7 @@
  */
 
 namespace App\Model\Entity;
+
 use App\Model\Repo\TweetRepo;
 use Doctrine\ORM\EntityManager;
 
@@ -105,12 +106,43 @@ class Tweet
     }
 
 
-    public static function update(TweetRepo $repo)
+    /**
+     * @param TweetRepo $repo
+     * @return Tweet
+     */
+    public static function getOne(TweetRepo $repo, EntityManager $em)
     {
-        /*
-         * Ensure we only update the cache every 3 minutes
-         */
-        $tweet = $repo->findOneBy([]);
+        try {
+            $tweet = $repo->findOneBy([]);
+        } catch (\Exception $e) {
+            self::update($repo, $em);
+            return new Tweet();
+        }
+        if (!$tweet) {
+            self::update($repo, $em);
+            return new Tweet();
+        }
+
+        $date1 = $tweet->getInserted();
+        $date2 = new \DateTime();
+        if (abs($date2->diff($date1)->i) > 30) {
+            self::update($repo, $em);
+        }
+
+        return $tweet;
+    }
+
+
+    /**
+     * @param TweetRepo $repo
+     * @param EntityManager $em
+     */
+    public static function update(TweetRepo $repo, EntityManager $em)
+    {
+        foreach($repo->findAll() as $tweet){
+            $em->remove($tweet);
+        }
+        $em->flush();
 
         $settings = array(
             'oauth_access_token' => "1164813739-Jr7RAFTZeNmivT2Wnq2vI08CNZWqDi1yGQ0ntpg",
@@ -159,22 +191,23 @@ class Tweet
         $json = curl_exec($curl_request);
         curl_close($curl_request);
 
-
-        $qry = new QueryController("DELETE FROM twitter");
-        $qry->Execute();
-
         $count = 0;
         foreach (json_decode($json, TRUE) as $t) {
-            $tweet = preg_replace('@(https?://([-\w\.]+[-\w])+(:\d+)?(/([\w/_\.#-]*(\?\S+)?[^\.\s])?)?)@', '<a href="$1" target="_blank">$1</a>', $t['text']);
-            $time = $datetime = new DateTime($t['created_at']);
-            $datetime->setTimezone(new DateTimeZone('Europe/Zurich'));
+
+            $tweetText = preg_replace('@(https?://([-\w\.]+[-\w])+(:\d+)?(/([\w/_\.#-]*(\?\S+)?[^\.\s])?)?)@', '<a href="$1" target="_blank">$1</a>', $t['text']);
+            $time = $datetime = new \DateTime($t['created_at']);
+            $datetime->setTimezone(new \DateTimeZone('Europe/Zurich'));
             $time = date("jS M \@ G:H:s", $datetime->format('U'));
-            $qry = new QueryController("INSERT INTO twitter (time,text) VALUES(':time',':text')",
-                array("time" => $time, "text" => $tweet));
-            $qry->Execute();
-            if ($count++ >= 5) {
-                break;
-            }
+
+
+            $tweet = new Tweet();
+            $tweet->setText($tweetText);
+            $tweet->setTime($time);
+            $tweet->setInserted(new \DateTime());
+            $em->persist($tweet);
+            $em->flush();
+
+            break; // we only want 1 now
         }
     }
 
