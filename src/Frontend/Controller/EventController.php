@@ -19,9 +19,20 @@ class EventController extends FrontendController
         $type = $this->app->router->getCurrentRoute()->getParam('type');
         $typeInt = $this->convertTypeParam($type);
 
-        $this->getDaysFromTo(0, 7, $typeInt);
         $this->getBanners(5, $typeInt);
-        $this->app->render('frontend/events/list.twig', ['type' => $type]);
+
+        $eventsThisWeek = $this->getEventRepo()->getUpcomingWithinXDaysForType(7, $typeInt);
+        if(count($eventsThisWeek) >= 0){
+            $futureEvents = $this->getEventRepo()->getUpcomingExcludeEventsForType($eventsThisWeek, $typeInt);
+        }else{
+            $futureEvents = $this->getEventRepo()->getAllSortedByDate($typeInt);
+        }
+
+        $this->app->render('frontend/events/list.twig', [
+            'type' => $type,
+            'eventsThisWeek' => $eventsThisWeek,
+            'futureEvents' => $futureEvents
+        ]);
     }
 
 
@@ -47,27 +58,24 @@ class EventController extends FrontendController
     }
 
     /**
-     * @return integer
+     * @param $type
+     * @return int|null
      */
     private function convertTypeParam($type)
     {
-        if (!$type || $type == 'all') {
-            return 0;
-        } else {
-            switch ($type) {
-                case 'cinema':
-                    return 1;
-                case 'live':
-                    return 2;
-                case 'satellite':
-                    return 4;
-                case 'gallery':
-                    return 6;
-                case 'classes':
-                    return 10;
-                default:
-                    return 99;
-            }
+        switch ($type) {
+            case 'cinema':
+                return 1;
+            case 'live':
+                return 2;
+            case 'satellite':
+                return 4;
+            case 'gallery':
+                return 6;
+            case 'classes':
+                return 10;
+            default:
+                return null;
         }
     }
 

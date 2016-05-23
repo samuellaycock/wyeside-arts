@@ -14,8 +14,9 @@ class HomeController extends FrontendController
 
     public function homeAction()
     {
-        $this->getDaysFromTo(0, 7, 0);
-        $this->app->render('frontend/home.twig', []);
+        $this->app->render('frontend/home.twig', [
+            'eventsThisWeek' => $this->getEventRepo()->getUpcomingWithinXDaysForType(7)
+        ]);
     }
 
 }

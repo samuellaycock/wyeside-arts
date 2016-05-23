@@ -76,18 +76,7 @@ class FrontendController extends AppController
 		    $eventRepo = $this->getEventRepo();
 		    $this->app->flashNow('bannerImages', $eventRepo->getXBannerImages($num, $type));
     }
-
-    /**
-     * @param $from
-     * @param $to
-     * @param $type
-     */
-    protected function getDaysFromTo($from, $to, $type)
-    {
-        $eventRepo = $this->getEventRepo();
-        $this->app->flashNow('thisWeek', $eventRepo->getUpcomingFromXToY($from, $to, $type));
-        $this->app->flashNow('nextWeek', $eventRepo->getUpcomingFromXToY(($from + 7), ($to + 7), $type));
-    }
+    
 
     protected function getAll()
     {
