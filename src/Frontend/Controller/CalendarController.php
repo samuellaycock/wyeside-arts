@@ -6,7 +6,7 @@
 namespace Frontend\Controller;
 
 /**
- * Class EventController
+ * Class CalendarController
  * @package Frontend\Controller
  */
 class CalendarController extends FrontendController
@@ -14,9 +14,19 @@ class CalendarController extends FrontendController
 
     public function CalendarAction()
     {
-        $this->getBanners(5, 'all');
-        $this->getAll();
-        $this->app->render('frontend/calendar/index.twig', []);
+        $showings = $this->getShowingsRepo()->getAllSortedByDate();
+        $organised = [];
+        foreach($showings as $showing){
+            $keyDate = $showing->getTs()->format('Y-m-d');
+            if(!isset($organised[$keyDate])){
+                $organised[$keyDate] = [];
+            }
+            $organised[$keyDate][] = $showing;
+        }
+
+        $this->app->render('frontend/calendar/index.twig', [
+            'days' => $organised
+        ]);
     }
 
 }
