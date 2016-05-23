@@ -18,34 +18,6 @@
     {% include 'frontend/_partials/slider.twig' %}
 {% endblock %}
 
-{% block banner %}
-<section class="wy-banner type--{{ type }}">
-    <img src="
-		{% if type == 'all' %}
-		/img/wyeside-logo.png
-		{% else %}
-		/img/wyeside-logo-white.png
-		{% endif %}
-		" alt="Wyeside
-		{% if type == 'all' %}
-		Arts Centre
-		{% elseif type == 'satellite' %}
-		{{ type| capitalize}} Live!
-		{% else %}
-		{{ type| capitalize}}
-		{% endif %}
-		"/>
-    <h1>{% if type == 'all' %}
-		Arts<br />Centre
-		{% elseif type == 'satellite' %}
-		{{ type| capitalize}}<br />Live!
-		{% else %}
-		{{ type| capitalize}}
-		{% endif %}
-	</h1>
-</section>
-{% endblock %}
-
 {% block content %}
 <section class="wy-body">
 		{% if flash.thisWeek|length > 0 %}

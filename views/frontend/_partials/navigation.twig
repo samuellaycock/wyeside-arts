@@ -1,5 +1,9 @@
 <header class="wy-header animate-search">
-	<div class="wy-header__logo"><a href="/"><img src="/img/wyeside-logo.png" alt="Logo"></a></div>
+	<a class="wy-header__logo" href="/">
+		{% if type %}
+		<img src="/img/frontend/logos/{{type}}-logo.jpg" alt="{{type}}" />
+		{% endif %}
+	</a>
 	<nav class="wy-nav">
 		<a href="#search" class="wy-nav__button--search u-text-replace" style="display: none;">Search</a>
 
