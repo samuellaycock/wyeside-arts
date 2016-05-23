@@ -1,7 +1,18 @@
 <header class="wy-header animate-search">
 	<a class="wy-header__logo" href="/">
-		{% if type %}
-		<img src="/img/frontend/logos/{{type}}-logo.jpg" alt="{{type}}" />
+		{% if type and type != 'all' %}
+		<img src="/img/frontend/logos/{{type}}-logo.jpg" alt="Wyeside {{type}}" />
+		{% endif %}
+		{% if event.type() == 1 %}
+		<img src="/img/frontend/logos/cinema-logo.jpg" alt="Wyeside Cinema" />
+		{% elseif event.type() == 2 %}
+		<img src="/img/frontend/logos/live-logo.jpg" alt="Wyeside Live" />
+		{% elseif event.type() == 3 or event.getType() == 5 %}
+		<img src="/img/frontend/logos/classes-logo.jpg" alt="Wyeside Classes" />
+		{% elseif event.type() == 4 %}
+		<img src="/img/frontend/logos/satellite-logo.jpg" alt="Wyeside Satellite" />
+		{% elseif event.type() == 6 %}
+		<img src="/img/frontend/logos/gallery-logo.jpg" alt="Wyeside Gallery" />
 		{% endif %}
 	</a>
 	<nav class="wy-nav">
