@@ -5,6 +5,7 @@
 
 namespace App\Model\Repo;
 
+
 use Doctrine\ORM\EntityRepository;
 
 /**
@@ -14,10 +15,6 @@ use Doctrine\ORM\EntityRepository;
 class TweetRepo extends EntityRepository
 {
 
-    public function getLatestTweet()
-    {
-        return $this->findOneBy([]);
-    }
 
 
 }

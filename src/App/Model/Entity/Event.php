@@ -501,12 +501,14 @@ class Event
         $now = new \DateTime();
         $rtn = [];
         foreach($this->getShowings() as $showing){
-            if($showing->getTs() >= $now){
+            if($showing->getTs()->format('Y-m-d') >= $now->format('Y-m-d')){
                 $rtn[] = $showing;
             }
         }
         return $rtn;
     }
+
+
 
     /**
      * @param Showing $showing

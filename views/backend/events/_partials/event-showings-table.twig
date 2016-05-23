@@ -7,7 +7,7 @@
         <th>Location</th>
         <th style="width:100px;">&nbsp;</th>
     </tr>
-    {% for showing in event.getShowings() %}
+    {% for showing in event.getUpcomingShowings() %}
         <tr style="font-size:0.9em;">
             <td>{{ showing.getTs()|date("D jS M Y \\@ g:ia") }}</td>
             {% if event.getTypeName() == "Cinema" %}
@@ -27,7 +27,7 @@
             <td><a href="javascript:ajaxDeleteShowing('{{ showing.getId() }}')">Delete</a></td>
         </tr>
     {% endfor %}
-    {% if event.getShowings()|length == 0 %}
+    {% if event.getUpcomingShowings()|length == 0 %}
         <tr>
             <td colspan="3" style="text-align: center">No Showings</td>
         </tr>

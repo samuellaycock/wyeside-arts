@@ -63,7 +63,7 @@ class FrontendController extends AppController
     {
         $eventRepo = $this->getEventRepo();
         $app->flashNow('upcomingEvents', $eventRepo->getXUpcoming(12));
-        $app->flashNow('latestTweet', $this->getTweetRepo()->findOneBy([]));
+        $app->flashNow('latestTweet', Tweet::getOne($this->getTweetRepo(), $this->em));
         $app->flashNow('brochureUrl', 'http://wyeside.co.uk'); // todo: we need to store the latest brochure URL somewhere!
     }
 

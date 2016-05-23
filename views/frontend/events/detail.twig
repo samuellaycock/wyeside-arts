@@ -49,7 +49,7 @@
 	</ul>
 	{% else %}
 	<ul class="wy-details__info">
-		{% for showing in event.getShowings()|slice(0, 1) %}
+		{% for showing in event.getUpcomingShowings()|slice(0, 1) %}
 		<li class="wy-details__info-item">{{ showing.getTs()|date('l jS F: g:ia') }}</li>
 		<li class="wy-details__info-item">{{ showing.getLocationName() }}</li>
 		{% endfor %}
@@ -69,7 +69,7 @@
 		<div class="wy-showings l-50 type--{{ event.getType() }}">
 			<h2 class="wy-showings__title">Upcoming Showings</h2>
 			<table class="wy-showings__list">
-				{% for showing in event.getShowings()|slice(0, 5) %}
+				{% for showing in event.getUpcomingShowings()|slice(0, 5) %}
 				<tr>
 					<td class="wy-showings__list-item">{{ showing.getTs()|date('l jS F: g:ia') }}</td>
 					<td>| {{ showing.getLocationName() }}</td>
