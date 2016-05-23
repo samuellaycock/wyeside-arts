@@ -202,12 +202,15 @@
 /* =====================================
    NEW
    =====================================*/
-
+.wy-body section {
+  overflow: hidden; }
 .wy-body table {
   width: 100%;
+  min-width: 750px;
   margin-bottom: 1.2em;
   border-collapse: collapse;
-  border: 1px solid rgba(0,0,0,0.1); }
+  border: 1px solid rgba(0,0,0,0.1);
+  overflow: auto; }
 .wy-body tr {
   border-bottom: 1px solid rgba(0,0,0,0.1); }
 .wy-body tr:first-child {
