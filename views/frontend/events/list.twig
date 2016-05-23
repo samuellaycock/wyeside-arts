@@ -6,11 +6,11 @@
 
 {% block title %}
     {% if type == 'all' %}
-    All Events
+        All Events
     {% elseif type == 'satellite' %}
-    {{ type|capitalize }} Live!
+        {{ type|capitalize }} Live!
     {% else %}
-    {{ type|capitalize }}
+        {{ type|capitalize }}
     {% endif %}
 {% endblock %}
 

@@ -91,44 +91,21 @@
 		<hr />
 		{% endif %}
 		<table class="wy-booking__table">
-		    <tr class="wy-booking__row">
-		        <td class="wy-booking__date">
-		            <span class="wy-booking__text">00/00/00</span>
-		        </td>
-		        <td class="wy-booking__shows">
-		            <a class="wy-booking__button">
-		                <span>00:00am</span><br />
-		                <span>Showing Location</span>
-		            </a>
-		            <a class="wy-booking__button three-d">
-		                <span>00:00am</span><br />
-		                <span>Showing Location</span>
-		            </a>
-		            <a class="wy-booking__button">
-		                <span>00:00am</span><br />
-		                <span>Showing Location</span>
-		            </a>
-		        </td>
-		    </tr>
-			<tr class="wy-booking__row">
-		        <td class="wy-booking__date">
-		            <span class="wy-booking__text">00/00/00</span>
-		        </td>
-		        <td class="wy-booking__shows">
-		            <a class="wy-booking__button three-d">
-		                <span>00:00am</span><br />
-		                <span>Showing Location</span>
-		            </a>
-		            <a class="wy-booking__button">
-		                <span>00:00am</span><br />
-		                <span>Showing Location</span>
-		            </a>
-		            <a class="wy-booking__button three-d">
-		                <span>00:00am</span><br />
-		                <span>Showing Location</span>
-		            </a>
-		        </td>
-		    </tr>
+			{% for key, day in days %}
+				<tr class="wy-booking__row">
+					<td class="wy-booking__date">
+						<span class="wy-booking__text"> {{ key|date("l jS M") }}</span>
+					</td>
+					<td class="wy-booking__shows">
+						{% for showing in day %}
+							<a class="wy-booking__button{% if showing.getType == "3D" %} three-d{% endif %}">
+								<span>{{ showing.getTs()|date("g.ia") }}</span><br />
+								<span>{{ showing.getLocationname() }} {{ showing.getId() }}</span>
+							</a>
+						{% endfor %}
+					</td>
+				</tr>
+			{% endfor %}
 		</table>
 	</div>
 	<hr />
