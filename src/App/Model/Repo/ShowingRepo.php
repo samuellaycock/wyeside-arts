@@ -6,6 +6,7 @@
 namespace App\Model\Repo;
 
 
+use App\Model\Entity\Event;
 use Doctrine\ORM\EntityRepository;
 use App\Model\Entity\Showing;
 
@@ -17,27 +18,31 @@ use App\Model\Entity\Showing;
 class ShowingRepo extends EntityRepository
 {
 
-
     /**
-     * @param mixed $id
-     * @param null $lockMode
-     * @param null $lockVersion
-     * @return Showing|null
+     * @return Showing[]
      */
-    public function find($id, $lockMode = null, $lockVersion = null)
+    public function getAllSortedByDate()
     {
-        return parent::find($id, $lockMode = null, $lockVersion = null);
-    }
-
-    /**
-       * @return Showing[]
-       */
-    public function getAllSortedByDate() {
-      return $this->_em->createQuery('
-          SELECT DISTINCT e FROM App\Model\Entity\Showing e
-          WHERE e.ts >= CURRENT_DATE()
-          ORDER BY e.ts ASC
+        return $this->_em->createQuery('
+          SELECT s FROM App\Model\Entity\Showing s
+          WHERE s.ts >= CURRENT_DATE()
+          ORDER BY s.ts ASC
       ')->getResult();
     }
+
+
+    /**
+     * @return Showing[]
+     */
+    public function getSortedByDateForEvent(Event $event)
+    {
+        return $this->_em->createQuery('
+          SELECT s FROM App\Model\Entity\Showing s
+          WHERE s.ts >= CURRENT_DATE()
+          AND s.event = :event
+          ORDER BY s.ts ASC
+      ')->setParameter('event', $event->getId())->getResult();
+    }
+
 
 }

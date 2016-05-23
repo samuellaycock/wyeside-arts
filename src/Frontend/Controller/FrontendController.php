@@ -7,8 +7,10 @@ namespace Frontend\Controller;
 
 use App\Controller\AppController;
 use App\Model\Entity\Event;
+use App\Model\Entity\Showing;
 use App\Model\Entity\Tweet;
 use App\Model\Repo\EventRepo;
+use App\Model\Repo\ShowingRepo;
 use App\Model\Repo\TweetRepo;
 use Slim\Slim;
 
@@ -36,6 +38,14 @@ class FrontendController extends AppController
     protected function getEventRepo()
     {
         return $this->em->getRepository(Event::class);
+    }
+
+    /**
+     * @return ShowingRepo
+     */
+    protected function getShowingsRepo()
+    {
+        return $this->em->getRepository(Showing::class);
     }
 
     /**
@@ -90,7 +100,7 @@ class FrontendController extends AppController
      */
     protected function getAllShowings()
     {
-        $eventRepo = $this->getShowingRepo();
+        $eventRepo = $this->getEventRepo();
         $this->app->flashNow('showings', $eventRepo->getAllSortedByDate());
     }
 

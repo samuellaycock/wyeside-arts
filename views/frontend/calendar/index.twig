@@ -29,36 +29,46 @@
                 <th>Market Theatre</th>
                 <th>The Gallery</th>
               </tr>
-              <tr>
-                <td>Date</td>
-                <td>
-                  <ul>
-                    <li><a class="type--{{event.getType()}} type--1">Time: Event Title</a></li>
-                    <li><a class="type--{{event.getType()}}">Time: Event Title</a></li>
-                    <li><a class="type--{{event.getType()}}">Time: Event Title</a></li>
-                  </ul>
-                </td>
-                <td>
-                  <ul>
-                    <li><a class="type--{{event.getType()}}">Time: Event Title</a></li>
-                    <li><a class="type--{{event.getType()}}">Time: Event Title</a></li>
-                    <li><a class="type--{{event.getType()}}">Time: Event Title</a></li>
-                  </ul>
-                </td>
-                <td>
-                  <ul>
-                    <li><a class="type--{{event.getType()}}">Time: Event Title</a></li>
-                    <li><a class="type--{{event.getType()}}">Time: Event Title</a></li>
-                    <li><a class="type--{{event.getType()}}">Time: Event Title</a></li>
-                  </ul>
-                </td>
-              </tr>
+                {% for key, day in days %}
+                  <tr>
+                    <td>
+                        {{ key|date("l") }}<br>{{ key|date("jS M") }}
+                    </td>
+                    <td>
+                      <ul>
+                        {% for showing in day %}
+                            {% if showing.getLocation() == 0 %}
+                                <li><a class="type--{{ showing.getEvent().getType() }} type--1">{{ showing.getTs()|date("g.ia") }} : {{ showing.getEvent().getTitle() }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                      </ul>
+                    </td>
+                    <td>
+                      <ul>
+                          {% for showing in day %}
+                              {% if showing.getLocation() == 1 %}
+                                  <li><a class="type--{{ showing.getEvent().getType() }} type--1">{{ showing.getTs()|date("g.ia") }} : {{ showing.getEvent().getTitle() }}</a></li>
+                              {% endif %}
+                          {% endfor %}
+                      </ul>
+                    </td>
+                    <td>
+                      <ul>
+                          {% for showing in day %}
+                              {% if showing.getLocation() == 2 %}
+                                  <li><a class="type--{{ showing.getEvent().getType() }} type--1">{{ showing.getTs()|date("g.ia") }} : {{ showing.getEvent().getTitle() }}</a></li>
+                              {% endif %}
+                          {% endfor %}
+                      </ul>
+                    </td>
+                  </tr>
+                {% endfor %}
             </table>
         </section>
         <section>
             <hr />
             <h2 class="wy-body__title">Explore What's On</h2>
-            <ul clas="u-clearfix">
+            <ul class="u-clearfix">
                 <li class="wy-button--logo">
                     <a href="/events/cinema">
                         <img src="/img/frontend/logos/cinema-logo.jpg" alt="Wyeside Cinema" />
