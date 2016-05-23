@@ -25,7 +25,9 @@ class ShowingRepo extends EntityRepository
     {
         return $this->_em->createQuery('
           SELECT s FROM App\Model\Entity\Showing s
+          LEFT JOIN App\Model\Entity\Event e WHERE e.id=s.event
           WHERE s.ts >= CURRENT_DATE()
+          AND e.status = 1
           ORDER BY s.ts ASC
       ')->getResult();
     }

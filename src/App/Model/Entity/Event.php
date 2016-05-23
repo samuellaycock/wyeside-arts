@@ -141,7 +141,7 @@ class Event
 
     /**
      * @OneToMany(targetEntity="App\Model\Entity\Showing", mappedBy="event")
-     * @OrderBy({"ts" = "DESC"})
+     * @OrderBy({"ts" = "ASC"})
      * @var Showing[]
      */
     protected $showings;
@@ -491,6 +491,21 @@ class Event
     public function getShowings()
     {
         return $this->showings;
+    }
+
+    /**
+     * @return Showing[]
+     */
+    public function getUpcomingShowings()
+    {
+        $now = new \DateTime();
+        $rtn = [];
+        foreach($this->getShowings() as $showing){
+            if($showing->getTs() >= $now){
+                $rtn[] = $showing;
+            }
+        }
+        return $rtn;
     }
 
     /**

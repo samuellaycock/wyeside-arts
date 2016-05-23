@@ -58,10 +58,10 @@
             <hr />
         </section>
         <section>
-          {% if flash.thisWeek|length > 0 %}
+          {% if eventsThisWeek|length > 0 %}
             <h2 class="wy-body__title">Playing this week</h2>
             <ul class="wy-shows--this-week">
-                {% for event in flash.thisWeek|slice(0, 6) %}
+                {% for event in eventsThisWeek|slice(0, 6) %}
                 <a href="{{ event.getEventUrl() }}">
                     <li class="wy-shows__show" style="border-bottom: 2px solid {{ event.getTypePrimaryColor() }}">
                         <div class="wy-show__img-container" style="background: url({{ event.getMainImage().getThumbnailUrl() }}) no-repeat center center">
@@ -69,7 +69,7 @@
                         </div>
                         <ul class="wy-show__showings type--{{ event.getType() }}">
                             <li class="wy-showings__title" >Upcoming Shows:</li>
-                            {% for showing in event.getShowings()|slice(0, 3) %}
+                            {% for showing in event.getUpcomingShowings()|slice(0, 3) %}
                     		<li>{{ showing.getTs()|date('l jS F: g:ia') }}</li>
                             {% endfor %}
                         </ul>

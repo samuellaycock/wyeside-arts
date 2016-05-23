@@ -26,7 +26,6 @@ class EventRepo extends EntityRepository
         return parent::find($id, $lockMode = null, $lockVersion = null);
     }
 
-
     /**
      * @return array
      */
@@ -34,9 +33,7 @@ class EventRepo extends EntityRepository
         return $this->createQueryBuilder('e')
             ->select('e.id, e.title')
             ->getQuery()->getArrayResult();
-
     }
-
 
     /**
      * @return Query
@@ -48,7 +45,6 @@ class EventRepo extends EntityRepository
             ->getQuery();
     }
 
-
     /**
      * @return Query
      */
@@ -59,77 +55,108 @@ class EventRepo extends EntityRepository
             ->getQuery();
     }
 
+    /**
+     * @return \Doctrine\ORM\QueryBuilder
+     */
     public function getQueryBuilder()
     {
         return $this->createQueryBuilder('e');
     }
 
     /**
+     * @param null $type
      * @return Event[]
      */
-    public function getAllSortedByDate()
+    public function getAllSortedByDate($type = null)
     {
+        if(null === $type) {
+            return $this->_em->createQuery('
+                SELECT DISTINCT e FROM App\Model\Entity\Event e
+                LEFT JOIN App\Model\Entity\Showing s WHERE e.id=s.event
+                WHERE e.status = 1
+                AND s.ts >= CURRENT_DATE()
+                ORDER BY s.ts ASC
+            ')->getResult();
+        }
+        return $this->_em->createQuery('
+                SELECT DISTINCT e FROM App\Model\Entity\Event e
+                LEFT JOIN App\Model\Entity\Showing s WHERE e.id=s.event
+                WHERE e.status = 1
+                AND s.ts >= CURRENT_DATE()
+                AND e.type = :typeId
+                ORDER BY s.ts ASC
+            ')->setParameter(':typeId', $type)->getResult();
+    }
+
+
+
+    /**
+     * @param $events Event[]
+     * @param $typeId int
+     * @return Event[]
+     */
+    public function getUpcomingExcludeEventsForType($events, $typeId = null)
+    {
+        $ids = ["'0'"]; // to prevent query error if 0 events passed
+        foreach($events as $event){
+            $ids[] = "'" . $event->getId() . "'";
+        }
+
+        if(null === $typeId) {
+            return $this->_em->createQuery('
+                SELECT DISTINCT e FROM App\Model\Entity\Event e
+                LEFT JOIN App\Model\Entity\Showing s WHERE e.id=s.event
+                WHERE e.status = 1
+                AND s.ts >= CURRENT_DATE()
+                AND e.id NOT IN (' . implode(',', $ids) . ')
+                ORDER BY s.ts ASC
+            ')->getResult();
+        }
+
+        return $this->_em->createQuery('
+                SELECT DISTINCT e FROM App\Model\Entity\Event e
+                LEFT JOIN App\Model\Entity\Showing s WHERE e.id=s.event
+                WHERE e.status = 1
+                AND s.ts >= CURRENT_DATE()
+                AND e.id NOT IN (' . implode(',', $ids) . ')
+                AND e.type = :typeId
+                ORDER BY s.ts ASC
+            ')->setParameter(':typeId', $typeId)->getResult();
+    }
+
+
+    /**
+     * @param $within int
+     * @return Event[]
+     */
+    public function getUpcomingWithinXDaysForType($within, $typeId = null)
+    {
+        if(null === $typeId) {
+            return $this->_em->createQuery('
+            SELECT DISTINCT e FROM App\Model\Entity\Event e
+            LEFT JOIN App\Model\Entity\Showing s WHERE e.id=s.event
+            WHERE e.status = 1
+            AND s.ts >= CURRENT_DATE()
+            AND s.ts < DATE_ADD(CURRENT_DATE(), :within, \'day\')
+            ORDER BY s.ts ASC
+        ')->setParameters([
+                'within' => $within
+            ])->getResult();
+        }
+
         return $this->_em->createQuery('
             SELECT DISTINCT e FROM App\Model\Entity\Event e
             LEFT JOIN App\Model\Entity\Showing s WHERE e.id=s.event
             WHERE e.status = 1
             AND s.ts >= CURRENT_DATE()
+            AND s.ts < DATE_ADD(CURRENT_DATE(), :within, \'day\')
+            AND e.type=:typeId
             ORDER BY s.ts ASC
-        ')->getResult();
+        ')->setParameters([
+            'within' => $within,
+            'typeId' => $typeId
+        ])->getResult();
     }
-
-
-    /**
-     * @param $from
-     * @param $to
-     * @param $type
-     * @return Event[]
-     */
-    public function getUpcomingFromXToY($from, $to, $type)
-    {
-        if($type === 0) {
-            return $this->_em->createQuery('
-                SELECT DISTINCT e FROM App\Model\Entity\Event e
-                LEFT JOIN App\Model\Entity\Showing s WHERE e.id=s.event
-                WHERE e.status = 1
-                AND s.ts >= DATE_ADD(CURRENT_DATE(), :from, \'day\')
-                AND s.ts < DATE_ADD(CURRENT_DATE(), :to, \'day\')
-                ORDER BY s.ts ASC
-            ')->setParameters([
-                'from' => $from,
-                'to' => $to,
-            ])->getResult();
-        }elseif($type > 0 && $type != 10){
-            return $this->_em->createQuery('
-                SELECT DISTINCT e FROM App\Model\Entity\Event e
-                LEFT JOIN App\Model\Entity\Showing s WHERE e.id=s.event
-                WHERE e.status = 1
-                AND e.type = :type
-                AND s.ts >= DATE_ADD(CURRENT_DATE(), :from, \'day\')
-                AND s.ts < DATE_ADD(CURRENT_DATE(), :to, \'day\')
-                ORDER BY s.ts ASC
-            ')->setParameters([
-                'type' => $type,
-                'from' => $from,
-                'to' => $to,
-            ])->getResult();
-        }
-        else{
-            return $this->_em->createQuery('
-                SELECT DISTINCT e FROM App\Model\Entity\Event e
-                LEFT JOIN App\Model\Entity\Showing s WHERE e.id=s.event
-                WHERE e.status = 1
-                AND (e.type = 3 OR e.type = 5)
-                AND s.ts >= DATE_ADD(CURRENT_DATE(), :from, \'day\')
-                AND s.ts < DATE_ADD(CURRENT_DATE(), :to, \'day\')
-                ORDER BY s.ts ASC
-            ')->setParameters([
-                'from' => $from,
-                'to' => $to,
-            ])->getResult();
-        }
-    }
-
 
     /**
      * @return Event[]
@@ -166,6 +193,7 @@ class EventRepo extends EntityRepository
             ])->setMaxResults($num)->getResult();
   			}
     }
+
 
 
     /**
