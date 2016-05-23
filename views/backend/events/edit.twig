@@ -43,16 +43,18 @@
         </div>
 
         <div class="tab-page" id="tab-page-images">
+           <!--
             <form id="banner-upload-form" class="upload-form" target="upload-iframe-banner" action="/system/events/{{ event.getId() }}/banner-upload" method="post" enctype="multipart/form-data" style="float:left;margin-right:15px;">
                 <p style="font-size:0.8em;color:#333;">Banner Images will be resized to 1920x800.</p>
                 <input type="file" name="file">
                 <button type="submit" name="submit">Upload Banner</button>
                 <iframe id="upload-iframe-banner" name="upload-iframe-banner" style="display:none;"></iframe>
-                {% include "backend/_partials/spinner.twig" %}
+                {# include "backend/_partials/spinner.twig" #}
             </form>
+            -->
 
             <form id="image-upload-form" class="upload-form" method="post" target="upload-iframe-images" action="/system/events/{{ event.getId() }}/image-upload" enctype="multipart/form-data" style="float:left;">
-                <p style="font-size:0.8em;color:#333;">You may select multiple files.</p>
+                <p style="font-size:0.8em;color:#333;">You may select multiple files. Images will be resized to 1920x800.</p>
                 <input type="file" name="file[]" multiple>
                 <button type="submit" name="submit">Upload Images</button>
                 <iframe id="upload-iframe-images" name="upload-iframe-images" style="display:none;"></iframe>
