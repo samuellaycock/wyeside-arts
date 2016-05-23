@@ -227,12 +227,16 @@
   font-weight: 200; }
 .wy-body th,
 .wy-body td {
-  padding: 1em 0.5em; }
+  padding:0.7em; }
+.wy-body td {
+  min-width: 30%; }
 .wy-body td ul li {
   display: block;
-  margin-bottom: 1em; }
+  margin-bottom: 0.3em; }
 .wy-body td ul li a {
-  padding: 0.3em 1em;
-  border-radius: 3px; }
+  display: inline-block;
+  padding: 0 1em;
+  border-radius: 3px;
+  line-height: 2em; }
 .wy-body td ul li:hover {
   opacity: 0.75; }
