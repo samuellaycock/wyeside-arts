@@ -13,6 +13,11 @@ namespace App\Model\Entity;
 class Event
 {
 
+    CONST IMAGE_DIR = '/event-assets/images/';
+    CONST THUMBNAIL_DIR = '/event-assets/thumbnails/';
+    CONST FALLBACK_IMAGE = '/img/event-assets/default-banner.jpg';
+
+
     /**
      * @Id
      * @Column(type="integer", name="eventID")
@@ -435,35 +440,27 @@ class Event
     }
 
     /**
-     * @return string
-     */
-    public function getBannerImageUrl()
-    {
-        $imageName = '/event-assets/images/' . $this->getBanner() . $this->getBannerExt();
-        if (!is_file(APP_DIR . '/web' . $imageName)) {
-            return '/img/event-assets/default-banner.jpg';
-        }
-        return $imageName;
-    }
-
-    /**
-     * @return string
-     */
-    public function getBannerThumbnailUrl()
-    {
-        $imageName = '/event-assets/thumbnails/' . $this->getBanner() . $this->getBannerExt();
-        if (!is_file(APP_DIR . '/web' . $imageName)) {
-            return '/img/event-assets/default-banner.jpg';
-        }
-        return $imageName;
-    }
-
-    /**
      * @return Image[]
      */
     public function getImages()
     {
         return $this->images;
+    }
+
+    /**
+     * @return Image|null
+     */
+    public function getMainImage()
+    {
+        foreach ($this->getImages() as $image){
+            if($image->getIsMain()){
+                return $image;
+            }
+        }
+        foreach ($this->getImages() as $image){
+            return $image;
+        }
+        return null;
     }
 
     /**

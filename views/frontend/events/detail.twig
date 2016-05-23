@@ -12,11 +12,11 @@
 {% block slider %}
 <section class="wy-slider">
 	<ul class="wy-slider__container">
-		{# for image in event.getImages() #}
+		{% for image in event.getImages() %}
 		<li class="wy-slider__slide">
-			<img src="{{ event.getBannerImageUrl() }}" alt="{{ event.getTitle() }}">
+			<img src="{{ image.getUrl() }}" alt="{{ event.getTitle() }}">
 		</li>
-		{# endfor #}
+		{% endfor %}
 	</ul>
 </section>
 {% endblock %}
