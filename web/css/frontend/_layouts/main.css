@@ -34,12 +34,8 @@ hr {
    Main
 -------------------------------- */
 .wy-main {
-	margin: 60px auto 0px;
+	margin: 0 auto;
 	z-index: 1; }
-	@media screen and (min-width: 1024px) {
-		.wy-main {
-			margin: 70px auto 0px; }
-	}
 .wy-body {
 	padding: 15px; }
 .wy-contain {
@@ -100,6 +96,7 @@ hr {
             height: 200px;
             padding: 2em 1em;
             text-align: center;
+						border-radius: 4px 4px 0 0;
             z-index: 0;
             opacity: 0; }
     }
@@ -229,11 +226,11 @@ hr {
 	position: relative;
 	background: #d4dadd; }
 .wy-slider {
-	max-height: 500px;
+	max-height: 600px;
  	background: #292f33; }
 .wy-slider__slide {
 	position: relative;
- 	max-height: 500px;
+ 	max-height: 600px;
 	-webkit-transition: all 0.3s ease-out;
 	transition: all 0.3s ease-out; }
 .wy-slider__slide img {
