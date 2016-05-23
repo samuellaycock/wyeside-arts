@@ -43,6 +43,7 @@ jQuery(document).ready(function($){
 		$('.selected').removeClass('selected').next('ul').addClass('is-hidden');
 		$('.wy-nav__menu').removeClass('moves-out');
 		coverLayer.removeClass('is-visible');
+		mainHeader.removeClass('active');
 	}
 
 	function closeSearchForm() {
@@ -50,6 +51,15 @@ jQuery(document).ready(function($){
 		searchForm.removeClass('is-visible');
 		coverLayer.removeClass('search-form-visible');
 	}
+
+	$(window).scroll(function () {
+    if ($(window).scrollTop() > 0) {
+      mainHeader.addClass('scrolled');
+    }
+    if ($(window).scrollTop() < 1) {
+      mainHeader.removeClass('scrolled');
+    }
+  });
 
 	//add the .no-pointerevents class to the <html> if browser doesn't support pointer-events property
 	( !Modernizr.testProp('pointerEvents') ) && $('html').addClass('no-pointerevents');
@@ -72,9 +82,11 @@ jQuery(document).ready(function($){
 			selected.addClass('selected').next('ul').removeClass('is-hidden').end().parent('.is-dropdown').parent('ul').addClass('moves-out');
 			selected.parent('.is-dropdown').siblings('.is-dropdown').children('ul').addClass('is-hidden').end().children('a').removeClass('selected');
 			coverLayer.addClass('is-visible');
+			mainHeader.addClass('active');
 		} else {
 			selected.removeClass('selected').next('ul').addClass('is-hidden').end().parent('.is-dropdown').parent('ul').removeClass('moves-out');
 			coverLayer.removeClass('is-visible');
+			mainHeader.removeClass('active');
 		}
 	});
 

@@ -80,6 +80,9 @@ class EventRepo extends EntityRepository
 
 
     /**
+     * @param $from
+     * @param $to
+     * @param $type
      * @return Event[]
      */
     public function getUpcomingFromXToY($from, $to, $type)

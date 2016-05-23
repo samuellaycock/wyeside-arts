@@ -18,34 +18,6 @@
     {% include 'frontend/_partials/slider.twig' %}
 {% endblock %}
 
-{% block banner %}
-<section class="wy-banner type--{{ type }}">
-    <img src="
-		{% if type == 'all' %}
-		/img/wyeside-logo.png
-		{% else %}
-		/img/wyeside-logo-white.png
-		{% endif %}
-		" alt="Wyeside
-		{% if type == 'all' %}
-		Arts Centre
-		{% elseif type == 'satellite' %}
-		{{ type| capitalize}} Live!
-		{% else %}
-		{{ type| capitalize}}
-		{% endif %}
-		"/>
-    <h1>{% if type == 'all' %}
-		Arts<br />Centre
-		{% elseif type == 'satellite' %}
-		{{ type| capitalize}}<br />Live!
-		{% else %}
-		{{ type| capitalize}}
-		{% endif %}
-	</h1>
-</section>
-{% endblock %}
-
 {% block content %}
 <section class="wy-body">
 		{% if flash.thisWeek|length > 0 %}
@@ -60,7 +32,7 @@
         {% for event in flash.thisWeek %}
         <a href="{{ event.getEventUrl() }}">
             <li class="wy-shows__show" style="border-bottom: 2px solid {{ event.getTypePrimaryColor() }}">
-                <div class="wy-show__img-container" style="background: url('{{ event.getBannerImageUrl() }}') no-repeat center center">
+                <div class="wy-show__img-container" style="background: url('{{ event.getMainImage().getThumbnailUrl() }}') no-repeat center center">
                     <span class="u-text-replace">{{ event.getTitle() }}</span>
                 </div>
                 <ul class="wy-show__showings type--{{ event.getType() }}">
@@ -117,7 +89,7 @@
         {% for event in flash.nextWeek %}
         <a href="{{ event.getEventUrl() }}">
             <li class="wy-shows__show" style="border-bottom: 2px solid {{ event.getTypePrimaryColor() }}">
-                <div class="wy-show__img-container" style="background: url('{{ event.getBannerImageUrl() }}') no-repeat center center">
+                <div class="wy-show__img-container" style="background: url('{{ event.getMainImage().getThumbnailUrl() }}') no-repeat center center">
                     <span class="u-text-replace">{{ event.getTitle() }}</span>
                 </div>
                 <ul class="wy-show__showings type--{{ event.getType() }}">

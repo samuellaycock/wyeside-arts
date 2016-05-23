@@ -57,9 +57,10 @@ class FrontendController extends AppController
         $app->flashNow('brochureUrl', 'http://wyeside.co.uk'); // todo: we need to store the latest brochure URL somewhere!
     }
 
-  	/**
-       * @return Event[]
-       */
+    /**
+     * @param $num
+     * @param $type
+     */
     protected function getBanners($num, $type)
     {
 		    $eventRepo = $this->getEventRepo();
@@ -67,8 +68,10 @@ class FrontendController extends AppController
     }
 
     /**
-       * @return Event[]
-       */
+     * @param $from
+     * @param $to
+     * @param $type
+     */
     protected function getDaysFromTo($from, $to, $type)
     {
         $eventRepo = $this->getEventRepo();
@@ -76,9 +79,6 @@ class FrontendController extends AppController
         $this->app->flashNow('nextWeek', $eventRepo->getUpcomingFromXToY(($from + 7), ($to + 7), $type));
     }
 
-    /**
-       * @return Event[]
-       */
     protected function getAll()
     {
         $eventRepo = $this->getEventRepo();
@@ -86,8 +86,8 @@ class FrontendController extends AppController
     }
 
     /**
-       * @return Showing[]
-       */
+     *
+     */
     protected function getAllShowings()
     {
         $eventRepo = $this->getShowingRepo();
