@@ -191,6 +191,8 @@
     font-size: 1.2em; }
 .wy-booking__button span:nth-child(3) {
     font-size: 0.9em; }
+.three-d {
+  background: #22A7F0; }
 .three-d::after {
     content: '3D';
     position: absolute;
