@@ -127,12 +127,18 @@ class Image
     }
 
 
+    CONST IMAGE_DIR = APP_DIR . '/web/event-assets/images/';
+    CONST THUMBNAIL_DIR = APP_DIR . '/web/event-assets/thumbnails/';
+
     /**
      * @return string
      */
     public function getUrl()
     {
-        return '/event-assets/images/' . $this->getName() . '' . $this->getExt();
+        if(file_exists(self::IMAGE_DIR . $this->getName() . $this->getExt())) {
+            return '/event-assets/images/' . $this->getName() . $this->getExt();
+        }
+        return '/img/event-assets/default-banner.jpg';
     }
 
     /**
@@ -140,7 +146,10 @@ class Image
      */
     public function getThumbnailUrl()
     {
-        return '/event-assets/thumbnails/' . $this->getName() . '' . $this->getExt();
+        if(file_exists(self::THUMBNAIL_DIR . $this->getName() . $this->getExt())) {
+            return '/event-assets/thumbnails/' . $this->getName() . $this->getExt();
+        }
+        return '/img/event-assets/default-banner.jpg';
     }
 
 

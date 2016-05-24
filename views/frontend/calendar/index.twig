@@ -37,15 +37,6 @@
                   </td>
                   <td>
                     <ul>
-                      {% for showing in day %}
-                          {% if showing.getLocation() == 0 %}
-                              <li><a class="type--{{ showing.getEvent().getType() }} type--1">{{ showing.getTs()|date("g.ia") }} : {{ showing.getEvent().getTitle() }}</a></li>
-                          {% endif %}
-                      {% endfor %}
-                    </ul>
-                  </td>
-                  <td>
-                    <ul>
                         {% for showing in day %}
                             {% if showing.getLocation() == 0 %}
                                 <li><a href="{{ showing.getEvent().getEventUrl() }}" class="type--{{ showing.getEvent().getType() }} type--1">{{ showing.getTs()|date("g.ia") }} : {{ showing.getEvent().getTitle() }}</a></li>
