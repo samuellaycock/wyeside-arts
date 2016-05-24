@@ -69,7 +69,11 @@
                         </ul>
                         {% else %}
                         <ul class="wy-details__info">
+														{% if event.getType() != 3 or event.getType() != 5 %}
                             <li class="wy-details__info-item">{{ event.getPrices() }}</li>
+														{% else %}
+														<li class="wy-details__info-item">{{ event.getLocationName() }}</li>
+														{% endif %}
                             {% if event.getType() == 3 %}
                             <li class="wy-details__info-item">Wyeside Community</li>
                             {% elseif event.getType() == 5 %}
