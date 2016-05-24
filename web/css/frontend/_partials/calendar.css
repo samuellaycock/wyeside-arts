@@ -229,10 +229,10 @@
 .wy-body th,
 .wy-body td {
   padding:0.7em;
-  width: auto; }
+  width: 100%; }
 .wy-body th:first-child,
 .wy-body td:first-child {
-  width: 140px; }
+  width: 150px; }
 .wy-body td ul li {
   display: block;
   margin-bottom: 0.3em; }
