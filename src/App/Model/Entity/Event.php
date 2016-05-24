@@ -135,6 +135,7 @@ class Event
 
     /**
      * @OneToMany(targetEntity="App\Model\Entity\Image", mappedBy="event")
+     * @OrderBy({"isMain" = "DESC"})
      * @var Image[]
      */
     protected $images;

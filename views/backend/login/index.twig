@@ -27,7 +27,7 @@
             <button type="submit">Login</button>
         </form>
     </div>
-    <img id="banner" src="{{ event.getBannerImageUrl }}" style="border-color: {{ event.getTypePrimaryColor() }};">
+    <img id="banner" src="{{ event.getMainImage().getUrl() }}" style="border-color: {{ event.getTypePrimaryColor() }};">
 </div>
 <script type="text/javascript">
     $("#username").focus();
