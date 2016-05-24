@@ -283,16 +283,16 @@ hr {
 	display: inline-block;
 	position: absolute;
 	top: 50%;
-	height: 80px;
-	width: 20px;
+	height: 160px;
+	width: 50px;
 	z-index: 10;
-	-webkit-transform: translatey(-40px);
-	transform: translatey(-40px); }
+	-webkit-transform: translatey(-80px);
+	transform: translatey(-80px); }
 	.unslider-arrow.prev::before,
 	.unslider-arrow.next::before {
 		content: '';
 		position: absolute;
-		top: 0;
+		top: 40px;
 		right: 0;
 		height: 80px;
 		width: 20px;
