@@ -9,7 +9,7 @@
 	z-index: 4;
 	top:0;
 	left:0;
-	height: 60px;
+	height: 50px;
 	width:100%;
 	-webkit-font-smoothing: antialiased;
 	-moz-osx-font-smoothing: grayscale;
@@ -253,7 +253,7 @@
 	display: block;
 	font-size: 1.9rem;
 	padding: 0 2em 0 1em;
-	line-height: 60px;
+	line-height: 49px;
 	color: #fff;
 	border-bottom: 1px solid #3d474d;
 	-webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
@@ -395,6 +395,7 @@ a.selected ~ ul {
 .wy-nav__menu-list--icons h3 {
 	margin: 0;
 	font-size: 1em;
+	font-weight: 200;
 }
 .wy-nav__phone a{
 	color: #f53617; }

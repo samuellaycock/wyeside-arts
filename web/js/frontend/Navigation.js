@@ -98,7 +98,7 @@ jQuery(document).ready(function($){
 	//mobile version - open/wy-search  navigation
 	navigationTrigger.on('click', function(event){
 		event.preventDefault();
-		mainHeader.add(navigation).add(pageContent).toggleClass('nav-is-visible');
+		mainHeader.add(navigation).add(pageContent).toggleClass('nav-is-visible active');
 	});
 
 	searchTrigger.on('click', function(event){
