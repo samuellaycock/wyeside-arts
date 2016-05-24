@@ -36,8 +36,8 @@
 			<span class="wy-details__info-item--genre">{{ genre.getName() }}</span>
 			{% endfor %}
 		</li>
-		<li class="wy-details__info-item--divider"> | </li>
 		{% if event.getRunningTime() %}
+		<li class="wy-details__info-item--divider"> | </li>
 		<li class="wy-details__info-item--film">{{ event.getRunningTime() }} mins.</li>
 		{% endif %}
 	</ul>
