@@ -50,6 +50,7 @@
 	margin: 0 0 0 15px;
 	background: #202629 url('/img/wyeside-logo-white.png') no-repeat center 50%;
 	background-size: auto 35px;
+	border-radius: 0 0 4px 4px;
 	-webkit-transition: all 0.3s;
 	-moz-transition: all 0.3s;
 	transition: all 0.3s; }
@@ -58,7 +59,6 @@
 		display: block;
 		top: 100%;
 		content: '';
-		padding: 0 5px 5px;
 		width: 100%;
 		border-radius: 0 0 5px 5px;
 		background-color: #202629;
@@ -76,48 +76,40 @@
 			z-index: 3;
 			margin: 0 0 0 5%;
 			background: #202629 url('/img/wyeside-logo-white.png') no-repeat center 50%;
-			background-size: auto 45px; }
+			background-size: auto 45px;
+			border-radius: 0; }
 	}
 .wy-header__logo:not([class*=type--]) {
 	border-radius: 0 0 4px 4px; }
 .wy-header__logo:not([class*=type--])::after {
 	display: none!important; }
-.wy-header__logo.type--cinema::after,
-.wy-header__logo.type--1::after {
-	background-color: #B0D817; }
-.wy-header__logo.type--live::after,
-.wy-header__logo.type--2::after {
-	background-color: #01B6AD; }
-.wy-header__logo.type--classes::after,
-.wy-header__logo.type--3::after,
-.wy-header__logo.type--5::after {
-	background-color: #999; }
-.wy-header__logo.type--satellite::after,
-.wy-header__logo.type--4::after {
-	background-color: #E30769; }
-.wy-header__logo.type--gallery::after,
-.wy-header__logo.type--6::after {
-	background-color: #A14DB2; }
 @media screen and (min-width: 1024px) {
+	.wy-header__logo::after {
+		padding: 0 0 5px; }
 	.wy-header__logo.type--cinema::after,
 	.wy-header__logo.type--1::after {
+		background-color: #B0D817;
 		content: 'cinema';
 		font-size: 1.8em; }
 	.wy-header__logo.type--live::after,
 	.wy-header__logo.type--2::after {
+		background-color: #01B6AD;
 		content: 'live';
 		font-size: 2em; }
-	.wy-header__logo.type--satellite::after,
-	.wy-header__logo.type--4::after {
-		content: 'satellite live!';
-		font-size: 1.2em; }
 	.wy-header__logo.type--classes::after,
 	.wy-header__logo.type--3::after,
 	.wy-header__logo.type--5::after {
+		background-color: #999;
 		content: 'classes';
 		font-size: 1.7em; }
+	.wy-header__logo.type--satellite::after,
+	.wy-header__logo.type--4::after {
+		background-color: #E30769;
+		content: 'satellite live!';
+		font-size: 1.2em; }
 	.wy-header__logo.type--gallery::after,
 	.wy-header__logo.type--6::after {
+		background-color: #A14DB2;
 		content: 'gallery';
 		font-size: 1.6em; }
 }

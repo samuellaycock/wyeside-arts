@@ -125,12 +125,15 @@ hr {
   margin: 0;
 	padding: 0.1em 0.3em;
   max-width: calc(100% - 1px);
-  font-size: 1.6em;
 	text-transform: uppercase;
 	font-weight: 800;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis; }
+	@media screen and (min-width: 1023px) {
+		.wy-show__title {
+			font-size: 1.6em; }
+	}
 .wy-show__cert {
 	vertical-align: top;
 	opacity: 0.7;
