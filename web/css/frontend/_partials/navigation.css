@@ -78,6 +78,10 @@
 			background: #202629 url('/img/wyeside-logo-white.png') no-repeat center 50%;
 			background-size: auto 45px; }
 	}
+.wy-header__logo:not([class*=type--]) {
+	border-radius: 0 0 4px 4px; }
+.wy-header__logo:not([class*=type--])::after {
+	display: none!important; }
 .wy-header__logo.type--cinema::after,
 .wy-header__logo.type--1::after {
 	background-color: #B0D817; }

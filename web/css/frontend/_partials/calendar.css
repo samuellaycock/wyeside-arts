@@ -214,23 +214,25 @@
   overflow: auto; }
 .wy-body tr {
   border-bottom: 1px solid rgba(0,0,0,0.1); }
-.wy-body tr:first-child {
+.wy-body thead {
   background: #374045;
   color: #fff;
   font-size: 1.2em;
   text-transform: uppercase; }
 .wy-body tr:last-child {
   border: none; }
-.wy-body tr:not(:first-child):hover {
+.wy-body tr:hover {
   background: rgba(0,0,0,0.1); }
 .wy-body th {
   text-align: left;
   font-weight: 200; }
 .wy-body th,
 .wy-body td {
-  padding:0.7em; }
+  padding:0.7em;
+  width: auto; }
+.wy-body th:first-child,
 .wy-body td:first-child {
-  max-width: 100px; }
+  width: 140px; }
 .wy-body td ul li {
   display: block;
   margin-bottom: 0.3em; }
