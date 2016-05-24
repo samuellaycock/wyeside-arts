@@ -103,7 +103,7 @@
 	font-weight: 200; }
 .wy-trailer {
   position: relative;
-  min-height: 100px;
+  min-height: 70px;
   border-radius: 0 0 0 4px; }
   @media screen and (max-width: 1023px) {
       .wy-trailer {
