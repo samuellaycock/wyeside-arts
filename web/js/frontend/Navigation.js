@@ -61,6 +61,10 @@ jQuery(document).ready(function($){
     }
   });
 
+	if($('.wy-slider').length < 1) {
+		mainHeader.addClass('perm');
+	}
+
 	//add the .no-pointerevents class to the <html> if browser doesn't support pointer-events property
 	( !Modernizr.testProp('pointerEvents') ) && $('html').addClass('no-pointerevents');
 

@@ -5,7 +5,6 @@
 font-family: 'Gill Sans';
 	src: url('/css/frontend/typefaces/gill-sans.eot');
 	src: url('/css/frontend/typefaces/gill-sans.eot?#iefix') format('embedded-opentype'),
-	     url('/css/frontend/typefaces/gill-sans.woff2') format('woff2'),
 	     url('/css/frontend/typefaces/gill-sans.woff') format('woff'),
 	     url('/css/frontend/typefaces/gill-sans.ttf')  format('truetype');
 }
@@ -338,9 +337,18 @@ hr {
 -------------------------------- */
 .wy-banner {
 	display: block;
+	margin-top: 50px;
 	padding: 0 0 0.25em;
 	background: #292f33;
 	text-align: center; }
+	@media screen and (min-width: 1024px) {
+		.wy-banner {
+			margin-top: 70px;
+		}
+	}
+.unslider + .wy-banner {
+	margin-top: 0;
+}
 .wy-banner > * {
 	display: inline-block; }
 .wy-banner img {
