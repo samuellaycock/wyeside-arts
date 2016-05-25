@@ -175,14 +175,9 @@ hr {
 	display: inline-block;
 	float: left;
 	margin: 1em 0.5em;
-	width: calc(50% - 1em);
+	width: calc(33.33333% - 1em);
 	-webkit-transition: all 0.3s ease-out;
 	transition: all 0.3s ease-out; }
-	@media screen and (min-width: 400px) {
-		.wy-button--logo {
-			width: calc(33.33333% - 1em);
-		}
-	}
 	@media screen and (min-width: 650px) {
 		.wy-button--logo {
 			width: calc(20% - 1em);
