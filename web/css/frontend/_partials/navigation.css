@@ -7,8 +7,10 @@
 .wy-header {
 	position: fixed;
 	z-index: 4;
+	margin: auto;
 	top:0;
 	left:0;
+	right: 0;
 	height: 50px;
 	width:100%;
 	-webkit-font-smoothing: antialiased;
