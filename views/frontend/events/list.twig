@@ -54,9 +54,6 @@
                     <section class="wy-show__body">
                         <h3 class="wy-show__title type--{{ event.getType() }}">
                             {{ event.getTitle() }}
-                            {% if event.getCertificate() %}
-                            <span class="wy-show__cert">{{ "(#{event.getCertificate()})" }}</span>
-                            {% endif %}
                         </h3>
 
                         {% if event.getType() == 1 %}
@@ -69,6 +66,10 @@
                             {% if event.getRunningTime() %}
                             <li class="wy-details__info-item--divider"> | </li>
                             <li class="wy-details__info-item--film">{{ event.getRunningTime() }} mins.</li>
+                            {% endif %}
+                            {% if event.getCertificate() %}
+                            <li class="wy-details__info-item--divider"> | </li>
+                            <li class="wy-details__info-item--film">Cert: {{ "(#{event.getCertificate()})" }}</li>
                             {% endif %}
                         </ul>
                         <ul class="wy-details__info--talent">
