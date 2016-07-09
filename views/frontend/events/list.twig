@@ -20,6 +20,15 @@
 
 {% block content %}
 <section class="wy-body">
+	{% if type == 'all' %}
+	<ul>
+		<li class="wy-button type--cinema">Cinema</li>
+		<li class="wy-button type--live">Live</li>
+		<li class="wy-button type--satellite">Satellite Live!</li>
+		<li class="wy-button type--classes">Classes</li>
+		<li class="wy-button type--gallery">Gallery</li>
+	</ul>
+	{% endif %}
 
     {% if eventsThisWeek|length > 0 %}
         <h2 class="wy-body__title">
