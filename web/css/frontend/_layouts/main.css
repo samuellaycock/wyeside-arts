@@ -223,7 +223,9 @@ hr {
 	position: relative;
 	background: #d4dadd; }
 .wy-slider {
+	margin: auto;
 	max-height: 300px;
+	max-width: 1400px;
  	background: #292f33; }
 .wy-slider__slide {
 	position: relative;
@@ -344,8 +346,7 @@ hr {
 -------------------------------- */
 .wy-banner {
 	display: block;
-	margin-top: 50px;
-	padding: 0 0 0.25em;
+	margin: 50px auto 0;
 	background: #292f33;
 	text-align: center; }
 	@media screen and (min-width: 1024px) {
@@ -369,8 +370,6 @@ hr {
 	text-align: left;
 	vertical-align: middle; }
 	@media screen and (min-width: 650px) {
-		.wy-banner {
-			padding: 0.25em 0 0.5em; }
 		.wy-banner img {
 			height: 60px; }
 		.wy-banner h1 {
