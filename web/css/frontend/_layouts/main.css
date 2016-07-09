@@ -246,14 +246,14 @@ hr {
 		.wy-slider,
 		.wy-slider__slide,
 	  .wy-slider__slide img {
-			max-height: 550px;
+			max-height: 400px;
 		}
 	}
 	@media screen and (min-width: 1700px) {
 		.wy-slider,
 		.wy-slider__slide,
 	  .wy-slider__slide img {
-			max-height: 650px;
+			max-height: 450px;
 			object-position: center;
 		}
 	}
