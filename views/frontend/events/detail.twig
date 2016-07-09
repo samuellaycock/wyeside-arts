@@ -92,12 +92,6 @@
 	</div>
 	<div id="book-online" class="wy-book">
 		<h2 class="wy-book__title">Book Tickets</h2>
-		{% if event.getType() == 1 %}
-		<div class="wy-booking__3d">
-			<span class="icon-ios-glasses-outline">3D</span><span class="wy-3d__text"> 3D Showing</span>
-		</div>
-		<hr />
-		{% endif %}
 		<table class="wy-booking__table">
 			{% for key, day in days %}
 				<tr class="wy-booking__row">
@@ -106,7 +100,7 @@
 					</td>
 					<td class="wy-booking__shows">
 						{% for showing in day %}
-							<a class="wy-booking__button{% if showing.getType == "3D" %} three-d{% endif %}">
+							<a class="wy-booking__button">
 								<span>{{ showing.getTs()|date("g.ia") }}</span><br />
 								<span>{{ showing.getLocationname() }}</span>
 							</a>
