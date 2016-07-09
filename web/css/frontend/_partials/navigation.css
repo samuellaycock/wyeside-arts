@@ -20,7 +20,8 @@
 	transition: all 0.3s; }
 .wy-header.scrolled,
 .wy-header.active,
-.wy-header.perm {
+.wy-header.perm,
+.wy-header:hover {
 	background: #202629;
 	-webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.5);
 	-moz-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.5);
