@@ -20,7 +20,7 @@ class TicketsolveShowing extends AbstractShowing
      */
     public function __construct(\SimpleXMLElement $data)
     {
-        $this->showingId = (string)$this->getDataValue($data, 'id', '');
+        $this->showingId = trim((string)$this->getDataValue($data, 'id', ''));
 
         $this->time = new \DateTime(
             (string)$this->getDataValue($data, 'date', '')

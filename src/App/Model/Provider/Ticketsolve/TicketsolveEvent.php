@@ -19,10 +19,10 @@ class TicketsolveEvent extends AbstractEvent
      */
     public function __construct(\SimpleXMLElement $data)
     {
-        $this->eventId = (string)$this->getDataValue($data, 'id');
-        $this->name = (string)$this->getDataValue($data, 'name', '');
-        $this->description = (string)$this->getDataValue($data, 'long_description', '');
-        $this->category = (string)$this->getDataValue($data, 'category', '');
+        $this->eventId = trim((string)$this->getDataValue($data, 'id'));
+        $this->name = trim((string)$this->getDataValue($data, 'name', ''));
+        $this->description = trim((string)$this->getDataValue($data, 'long_description', ''));
+        $this->category = trim((string)$this->getDataValue($data, 'category', ''));
 
         foreach ($this->getDataValue($data, 'upcoming_events')->event as $showing) {
             $this->showings[] = new TicketsolveShowing($showing);

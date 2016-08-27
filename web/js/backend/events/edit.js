@@ -210,7 +210,7 @@ TsSyncManager.prototype.select = function () {
         url: ' /system/ticketsolve/not-synced-events.ajax',
         method: 'GET'
     }).success(function (result) {
-        me.modifyWrapper.html(' <select id="'+me.selectionFieldId+'" class="ticketsolveSelection"><option value="">Select Event</option></select><button id="'+me.updateButtonId+'">Update Ticketsolve Reference</button>');
+        me.modifyWrapper.html(' <select id="'+me.selectionFieldId+'" class="ticketsolveSelection"><option value="">None (Remove Reference)</option></select><button id="'+me.updateButtonId+'">Update Ticketsolve Reference</button>');
         var tsSel = $("#"+me.selectionFieldId);
         $(result).each(function (index) {
             $(tsSel).append("<option value='" + result[index].eventId + "'>" + result[index].eventId + " : " + result[index].name + "</option>");
