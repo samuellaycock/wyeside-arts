@@ -22,6 +22,12 @@ class Showing
     protected $id;
 
     /**
+     * @Column(type="string")
+     * @var string
+     */
+    protected $ticketsolveId;
+
+    /**
      * @Column(type="datetime", name="dateTime")
      * @var \DateTime
      */
@@ -119,6 +125,23 @@ class Showing
     public function getEvent()
     {
         return $this->event;
+    }
+
+
+    /**
+     * @return string
+     */
+    public function getTicketsolveId()
+    {
+        return $this->ticketsolveId;
+    }
+
+    /**
+     * @param $id
+     */
+    public function setTicketsolveIt($id)
+    {
+        $this->ticketsolveId = $id;
     }
 
     /**

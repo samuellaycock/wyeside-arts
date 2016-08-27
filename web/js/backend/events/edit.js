@@ -117,3 +117,18 @@ function ajaxUpdateDateType(showingId, element)
     });
     $(element).parent().html($(element).val());
 }
+
+
+function ajaxSyncShowings(eventId)
+{
+    $.ajax({
+        url: '/system/ticketsolve/sync-event-dates',
+        method: 'POST',
+        data: {
+            eventId : eventId
+        },
+        success: function(result){
+            $('#event-showings-table').html(result);
+        }
+    });
+}

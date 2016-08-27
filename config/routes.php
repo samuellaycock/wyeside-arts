@@ -328,11 +328,11 @@ return [
      * Events > Ticketsolve
      * ----------------------------------------------------------- */
     [
-        'pattern' => '/system/events/import/ticketsolve',
-        'methods' => ['GET', 'POST'],
+        'pattern' => '/system/ticketsolve/sync-event-dates',
+        'methods' => ['POST'],
         'paths' => [
             'controller' => '\Backend\Controller\TicketsolveController',
-            'action' => 'importAction'
+            'action' => 'syncEventsDatesAction'
         ]
     ],
     [

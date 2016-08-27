@@ -21,24 +21,21 @@ class TicketsolveProvider
     /** @var string */
     protected $feedUrl;
 
-    /** @var EventRepo */
-    protected $eventRepo;
+    /** @var EventEntityInterface[] */
+    protected $events;
 
 
     /**
-     * Ticketsolve constructor.
+     * TicketsolveProvider constructor.
      * @param null $feedUrl
-     * @param EventRepo $eventRepo
      */
-    public function __construct($feedUrl = null, EventRepo $eventRepo)
+    public function __construct($feedUrl = null)
     {
         if (null === $feedUrl) {
             $this->feedUrl = self::DEFAULT_FEED_URL;
         } else {
             $this->feedUrl = (string)$feedUrl;
         }
-
-        $this->eventRepo = $eventRepo;
     }
 
 
@@ -47,31 +44,34 @@ class TicketsolveProvider
      */
     public function events()
     {
-        $rawData = file_get_contents($this->feedUrl);
-        $xml = simplexml_load_string($rawData);
+        if (null === $this->events) {
+            $rawData = file_get_contents($this->feedUrl);
+            $xml = simplexml_load_string($rawData);
 
-        $events = [];
-        foreach ($xml->show as $event) { // ticketsolve call events shows!
-            $events[] = new TicketsolveEvent($event);
+            $events = [];
+            foreach ($xml->show as $event) { // ticketsolve call events shows!
+                $events[] = new TicketsolveEvent($event);
+            }
+
+            $this->events = $events;
         }
 
-        return $events;
+        return $this->events;
     }
 
     /**
      * @param $ticketSolveEventId
-     * @return EventEntityInterface
+     * @return EventEntityInterface|bool
      * @throws \Exception
      */
     public function eventByEventId($ticketSolveEventId)
     {
         foreach ($this->events() as $event) {
-            if ($event->eventId() == $ticketSolveEventId) {
-                return $ticketSolveEventId;
+            if ((string)$event->eventId() == (string)$ticketSolveEventId) {
+                return $event;
             }
         }
-
-        throw new \Exception("Ticketsolve event not found for event id: " . $ticketSolveEventId);
+        return false;
     }
 
     /**
@@ -108,6 +108,13 @@ class TicketsolveProvider
         }
 
         throw new \Exception("Ticketsolve showing not found for showing id: " . $ticketSolveShowingId);
+    }
+
+
+
+    public function eventsNotSynced()
+    {
+
     }
 
 }

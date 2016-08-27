@@ -10,6 +10,7 @@ use App\Hydrator;
 use App\Model\Entity\Genre;
 use App\Model\Entity\Event;
 use App\Model\Provider\Ticketsolve;
+use App\Model\Provider\TicketsolveProvider;
 use App\Model\Repo\EventRepo;
 use App\Model\Repo\GenreRepo;
 use App\Model\Repo\ShowingRepo;

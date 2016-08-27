@@ -6,6 +6,8 @@
 
 namespace App\Model\Entity;
 
+use App\Model\Provider\TicketsolveProvider;
+
 /**
  * @Entity(repositoryClass="App\Model\Repo\EventRepo")
  * @Table(name="event")
@@ -453,12 +455,12 @@ class Event
      */
     public function getMainImage()
     {
-        foreach ($this->getImages() as $image){
-            if($image->getIsMain()){
+        foreach ($this->getImages() as $image) {
+            if ($image->getIsMain()) {
                 return $image;
             }
         }
-        foreach ($this->getImages() as $image){
+        foreach ($this->getImages() as $image) {
             return $image;
         }
         return null;
@@ -501,14 +503,13 @@ class Event
     {
         $now = new \DateTime();
         $rtn = [];
-        foreach($this->getShowings() as $showing){
-            if($showing->getTs()->format('Y-m-d') >= $now->format('Y-m-d')){
+        foreach ($this->getShowings() as $showing) {
+            if ($showing->getTs()->format('Y-m-d') >= $now->format('Y-m-d')) {
                 $rtn[] = $showing;
             }
         }
         return $rtn;
     }
-
 
 
     /**
@@ -600,19 +601,6 @@ class Event
         }
     }
 
-
-    /**
-     * This method is designed to sync with ticketsolve for a 2D event
-     */
-    public function syncWithTicketsolve2D()
-    {
-        /**
-         * get event model from ticketsolve
-         * get showings for event
-         */
-        $ticketsolveId = $this->getTicketsolve();
-
-    }
 
 
 }

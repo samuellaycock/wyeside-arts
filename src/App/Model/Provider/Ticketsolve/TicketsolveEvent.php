@@ -24,7 +24,7 @@ class TicketsolveEvent extends AbstractEvent
         $this->description = (string)$this->getDataValue($data, 'long_description', '');
         $this->category = (string)$this->getDataValue($data, 'category', '');
 
-        foreach ($this->getDataValue($data, 'upcoming_events') as $showing) {
+        foreach ($this->getDataValue($data, 'upcoming_events')->event as $showing) {
             $this->showings[] = new TicketsolveShowing($showing);
         }
     }
