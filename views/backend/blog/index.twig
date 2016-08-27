@@ -7,7 +7,13 @@
 {% block title %}Users{% endblock %}
 
 {% block content %}
-    <h1>Blog</h1>
-    <hr>
+    <div class="block-dark">
+        <h1>Blog</h1>
+    </div>
 
+    <div class="block-light">
+        <div id="blog-table">
+            {% include "backend/blog/_posts-table.twig" %}
+        </div>
+    </div>
 {% endblock %}

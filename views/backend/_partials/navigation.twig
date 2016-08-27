@@ -1,7 +1,9 @@
 <div id="navigation">
     <ul>
         <li{% if flash.module == 'events' %} class="current-module"{% endif %}><a href="/system/events"><img src="/img/backend/icons/video-play-2-64.png">Events</a></li>
-        <li{% if flash.module == 'blog' %} class="current-module"{% endif %}><a href="/system/blog"><img src="/img/backend/icons/chat-4-64.png">Blog</a></li>
+        <li{% if flash.module == 'ticketsolve' %} class="current-module"{% endif %}><a href="/system/ticketsolve"><img src="/img/backend/icons/download-64.png">Ticketsolve</a></li>
         <li{% if flash.module == 'users' %} class="current-module"{% endif %}><a href="/system/users"><img src="/img/backend/icons/user-64.png">Users</a></li>
+        <hr>
+        <li><a href="/system/logout"><img class="" src="/img/backend/icons/logout-64.png">Logout</a></li>
     </ul>
 </div>

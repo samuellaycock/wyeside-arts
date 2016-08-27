@@ -601,4 +601,18 @@ class Event
     }
 
 
+    /**
+     * This method is designed to sync with ticketsolve for a 2D event
+     */
+    public function syncWithTicketsolve2D()
+    {
+        /**
+         * get event model from ticketsolve
+         * get showings for event
+         */
+        $ticketsolveId = $this->getTicketsolve();
+
+    }
+
+
 }

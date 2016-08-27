@@ -92,6 +92,7 @@
 	</div>
 	<div id="book-online" class="wy-book">
 		<h2 class="wy-book__title">Book Tickets</h2>
+
 		<table class="wy-booking__table">
 			{% for key, day in days %}
 				<tr class="wy-booking__row">
@@ -100,7 +101,7 @@
 					</td>
 					<td class="wy-booking__shows">
 						{% for showing in day %}
-							<a class="wy-booking__button">
+							<a class="wy-booking__button{% if showing.type == "3D" %} three-d{% endif %}">
 								<span>{{ showing.getTs()|date("g.ia") }}</span><br />
 								<span>{{ showing.getLocationname() }}</span>
 							</a>
@@ -109,6 +110,12 @@
 				</tr>
 			{% endfor %}
 		</table>
+
+		{{ event.getTicketsolve() }}
+		<iframe id="ticketsolve-iframe" src="https://wyeside.ticketsolve.com/#/products/regular" scrolling="no" seamless="seamless" width="100%" frameborder="0" kwframeid="1">
+			Your browser does not support iframes, please use a browser that does.
+		</iframe>
+
 	</div>
 	<hr />
 	<section style="text-align: center;">
@@ -119,5 +126,4 @@
 
 {% block scripts %}
 <script src="/plugin/lity/lity.min.js" type="text/javascript"></script>
-
 {% endblock %}

@@ -52,3 +52,6 @@ CHANGE COLUMN `first_name` `first_name` VARCHAR(100) NULL ,
 CHANGE COLUMN `last_name` `last_name` VARCHAR(100) NULL ,
 CHANGE COLUMN `salt` `salt` VARCHAR(50) NULL ,
 CHANGE COLUMN `temp_password` `temp_password` INT(1) NULL ;
+
+ALTER TABLE `eventdate`
+ADD COLUMN `ticketsolveId` VARCHAR(64) NULL AFTER `eventID`;
