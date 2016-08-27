@@ -1,16 +1,5 @@
 <form method="post">
-    <input type="text" name="title" id="title" placeholder="Title" class="dbl" value="{{ event.getTitle() }}"
-           style="width:100%;">
-
-    <br>
-    <label for="ticketsolve">Ticketsolve ID</label>
-    <input type="text" id="ticketsolve" name="ticketsolve" value="{{ event.getTicketsolve() }}">
-
-    {% if event.getType() == 1 %}
-        <br>
-        <label for="ticketsolve">Ticketsolve 3D</label>
-        <input type="text" id="ticketsolve3D" name="ticketsolve3D" value="{{ event.getTicketsolve3D() }}">
-    {% endif %}
+    <input type="text" name="title" id="title" placeholder="Title" class="dbl" value="{{ event.getTitle() }}" style="width:100%;">
 
     <br>
     <label for="trailer">YouTube Trailer</label>

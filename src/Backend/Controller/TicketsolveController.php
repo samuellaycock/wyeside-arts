@@ -89,6 +89,25 @@ class TicketsolveController extends BackendController
 
 
     /**
+     *
+     */
+    public function getEventsNotSyncedAjaxAction()
+    {
+        $provider = new TicketsolveProvider();
+        $events = $provider->events();
+
+        $view = [];
+        foreach ($events as $event) {
+            $view[] = $event->view();
+        }
+
+        $response = $this->app->response();
+        $response->header('Content-Type', 'application/json');
+        $response->body(json_encode($view));
+    }
+
+
+    /**
      * public function importAction()
      * {
      * $eventRepo = $this->getEventRepo();

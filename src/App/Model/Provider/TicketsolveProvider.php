@@ -111,10 +111,19 @@ class TicketsolveProvider
     }
 
 
-
-    public function eventsNotSynced()
+    /**
+     * @param EventRepo $eventRepo
+     * @return EventEntityInterface[]
+     */
+    public function eventsNotSynced(EventRepo $eventRepo)
     {
-
+        $rtnEvents = [];
+        foreach ($this->events() as $event) {
+            if (!$eventRepo->eventExistsForTicketsolve($event->eventId())) {
+                $rtnEvents[] = $event;
+            }
+        }
+        return $rtnEvents;
     }
 
 }

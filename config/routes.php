@@ -336,6 +336,14 @@ return [
         ]
     ],
     [
+        'pattern' => '/system/ticketsolve/not-synced-events.ajax',
+        'methods' => ['GET'],
+        'paths' => [
+            'controller' => '\Backend\Controller\TicketsolveController',
+            'action' => 'getEventsNotSyncedAjaxAction'
+        ]
+    ],
+    [
         'pattern' => '/system/events/import/ticketsolve/create',
         'methods' => ['POST'],
         'paths' => [

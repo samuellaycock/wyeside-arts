@@ -44,4 +44,17 @@ class TicketsolveEvent extends AbstractEvent
     }
 
 
+    /**
+     * @return array
+     */
+    public function view()
+    {
+        return [
+            'eventId' => $this->eventId,
+            'name' => $this->name,
+            'description' => $this->description,
+            'category' => $this->category
+        ];
+    }
+
 }

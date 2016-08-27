@@ -24,4 +24,9 @@ interface EventEntityInterface
     /** @return ShowingEntityInterface[] */
     public function showings();
 
+    /**
+     * @return array
+     */
+    public function view();
+
 }

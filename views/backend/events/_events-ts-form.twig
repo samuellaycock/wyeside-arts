@@ -1,0 +1,53 @@
+<form method="post">
+
+    <div class="block-dark">
+        <h2>Primary Ticketsolve ID</h2>
+        <p style="padding-top:10px; padding-bottom:10px;">
+            The Ticketsolve ID allows the event to be kept in-sync with changes from Ticketsolve.
+        </p>
+        <div style="text-align: center">
+            <input style="font-size:1.1em;letter-spacing: 0.1em;text-align: center;" type="text" id="ticketsolve" name="ticketsolve" value="{{ event.getTicketsolve() }}">
+            <select id="ticketsolveIdSelect">
+                <option value="">Select Event</option>
+            </select>
+            <script type="application/javascript">
+                $(function() {
+                    var tsSel = $("#ticketsolveIdSelect");
+                    tsSel.bind('click', function () {
+                        $.ajax({
+                            url: ' /system/ticketsolve/not-synced-events.ajax',
+                            method: 'GET'
+                        }).success(function (result) {
+                            $(result).each(function(index) {
+                                $(tsSel).append("<option>"+result[index].name+"</option>");
+                            });
+                        });
+                    });
+                });
+            </script>
+            <br>
+            <button>Update</button>
+        </div>
+
+    </div>
+
+    <br>
+
+    {% if event.getType() == 1 %}
+        <div class="block-dark">
+            <h2>3D Ticketsolve ID</h2>
+            <p style="padding-top:10px; padding-bottom:10px;">
+               You can add a secondary Ticketsolve ID to Cinema events for 3D screenings.
+                This means we can have a single event for both the 2D and 3D screenings
+                even if we have separate Ticketsolve events.
+            </p>
+            <div style="text-align: center">
+                <input style="font-size:1.1em;letter-spacing: 0.1em;text-align: center;" type="text" id="ticketsolve3D" name="ticketsolve3D" value="{{ event.getTicketsolve3D() }}">
+                <br>
+                <button>Update</button>
+            </div>
+
+        </div>
+    {% endif %}
+
+</form>
