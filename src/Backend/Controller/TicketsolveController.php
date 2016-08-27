@@ -5,11 +5,9 @@
 
 namespace Backend\Controller;
 
-
 use App\Hydrator;
 use App\Model\Entity\Event;
 use App\Model\Entity\Showing;
-use App\Model\Provider\Ticketsolve;
 use App\Model\Provider\TicketsolveProvider;
 use App\Model\Repo\EventRepo;
 use App\Model\Repo\GenreRepo;
@@ -94,7 +92,7 @@ class TicketsolveController extends BackendController
     public function getEventsNotSyncedAjaxAction()
     {
         $provider = new TicketsolveProvider();
-        $events = $provider->events();
+        $events = $provider->eventsNotSynced($this->getEventRepo());
 
         $view = [];
         foreach ($events as $event) {
@@ -108,35 +106,23 @@ class TicketsolveController extends BackendController
 
 
     /**
-     * public function importAction()
-     * {
-     * $eventRepo = $this->getEventRepo();
-     *
-     * if ($this->app->request->isAjax()) {
-     * $feed = new Ticketsolve(null, $eventRepo);
-     * $models = $feed->downloadFeedModels();
-     *
-     * $unSyncedEvents = [];
-     * $syncedEvents = [];
-     * foreach ($models as $model) {
-     * if ($eventRepo->eventExistsForTicketsolve($model->getTicketsolveId())) {
-     * $syncedEvents[] = $model->view();
-     * } else {
-     * $unSyncedEvents[] = $model->view();
-     * }
-     * }
-     *
-     * header("Content-Type: application/json");
-     * echo json_encode([
-     * 'syncedEvents' => $syncedEvents,
-     * 'unSyncedEvents' => $unSyncedEvents
-     * ]);
-     * exit;
-     * } else {
-     * $this->app->render('backend/events/import.twig', []);
-     * }
-     * }
-     * */
+     * Updates Ticketsolve references
+     */
+    public function updateEventTsAction()
+    {
+        $event = $this->getEventRepo()->find($this->app->request->post('eventId'));
+        $event->setTicketsolve($this->app->request->post('ticketsolveId', $event->getTicketsolve()));
+        $event->setTicketsolve3D($this->app->request->post('ticketsolveId3D', $event->getTicketsolve3D()));
+        $this->em->persist($event);
+        $this->em->flush();
+
+        $response = $this->app->response();
+        $response->header('Content-Type', 'application/json');
+        $response->body(json_encode([
+            'ticketsolveId' => $event->getTicketsolve(),
+            'ticketsolveId3D' => $event->getTicketsolve3D()
+        ]));
+    }
 
 
     public function createAction()

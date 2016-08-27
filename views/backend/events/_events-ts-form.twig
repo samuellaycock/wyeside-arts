@@ -1,4 +1,4 @@
-<form method="post">
+<form method="post" onsubmit="return false;">
 
     <div class="block-dark">
         <h2>Primary Ticketsolve ID</h2>
@@ -6,29 +6,14 @@
             The Ticketsolve ID allows the event to be kept in-sync with changes from Ticketsolve.
         </p>
         <div style="text-align: center">
-            <input style="font-size:1.1em;letter-spacing: 0.1em;text-align: center;" type="text" id="ticketsolve" name="ticketsolve" value="{{ event.getTicketsolve() }}">
-            <select id="ticketsolveIdSelect">
-                <option value="">Select Event</option>
-            </select>
-            <script type="application/javascript">
-                $(function() {
-                    var tsSel = $("#ticketsolveIdSelect");
-                    tsSel.bind('click', function () {
-                        $.ajax({
-                            url: ' /system/ticketsolve/not-synced-events.ajax',
-                            method: 'GET'
-                        }).success(function (result) {
-                            $(result).each(function(index) {
-                                $(tsSel).append("<option>"+result[index].name+"</option>");
-                            });
-                        });
-                    });
-                });
-            </script>
-            <br>
-            <button>Update</button>
+            <div id="ticketsolveId1Display">
+                <input id="ticketsolve1Value" class="ticketsolveSelection" disabled type="text" value="{{ event.getTicketsolve() }}">
+                <br>
+                <button id="changeSyncTs1">Select New Ticketsolve Reference</button>
+            </div>
+            <div id="ticketsolveId1Spinner" style="display: none;"><img src="/img/backend/spinner.gif" /></div>
+            <div id="ticketsolveId1Modify" style="display: none;"></div>
         </div>
-
     </div>
 
     <br>
@@ -42,9 +27,13 @@
                 even if we have separate Ticketsolve events.
             </p>
             <div style="text-align: center">
-                <input style="font-size:1.1em;letter-spacing: 0.1em;text-align: center;" type="text" id="ticketsolve3D" name="ticketsolve3D" value="{{ event.getTicketsolve3D() }}">
-                <br>
-                <button>Update</button>
+                <div id="ticketsolveId2Display">
+                    <input id="ticketsolve2Value" class="ticketsolveSelection" disabled type="text" value="{{ event.getTicketsolve3D() }}">
+                    <br>
+                    <button id="changeSyncTs2">Select New Ticketsolve Reference</button>
+                </div>
+                <div id="ticketsolveId2Spinner" style="display: none;"><img src="/img/backend/spinner.gif" /></div>
+                <div id="ticketsolveId2Modify" style="display: none;"></div>
             </div>
 
         </div>

@@ -344,6 +344,14 @@ return [
         ]
     ],
     [
+        'pattern' => '/system/ticketsolve/update-event-ts.ajax',
+        'methods' => ['POST'],
+        'paths' => [
+            'controller' => '\Backend\Controller\TicketsolveController',
+            'action' => 'updateEventTsAction'
+        ]
+    ],
+    [
         'pattern' => '/system/events/import/ticketsolve/create',
         'methods' => ['POST'],
         'paths' => [
