@@ -220,21 +220,9 @@ hr {
    Slider
 -------------------------------- */
 .unslider {
-	position: absolute;
-	z-index: -1;
+    z-index: -1;
+    position: relative;
 	background: #d4dadd;  }
-@media screen and (max-width: 649px) {
-	.unslider { margin-top:-150px; }
-}
-@media screen and (min-width: 650px) and (max-width: 1023px) {
-	.unslider { margin-top:-250px; }
-}
-@media screen and (min-width: 1024px) and (max-width: 1299px) {
-	.unslider { margin-top:-320px; }
-}
-@media screen and (min-width: 1300px) {
-	.unslider { margin-top:-380px; }
-}
 .wy-slider {
 	margin: auto;
 	max-width: 1920px;
@@ -249,7 +237,7 @@ hr {
  	object-position: top; }
 .wy-slider__title {
 	position: absolute;
-	bottom: 5%;
+	top: 8%;
 	right: 5%;
 	padding: 0.1em 0.3em;
 	max-width: 350px;
@@ -275,9 +263,6 @@ hr {
 			display: none;
 		}
 	}
-.wy-slider__slide:hover {
-	opacity: 0.75;
-}
 .unslider-arrow {
 	display: inline-block;
 	position: absolute;
@@ -333,23 +318,54 @@ hr {
    Banner
 -------------------------------- */
 .wy-banner {
+    position: relative;
 	display: block;
 	padding:2px;
 	margin: 0 auto 0;
 	background: #292f33;
 	text-align: center;
+    -webkit-transition: margin 0.2s ease-in-out;
+    -moz-transition: margin 0.2s ease-in-out;
+    -o-transition: margin 0.2s ease-in-out;
+    transition: margin 0.2s ease-in-out;
+}
+.wy-banner-move {
+    opacity: 0.7;
+    position: absolute;
+    left:0;
+    bottom:0;
+    width:50px;
+    height:30px;
+    cursor:pointer;
+    background: #292f33;
+    background-image: url("/img/frontend/icons/arrow-down.png");
+    background-size: 18px 18px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.wy-banner-move:hover {
+    opacity: 0.9;
+}
+.wy-banner-move.wy-full-images {
+    background-image: url("/img/frontend/icons/arrow-up.png");
 }
 @media screen and (max-width: 649px) {
-	.wy-banner { margin-top:150px; }
+	.wy-banner.wy-banner-movable { margin-top:0; }
 }
 @media screen and (min-width: 650px) and (max-width: 1023px) {
-	.wy-banner { margin-top:250px; }
+	.wy-banner.wy-banner-movable { margin-top:-100px; }
 }
 @media screen and (min-width: 1024px) and (max-width: 1299px) {
-	.wy-banner { margin-top:320px; }
+	.wy-banner.wy-banner-movable { margin-top:-100px; }
 }
-@media screen and (min-width: 1300px) {
-	.wy-banner { margin-top:380px; }
+@media screen and (min-width: 1300px) and (max-width: 1599px) {
+	.wy-banner.wy-banner-movable { margin-top:-200px; }
+}
+@media screen and (min-width: 1600px) {
+    .wy-banner.wy-banner-movable { margin-top:-300px; }
+}
+.wy-banner.wy-full-images {
+    margin-top:-4px; !important;
 }
 .wy-banner > * {
 	display: inline-block; }

@@ -6,6 +6,11 @@
         padding: 0; }
 }
 .wy-details {
+    -webkit-transition: opacity 0.2s ease-in-out;
+    -moz-transition: opacity 0.2s ease-in-out;
+    -o-transition: opacity 0.2s ease-in-out;
+    transition: opacity 0.2s ease-in-out;
+    border-bottom:solid 4px;
 	position: relative;
 	padding: 1.2em 1em 1em;
 	width: 100%;
@@ -22,6 +27,9 @@
 			-webkit-transform: translatey(-100%);
 			transform: translatey(-100%); }
 	}
+.wy-details.wy-full-images {
+    opacity: 0.6;
+}
 .wy-details__title {
 	display: inline;
 	padding: 0.1em 0.3em;
