@@ -40,16 +40,22 @@
 	<!-- Hero Slider -->
 	{% block slider %}{% endblock %}
 
-	<!-- Page Banner -->
-	{% block banner %}{% endblock %}
+        <div class="wy-content-wrapper">
+            <!-- Page Banner -->
+            {% block banner %}
+                <section class="wy-banner">
+                </section>
+            {% endblock %}
 
-		<section class="wy-content">
-			<!-- Main Content -->
-			{% block content %}{% endblock %}
+		    <section class="wy-content">
 
-			<!-- Sidebar -->
-			{% include 'frontend/_partials/sidebar.twig' %}
-		</section>
+                <!-- Main Content -->
+                {% block content %}{% endblock %}
+
+                <!-- Sidebar -->
+                {% include 'frontend/_partials/sidebar.twig' %}
+		    </section>
+        </div>
 
 	<!-- Footer -->
 	{% include 'frontend/_partials/footer.twig' %}

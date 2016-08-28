@@ -220,45 +220,33 @@ hr {
    Slider
 -------------------------------- */
 .unslider {
-	position: relative;
-	background: #d4dadd; }
+	position: absolute;
+	z-index: -1;
+	background: #d4dadd;  }
+@media screen and (max-width: 649px) {
+	.unslider { margin-top:-150px; }
+}
+@media screen and (min-width: 650px) and (max-width: 1023px) {
+	.unslider { margin-top:-250px; }
+}
+@media screen and (min-width: 1024px) and (max-width: 1299px) {
+	.unslider { margin-top:-320px; }
+}
+@media screen and (min-width: 1300px) {
+	.unslider { margin-top:-380px; }
+}
 .wy-slider {
 	margin: auto;
-	max-height: 300px;
-	max-width: 1400px;
- 	background: #292f33; }
+	max-width: 1920px;
+	max-height: 800px;}
 .wy-slider__slide {
 	position: relative;
- 	max-height: 300px;
 	-webkit-transition: all 0.3s ease-out;
 	transition: all 0.3s ease-out; }
 .wy-slider__slide img {
-	max-height: 300px;
 	width: 100%;
  	object-fit: cover;
  	object-position: top; }
-	@media screen and (min-width: 800px) and (max-width: 1023px) {
-		.wy-slider,
-		.wy-slider__slide,
-	  .wy-slider__slide img {
-			max-height: 450px;
-		}
-	}
-	@media screen and (min-width: 1024px) and (max-width: 1699px) {
-		.wy-slider,
-		.wy-slider__slide,
-	  .wy-slider__slide img {
-			max-height: 400px;
-		}
-	}
-	@media screen and (min-width: 1700px) {
-		.wy-slider,
-		.wy-slider__slide,
-	  .wy-slider__slide img {
-			max-height: 450px;
-			object-position: center;
-		}
-	}
 .wy-slider__title {
 	position: absolute;
 	bottom: 5%;
@@ -346,16 +334,22 @@ hr {
 -------------------------------- */
 .wy-banner {
 	display: block;
-	margin: 50px auto 0;
+	padding:2px;
+	margin: 0 auto 0;
 	background: #292f33;
-	text-align: center; }
-	@media screen and (min-width: 1024px) {
-		.wy-banner {
-			margin-top: 70px;
-		}
-	}
-.unslider + .wy-banner {
-	margin-top: 0;
+	text-align: center;
+}
+@media screen and (max-width: 649px) {
+	.wy-banner { margin-top:150px; }
+}
+@media screen and (min-width: 650px) and (max-width: 1023px) {
+	.wy-banner { margin-top:250px; }
+}
+@media screen and (min-width: 1024px) and (max-width: 1299px) {
+	.wy-banner { margin-top:320px; }
+}
+@media screen and (min-width: 1300px) {
+	.wy-banner { margin-top:380px; }
 }
 .wy-banner > * {
 	display: inline-block; }
@@ -380,11 +374,13 @@ hr {
 /* --------------------------------
    Content
 -------------------------------- */
-.wy-content {
+.wy-content-wrapper {
 	margin: auto;
 	width: 100%;
 	max-width: 1400px;
-	background: #fff; }
+}
+.wy-content {
+	background-color: #fff;}
 	@media screen and (min-width: 1024px) {
 		.wy-content {
 			display: flex; }
