@@ -110,6 +110,18 @@ function ajaxUpdateDateType(showingId, element) {
     $(element).parent().html($(element).val());
 }
 
+function ajaxUpdateDateLocation(showingId, element) {
+    $.ajax({
+        url: '/system/showings/update-date-location',
+        method: 'POST',
+        data: {
+            showingId: showingId,
+            location: $(element).val()
+        }
+    });
+    $(element).parent().html($(element).find("option:selected").text());
+}
+
 
 function ajaxSyncShowings(eventId) {
     $.ajax({

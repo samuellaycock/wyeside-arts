@@ -164,6 +164,14 @@ class Showing
     }
 
     /**
+     * @return string
+     */
+    public function ticketsolveUrl()
+    {
+        return "https://wyeside.ticketsolve.com/#/seated-events/" . $this->ticketsolveId . "?enable_features=ticketbooth,ticketbooth_iframe";
+    }
+
+    /**
      * @return array
      */
     public static function getLocationMap()

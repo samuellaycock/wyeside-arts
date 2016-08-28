@@ -23,7 +23,18 @@
                 {% endif %}
             </td>
             {% endif %}
-            <td>{{ showing.getLocationName() }}</td>
+            <td>
+                {% if showing.getLocationName == "Unknown" %}
+                    <select style="width:auto;" onchange="ajaxUpdateDateLocation('{{ showing.getId() }}', this)">
+                        <option value="">Select...</option>
+                        <option value="0">Castle Cinema</option>
+                        <option value="1">Market Theatre</option>
+                        <option value="2">Gallery</option>
+                    </select>
+                {% else %}
+                    {{ showing.getLocationName() }}
+                {% endif %}
+            </td>
             <td><a href="javascript:ajaxDeleteShowing('{{ showing.getId() }}')">Delete</a></td>
         </tr>
     {% endfor %}

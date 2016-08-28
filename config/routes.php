@@ -445,6 +445,14 @@ return [
             'action' => 'editShowingAction'
         ]
     ],
+    [
+        'pattern' => '/system/showings/update-date-location',
+        'methods' => ['POST'],
+        'paths' => [
+            'controller' => '\Backend\Controller\EventShowingsController',
+            'action' => 'updateLocationShowingAction'
+        ]
+    ],
 
     /* -----------------------------------------------------------
      * Blog

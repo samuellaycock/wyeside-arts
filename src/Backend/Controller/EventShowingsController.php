@@ -82,4 +82,13 @@ class EventShowingsController extends BackendController
         $this->em->flush($showing);
     }
 
+    public function updateLocationShowingAction()
+    {
+        /** @var Showing $showing */
+        $showing = $this->getShowingRepo()->find($this->app->request->post('showingId'));
+        $showing->setLocation($this->app->request->post('location'));
+        $this->em->persist($showing);
+        $this->em->flush($showing);
+    }
+
 }
