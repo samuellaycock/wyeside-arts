@@ -61,3 +61,17 @@ h1 {
     text-align: center;
     width: 95%;
 }
+#tmdbImages img {
+    max-width:900px;
+    max-height:900px;
+    transition: all .2s ease-in-out;
+    margin-bottom:10px;
+}
+#tmdbImages img:hover {
+    transform: scale(1.05);
+    margin-top:14px;
+    margin-bottom:24px;
+}
+.tmdb-image img {
+    border:solid 1px #fff;
+}

@@ -61,7 +61,7 @@
   transform: translate3d(0, 0, 0);
 
   color: #2b2e38;
-  background: #fff;
+  background: transparent;
 }
 
 .remodal.remodal-is-opening,
@@ -295,7 +295,7 @@
 
 @media only screen and (min-width: 641px) {
   .remodal {
-    max-width: 1700px;
+    max-width: 1000px;
   }
 }
 
@@ -307,5 +307,5 @@
 }
 
 .lt-ie9 .remodal {
-  width: 1700px;
+  width: 1000px;
 }

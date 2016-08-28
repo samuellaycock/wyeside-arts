@@ -361,6 +361,27 @@ return [
     ],
 
     /* -----------------------------------------------------------
+        * Events > TMDB
+        * ----------------------------------------------------------- */
+    [
+        'pattern' => '/system/tmdb/find-images-for-event',
+        'methods' => ['POST'],
+        'paths' => [
+            'controller' => '\Backend\Controller\TmdbController',
+            'action' => 'findBackdropImagesAction'
+        ]
+    ],
+    [
+        'pattern' => '/system/tmdb/copy-image',
+        'methods' => ['POST'],
+        'paths' => [
+            'controller' => '\Backend\Controller\TmdbController',
+            'action' => 'copyImageAction'
+        ]
+    ],
+
+
+    /* -----------------------------------------------------------
      * Events > Images
      * ----------------------------------------------------------- */
     [

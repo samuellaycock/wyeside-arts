@@ -73,20 +73,24 @@
                     {% include "backend/_partials/spinner.twig" %}
                 </form>
 
-                <form id="image-sync-form" class="upload-form" method="post" action="" style="float:left;">
-                    <p style="font-size:0.8em;color:#333;"><a href="#modal-images">Open!</a></p>
+                <form id="image-sync-form" class="upload-form" action="" style="float:left;margin-left:10px;" onsubmit="return false;">
+                    <p style="font-size:0.8em;color:#333;">Search TMDB for images.</p>
+                    <button id="loadTmdbImages">Source from TMDB</button>
                 </form>
 
-                <div class="remodal" data-remodal-id="modal-images">
-                    <button data-remodal-action="close" class="remodal-close"></button>
-                    <h2>Import Images from <a target="_blank" href="https://www.themoviedb.org/">TMDB</a></h2>
-                    <p>
-                       <img src="/img/backend/spinner.gif" />
-                        <div style="width:1500px;height:400px;"></div>
-                    </p>
-                    <br>
-                    <button data-remodal-action="cancel" class="remodal-cancel">Cancel</button>
-                    <button data-remodal-action="confirm" class="remodal-confirm">OK</button>
+                <div class="remodal" data-remodal-id="modalImages">
+
+                    <div style="padding-bottom:30px;">
+                        <h1 style="padding:0;font-size: 2.6em;">Transfer Images from TMDB</h1>
+                        <br><br>
+                        <p style="color:#fff;font-size:1.2em;">Click on an image to transfer it, click off an image to close this modal.</p>
+                        <hr>
+                    </div>
+
+                    <img id="tmdbSpinner" src="/img/backend/spinner.gif" />
+                    <div id="tmdbImages">
+
+                    </div>
                 </div>
 
                 <div style="clear:both;"></div>

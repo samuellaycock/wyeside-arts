@@ -162,33 +162,28 @@ $(function () {
 });
 
 
-function TsSyncManager(
-    eventId,
-    key,
-
-    displayWrapperId,
-    spinnerWrapperId,
-    modifyWrapperId,
-
-    displayFieldId,
-    selectionFieldId,
-
-    displayButtonId,
-    updateButtonId
-) {
+function TsSyncManager(eventId,
+                       key,
+                       displayWrapperId,
+                       spinnerWrapperId,
+                       modifyWrapperId,
+                       displayFieldId,
+                       selectionFieldId,
+                       displayButtonId,
+                       updateButtonId) {
     var me = this;
 
     this.eventId = eventId;
     this.keyItem = key;
 
-    this.displayWrapper = $("#"+displayWrapperId);
-    this.spinnerWrapper = $("#"+spinnerWrapperId);
-    this.modifyWrapper = $("#"+modifyWrapperId);
+    this.displayWrapper = $("#" + displayWrapperId);
+    this.spinnerWrapper = $("#" + spinnerWrapperId);
+    this.modifyWrapper = $("#" + modifyWrapperId);
 
-    this.displayField = $("#"+displayFieldId);
+    this.displayField = $("#" + displayFieldId);
     this.selectionFieldId = selectionFieldId;
 
-    this.displayButton = $("#"+displayButtonId);
+    this.displayButton = $("#" + displayButtonId);
     this.updateButtonId = updateButtonId;
 
     this.displayButton.bind('click', function () {
@@ -210,14 +205,14 @@ TsSyncManager.prototype.select = function () {
         url: ' /system/ticketsolve/not-synced-events.ajax',
         method: 'GET'
     }).success(function (result) {
-        me.modifyWrapper.html(' <select id="'+me.selectionFieldId+'" class="ticketsolveSelection"><option value="">None (Remove Reference)</option></select><button id="'+me.updateButtonId+'">Update Ticketsolve Reference</button>');
-        var tsSel = $("#"+me.selectionFieldId);
+        me.modifyWrapper.html(' <select id="' + me.selectionFieldId + '" class="ticketsolveSelection"><option value="">None (Remove Reference)</option></select><button id="' + me.updateButtonId + '">Update Ticketsolve Reference</button>');
+        var tsSel = $("#" + me.selectionFieldId);
         $(result).each(function (index) {
             $(tsSel).append("<option value='" + result[index].eventId + "'>" + result[index].eventId + " : " + result[index].name + "</option>");
         });
         me.spinnerWrapper.hide();
         me.modifyWrapper.show();
-        $("#"+me.updateButtonId).bind('click', function () {
+        $("#" + me.updateButtonId).bind('click', function () {
             me.update(tsSel.val());
         });
     });
@@ -229,12 +224,12 @@ TsSyncManager.prototype.update = function (val) {
     var me = this;
     var data = {};
 
-    if(me.keyItem == "ticketsolveId") {
+    if (me.keyItem == "ticketsolveId") {
         data = {
             eventId: me.eventId,
             ticketsolveId: val
         }
-    }else {
+    } else {
         data = {
             eventId: me.eventId,
             ticketsolveId3D: val
@@ -247,7 +242,7 @@ TsSyncManager.prototype.update = function (val) {
     $.ajax({
         url: '/system/ticketsolve/update-event-ts.ajax',
         method: 'POST',
-        data : data,
+        data: data,
         success: function (result) {
             me.displayField.val(val);
             me.spinnerWrapper.hide();
@@ -256,3 +251,78 @@ TsSyncManager.prototype.update = function (val) {
     });
 
 };
+
+
+// -------------------------------------------------- |||
+/// ------------- TMDB IMAGES ||||||||||||||||||||||| |||
+// -------------------------------------------------- |||
+
+
+$(function () {
+
+    var tmdb = new Tmdb(eventId);
+
+});
+
+
+Tmdb = function (eventId) {
+
+    var me = this;
+
+    this.eventId = eventId;
+    this.modal = $('[data-remodal-id=modalImages]').remodal({});
+
+    this.spinner = $("#tmdbSpinner");
+    this.content = $("#tmdbImages");
+
+    $("#loadTmdbImages").bind('click', function () {
+        me.loadImages();
+    });
+
+    return this;
+};
+
+Tmdb.prototype.loadImages = function () {
+
+    var me = this;
+
+    this.modal.open();
+    this.content.hide();
+    this.spinner.show();
+    this.content.html('');
+
+    $.ajax({
+        url: '/system/tmdb/find-images-for-event',
+        method: 'POST',
+        data: {
+            eventId: me.eventId
+        },
+        success: function (result) {
+
+            $(result['images']).each(function (index) {
+                me.content.append('<div class="tmdb-image"><img src="' + result['images'][index] + '" /></div>');
+            });
+            me.spinner.hide();
+            me.content.show();
+
+            $(".tmdb-image img").bind('click', function () {
+                console.log($(this).attr('src'));
+                $.ajax({
+                    url: '/system/tmdb/copy-image',
+                    method: 'POST',
+                    data: {
+                        eventId: me.eventId,
+                        imageSource: $(this).attr('src')
+                    }, success : function(){
+                        ajaxLoadEventImages(me.eventId);
+                    }
+                });
+                $(this).parent().remove();
+            });
+        }
+    });
+
+
+};
+
+
