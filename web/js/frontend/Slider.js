@@ -1,8 +1,3 @@
-$(document).ready(function () {
-    new Slider();
-});
-
-
 function Slider() {
     var me = this;
 
@@ -16,11 +11,10 @@ function Slider() {
      * Events are not working on the main slider element.  Hitting
      * controls doesn't work!
      */
-    $(".wy-slider").bind('click', function () {
-       // me.expand();
+    $(this.slider).on('click', function () {
+        me.expand();
     });
-
-    $(this.moveIcon).bind('click', function () {
+    $(this.moveIcon).on('click', function () {
         me.toggle();
     });
 
