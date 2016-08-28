@@ -126,7 +126,7 @@
 .wy-header.active .wy-header__logo::after,
 .wy-header.perm .wy-header__logo::after {
 	height: 0!important;
-	padding: 0px!important;
+	padding: 0!important;
 }
 	@media screen and (min-width: 1024px) {
 		.wy-header.scrolled .wy-header__logo,
@@ -420,7 +420,7 @@ a.selected ~ ul {
 		padding: 2em 50% 3em !important;
 		width: 100vw;
 		height: auto;
-		background: #fff;
+		background: #f1f1f1;
 		color: #444;
 		-webkit-transform: translateX(0);
 		-moz-transform: translateX(0);

@@ -396,7 +396,7 @@ hr {
 	max-width: 1400px;
 }
 .wy-content {
-	background-color: #fff;}
+	background-color: #f1f1f1;}
 	@media screen and (min-width: 1024px) {
 		.wy-content {
 			display: flex; }

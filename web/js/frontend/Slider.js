@@ -3,17 +3,20 @@ function Slider() {
 
     this.toggleClass = "wy-full-images";
     this.slider = $(".unslider");
+    this.sliderControls = $(".unslider-arrow");
     this.banner = $(".wy-banner");
     this.moveIcon = $(".wy-banner-move");
     this.details = $(".wy-details");
 
-    /**
-     * Events are not working on the main slider element.  Hitting
-     * controls doesn't work!
-     */
-    $(this.slider).on('click', function () {
+
+    $(this.sliderControls).on('click', function () {
         me.expand();
     });
+
+    $(".wy-slider__slide").on('click', function () {
+        me.toggle();
+    });
+
     $(this.moveIcon).on('click', function () {
         me.toggle();
     });
