@@ -54,6 +54,11 @@ class TicketsolveController extends BackendController
     {
         $event = $this->getEventRepo()->find($this->app->request->post('eventId'));
 
+        foreach ($event->getShowings() as $showing) {
+            $this->em->remove($showing);
+        }
+        $this->em->flush();
+
         $provider = new TicketsolveProvider();
 
         $tsEvent = $provider->eventByEventId($event->getTicketsolve());

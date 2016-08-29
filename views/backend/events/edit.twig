@@ -15,7 +15,7 @@
 {% block content %}
     <div class="block-transparent">
         <div id="banner-wrapper">
-             {% include "backend/events/_partials/banner-image.twig" %}
+            {% include "backend/events/_partials/banner-image.twig" %}
         </div>
 
         <h1 style="background-color: {{ event.getTypePrimaryColor() }};">
@@ -31,25 +31,28 @@
         {% spaceless %}
             <div class="tab-group">
                 <div class="tab-object tab-active" data-tabgroup="event" data-element="tab-page-details">
-                    <img src="/img/backend/icons/details-64.png" />
+                    <img src="/img/backend/icons/details-64.png"/>
                     <div>Details</div>
                 </div>
                 <div class="tab-object" data-tabgroup="event" data-element="tab-page-ticketsolve">
-                    <img src="/img/backend/icons/download-64.png" />
+                    <img src="/img/backend/icons/download-64.png"/>
                     <div>Ticketsolve</div>
                 </div>
                 <div class="tab-object" data-tabgroup="event" data-element="tab-page-images">
-                    <img src="/img/backend/icons/image-64.png" />
+                    <img src="/img/backend/icons/image-64.png"/>
                     <div>Images</div>
                 </div>
                 <div class="tab-object" data-tabgroup="event" data-element="tab-page-dates">
-                    <img src="/img/backend/icons/calendar-64.png" />
+                    <img src="/img/backend/icons/calendar-64.png"/>
                     <div>Dates & Times</div>
+                </div>
+                <div class="tab-object" data-tabgroup="event" data-element="tab-page-delete">
+                    <img src="/img/backend/icons/trash-64.png"/>
+                    <div>Delete Event</div>
                 </div>
             </div>
         {% endspaceless %}
         <br><br>
-
 
         <div class="tab-page tab-page-active" id="tab-page-details">
             {% include "backend/events/_events-form.twig" %}
@@ -60,57 +63,20 @@
             {% include "backend/events/_events-ts-form.twig" %}
         </div>
 
-        <div class="tab-page" id="tab-page-images">
-            <div class="block-transparent">
-                <form id="image-upload-form" class="upload-form" method="post" target="upload-iframe-images"
-                      action="/system/events/{{ event.getId() }}/image-upload" enctype="multipart/form-data"
-                      style="float:left;">
-                    <p style="font-size:0.8em;color:#333;">You may select multiple files. Images will be re-sized to
-                        1920x800.</p>
-                    <input type="file" name="file[]" multiple>
-                    <button type="submit" name="submit">Upload Images</button>
-                    <iframe id="upload-iframe-images" name="upload-iframe-images" style="display:none;"></iframe>
-                    {% include "backend/_partials/spinner.twig" %}
-                </form>
-
-                <form id="image-sync-form" class="upload-form" action="" style="float:left;margin-left:10px;" onsubmit="return false;">
-                    <p style="font-size:0.8em;color:#333;">Search TMDB for images.</p>
-                    <button id="loadTmdbImages">Source from TMDB</button>
-                </form>
-
-                <div class="remodal" data-remodal-id="modalImages">
-
-                    <div style="padding-bottom:30px;">
-                        <h1 style="padding:0;font-size: 2.6em;">Transfer Images from TMDB</h1>
-                        <br><br>
-                        <p style="color:#fff;font-size:1.2em;">Click on an image to transfer it, click off an image to close this modal.</p>
-                        <hr>
-                    </div>
-
-                    <img id="tmdbSpinner" src="/img/backend/spinner.gif" />
-                    <div id="tmdbImages">
-
-                    </div>
-                </div>
-
-                <div style="clear:both;"></div>
-                    <br>
-                    <div id="event-images">
-                        {% include "backend/events/_partials/event-images.twig" %}
-                    </div>
-                </div>
-            </div>
-    </div>
-
-    <div class="tab-page" id="tab-page-dates">
-        <div class="block-transparent">
+        <div class="tab-page" id="tab-page-dates">
             <form id="syncTicketsolve" onsubmit="return false;" style="text-align: center;">
+                <p>WARNING!<br>This will delete all existing showings before re-populating with only upcoming showings.</p>
+                <br>
                 <button onclick="ajaxSyncShowings('{{ event.getId() }}')">
-                <img src="/img/backend/icons/dark/download-64.png" style="width: 24px; height: 24px;" /> Re-sync with Ticketsolve
+                    <img src="/img/backend/icons/dark/download-64.png" style="width: 24px; height: 24px;"/> Re-sync with
+                    Ticketsolve
                 </button>
             </form>
 
             <form id="newShowingForm" onsubmit="return false;">
+                <p>Adding an event showing manaually will result in online booking un-available (only for the manually created showing).
+                It is advised to create all showings in Ticketsolve then re-sync using the button above.</p>
+                <br>
                 <label for="dateTime">Date &amp; Time</label>
                 <input id="showingDate" name="showingDate" type="date" class="form-input-mini"
                        value="{{ "now"|date("Y-m-d") }}">
@@ -134,14 +100,70 @@
                 <br>
                 <label>&nbsp;</label>
                 <button type="button" id="createShowingBtn">Add Showing</button>
-
             </form>
+
             <form>
                 <div id="event-showings-table">
                     {% include "backend/events/_partials/event-showings-table.twig" %}
                 </div>
             </form>
         </div>
+
+
+
+        <div class="tab-page" id="tab-page-delete">
+            <form style="text-align: center;" method="post" action="/system/events/action/deleteEvent">
+                <h2>DANGER ZONE</h2>
+                <br>
+                <iframe width="640" height="480" src="https://www.youtube.com/embed/siwpn14IE7E?rel=0&amp;controls=0" frameborder="0" allowfullscreen></iframe>
+                <br><br>
+                <p style="font-size:1.2em;">Clicking the button below will permanently delete this event<br> (it will free up any ticketsolve links to be
+                    re-assigned)</p>
+                <br>
+                <input type="hidden" name="eventId" value="{{ event.getId() }}" />
+                <button type="submit" onclick="deleteEvent(eventId)">I Understand, Delete Event</button>
+            </form>
+        </div>
+
+
+        <div class="tab-page" id="tab-page-images">
+            <form id="image-upload-form" class="upload-form" method="post" target="upload-iframe-images"
+                  action="/system/events/{{ event.getId() }}/image-upload" enctype="multipart/form-data"
+                  style="float:left;">
+                <p style="font-size:0.8em;color:#333;">You may select multiple files. Images will be re-sized to
+                    1920x800.</p>
+                <input type="file" name="file[]" multiple>
+                <button type="submit" name="submit">Upload Images</button>
+                <iframe id="upload-iframe-images" name="upload-iframe-images" style="display:none;"></iframe>
+                {% include "backend/_partials/spinner.twig" %}
+            </form>
+
+            <form id="image-sync-form" class="upload-form" action="" style="float:left;margin-left:10px;"
+                  onsubmit="return false;">
+                <p style="font-size:0.8em;color:#333;">Search TMDB for images.</p>
+                <button id="loadTmdbImages">Source from TMDB</button>
+            </form>
+
+            <div class="remodal" data-remodal-id="modalImages">
+                <div style="padding-bottom:30px;">
+                    <h1 style="padding:0;font-size: 2.6em;">Transfer Images from TMDB</h1>
+                    <br><br>
+                    <p style="color:#fff;font-size:1.2em;">Click on an image to transfer it, click off an image to
+                        close this modal.</p>
+                    <hr>
+                </div>
+
+                <img id="tmdbSpinner" src="/img/backend/spinner.gif"/>
+                <div id="tmdbImages"></div>
+            </div>
+            <div style="clear:both;"></div>
+            <br>
+            <div id="event-images">
+                {% include "backend/events/_partials/event-images.twig" %}
+            </div>
+        </div>
     </div>
-    </div>
+
+
+
 {% endblock %}

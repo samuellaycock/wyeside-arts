@@ -1,15 +1,19 @@
 <form method="post">
-    <input type="text" name="title" id="title" placeholder="Title" class="dbl" value="{{ event.getTitle() }}" style="width:100%;">
+    <input type="hidden" name="ticketsolveIdCreate" id="ticketsolveIdCreate">
+    <input type="hidden" name="ticketsolveIdCreate3D" id="ticketsolveIdCreate3D">
+
+    <input type="text" name="title" id="title" placeholder="Title" class="dbl" value="{{ event.getTitle() }}"
+           style="width:100%;">
 
     <br>
     <label for="trailer">YouTube Trailer</label>
     <input type="text" id="trailer" name="trailer" value="{{ event.getTrailer() }}">
     <img
-        src="/img/backend/youtube-play.png"
-        style="height:26px;vertical-align: middle;"
-        alt="Search YouTube"
-        title="Search YouTube"
-        onclick="window.open('https://www.youtube.com/results?search_query='+$('#title').val()+' Trailer')"
+            src="/img/backend/youtube-play.png"
+            style="height:26px;vertical-align: middle;"
+            alt="Search YouTube"
+            title="Search YouTube"
+            onclick="window.open('https://www.youtube.com/results?search_query='+$('#title').val()+' Trailer')"
     >
 
     {% if event.getType() != 1 %}

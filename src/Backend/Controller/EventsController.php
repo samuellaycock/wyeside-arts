@@ -9,6 +9,7 @@ namespace Backend\Controller;
 use App\Hydrator;
 use App\Model\Entity\Genre;
 use App\Model\Entity\Event;
+use App\Model\Entity\Showing;
 use App\Model\Provider\Ticketsolve;
 use App\Model\Provider\TicketsolveProvider;
 use App\Model\Repo\EventRepo;
@@ -142,9 +143,47 @@ class EventsController extends BackendController
         if ($this->app->request->isPost()) {
             $hydrator = new Hydrator;
             $hydrator->hydrate($event, $this->app->request->params());
+
+            $ts = $this->app->request->post('ticketsolveIdCreate');
+            if(strlen($ts) > 1){
+                $event->setTicketsolve($ts);
+            }
+            $ts = $this->app->request->post('ticketsolveIdCreate3D');
+            if(strlen($ts) > 1){
+                $event->setTicketsolve3D($ts);
+            }
+
             $this->updateEventGenres($genres, $event);
             $event->setCreatedTs(new \DateTime());
+
             $this->em->persist($event);
+
+            $provider = new TicketsolveProvider();
+
+            $tsEvent = $provider->eventByEventId($event->getTicketsolve());
+            if ($tsEvent) {
+                foreach ($tsEvent->showings() as $tsShowing) {
+                    $showing = new Showing();
+                    $showing->setTicketsolveIt($tsShowing->showingId());
+                    $showing->setType("2D");
+                    $showing->setTs($tsShowing->time());
+                    $event->addShowing($showing);
+                    $this->em->persist($showing);
+                }
+            }
+
+            $tsEvent = $provider->eventByEventId($event->getTicketsolve3D());
+            if ($tsEvent) {
+                foreach ($tsEvent->showings() as $tsShowing) {
+                    $showing = new Showing();
+                    $showing->setTicketsolveIt($tsShowing->showingId());
+                    $showing->setType("3D");
+                    $showing->setTs($tsShowing->time());
+                    $event->addShowing($showing);
+                    $this->em->persist($showing);
+                }
+            }
+
             $this->em->flush();
             $this->app->redirect('/system/events', 302);
         }
@@ -156,7 +195,28 @@ class EventsController extends BackendController
 
         $this->app->render('backend/events/create.twig', $data);
     }
-    
+
+
+    /**
+     *
+     */
+    public function deleteEventAction()
+    {
+        $event = $this->getEventRepo()->find($this->app->request->post('eventId'));
+        foreach($event->getImages() as $image){
+            $this->em->remove($image);
+        }
+        foreach($event->getGenres() as $genre){
+            $this->em->remove($genre);
+        }
+        foreach($event->getShowings() as $showing){
+            $this->em->remove($showing);
+        }
+        $this->em->remove($event);
+        $this->em->flush();
+
+        $this->app->redirect('/system/events');
+    }
     
 
 }

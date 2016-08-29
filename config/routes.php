@@ -323,6 +323,14 @@ return [
             'action' => 'updateStatusAction'
         ]
     ],
+    [
+        'pattern' => '/system/events/action/deleteEvent',
+        'methods' => ['POST'],
+        'paths' => [
+            'controller' => '\Backend\Controller\EventsController',
+            'action' => 'deleteEventAction'
+        ]
+    ],
 
     /* -----------------------------------------------------------
      * Events > Ticketsolve

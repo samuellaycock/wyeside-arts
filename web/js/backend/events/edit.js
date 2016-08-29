@@ -124,6 +124,7 @@ function ajaxUpdateDateLocation(showingId, element) {
 
 
 function ajaxSyncShowings(eventId) {
+    $('#event-showings-table').html('<div style="text-align:center"><img src="/img/backend/spinner.gif"></div>');
     $.ajax({
         url: '/system/ticketsolve/sync-event-dates',
         method: 'POST',
@@ -135,7 +136,6 @@ function ajaxSyncShowings(eventId) {
         }
     });
 }
-
 
 // -------------------------------------------------- |||
 /// ------------- Updating Ticketsolve |||||||||||||| |||
