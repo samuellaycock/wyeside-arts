@@ -14,7 +14,7 @@ body {
   font-size: 1.6rem;
   font-family: 'Gill Sans', Arial, sans-serif;
   color: #222;
-  background-color: #d4dadd; }
+  background-color: #c6ced2; }
 @media only screen and (max-width: 1169px) {
   body.nav-on-left.overflow-hidden {
     overflow: hidden; }
@@ -25,7 +25,7 @@ a {
 img {
   max-width: 100%; }
 hr {
-  background: #ddd;
+  background: #ccc;
   border: none;
   height: 1px; }
 
@@ -36,7 +36,8 @@ hr {
 	margin: 0 auto;
 	z-index: 1; }
 .wy-body {
-	padding: 15px; }
+	padding: 15px;
+	background: #d4dadd }
 .wy-contain {
 	display: flex;
 	overflow:auto; }
@@ -117,7 +118,8 @@ hr {
     width: 100%;  }
     @media screen and (min-width: 650px) {
         .wy-show__body {
-            padding: 0.5em; }
+            padding: 0.5em;
+						background: #fff; }
     }
 .wy-show__title {
   display: inline-block;
@@ -318,16 +320,17 @@ hr {
    Banner
 -------------------------------- */
 .wy-banner {
-    position: relative;
+  position: relative;
 	display: block;
 	padding:2px;
 	margin: 0 auto 0;
 	background: #292f33;
 	text-align: center;
-    -webkit-transition: margin 0.2s ease-in-out;
-    -moz-transition: margin 0.2s ease-in-out;
-    -o-transition: margin 0.2s ease-in-out;
-    transition: margin 0.2s ease-in-out;
+	border-radius: 0.35em 0.35em 0 0;
+  -webkit-transition: margin 0.2s ease-in-out;
+  -moz-transition: margin 0.2s ease-in-out;
+  -o-transition: margin 0.2s ease-in-out;
+  transition: margin 0.2s ease-in-out;
 }
 .wy-banner-move {
     opacity: 0.7;
@@ -690,6 +693,10 @@ hr {
 	transform: rotate(-180deg) translatey(50%); }
 .slick-next {
 	right: 0; }
+.wy-foot__upcoming,
+.wy-foot__details {
+	padding: 0 1em;
+}
 .wy-foot__details {
 	color: #fff;
 	background: #202428; }

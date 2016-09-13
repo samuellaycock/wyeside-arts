@@ -151,12 +151,18 @@
 	right: 0;
 	top: 0;
 	height: 100%;
-	width: 50px; }
+	width: 100px; }
+.wy-nav__button--menu:before {
+	content: 'Menu';
+ 	position: absolute;
+	top: 14px;
+	right: 45px;
+	color: #f64f34; }
 .wy-nav__button--menu span {
 	position: absolute;
 	height: 2px;
 	width: 20px;
-	left: 50%;
+	left: 75%;
 	top: 50%;
 	bottom: auto;
 	right: auto;
@@ -417,7 +423,7 @@ a.selected ~ ul {
 	.wy-nav__menu .wy-nav__menu-list--gallery {
 		position: absolute;
 		top: 70px;
-		padding: 2em 50% 3em !important;
+		padding: 2em 25% 3em !important;
 		width: 100vw;
 		height: auto;
 		background: #f1f1f1;

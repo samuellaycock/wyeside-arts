@@ -2,20 +2,47 @@
    Event List
 -------------------------------- */
 .wy-button--calendar {
-    display: block;
-    margin: 1em auto;
-    padding: 1em 2em;
-    max-width: 260px;
-    border-radius: 3px;
-    text-align: center;
-    text-transform: uppercase;
-    -webkit-transition: all 0.3s ease-out;
-    transition: all 0.3s ease-out;
-}
+  display: block;
+  margin: 1em auto;
+  padding: 1em 2em;
+  max-width: 260px;
+  border-radius: 3px;
+  text-align: center;
+  text-transform: uppercase;
+  -webkit-transition: all 0.3s ease-out;
+  transition: all 0.3s ease-out; }
 .wy-button--calendar:hover {
-    opacity: 0.9;
-}
+  opacity: 0.9; }
 .wy-banner.type--satellite,
 .wy-banner.type--all {
-    padding: 0.25em 0;
-}
+  padding: 0.25em 0; }
+.key-list {
+  display: inline-block;
+  margin: 0 0 1em 0.5em;
+  padding: 0.5em;
+  border: 1px solid #ccc;
+  border-radius: 5px; }
+.key-list > li {
+  display: inline-block; }
+.key-list > li:not(:first-child) {
+  padding: 0 0.5em;
+  border-right: 1px solid #ccc; }
+.key-list > li:last-child {
+  border:none; }
+.key-list > li:not(:first-child):before {
+  display: inline-block;
+  content: '';
+  margin-right: 0.25em;
+  height: 12px;
+  width: 12px;
+  border-radius: 50%; }
+.key-list > li.key-list__item--cinema:before {
+  background: #B0D817; }
+.key-list > li.key-list__item--live:before {
+  background: #01B6AD; }
+.key-list > li.key-list__item--satellite:before {
+  background: #E30769; }
+.key-list > li.key-list__item--classes:before {
+  background: #999; }
+.key-list > li.key-list__item--gallery:before {
+  background: #A14DB2; }

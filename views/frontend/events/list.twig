@@ -20,16 +20,6 @@
 
 {% block content %}
 <section class="wy-body">
-	{% if type == 'all' %}
-	<ul>
-		<li class="wy-button type--cinema">Cinema</li>
-		<li class="wy-button type--live">Live</li>
-		<li class="wy-button type--satellite">Satellite Live!</li>
-		<li class="wy-button type--classes">Classes</li>
-		<li class="wy-button type--gallery">Gallery</li>
-	</ul>
-	{% endif %}
-
     {% if eventsThisWeek|length > 0 %}
         <h2 class="wy-body__title">
 			{% if type == 'cinema' %}
@@ -38,9 +28,19 @@
 			Playing this Week
 			{% endif %}
 		</h2>
+		{% if type == 'all' %}
+		<ul class="key-list">
+			<li>KEY:</li>
+			<li class="key-list__item--cinema">Cinema</li>
+			<li class="key-list__item--live">Live</li>
+			<li class="key-list__item--satellite">Satellite Live!</li>
+			<li class="key-list__item--classes">Classes</li>
+			<li class="key-list__item--gallery">Gallery</li>
+		</ul>
+		{% endif %}
         <ul class="wy-shows--this-week">
             {% for event in eventsThisWeek %}
-            <a href="{{ event.getEventUrl() }}">
+            <a href="{{ event.getEventUrl() }}" class="type--{{ event.getType() }}" style="background:none;">
                 <li class="wy-shows__show" style="border-bottom: 2px solid {{ event.getTypePrimaryColor() }}">
                     <div class="wy-show__img-container" style="background: url('{{ event.getMainImage().getThumbnailUrl() }}') no-repeat center center">
                         <span class="u-text-replace">{{ event.getTitle() }}</span>
@@ -100,12 +100,22 @@
     {% endif %}
 
     <h2 class="wy-body__title">Coming Soon</h2>
+		{% if type == 'all' %}
+		<ul class="key-list">
+			<li>KEY:</li>
+			<li class="key-list__item--cinema">Cinema</li>
+			<li class="key-list__item--live">Live</li>
+			<li class="key-list__item--satellite">Satellite Live!</li>
+			<li class="key-list__item--classes">Classes</li>
+			<li class="key-list__item--gallery">Gallery</li>
+		</ul>
+		{% endif %}
     <ul class="wy-shows--coming-soon">
         {% if futureEvents|length < 1 %}
         <p>There are no {{ type|capitalize }} shows to display here. Check back again soon.</p>
         {% endif %}
         {% for event in futureEvents %}
-        <a href="{{ event.getEventUrl() }}">
+        <a href="{{ event.getEventUrl() }}" class="type--{{ event.getType() }}" style="background:none;">
             <li class="wy-shows__show" style="border-bottom: 2px solid {{ event.getTypePrimaryColor() }}">
                 <div class="wy-show__img-container" style="background: url('{{ event.getMainImage().getThumbnailUrl() }}') no-repeat center center">
                     <span class="u-text-replace">{{ event.getTitle() }}</span>

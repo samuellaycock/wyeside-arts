@@ -71,3 +71,6 @@
 .type--all {
 	background-color: #374045;
 }
+.hide {
+	display: none;
+}
