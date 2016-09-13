@@ -168,7 +168,13 @@ class Showing
      */
     public function ticketsolveUrl()
     {
-        return "https://wyeside.ticketsolve.com/#/seated-events/" . $this->ticketsolveId . "?enable_features=ticketbooth,ticketbooth_iframe";
+        if ($this->type == "3D") {
+            $eventId = $this->event->getTicketsolve3D();
+        } else {
+            $eventId = $this->event->getTicketsolve();
+        }
+        return "https://wyeside.ticketsolve.com/shows/{$eventId}/events/{$this->ticketsolveId}";
+        //return "https://wyeside.ticketsolve.com/#/seated-events/" . $this->ticketsolveId . "?enable_features=ticketbooth,ticketbooth_iframe";
     }
 
     /**
