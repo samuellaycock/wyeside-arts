@@ -37,7 +37,7 @@ hr {
 	z-index: 1; }
 .wy-body {
 	padding: 15px;
-	background: #d4dadd }
+	background: #dee3e5 }
 .wy-contain {
 	display: flex;
 	overflow:auto; }
@@ -282,7 +282,7 @@ hr {
 		right: 0;
 		height: 80px;
 		width: 20px;
-		background: url(../../../img/frontend/icons/arrow-icon.svg) no-repeat center center; }
+		background: url(/img/frontend/icons/arrow-icon.svg) no-repeat center center; }
 	.unslider-arrow.prev::before {
 		left: 0;
 		-webkit-transform: rotate(180deg);

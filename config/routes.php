@@ -193,6 +193,14 @@ return [
             'action' => 'technicalAction'
         ]
     ],
+    [
+        'pattern' => '/hire/costume',
+        'methods' => ['GET'],
+        'paths' => [
+            'controller' => '\Frontend\Controller\HireController',
+            'action' => 'costumeAction'
+        ]
+    ],
     
     /* -----------------------------------------------------------
      * Contact
