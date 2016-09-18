@@ -13,7 +13,8 @@
 {% endblock %}
 
 {% block banner %}
-<section class="wy-banner type--{{ type }}">
+<section class="wy-banner type--{{ type }} wy-banner-movable" >
+    <div class="wy-banner-move"></div>
     <img src="/img/frontend/logos/calendar.png" alt="Calendar" />
     <h1>Events<br />Calendar</h1>
 </section>
@@ -24,10 +25,12 @@
         <section style="overflow-x:auto;">
             <table>
               <thead>
-                <th>Day</th>
-                <th>Castle Cinema</th>
-                <th>Market Theatre</th>
-                <th>The Gallery</th>
+                  <tr>
+                    <th>Day</th>
+                    <th>Castle Cinema</th>
+                    <th>Market Theatre</th>
+                    <th>The Gallery</th>
+                  </tr>
               </thead>
               <tbody>
               {% for key, day in days %}

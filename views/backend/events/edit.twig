@@ -8,6 +8,17 @@
     <script type="text/javascript">
         var eventId = "{{ event.getId() }}";
     </script>
+    <style>
+        #preview-event {
+            background-color:#000;
+            transition-duration:0.3s;
+            opacity: 0.5;
+        }
+        #preview-event:hover {
+            opacity: 0.8;
+            background-color:#5588EE;
+        }
+    </style>
 {% endblock %}
 
 {% block title %}Events{% endblock %}
@@ -17,6 +28,12 @@
         <div id="banner-wrapper">
             {% include "backend/events/_partials/banner-image.twig" %}
         </div>
+
+        <a target="_blank" href="{{ event.getEventUrl() }}">
+            <div id="preview-event" style="position:absolute;top:10px;right:10px;padding-left:10px;padding-right:10px;border-radius: 12px;">
+                <img src="/img/backend/icons/eye-64.png" width="64" height="64">
+            </div>
+        </a>
 
         <h1 style="background-color: {{ event.getTypePrimaryColor() }};">
             {{ event.getTitle() }}

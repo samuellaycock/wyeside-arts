@@ -457,13 +457,13 @@ return [
     ],
 
     /* -----------------------------------------------------------
-     * Blog
+     * Settings
      * ----------------------------------------------------------- */
     [
-        'pattern' => '/system/blog',
-        'methods' => ['GET'],
+        'pattern' => '/system/settings',
+        'methods' => ['GET', 'POST'],
         'paths' => [
-            'controller' => '\Backend\Controller\BlogController',
+            'controller' => '\Backend\Controller\SettingsController',
             'action' => 'indexAction'
         ]
     ],

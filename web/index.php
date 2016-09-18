@@ -45,6 +45,14 @@ if (file_exists($envConfigsFile)) {
 
 $app = new Slim\Slim($configs);
 
+$app->notFound(function() use ($app) {
+    $app->render('frontend/404.twig');
+});
+
+$app->error(function (\Exception $e) use ($app) {
+    $app->render('frontend/oops.twig');
+});
+
 
 $routerService = new App\Service\RouterService($app);
 $em = $routerService->loadRoutes(require APP_DIR . '/config/routes.php');

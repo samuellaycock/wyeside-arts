@@ -104,7 +104,7 @@
 					<td class="wy-booking__shows">
 						{% for showing in day %}
 							<a
-								onclick="booking.open('{{ showing.ticketsolveUrl() }}')"
+								{% if showing.ticketsolveId != "" %}onclick="booking.open('{{ showing.ticketsolveUrl() }}')" {% endif %}
 								class="wy-booking__button{% if showing.type == "3D" %} three-d{% endif %}{% if showing.ticketsolveId == "" %} not-linked{% endif %}"
 								title="{% if showing.ticketsolveId == "" %}Online Booking is not available for this time{% else %}Book Online{% endif %}"
 							>

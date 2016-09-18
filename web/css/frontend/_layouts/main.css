@@ -352,6 +352,12 @@ hr {
 .wy-banner-move.wy-full-images {
     background-image: url("/img/frontend/icons/arrow-up.png");
 }
+.wy-banner {
+	margin-top: 75px;
+}
+.wy-banner-movable {
+	margin-top: 0;
+}
 @media screen and (max-width: 649px) {
 	.wy-banner.wy-banner-movable { margin-top:0; }
 }
@@ -656,7 +662,8 @@ hr {
 [dir='rtl'] .slick-slide {
     float: right; }
 .slick-slide img {
-    display: block; }
+    display: block;
+	max-height: 136px;  }
 .slick-slide.slick-loading img {
     display: none; }
 .slick-slide.dragging img {

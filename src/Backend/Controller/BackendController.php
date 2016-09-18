@@ -36,14 +36,16 @@ class BackendController extends AppController
         $module = '';
         $url = $app->request->getPath();
 
-        if(strpos($url, 'events')){
+        if (strpos($url, 'events')) {
             $module = 'events';
-        }elseif(strpos($url, 'blog')){
+        } elseif (strpos($url, 'blog')) {
             $module = 'blog';
-        }elseif(strpos($url, 'users')){
+        } elseif (strpos($url, 'users')) {
             $module = 'users';
+        } elseif (strpos($url, 'settings')) {
+            $module = 'settings';
         }
- 
+
         $app->flashNow('module', $module);
     }
 
