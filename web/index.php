@@ -19,6 +19,7 @@ if ($uri_parts[0] == 'system') {
 
 define('APP_DIR', realpath(__DIR__ . '/../'));
 
+
 /**
  * Load the app's environment
  */
