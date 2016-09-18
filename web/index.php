@@ -3,13 +3,13 @@
  * @author James Dobb <james.dobb@gmail.com>
  */
 
-// todo: improve this auth system!
+// auth
 session_start();
 session_regenerate_id();
-$uri_parts = explode('/', ltrim($_SERVER['REQUEST_URI'],'/'));
-if($uri_parts[0] == 'system'){
-    if($uri_parts[1] != 'login') {
-        if(!isset($_SESSION['wyeside-user'])) {
+$uri_parts = explode('/', ltrim($_SERVER['REQUEST_URI'], '/'));
+if ($uri_parts[0] == 'system') {
+    if ($uri_parts[1] != 'login') {
+        if (!isset($_SESSION['wyeside-user'])) {
             header('Location: /system/login');
             die();
         }
@@ -36,8 +36,14 @@ if (APP_ENV != 'production') {
 }
 
 require '../vendor/autoload.php';
+$configs = require APP_DIR . '/config/config.php';
+$envConfigsFile = APP_DIR . '/config/' . strtolower(APP_ENV) . '.php';
+if (file_exists($envConfigsFile)) {
+    $envConfigs = require $envConfigsFile;
+    $configs = array_merge($configs, $envConfigs);
+}
 
-$app = new Slim\Slim(require APP_DIR . '/config/config.php');
+$app = new Slim\Slim($configs);
 
 
 $routerService = new App\Service\RouterService($app);

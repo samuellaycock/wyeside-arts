@@ -35,6 +35,12 @@ class Event
     protected $title;
 
     /**
+     * @Column(type="string", name="eventTagline")
+     * @var string
+     */
+    protected $tagline;
+
+    /**
      * @Column(type="string", name="eventCertificate")
      * @var string
      */
@@ -179,6 +185,22 @@ class Event
     public function setTitle($title)
     {
         $this->title = $title;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTagline()
+    {
+        return $this->tagline;
+    }
+
+    /**
+     * @param $tagline
+     */
+    public function setTagline($tagline)
+    {
+        $this->tagline = trim($tagline, " ");
     }
 
     /**
@@ -600,7 +622,6 @@ class Event
                 return '#000000';
         }
     }
-
 
 
 }

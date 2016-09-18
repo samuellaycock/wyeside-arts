@@ -55,3 +55,6 @@ CHANGE COLUMN `temp_password` `temp_password` INT(1) NULL ;
 
 ALTER TABLE `eventdate`
 ADD COLUMN `ticketsolveId` VARCHAR(64) NULL AFTER `eventID`;
+
+ALTER TABLE `event`
+ADD COLUMN `eventTagline` VARCHAR(512) NULL DEFAULT NULL AFTER `eventTitle`;

@@ -6,6 +6,16 @@
            style="width:100%;">
 
     <br>
+    <label for="tagline">Tagline</label>
+    <input type="text" maxlength="90" id="tagline" name="tagline" value="{{ event.getTagline() }}" style="width:calc(100% - 126px);">
+
+    {% if event.getType() != 1 %}
+        <br>
+        <label for="eventPrices">Event Prices</label>
+        <input type="text" maxlength="90" id="eventPrices" name="eventPrices" value="{{ event.getPrices() }}" style="width:calc(100% - 126px);">
+    {% endif %}
+
+    <br>
     <label for="trailer">YouTube Trailer</label>
     <input type="text" id="trailer" name="trailer" value="{{ event.getTrailer() }}">
     <img

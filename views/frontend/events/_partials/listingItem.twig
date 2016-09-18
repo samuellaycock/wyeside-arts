@@ -1,0 +1,87 @@
+<a href="{{ event.getEventUrl() }}" class="type--{{ event.getType() }}" style="background:none;">
+
+    <li class="wy-shows__show" style="border-bottom: 2px solid {{ event.getTypePrimaryColor() }}">
+
+        <div class="wy-show__img-container" style="background: url('{{ event.getMainImage().getThumbnailUrl() }}') no-repeat center center">
+            <span class="u-text-replace">{{ event.getTitle() }}</span>
+        </div>
+
+        <ul class="wy-show__showings type--{{ event.getType() }}">
+            <li class="wy-showings__title">Upcoming Shows:</li>
+            {% for showing in event.getUpcomingShowings()|slice(0, 3) %}
+                <li>{{ showing.getTs()|date('l jS F: g:ia') }}</li>
+            {% endfor %}
+            {% if event.getUpcomingShowings()|length > 3 %}
+                <li style="padding-top:5px;font-size:0.85em;">...and {{ event.getUpcomingShowings()|length - 3 }} more</li>
+            {% endif %}
+        </ul>
+
+        <section class="wy-show__body">
+            <h3 class="wy-show__title type--{{ event.getType() }}">
+                {{ event.getTitle() }}
+            </h3>
+
+            {% if event.getType() == 1 %}
+
+                <ul class="wy-details__info--film">
+                    {% if event.getGenres()|length > 0 %}
+                        <li class="wy-details__info-item--film">
+                            {% for genre in event.getGenres() %}
+                                <span class="wy-details__info-item--genre">{{ genre.getName() }}</span>
+                            {% endfor %}
+                        </li>
+                        <li class="wy-details__info-item--divider"> | </li>
+                    {% endif %}
+
+                    {% if event.getRunningTime() %}
+                        <li class="wy-details__info-item--film">{{ event.getRunningTime() }} mins.</li>
+                    {% endif %}
+
+                    {% if event.getCertificate() %}
+                        <li class="wy-details__info-item--divider"> | </li>
+                        <li class="wy-details__info-item--film">Cert: {{ "(#{event.getCertificate()})" }}</li>
+                    {% endif %}
+                </ul>
+
+                <ul class="wy-details__info--talent">
+                    {% if event.getTagline() %}
+                        <li class="wy-details__info-item--star">
+                            {{ event.getTagline() }}
+                        </li>
+                    {% else %}
+                        <li class="wy-details__info-item--star">
+                            {{ event.getStarring() }}
+                        </li>
+                    {% endif %}
+                </ul>
+
+            {% else %}
+
+                <ul class="wy-details__info">
+                    {% if event.getTagline() %}
+                        <li class="wy-details__info-item">
+                            {{ event.getTagline() }}
+                        </li>
+                    {% else %}
+                        {% if event.getType() != 3 or event.getType() != 5 %}
+                            <li class="wy-details__info-item">{{ event.getPrices() }}</li>
+                        {% else %}
+                            <li class="wy-details__info-item">{{ event.getLocationName() }}</li>
+                        {% endif %}
+
+                        {% if event.getType() == 3 %}
+                            <li class="wy-details__info-item">Wyeside Community</li>
+                        {% elseif event.getType() == 5 %}
+                            <li class="wy-details__info-item">Wyeside Workshop</li>
+                        {% endif %}
+                    {% endif %}
+                </ul>
+
+            {% endif %}
+
+
+        </section>
+
+    </li>
+
+</a>
