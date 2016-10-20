@@ -1,4 +1,6 @@
 jQuery(document).ready(function($){
+	$("#headerBuffer").height($("#headerBar").height());
+
 	var resizing = false,
 		navigationWrapper = $('.wy-nav'),
 		navigation = navigationWrapper.children('.wy-nav__menu'),

@@ -108,7 +108,7 @@
     margin: 0 auto;
     padding: 0.75em !important;
     text-align: center;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     font-weight: 200;
     z-index: 1;
 }
@@ -182,7 +182,7 @@
 }
 .event-item-name {
     font-size: 1.2em;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
 }
 .wy-button--event {
     display: block;
@@ -191,7 +191,7 @@
     max-width: 260px;
     border-radius: 3px;
     text-align: center;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     -webkit-transition: all 0.3s ease-out;
     transition: all 0.3s ease-out;
 }
@@ -217,7 +217,7 @@
   background: #374045;
   color: #fff;
   font-size: 1.2em;
-  text-transform: uppercase; }
+  /* text-transform: uppercase; */ }
 .wy-body tr:last-child {
   border: none; }
 .wy-body tr:hover {

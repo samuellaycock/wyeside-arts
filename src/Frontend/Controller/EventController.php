@@ -73,7 +73,8 @@ class EventController extends FrontendController
             case 'gallery':
                 return 6;
             case 'classes':
-                return 10;
+            case 'workshop':
+                return 5;
             default:
                 return null;
         }

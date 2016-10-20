@@ -33,7 +33,7 @@
 .wy-details__title {
 	display: inline;
 	padding: 0.1em 0.3em;
-	text-transform: uppercase;
+	/* text-transform: uppercase; */
 	font-weight: 800; }
 .wy-details__title.type--1 {
 	padding: 0.1em 0;
@@ -54,7 +54,7 @@
 .wy-details__info-item--trailer {
 	display: inline; }
 .wy-details__info-item--film {
-	color: #B0D817 }
+	color: #333 }
 .wy-details__info-item--genre::after {
 	content: ','; }
 .wy-details__info-item--genre:last-child::after {
@@ -77,7 +77,7 @@
 	border-radius: 3px;
 	font-size: 1.2em;
 	font-weight: 700;
-	text-transform: uppercase;
+	/* text-transform: uppercase; */
 	-webkit-transition: all 0.2s ease-out;
 	transition: all 0.2s ease-out; }
 @media screen and (min-width: 650px) {
@@ -91,7 +91,7 @@
 	text-align: center;
   border-radius: 0 0 4px 0; }
 .wy-showings__title {
-	text-transform: uppercase;
+	/* text-transform: uppercase; */
 	font-weight: 200; }
 .wy-showings__list {
 	display: inline-block; }
@@ -107,7 +107,7 @@
       text-align: center; }
 	}
 .wy-synopsis__title {
-	text-transform: uppercase;
+	/* text-transform: uppercase; */
 	font-weight: 200; }
 .wy-trailer {
   position: relative;
@@ -155,7 +155,7 @@
 	}
 .wy-book__title {
 	color: #f53617;
-	text-transform: uppercase;
+	/* text-transform: uppercase; */
 	font-weight: 200; }
 .wy-booking__3d {
     margin-bottom: 0.8em;
