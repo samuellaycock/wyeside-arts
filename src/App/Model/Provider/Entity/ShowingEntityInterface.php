@@ -15,4 +15,7 @@ interface ShowingEntityInterface
     /** @return \DateTime */
     public function time();
 
+    /** @return int */
+    public function location();
+
 }

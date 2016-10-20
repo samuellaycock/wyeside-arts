@@ -11,6 +11,9 @@ abstract class AbstractShowing implements ShowingEntityInterface
     /** @var string */
     protected $showingId;
 
+    /** @var int */
+    protected $location;
+
     /** @var \DateTime */
     protected $time;
 
@@ -29,6 +32,14 @@ abstract class AbstractShowing implements ShowingEntityInterface
     public function time()
     {
         return $this->time;
+    }
+
+    /**
+     * @return int
+     */
+    public function location()
+    {
+        return $this->location;
     }
 
 

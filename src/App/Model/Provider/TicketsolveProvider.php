@@ -16,7 +16,7 @@ use App\Model\Repo\EventRepo;
 class TicketsolveProvider
 {
 
-    CONST DEFAULT_FEED_URL = 'https://wyeside.ticketsolve.com/feeds/shows.xml';
+    CONST DEFAULT_FEED_URL = 'https://wyeside.ticketsolve.com/shows.xml';
 
     /** @var string */
     protected $feedUrl;
@@ -49,7 +49,7 @@ class TicketsolveProvider
             $xml = simplexml_load_string($rawData);
 
             $events = [];
-            foreach ($xml->show as $event) { // ticketsolve call events shows!
+            foreach ($xml->venue->shows->show as $event) { // ticketsolve call events shows!
                 $events[] = new TicketsolveEvent($event);
             }
 

@@ -20,11 +20,26 @@ class TicketsolveShowing extends AbstractShowing
      */
     public function __construct(\SimpleXMLElement $data)
     {
-        $this->showingId = trim((string)$this->getDataValue($data, 'id', ''));
+        $this->showingId = trim((string)$this->getAttributeValue($data, 'id', ''));
 
         $this->time = new \DateTime(
-            (string)$this->getDataValue($data, 'date', '')
+            trim((string)$this->getDataValue($data, 'date_time_iso', ''))
         );
+
+        $location = trim($this->getDataValue($data, 'venue_layout', ''));
+        switch($location){
+            case "Castle Cinema":
+                $this->location = 0;
+                break;
+            case "Market Theatre":
+                $this->location = 1;
+                break;
+            case "Gallery":
+                $this->location = 2;
+                break;
+            default:
+                $this->location = null;
+        }
     }
 
     /***
@@ -40,5 +55,20 @@ class TicketsolveShowing extends AbstractShowing
         }
         return $default;
     }
+
+    /**
+     * @param $data
+     * @param $key
+     * @param null $default
+     * @return mixed
+     */
+    protected function getAttributeValue($data, $key, $default = null)
+    {
+        if(isset($data->attributes()->{$key})){
+            return $data->attributes()->{$key};
+        }
+        return $default;
+    }
+
 
 }

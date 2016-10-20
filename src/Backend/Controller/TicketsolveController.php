@@ -68,6 +68,7 @@ class TicketsolveController extends BackendController
                 $showing->setTicketsolveIt($tsShowing->showingId());
                 $showing->setType("2D");
                 $showing->setTs($tsShowing->time());
+                $showing->setLocation($tsShowing->location());
                 $event->addShowing($showing);
                 $this->em->persist($showing);
             }
@@ -80,6 +81,7 @@ class TicketsolveController extends BackendController
                 $showing->setTicketsolveIt($tsShowing->showingId());
                 $showing->setType("3D");
                 $showing->setTs($tsShowing->time());
+                $showing->setLocation($tsShowing->location());
                 $event->addShowing($showing);
                 $this->em->persist($showing);
             }
