@@ -1,5 +1,7 @@
 jQuery(document).ready(function($){
-	$("#headerBuffer").height($("#headerBar").height());
+	window.onresize = function() {
+		$("#headerBuffer").height($("#headerBar").height());
+	}
 
 	var resizing = false,
 		navigationWrapper = $('.wy-nav'),
