@@ -141,4 +141,17 @@
     <script src="/js/frontend/Booking.js" type="text/javascript"></script>
     <script src="/plugin/remodal/remodal.min.js"></script>
     <script type="text/javascript">var booking = new Booking();</script>
+	<script>
+		(function(d) {
+			var config = {
+				ticketsolveUrl: 'https://wyeside.ticketsolve.com',
+				redirectCookie: 'cookie-redirect',
+				iframe: 'ticketsolve-iframe',
+				cartBtn: 'ticketsolve-cart-btn',
+				cartCount: 'ticketsolve-cart-count',
+			},
+			g=document.createElement("script"),s=document.getElementsByTagName("script")[0],f=!1;g.src="https://d235gwso45fsgz.cloudfront.net/ticketbooth/iframe-handling.js",g.type="text/javascript",g.async="true",g.onload=g.onreadystatechange=function(){var e=this.readyState;if(!(f||e&&"complete"!=e&&"loaded"!=e)){f=!0;try{TicketsolveIframe.load(config)}catch(t){}}},s.parentNode.insertBefore(g,s);
+		}(document));
+	</script>
+
 {% endblock %}
