@@ -20,9 +20,8 @@ class MailchimpController extends FrontendController
     {
         $data = [];
 
-        $data['email'] = $this->app->post('email');
+        $data['email'] = $this->app->request->post('email');
 
-        /*
         if (!empty($this->app->request->post('firstName', ''))) {
             $data['firstName'] = $this->app->request->post('firstName');
         }
@@ -37,8 +36,7 @@ class MailchimpController extends FrontendController
            $view = 1;
         } catch (\Exception $e) {
             $view = 0;
-        }*/
-        $view = 1;
+        }
 
         $response = $this->app->response();
         $response->body($view);
