@@ -37,8 +37,10 @@ class MailchimpController extends FrontendController
         try {
             $mailChimp = new MailChimp(self::API_KEY);
             $responseData  = $mailChimp->post('lists/' . self::LIST_ID, [
-                    'email_address' => $this->app->request->post('email'),
-                    'status' => 'subscribed'
+                    'members' => [
+                        'email_address' => $this->app->request->post('email'),
+                        'status' => 'subscribed'
+                    ]
                 ]
             );
             if ($mailChimp->success()) {
