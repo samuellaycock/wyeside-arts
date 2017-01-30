@@ -18,7 +18,7 @@ class MailchimpController extends FrontendController
      */
     public function subscribeAction()
     {
-        $data = [];
+        /*$data = [];
 
         $data['email'] = $this->app->post('email');
 
@@ -40,11 +40,11 @@ class MailchimpController extends FrontendController
             $view = [
                 'success' => 0,
             ];
-        }
+        }*/
 
         $response = $this->app->response();
         $response->header('Content-Type', 'application/json');
-        $response->body(json_encode($view));
+        $response->body(json_encode(['success' => 1]));
     }
 
 }
