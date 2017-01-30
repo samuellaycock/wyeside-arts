@@ -33,9 +33,13 @@ class MailchimpController extends FrontendController
         try {
             $mailChimp = new \Mailchimp(self::API_KEY);
             $mailChimp->lists->subscribe(self::LIST_ID, $data);
-            $view = 1;
+            $view = [
+                'success' => 1,
+            ];
         } catch (\Exception $e) {
-            $view = 0;
+            $view = [
+                'success' => 0,
+            ];
         }*/
 
         $response = $this->app->response();

@@ -28,7 +28,8 @@ function Mailchimp() {
                 email: $(me.email).val()
             },
             complete: function (result) {
-                if (result == 1) {
+                var data = jQuery.parseJSON(result);
+                if (data.success == 1) {
                     $(me.form).hide(0);
                     $(me.response).show(0);
                 } else {
