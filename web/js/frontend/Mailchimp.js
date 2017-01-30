@@ -36,7 +36,7 @@ function Mailchimp() {
                     $(me.lastName).prop( "disabled", false );
                     $(me.email).prop( "disabled", false );
                     $(me.submit).prop( "disabled", false );
-                    $(me.message).innerHTML('<p>Sorry, there was a problem subscribing you to our list.</p>');
+                    $(me.message).html('<p>Sorry, there was a problem subscribing you to our list.</p>');
                 }
             }
         });
