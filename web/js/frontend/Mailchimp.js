@@ -17,7 +17,7 @@ function Mailchimp() {
         $(me.email).prop( "disabled", true );
         $(me.submit).prop( "disabled", true );
         $(me.message).show(0);
-        $(me.message).innerHTML('<img src="/img/frontend/spinner.gif">');
+        $(me.message).html('<img src="/img/frontend/spinner.gif">');
 
         $.ajax({
             url: '/email-subscribe',
