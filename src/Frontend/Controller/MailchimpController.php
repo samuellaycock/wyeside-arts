@@ -45,7 +45,6 @@ class MailchimpController extends FrontendController
         $response = $this->app->response();
         $response->header('Content-Type', 'application/json');
         $response->body(json_encode($view));
-
     }
 
 }
