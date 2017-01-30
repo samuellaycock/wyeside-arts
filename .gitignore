@@ -5,4 +5,6 @@ cache/
 vendor/
 web/event-assets/*
 _files/*
+_files
+_files/
 config/config.php

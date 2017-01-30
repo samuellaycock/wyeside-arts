@@ -40,12 +40,14 @@
 		<span class="wy-side__icon icon-email-mail-streamline"></span>
 		<h3 class="wy-side__item-title">Sign Up For<br>Our Newsletter</h3>
 		<hr>
-		<form>
+		<form id="email-form">
 			<input type="text" name="firstName" placeholder="First Name">
 			<input type="text" name="lastName" placeholder="Last Name">
 			<input type="email" name="email" placeholder="Email" required>
-			<input type="submit" value="Submit">
+			<input type="button" value="Sign Up" id="emailSubscribe">
+			<div id="email-message" style="display:none;"></div>
 		</form>
+		<div id="email-response" style="display:none;">Thank you, you're now subscribed to our Newsletter!</div>
 	</div>
 	<!-- Twitter -->
 	<div class="wy-side__item wy-side__item--twitter">

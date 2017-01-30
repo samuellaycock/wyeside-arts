@@ -13,7 +13,10 @@ class MailchimpController extends FrontendController
     CONST LIST_ID = "610218d82b";
 
 
-    public function homeAction()
+    /**
+     * @throws \Exception
+     */
+    public function subscribeAction()
     {
         $data = [];
 
@@ -30,9 +33,18 @@ class MailchimpController extends FrontendController
         try {
             $mailChimp = new \Mailchimp(self::API_KEY);
             $mailChimp->lists->subscribe(self::LIST_ID, $data);
+            $view = [
+                'success' => 1,
+            ];
         } catch (\Exception $e) {
-            throw new \Exception("Whoops, something went wrong!");
+            $view = [
+                'success' => 0,
+            ];
         }
+
+        $response = $this->app->response();
+        $response->header('Content-Type', 'application/json');
+        $response->body(json_encode($view));
 
     }
 

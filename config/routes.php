@@ -17,6 +17,15 @@ return [
         ]
     ],
 
+    [
+        'pattern' => '/email-subscribe',
+        'methods' => ['POST'],
+        'paths' => [
+            'controller' => '\Frontend\Controller\MailchimpController',
+            'action' => 'subscribeAction'
+        ]
+    ],
+
     /* -----------------------------------------------------------
      * Calendar
      * ----------------------------------------------------------- */
