@@ -36,11 +36,11 @@ class MailchimpController extends FrontendController
 
         try {
             $mailChimp = new MailChimp(self::API_KEY);
-            $responseData  = $mailChimp->post('lists/' . self::LIST_ID, [
-                json_encode([
+            $responseData  = $mailChimp->post('lists/' . self::LIST_ID, json_encode([
+                [
                     'email_address' => $this->app->request->post('email'),
                     'status' => 'subscribed',
-                ])
+                ]
             ]);
             if ($mailChimp->success()) {
                 $view = 1;
