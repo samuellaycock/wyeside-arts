@@ -11,7 +11,7 @@ use DrewM\MailChimp\MailChimp;
 class MailchimpController extends FrontendController
 {
 
-    CONST API_KEY = "25aeed6156f9e24991b9138c6fe5c4a2-us12";
+    CONST API_KEY = "25aeed6156f9e24991b9138c6fe5c4a2-us1";
     CONST LIST_ID = "610218d82b";
 
 
