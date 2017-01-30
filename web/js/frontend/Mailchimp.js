@@ -12,10 +12,10 @@ function Mailchimp() {
 
     $(this.submit).on("click", function () {
 
-        $(me.firstName).disable();
-        $(me.lastName.disable();
-        $(me.email).disable();
-        $(me.submit).hide(0);
+        $(me.firstName).prop( "disabled", true );
+        $(me.lastName).prop( "disabled", true );
+        $(me.email).prop( "disabled", true );
+        $(me.submit).prop( "disabled", true );
         $(me.message).show(0);
         $(me.message).innerHTML('<img src="/img/frontend/spinner.gif">');
 
@@ -32,10 +32,10 @@ function Mailchimp() {
                     $(me.form).hide(0);
                     $(me.response).show(0);
                 } else {
-                    $(me.firstName).enable();
-                    $(me.lastName).enable();
-                    $(me.email).enable();
-                    $(me.submit).enable(0);
+                    $(me.firstName).prop( "disabled", false );
+                    $(me.lastName).prop( "disabled", false );
+                    $(me.email).prop( "disabled", false );
+                    $(me.submit).prop( "disabled", false );
                     $(me.message).innerHTML('<p>Sorry, there was a problem subscribing you to our list.</p>');
                 }
             }
