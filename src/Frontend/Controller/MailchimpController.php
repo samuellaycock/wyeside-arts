@@ -18,11 +18,11 @@ class MailchimpController extends FrontendController
      */
     public function subscribeAction()
     {
-        /*
         $data = [];
 
         $data['email'] = $this->app->post('email');
 
+        /*
         if (!empty($this->app->request->post('firstName', ''))) {
             $data['firstName'] = $this->app->request->post('firstName');
         }
