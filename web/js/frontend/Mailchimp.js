@@ -43,4 +43,6 @@ function Mailchimp() {
     });
 }
 
-new Mailchimp();
+$( document ).ready(function() {
+    new Mailchimp();
+});
