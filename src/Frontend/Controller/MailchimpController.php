@@ -10,7 +10,7 @@ use DrewM\MailChimp\MailChimp;
 class MailchimpController extends FrontendController
 {
 
-    CONST API_KEY = "25aeed6156f9e24991b9138c6fe5c4a2";
+    CONST API_KEY = "25aeed6156f9e24991b9138c6fe5c4a2-us12";
     CONST LIST_ID = "610218d82b";
 
 
@@ -34,7 +34,7 @@ class MailchimpController extends FrontendController
        */
 
         try {
-         //  $mailChimp = new MailChimp(self::API_KEY);
+           $mailChimp = new MailChimp(self::API_KEY);
            //$mailChimp->post('lists/' .  self::LIST_ID . '/members', $data);
            $view = 1;
         } catch (\Exception $e) {
