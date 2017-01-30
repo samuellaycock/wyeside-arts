@@ -24,19 +24,18 @@ class MailchimpController extends FrontendController
         $data['email_address'] = $this->app->request->post('email');
         $data['email_type'] = 'html';
         $data['status'] = 'subscribed';
-        $data['merge_fields'] = [];
 
         if (!empty($this->app->request->post('firstName', ''))) {
-            $data['merge_fields']['FNAME'] = $this->app->request->post('firstName');
+            $data['firstName'] = $this->app->request->post('firstName');
         }
 
         if (!empty($this->app->request->post('lastName', ''))) {
-            $data['merge_fields']['LNAME'] = $this->app->request->post('lastName');
+            $data['lastName'] = $this->app->request->post('lastName');
         }
 
         try {
            $mailChimp = new MailChimp(self::API_KEY);
-           $mailChimp->post('/lists/' . self::LIST_ID, ['members' => [$data]]);
+           $mailChimp->post('/lists/members' . self::LIST_ID, [$data]);
            $view = 1;
         } catch (\Exception $e) {
             $view = 0;
