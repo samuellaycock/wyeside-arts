@@ -1,9 +1,7 @@
 function Mailchimp() {
     var me = this;
 
-    this.firstName = $("#firstName");
-    this.lastName = $("#lastName");
-    this.email = $("#email");
+    this.email = $("#email-email");
     this.submit = $("#emailSubscribe");
     this.form = $("#email-form");
     this.message = $("#email-message");
@@ -12,8 +10,6 @@ function Mailchimp() {
 
     $(this.submit).on("click", function () {
 
-        $(me.firstName).prop( "disabled", true );
-        $(me.lastName).prop( "disabled", true );
         $(me.email).prop( "disabled", true );
         $(me.submit).prop( "disabled", true );
         $(me.message).show(0);
@@ -23,8 +19,6 @@ function Mailchimp() {
             url: '/email-subscribe',
             method: 'POST',
             data: {
-                firstName: $(me.firstName).val(),
-                lastName: $(me.lastName).val(),
                 email: $(me.email).val()
             },
             complete: function (result) {
@@ -32,8 +26,6 @@ function Mailchimp() {
                     $(me.form).hide(0);
                     $(me.response).show(0);
                 } else {
-                    $(me.firstName).prop( "disabled", false );
-                    $(me.lastName).prop( "disabled", false );
                     $(me.email).prop( "disabled", false );
                     $(me.submit).prop( "disabled", false );
                     $(me.message).html('<p>Sorry, there was a problem subscribing you to our list.</p>');
