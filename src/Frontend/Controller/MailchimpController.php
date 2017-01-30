@@ -20,10 +20,10 @@ class MailchimpController extends FrontendController
      */
     public function subscribeAction()
     {
-        $data = [];
-
-        $data['email_address'] = $this->app->request->post('email');
-        $data['status'] = 'subscribed';
+        $data = [
+            'email_address' => $this->app->request->post('email'),
+            'status' => 'subscribed'
+        ];
 
         /* if (!empty($this->app->request->post('firstName', ''))) {
              $data['firstName'] = $this->app->request->post('firstName');
@@ -36,7 +36,7 @@ class MailchimpController extends FrontendController
 
         try {
             $mailChimp = new MailChimp(self::API_KEY);
-            $responseData  = $mailChimp->post('lists/' . self::LIST_ID . '/members', $data);
+            $responseData  = $mailChimp->post('lists/' . self::LIST_ID . '/members', [$data]);
             if ($mailChimp->success()) {
                 $view = 1;
             } else {
