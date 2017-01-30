@@ -27,7 +27,7 @@ function Mailchimp() {
                 lastName: $(me.lastName).val(),
                 email: $(me.email).val()
             },
-            always: function (result) {
+            complete: function (result) {
                 if (result.success == 1) {
                     $(me.form).hide(0);
                     $(me.response).show(0);
