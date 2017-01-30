@@ -35,7 +35,7 @@ class MailchimpController extends FrontendController
 
         try {
            $mailChimp = new MailChimp(self::API_KEY);
-           $mailChimp->post('/lists/members' . self::LIST_ID, [$data]);
+           $mailChimp->post('lists/' .  self::LIST_ID . '/members' . self::LIST_ID, [$data]);
            $view = 1;
         } catch (\Exception $e) {
             $view = 0;
