@@ -39,9 +39,9 @@ class MailchimpController extends FrontendController
             $responseData  = $mailChimp->post('lists/' . self::LIST_ID, json_encode([
                 [
                     'email_address' => $this->app->request->post('email'),
-                    'status' => 'subscribed',
+                    'status' => 'subscribed'
                 ]
-            ]);
+            ]));
             if ($mailChimp->success()) {
                 $view = 1;
             } else {
