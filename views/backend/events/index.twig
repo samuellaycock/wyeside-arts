@@ -3,6 +3,7 @@
 
 {% block head %}
     <link href="/css/backend/events/index.css" rel="stylesheet" type="text/css">
+    <script src="/js/backend/events/index.js" type="text/javascript"></script>
 {% endblock %}
 
 {% block title %}Events{% endblock %}
@@ -30,6 +31,10 @@
         </div>
     </div>
     <div class="block-light">
+        <div style="float:right">
+            <label for="eventSearch" style="text-align:right;padding-right:5px;">Search</label>
+            <input type="text" id="eventSearch" onkeyup="pageinator.update('events-table')">
+        </div>
         <div id="events-table">
             {% include "backend/events/_events-table.twig" %}
         </div>

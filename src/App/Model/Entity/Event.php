@@ -13,6 +13,11 @@ namespace App\Model\Entity;
 class Event
 {
 
+    CONST IMAGE_DIR = '/event-assets/images/';
+    CONST THUMBNAIL_DIR = '/event-assets/thumbnails/';
+    CONST FALLBACK_IMAGE = '/img/event-assets/default-banner.jpg';
+
+
     /**
      * @Id
      * @Column(type="integer", name="eventID")
@@ -130,13 +135,14 @@ class Event
 
     /**
      * @OneToMany(targetEntity="App\Model\Entity\Image", mappedBy="event")
+     * @OrderBy({"isMain" = "DESC"})
      * @var Image[]
      */
     protected $images;
 
     /**
      * @OneToMany(targetEntity="App\Model\Entity\Showing", mappedBy="event")
-     * @OrderBy({"ts" = "DESC"})
+     * @OrderBy({"ts" = "ASC"})
      * @var Showing[]
      */
     protected $showings;
@@ -435,23 +441,27 @@ class Event
     }
 
     /**
-     * @return string
-     */
-    public function getBannerImageUrl()
-    {
-        $imageName = '/event-assets/images/' . $this->getBanner() . $this->getBannerExt();
-        if (!is_file(APP_DIR . '/web' . $imageName)) {
-            return '/img/event-assets/default-banner.jpg';
-        }
-        return $imageName;
-    }
-
-    /**
      * @return Image[]
      */
     public function getImages()
     {
         return $this->images;
+    }
+
+    /**
+     * @return Image|null
+     */
+    public function getMainImage()
+    {
+        foreach ($this->getImages() as $image){
+            if($image->getIsMain()){
+                return $image;
+            }
+        }
+        foreach ($this->getImages() as $image){
+            return $image;
+        }
+        return null;
     }
 
     /**
@@ -468,8 +478,8 @@ class Event
      */
     public function removeImage(Image $image)
     {
-        foreach($this->images as $key => $i){
-            if($i == $image){
+        foreach ($this->images as $key => $i) {
+            if ($i == $image) {
                 unset($this->images[$key]);
                 return;
             }
@@ -477,12 +487,29 @@ class Event
     }
 
     /**
-     * @return Image[]
+     * @return Showing[]
      */
     public function getShowings()
     {
         return $this->showings;
     }
+
+    /**
+     * @return Showing[]
+     */
+    public function getUpcomingShowings()
+    {
+        $now = new \DateTime();
+        $rtn = [];
+        foreach($this->getShowings() as $showing){
+            if($showing->getTs()->format('Y-m-d') >= $now->format('Y-m-d')){
+                $rtn[] = $showing;
+            }
+        }
+        return $rtn;
+    }
+
+
 
     /**
      * @param Showing $showing
@@ -510,24 +537,44 @@ class Event
     /**
      * @return string
      */
+    public function getEventUrl()
+    {
+        return
+            '/events/' . $this->getId() . '/'
+            . urlencode(
+                strtolower(
+                    str_replace(" ", '-',
+                        trim($this->getTitle(), ' ')
+                    )
+                )
+            );
+    }
+
+
+    /**
+     * @return array
+     */
+    public static function getEventTypes()
+    {
+        return [
+            1 => 'Cinema',
+            2 => 'Live',
+            3 => 'Community',
+            4 => 'Satellite Live',
+            5 => 'Workshop',
+            6 => 'Gallery'
+        ];
+    }
+
+    /**
+     * @return string
+     */
     public function getTypeName()
     {
-        switch ($this->getType()) {
-            case 1:
-                return 'Cinema';
-            case 2:
-                return 'Live';
-            case 3:
-                return 'Community';
-            case 4:
-                return 'Satellite Live!';
-            case 5:
-                return 'Workshop';
-            case 6:
-                return 'Gallery';
-            default:
-                return 'Unknown';
+        if (isset(self::getEventTypes()[$this->getType()])) {
+            return self::getEventTypes()[$this->getType()];
         }
+        return 'Unknown';
     }
 
     /**

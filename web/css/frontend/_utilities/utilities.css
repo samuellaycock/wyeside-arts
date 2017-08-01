@@ -1,0 +1,72 @@
+/* --------------------------------
+   Utilities
+-------------------------------- */
+
+
+/* --------------------------------
+   Generic Utilities
+-------------------------------- */
+.u-clearfix::after {
+	/* Clearfix floats */
+	content: "";
+	display: table;
+	clear: both; }
+.u-text-replace {
+	/* replace text with image */
+	color: transparent;
+	text-indent: 100%;
+	overflow: hidden;
+	white-space: nowrap; }
+
+/* --------------------------------
+   Wyeside Utilities
+-------------------------------- */
+.type--1,
+.type--cinema,
+.type--2,
+.type--live,
+.type--3,
+.type--4,
+.type--satellite,
+.type--5,
+.type--classes,
+.type--6,
+.type--gallery {
+	color: #FFF; }
+.type--all {
+	color: #F53617; }
+.type--1,
+.type--cinema {
+	background-color: #B0D817; }
+.type__text--1,
+.type__text--cinema {
+	color: #B0D817; }
+.type--4,
+.type--satellite {
+	background-color: #E30769; }
+.type__text--4,
+.type__text--satellite {
+	color: #E30769; }
+.type--2,
+.type--live {
+	background-color: #01B6AD; }
+.type__text--2,
+.type__text--live {
+	color: #01B6AD; }
+.type--6,
+.type--gallery {
+	background-color: #A14DB2; }
+.type__text--6,
+.type__text--gallery {
+	color: #A14DB2; }
+.type--3,
+.type--5,
+.type--classes {
+	background-color: #999; }
+.type__text--3,
+.type__text--5,
+.type__text--classes {
+	color: #999; }
+.type--all {
+	background-color: #374045;
+}

@@ -1,0 +1,124 @@
+{% extends "frontend/_layouts/main.twig" %}
+
+{% block title %}
+    Events Calendar
+{% endblock %}
+
+{% block head %}
+    <link rel="stylesheet" href="/css/frontend/_partials/calendar.css">
+{% endblock %}
+
+{% block slider %}
+	{% include 'frontend/_partials/slider.twig' %}
+{% endblock %}
+
+{% block banner %}
+<section class="wy-banner type--{{ type }}">
+    <img src="/img/frontend/logos/calendar.png" alt="Calendar" />
+    <h1>Events<br />Calendar</h1>
+</section>
+{% endblock %}
+
+{% block content %}
+    <section class="wy-body">
+        <section>
+            <table>
+              <thead>
+                <th>Day</th>
+                <th>Castle Cinema</th>
+                <th>Market Theatre</th>
+                <th>The Gallery</th>
+              </thead>
+              <tbody>
+              {% for key, day in days %}
+                <tr>
+                  <td>
+                      {{ key|date("l") }}<br>{{ key|date("jS M") }}
+                  </td>
+                  <td>
+                    <ul>
+                      {% for showing in day %}
+                          {% if showing.getLocation() == 0 %}
+                              <li><a class="type--{{ showing.getEvent().getType() }} type--1">{{ showing.getTs()|date("g.ia") }} : {{ showing.getEvent().getTitle() }}</a></li>
+                          {% endif %}
+                      {% endfor %}
+                    </ul>
+                  </td>
+                  <td>
+                    <ul>
+                        {% for showing in day %}
+                            {% if showing.getLocation() == 0 %}
+                                <li><a href="{{ showing.getEvent().getEventUrl() }}" class="type--{{ showing.getEvent().getType() }} type--1">{{ showing.getTs()|date("g.ia") }} : {{ showing.getEvent().getTitle() }}</a></li>
+                            {% endif %}
+                        {% endfor %}
+                      </ul>
+                    </td>
+                    <td>
+                      <ul>
+                          {% for showing in day %}
+                              {% if showing.getLocation() == 1 %}
+                                  <li><a href="{{ showing.getEvent().getEventUrl() }}" class="type--{{ showing.getEvent().getType() }} type--1">{{ showing.getTs()|date("g.ia") }} : {{ showing.getEvent().getTitle() }}</a></li>
+                              {% endif %}
+                          {% endfor %}
+                      </ul>
+                    </td>
+                    <td>
+                      <ul>
+                          {% for showing in day %}
+                              {% if showing.getLocation() == 2 %}
+                                  <li><a href="{{ showing.getEvent().getEventUrl() }}" class="type--{{ showing.getEvent().getType() }} type--1">{{ showing.getTs()|date("g.ia") }} : {{ showing.getEvent().getTitle() }}</a></li>
+                              {% endif %}
+                          {% endfor %}
+                      </ul>
+                    </td>
+                  </tr>
+                {% endfor %}
+            </table>
+        </section>
+        <section>
+            <hr />
+            <h2 class="wy-body__title">Explore What's On</h2>
+            <ul class="u-clearfix">
+                <li class="wy-button--logo">
+                    <a href="/events/cinema">
+                        <img src="/img/frontend/logos/cinema-logo.jpg" alt="Wyeside Cinema" />
+                    </a>
+                </li>
+                <li class="wy-button--logo">
+                    <a href="/events/live">
+                        <img src="/img/frontend/logos/live-logo.jpg" alt="Wyeside Live" />
+                    </a>
+                </li>
+                <li class="wy-button--logo">
+                    <a href="/events/satellite">
+                        <img src="/img/frontend/logos/satellite-logo.jpg" alt="Wyeside Satellite Live!" />
+                    </a>
+                </li>
+                <li class="wy-button--logo">
+                    <a href="/events/classes">
+                        <img src="/img/frontend/logos/classes-logo.jpg" alt="Wyeside Classes" />
+                    </a>
+                </li>
+                <li class="wy-button--logo">
+                    <a href="/events/gallery">
+                        <img src="/img/frontend/logos/gallery-logo.jpg" alt="Wyeside Gallery" />
+                    </a>
+                </li>
+                <li class="wy-button--logo wy-logo--cal">
+                    <a href="/events/gallery">
+                        <img src="/img/frontend/logos/calendar-logo.jpg" alt="Wyeside Gallery" />
+                    </a>
+                </li>
+            </ul>
+            <ul class="wy-button__container u-clearfix">
+                <li class="wy-button"><a href="/events/all">Explore All Events</a></li>
+            </ul>
+            <hr />
+        </section>
+    </section>
+{% endblock %}
+
+{% block scripts %}
+<script src="/plugin/underscore/underscore.min.js" type="text/javascript"></script>
+<script src="/plugin/moment/moment.min.js" type="text/javascript"></script>
+{% endblock %}

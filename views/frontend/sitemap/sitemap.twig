@@ -1,0 +1,69 @@
+{% extends "frontend/_layouts/main.twig" %}
+
+{% block title %}
+    Sitemap
+{% endblock %}
+
+{% block head %}
+  <style>
+    .wy-body {
+      text-align: center; }
+  </style>
+{% endblock %}
+
+{% block banner %}
+<section class="wy-banner">
+    <img src="/img/wyeside-logo.png" alt="Wyeside Arts Centre" />
+    <h1>Sitemap</h1>
+</section>
+{% endblock %}
+
+{% block content %}
+<section class="wy-body">
+    <h1 class="wy-body__title" style="color:#f53617">Site Pages</h1>
+    <ul>
+        <li><a href="/events/all">All Calendar</a></li>
+        <li><a href="/events/cinema">Cinema Events</a></li>
+        <li><a href="/events/live">Live Events</a></li>
+        <li><a href="/events/satellite">Satelite Live! Events</a></li>
+        <li><a href="/events/classes">Community Events</a></li>
+        <li><a href="/events/classes">Workshop Events</a></li>
+        <li><a href="/events/gallery">Gallery Events</a></li>
+        <li><a href="/calendar">Events Calendar</a></li>
+        <li><a href="/visit/find">How to Find Us</a></li>
+        <li><a href="/visit/food">Food &amp; Drink</a></li>
+        <li><a href="/visit/times">Opening Hours</a></li>
+        <li><a href="/visit/booking">Booking Information</a></li>
+        <li><a href="/visit/auditoriums">Our Auditoriums</a></li>
+        <li><a href="/support/volunteers">Our Volunteers</a></li>
+        <li><a href="/support/friends">Our Friends</a></li>
+        <li><a href="/support/funders">Our Funders</a></li>
+        <li><a href="/about/who">Who We Are</a></li>
+        <li><a href="/about/history">Our History</a></li>
+        <li><a href="/about/history/1870">History: 1870 - 1877</a></li>
+        <li><a href="/about/history/1877">History: 1877 - 1911</a></li>
+        <li><a href="/about/history/1911">History: 1911 - 1971</a></li>
+        <li><a href="/about/history/1971">History: 1971 - 1999</a></li>
+        <li><a href="/about/history/2000">History: 2000 - Present</a></li>
+        <li><a href="/about/team">Our Team</a></li>
+        <li><a href="/about/jobs">Job Opportunities</a></li>
+        <li><a href="/about/news">News &amp; Press</a></li>
+        <li><a href="/hire/technical">Technical Hire</a></li>
+        <li><a href="/hire/costume">Costume Hire</a></li>
+    </ul>
+    <br />
+
+    <hr />
+
+    <h1 class="wy-body__title" style="color:#f53617">Event Pages</h1>
+    <ul>
+        {% for event in flash.events %}
+        <li><a href="{{ event.getEventUrl() }}">{{ event.getTitle() }}</a></li>
+        {% endfor %}
+    </ul>
+    <br />
+
+    <hr />
+
+</section>
+{% endblock %}

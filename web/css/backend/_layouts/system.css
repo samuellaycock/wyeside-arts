@@ -14,17 +14,20 @@ html, body {
     bottom: 0;
     left: 0;
     background-color: #273A4A;
-    padding-top:80px;
 }
 
 #logo {
-    position: absolute;
-    left:10px;
-    top:20px;
+    text-align: center;
+    padding: 20px 0;
+}
+
+#logo img {
+    -webkit-filter: brightness(0) invert(1);
+    filter: brightness(0) invert(1);
 }
 
 #navigation {
-    padding-top:20px;
+    padding-top: 20px;
     letter-spacing: 1px;
 }
 
@@ -35,39 +38,39 @@ html, body {
 #navigation ul li a {
     display: block;
     text-decoration: none;
-    color:#a7b1c2;
-    padding-top:12px;
-    padding-bottom:12px;
-    padding-left:12px;
-    font-size:0.9em;
-    font-weight:bold;
+    color: #a7b1c2;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    padding-left: 12px;
+    font-size: 0.9em;
+    font-weight: bold;
     border-bottom: dashed 1px transparent;
     border-top: dashed 1px transparent;
 }
 
 #navigation ul li a:hover {
-   background-color: #385470;
+    background-color: #385470;
 }
+
 #navigation ul .current-module a {
     background-color: #385470;
-    border-color:#ccc;
+    border-color: #ccc;
 }
 
 #navigation ul li a img {
-    width:24px;
-    height:24px;
-    margin-right:10px;
+    width: 24px;
+    height: 24px;
+    margin-right: 10px;
     vertical-align: middle;
 }
 
-
 #content {
-    margin-left:180px;
+    margin-left: 180px;
     position: relative;
 }
 
-.block-dark, .block-light {
-    padding:15px;
+.block-dark, .block-light, .block-transparent {
+    padding: 15px;
     position: relative;
 }
 
@@ -82,20 +85,27 @@ html, body {
 }
 
 .title-button {
-    padding:8px 20px;
-    color:#ffffff;
+    padding: 8px 20px;
+    color: #ffffff;
     border-radius: 3px;
-    background-color:#46B7A0;
+    background-color: #46B7A0;
     display: inline-block;
     vertical-align: bottom;
     text-align: center;
-    margin-left:10px;
-    cursor:pointer;
-    font-size:1.2em;
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 1.2em;
     letter-spacing: 1px;
 }
 
 .title-button:hover {
     background-color: #3B8273;
+}
+
+.pointer {
+    cursor: pointer;
+}
+.fade-on-hover:hover {
+    opacity: 0.8;
 }
 

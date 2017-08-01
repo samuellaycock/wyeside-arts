@@ -6,9 +6,11 @@
     <label for="ticketsolve">Ticketsolve ID</label>
     <input type="text" id="ticketsolve" name="ticketsolve" value="{{ event.getTicketsolve() }}">
 
-    <br>
-    <label for="ticketsolve">Ticketsolve 3D</label>
-    <input type="text" id="ticketsolve3D" name="ticketsolve3D" value="{{ event.getTicketsolve3D() }}">
+    {% if event.getType() == 1 %}
+        <br>
+        <label for="ticketsolve">Ticketsolve 3D</label>
+        <input type="text" id="ticketsolve3D" name="ticketsolve3D" value="{{ event.getTicketsolve3D() }}">
+    {% endif %}
 
     <br>
     <label for="trailer">YouTube Trailer</label>

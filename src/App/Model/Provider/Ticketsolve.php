@@ -6,6 +6,9 @@
 namespace App\Model\Provider;
 use App\Model\Entity\Event;
 use App\Model\Entity\Showing;
+use App\Model\Provider\Action\AlreadySyncedAction;
+use App\Model\Provider\Ticketsolve\TicketsolveModel;
+use App\Model\Repo\EventRepo;
 
 /**
  * Class Ticketsolve
@@ -19,63 +22,84 @@ class Ticketsolve
     /** @var string */
     protected $feedUrl;
 
+    /** @var EventRepo */
+    protected $eventRepo;
+
 
     /**
      * Ticketsolve constructor.
      * @param null $feedUrl
+     * @param EventRepo $eventRepo
      */
-    public function __construct($feedUrl = null)
+    public function __construct($feedUrl = null, EventRepo $eventRepo)
     {
         if(null === $feedUrl){
             $this->feedUrl = self::DEFAULT_FEED_URL;
         }else{
             $this->feedUrl = (string)$feedUrl;
         }
+
+        $this->eventRepo = $eventRepo;
     }
 
     /**
-     * @return mixed
+     * @return TicketsolveModel[]
      */
-    public function downloadFeed()
+    public function downloadFeedModels()
     {
         $rawData = file_get_contents($this->feedUrl);
         $xml = simplexml_load_string($rawData);
 
         $events = [];
         foreach($xml->show as $show){
-            $events[] = $this->buildEvent($show);
+            $events[] = new TicketsolveModel($show, true);
         }
 
-        echo "<pre>";
-        print_r($events);
-        die();
+        return $events;
+    }
 
-        return print_r($events, 1);
+    /**
+     * @param $ticksolveId
+     * @return TicketsolveModel
+     * @throws \Exception
+     */
+    public function downloadFeedModelForId($ticksolveId)
+    {
+        $rawData = file_get_contents($this->feedUrl);
+        $xml = simplexml_load_string($rawData);
+
+        foreach($xml->show as $show){
+            $event = new TicketsolveModel($show, true);
+            if($event->getTicketsolveId() == $ticksolveId){
+                return $event;
+            }
+        }
+
+        throw new \Exception("Ticketsolve event not found for id: " . $ticksolveId);
+    }
+
+
+    public function estimateFeedActions()
+    {
+        $actions = [];
+        foreach($this->downloadFeedModels() as $model){
+            if($this->eventRepo->eventExistsForTicketsolve($model->getTicketsolveId())){
+                $actions[] = new AlreadySyncedAction($model);
+            }elseif($this->similarActionExists($model)){
+
+            }
+        }
     }
 
 
     /**
-     * @param \SimpleXMLElement $show
-     * @return Event
+     * @param TicketsolveModel $model
      */
-    protected function buildEvent(\SimpleXMLElement $show)
+    protected function similarActionExists(TicketsolveModel $model)
     {
-        //todo:event number
-        $event = new Event();
-        $event->setTicketsolve((string)$show->id);
-        $event->setTitle(trim((string)$show->name));
-        $event->setType((string)$show->event_category); //todo convert to db int
-        $event->setDescription((string)$show->long_description);
-
-        if(isset($show->upcoming_events->event)) {
-            foreach ($show->upcoming_events->event as $showingData) {
-                $showing = new Showing();
-                $showing->setTs(new \DateTime($showingData->date));
-                $event->addShowing($showing);
-            }
-        }
-
-        return $event;
+        
     }
+
+
 
 }

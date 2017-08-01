@@ -6,15 +6,17 @@
 namespace Backend\Controller;
 
 
-use App\Controller\AppController;
 use App\Model\Entity\Event;
 use App\Model\Entity\Image;
 use App\Model\Repo\EventRepo;
 use App\Util\ImageUploader;
 use App\Util\StringUtil;
 
-
-class EventUploadsController extends AppController
+/**
+ * Class EventUploadsController
+ * @package Backend\Controller
+ */
+class EventUploadsController extends BackendController
 {
 
     /**
@@ -28,17 +30,25 @@ class EventUploadsController extends AppController
 
     public function bannerAction()
     {
-        $id = $this->app->router->getCurrentRoute()->getParam('id');
+       /* $id = $this->app->router->getCurrentRoute()->getParam('id');
         $event = $this->getEventRepo()->find($id);
         $event->removeCurrentBannerIfExists();
 
         $uploader = new ImageUploader($_FILES['file']['tmp_name'], $_FILES['file']['name']);
+        $newFilename = 'banner-' . $this->chooseNewImageName($event);
         $uploader->fit(1920, 800);
-        $filename = $uploader->save(APP_DIR . '/web/event-assets/images/', 'banner-' . $this->chooseNewImageName($event));
+        $filename = $uploader->save(APP_DIR . '/web/event-assets/images/', $newFilename);
+        $uploader->fit(300, 300);
+        $uploader->save(APP_DIR . '/web/event-assets/thumbnails/', $newFilename, false);
+
 
         $event->setBanner($filename);
         $this->em->persist($event);
         $this->em->flush();
+       */
+
+        $id = $this->app->router->getCurrentRoute()->getParam('id');
+        $event = $this->getEventRepo()->find($id);
         $this->app->render('backend/events/_partials/banner-image.twig', [
             'event' => $event,
             'imageReload' => true
@@ -53,8 +63,9 @@ class EventUploadsController extends AppController
 
         foreach($_FILES['file']['name'] as $key => $file){
             $uploader = new ImageUploader($_FILES['file']['tmp_name'][$key], $_FILES['file']['name'][$key]);
+            $uploader->fit(1920, 800);
             $filename = $uploader->save(APP_DIR . '/web/event-assets/images/', $this->chooseNewImageName($event) . '-' . StringUtil::genRndStr(8));
-            $uploader->fit(300, 300);
+            $uploader->fit(480, 200);
             $uploader->save(APP_DIR . '/web/event-assets/thumbnails/', $filename, false);
             $eventImage = new Image;
             $eventImage->setName($filename);

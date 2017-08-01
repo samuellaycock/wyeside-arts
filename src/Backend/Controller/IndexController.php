@@ -6,15 +6,16 @@
 namespace Backend\Controller;
 
 
-use App\Controller\AppController;
-
-
-class IndexController extends AppController
+/**
+ * Class IndexController
+ * @package Backend\Controller
+ */
+class IndexController extends BackendController
 {
 
     public function indexAction()
     {
-        $this->app->render('backend/index.twig');
+        $this->app->redirect('/system/events');
     }
 
 }

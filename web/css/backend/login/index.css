@@ -1,9 +1,20 @@
+body {
+    background-color: #273A4A;
+}
+
 #wrapper {
     text-align: left;
 }
 
 #banner {
     width: 100%;
+    border-top:solid 10px;
+    border-bottom:solid 10px;
+}
+
+#heading {
+    height:120px;
+    text-align: center;
 }
 
 #loginForm .error {
@@ -15,11 +26,12 @@
 
 #loginForm {
     border: solid 6px #000;
+    border-radius: 4px;
     width: 400px;
     display: inline-block;
-    margin: 0;
-    text-align: left;
-    border-radius: 3px;
+    margin-top:80px;
+    padding: 30px 15px;
+    text-align: center;
 }
 
 #loginForm h1 {
@@ -36,11 +48,4 @@
     padding: 12px;
     font-size: 1.1em;
     width: 100%;
-}
-
-#heading {
-    background-color: #31373F;
-    border-bottom: solid 3px #171313;
-    padding: 20px;
-    height: 70px;
 }

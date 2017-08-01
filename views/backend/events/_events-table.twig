@@ -1,6 +1,8 @@
 {% import "backend/_macros/pageNumbers.twig" as pages %}
 
-{{ pages.pageNumbers("events-table", eventsPaginated.getRefreshUrl(), eventsPaginated.getTotalPages(), eventsPaginated.getPage()) }}
+<div style="float:left;">
+{{ pages.pageNumbers("events-table", eventsPaginated.getRefreshUrl(), eventsPaginated.getTotalPages(), eventsPaginated.getPage(), "eventQueryParams") }}
+</div>
 <table class="system-table table-striped">
     <tr>
         <th style="width:120px;">Type</th>
@@ -9,11 +11,11 @@
         <th style="width:90px;">Status</th>
     </tr>
     {% for event in eventsPaginated.getResults() %}
-        <tr onclick="window.location.href='/system/events/{{ event.getId() }}'">
+        <tr>
             <td style="color:#fff;background-color:{{ event.getTypePrimaryColor() }}">
                 <span class="bold">{{ event.getTypeName() }}</span>
             </td>
-            <td>{{ event.getTitle() }}</td>
+            <td><a style="cursor:pointer;" onclick="window.location.href='/system/events/{{ event.getId() }}'">{{ event.getTitle() }}</a></td>
             <td>{{ event.getCreatedTs()|date("jS M Y \\@ g:ia") }}</td>
             <td>
                 {% if event.getStatus() == true %}
@@ -25,4 +27,4 @@
         </tr>
     {% endfor %}
 </table>
-{{ pages.pageNumbers("events-table", eventsPaginated.getRefreshUrl(), eventsPaginated.getTotalPages(), eventsPaginated.getPage()) }}
+{{ pages.pageNumbers("events-table", eventsPaginated.getRefreshUrl(), eventsPaginated.getTotalPages(), eventsPaginated.getPage(), "eventQueryParams")  }}

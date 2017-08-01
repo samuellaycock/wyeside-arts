@@ -6,13 +6,16 @@
 namespace Backend\Controller;
 
 
-use App\Controller\AppController;
+use App\Hydrator;
 use App\Model\Entity\Showing;
 use App\Model\Repo\EventRepo;
 use App\Model\Repo\ShowingRepo;
 
-
-class EventShowingsController extends AppController
+/**
+ * Class EventShowingsController
+ * @package Backend\Controller
+ */
+class EventShowingsController extends BackendController
 {
 
     /**
@@ -66,6 +69,17 @@ class EventShowingsController extends AppController
         $this->em->remove($showing);
         $this->em->flush();
         $this->app->render('backend/events/_partials/event-showings-table.twig', ['event' => $event]);
+    }
+
+
+    public function editShowingAction()
+    {
+        $id = $this->app->router->getCurrentRoute()->getParam('id');
+        $showing = $this->getShowingRepo()->find($id);
+        $hydrator = new Hydrator();
+        $hydrator->hydrate($showing, $this->app->request->params());
+        $this->em->persist($showing);
+        $this->em->flush($showing);
     }
 
 }

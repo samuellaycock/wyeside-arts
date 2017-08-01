@@ -1,0 +1,236 @@
+<header class="wy-header animate-search">
+	<a class="wy-header__logo
+		{% if type and type != 'all' %}
+		type--{{type}}
+		{% elseif event.type() %}
+		type--{{event.getType()}}
+		{% endif %}" href="/">
+	</a>
+	<nav class="wy-nav">
+		<a href="#search" class="wy-nav__button--search u-text-replace" style="display: none;">Search</a>
+
+		<ul class="wy-nav__menu">
+			<li class="is-dropdown">
+				<a class="wy-nav__menu-link" href="#0">What's On</a>
+				<ul class="wy-nav__menu-list--icons events-list is-hidden">
+          <li class="wy-nav__button--back"><a href="#0">Menu</a></li>
+          <li>
+            <a class="wy-nav__menu-item wy-nav__menu-item--locate type--1" href="/events/cinema">
+              <h3>Cinema</h3>
+            </a>
+          </li>
+					<li>
+            <a class="wy-nav__menu-item wy-nav__menu-item--time type--2" href="/events/live">
+              <h3>Live</h3>
+            </a>
+          </li>
+          <li>
+            <a class="wy-nav__menu-item wy-nav__menu-item--time type--4" href="/events/satellite">
+              <h3>Satellite Live!</h3>
+            </a>
+          </li>
+          <li>
+            <a class="wy-nav__menu-item wy-nav__menu-item--ticket type--3" href="/events/classes">
+              <h3>Classes</h3>
+            </a>
+          </li>
+          <li>
+            <a class="wy-nav__menu-item wy-nav__menu-item--audit type--6" href="/events/gallery">
+              <h3>Gallery</h3>
+            </a>
+          </li>
+          <li>
+            <a class="wy-nav__menu-item normal-link" href="/events/all">
+              <h3>Explore All Events</h3>
+            </a>
+          </li>
+					<li>
+            <a class="wy-nav__menu-item normal-link" href="/calendar">
+              <h3>Events Calendar</h3>
+            </a>
+          </li>
+        </ul>
+			</li>
+			<li class="is-dropdown">
+				<a class="wy-nav__menu-link" href="#0">Your Visit</a>
+				<ul class="wy-nav__menu-list--icons is-hidden">
+          <li class="wy-nav__button--back"><a href="#0">Menu</a></li>
+          <!-- Find Us -->
+          <li>
+            <a class="wy-nav__menu-item wy-nav__menu-item--locate" href="/visit/find">
+              <h3>How to Find Us</h3>
+            </a>
+          </li>
+          <!-- Food & Drink -->
+          <li>
+            <a class="wy-nav__menu-item wy-nav__menu-item--food" href="/visit/food">
+              <h3>Food &amp; Drink</h3>
+            </a>
+          </li>
+          <!-- Opening Hours -->
+          <li>
+            <a class="wy-nav__menu-item wy-nav__menu-item--time" href="/visit/times">
+              <h3>Opening Hours</h3>
+            </a>
+          </li>
+          <!-- Booking Info -->
+          <li>
+            <a class="wy-nav__menu-item wy-nav__menu-item--ticket" href="/visit/booking">
+              <h3>Booking Information</h3>
+            </a>
+          </li>
+          <!-- Auditoriums -->
+          <li>
+            <a class="wy-nav__menu-item wy-nav__menu-item--audit" href="/visit/auditoriums">
+              <h3>Our Auditoriums</h3>
+            </a>
+          </li>
+          <!-- Access -->
+          <li>
+            <a class="wy-nav__menu-item wy-nav__menu-item--access" href="/visit/access">
+              <h3>Access</h3>
+            </a>
+          </li>
+        </ul>
+			</li>
+			<li class="is-dropdown">
+				<a class="wy-nav__menu-link" href="#0">Support Us</a>
+				<ul class="wy-nav__menu-list--icons is-hidden">
+		          <li class="wy-nav__button--back"><a href="#0">Menu</a></li>
+		          <!-- Volunteers -->
+		          <li>
+		            <a class="wy-nav__menu-item wy-nav__menu-item--1" href="/support/volunteers">
+		              <h3>Volunteers</h3>
+		            </a>
+		          </li>
+		          <!-- Friends -->
+		          <li>
+		            <a class="wy-nav__menu-item wy-nav__menu-item--2" href="/support/friends">
+		              <h3>Friends</h3>
+		            </a>
+		          </li>
+		          <!-- Funders -->
+		          <li>
+		            <a class="wy-nav__menu-item wy-nav__menu-item--3" href="/support/funders">
+		              <h3>Funders</h3>
+		            </a>
+		          </li>
+		        </ul>
+			</li>
+			<li class="is-dropdown">
+				<a class="wy-nav__menu-link" href="#0">About Us</a>
+				<ul class="wy-nav__menu-list--icons is-hidden">
+		          <li class="wy-nav__button--back"><a href="#0">Menu</a></li>
+		          <!-- Who We Are -->
+		          <li>
+		            <a class="wy-nav__menu-item wy-nav__menu-item--1" href="/about/who">
+		              <h3>Who We Are</h3>
+		            </a>
+		          </li>
+		          <!-- History -->
+		          <li>
+		            <a class="wy-nav__menu-item wy-nav__menu-item--2" href="/about/history">
+		              <h3>Our History</h3>
+		            </a>
+		          </li>
+		          <!-- Team -->
+		          <li>
+		            <a class="wy-nav__menu-item wy-nav__menu-item--3" href="/about/team">
+		              <h3>Our Team</h3>
+		            </a>
+		          </li>
+		          <!-- Jobs -->
+		          <li>
+		            <a class="wy-nav__menu-item wy-nav__menu-item--4" href="/about/jobs">
+		              <h3>Job Opportunities</h3>
+		            </a>
+		          </li>
+		        </ul>
+			</li>
+			<li class="is-dropdown">
+				<a class="wy-nav__menu-link" href="#0">Hire</a>
+				<ul class="wy-nav__menu-list--icons is-hidden">
+		          <li class="wy-nav__button--back"><a href="#0">Menu</a></li>
+		          <!-- Tech Info -->
+		          <li>
+		            <a class="wy-nav__menu-item wy-nav__menu-item--1" href="/hire/technical">
+		              <h3>Technical Information</h3>
+		            </a>
+		          </li>
+		          <!-- Costume Hire -->
+		          <li>
+		            <a class="wy-nav__menu-item wy-nav__menu-item--2" href="/hire/costume">
+		              <h3>Costume Hire</h3>
+		            </a>
+		          </li>
+		        </ul>
+			</li>
+			<li class="wy-nav__phone">
+				<a href="tel:01982 552 555"><span class="icon-ticket" style="font-size:0.8em"></span> 01982 552 555</a>
+			</li>
+		</ul>
+	</nav>
+
+	<a href="#0" class="wy-nav__button--menu u-text-replace">Menu<span></span></a>
+</header>
+
+<div id="search" class="wy-search" style="display: none;">
+	<form>
+		<input type="search" placeholder="Search...">
+
+		<div class="wy-search__select">
+			<span>in</span>
+			<select name="select-category">
+				<option value="all-categories">all Categories</option>
+				<option value="category1">all Events</option>
+				<option value="category2">Cinema</option>
+				<option value="category3">Live</option>
+				<option value="category4">Satellite Live!</option>
+				<option value="category5">Workshops</option>
+				<option value="category6">Gallery</option>
+				<option value="category3">News</option>
+			</select>
+			<span class="selected-value">all Categories</span>
+		</div>
+	</form>
+
+	<div class="wy-search__suggestions">
+		<div class="wy-search__news">
+			<h3>Latest News</h3>
+			<ul>
+				<li>
+					<a class="image-wrapper" href="#0"></a>
+					<h4><a class="cd-nowrap" href="#0">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</a></h4>
+					<time datetime="2016-01-12">Feb 03, 2016</time>
+				</li>
+
+				<li>
+					<a class="image-wrapper" href="#0"></a>
+					<h4><a class="cd-nowrap" href="#0">Incidunt voluptatem adipisci voluptates fugit beatae culpa eum, distinctio, assumenda est ad</a></h4>
+					<time datetime="2016-01-12">Jan 28, 2016</time>
+				</li>
+
+				<li>
+					<a class="image-wrapper" href="#0"></a>
+					<h4><a class="cd-nowrap" href="#0">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iusto, esse.</a></h4>
+					<time datetime="2016-01-12">Jan 12, 2016</time>
+				</li>
+			</ul>
+		</div>
+
+		<div class="wy-search__links">
+			<h3>Quick Links</h3>
+			<ul>
+				<li><a href="#0">Find a store</a></li>
+				<li><a href="#0">Accessories</a></li>
+				<li><a href="#0">Warranty info</a></li>
+				<li><a href="#0">Support</a></li>
+				<li><a href="#0">Contact us</a></li>
+			</ul>
+		</div>
+	</div>
+
+	<a href="#0" class="wy-search__button--close u-text-replace">Close Form</a>
+</div>
+
+<div class="wy-header__overlay"></div>

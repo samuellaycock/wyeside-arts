@@ -1,0 +1,72 @@
+<aside class="wy-side">
+	<!-- Box Office -->
+	<div class="wy-side__item wy-side__item--times">
+		<span class="wy-side__icon icon-ticket"></span>
+		<h3 class="wy-side__item-title wy-side__item-title__bo">Box Office<br>Opening Times</h3>
+		<hr>
+		<table>
+			<tr class="wy-side__t-row">
+				<td>Mon:</td>
+				<td>Closed</td>
+			</tr>
+			<tr>
+				<td>Tues - Fri:</td>
+				<td>12.30pm - 9.00pm</td>
+			</tr>
+			<tr>
+				<td>Sat &amp; Sun:</td>
+				<td>2.30pm - 9.00pm</td>
+			</tr>
+		</table>
+		<hr>
+		<span style="float:right;"><a href="tel:01982 552 555"><span class="icon-call-phone" style="vertical-align: middle;"></span> 01982 552 555</a></span>
+	</div>
+	<!-- Calendar Link -->
+	<div class="wy-side__item wy-side__item--calendar">
+		<a href="/calendar">
+			<img src="/img/frontend/logos/calendar-logo.png" alt="Events Calendar" />
+			<h3 class="wy-side__item-title">Explore the Events<br>Calendar</h3>
+		</a>
+	</div>
+	<!-- Brochure -->
+	<div class="wy-side__item wy-side__item--brochure">
+		<a href="{{ flash.brochureURL }}">
+			<span class="wy-side__icon icon-book-read-streamline"></span>
+			<h3 class="wy-side__item-title">See Our Latest<br>Brochure</h3>
+		</a>
+	</div>
+	<!-- Email Signup -->
+	<div class="wy-side__item wy-side__item--email">
+		<span class="wy-side__icon icon-email-mail-streamline"></span>
+		<h3 class="wy-side__item-title">Sign Up For<br>Our Newsletter</h3>
+		<hr>
+		<form>
+			<input type="text" placeholder="First Name" required>
+			<input type="text" placeholder="Last Name" required>
+			<input type="email" placeholder="Email" required>
+			<input type="submit" value="Submit">
+		</form>
+	</div>
+	<!-- Twitter -->
+	<div class="wy-side__item wy-side__item--twitter">
+		<div class="wy-twitter__bubble">
+			<span class="tweet">{{ flash.latestTweet.text|raw }}</span>
+		</div>
+		<span class="icon-social-twitter"></span>
+		<a href="https://twitter.com/Wyeside" class="twitter-link">@Wyeside</a>
+	</div>
+	<!-- Facebook -->
+	<div class="wy-side__item wy-side__item--fb">
+		<a href="https://www.facebook.com/pages/Wyeside-Arts-Centre/117385517546">
+			<span class="wy-side__icon icon-social-facebook"></span>
+			<h3 class="wy-side__item-title">Like Us on<br>Facebook</h3>
+		</a>
+	</div>
+	<!-- BT My Donatye -->
+	<div class="wy-side__item wy-side__item--donate">
+		<a href="https://mydonate.bt.com/events/jonathonmorgan/294293">
+			<img src="/img/frontend/logos/donate-logo.png" alt="Events Calendar" />
+			<h3 class="wy-side__item-title">Visit Our<br>Event Page</h3>
+		</a>
+	</div>
+</aside>

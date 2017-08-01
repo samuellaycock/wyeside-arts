@@ -10,6 +10,11 @@ $( document ).ready(function() {
     $(".event-status").bind("click", function(){
         ajaxToggleStatus(this, eventId);
     });
+
+    $('#description').trumbowyg({
+        fullscreenable: false,
+        closable: false
+    });
 });
 
 
@@ -98,4 +103,17 @@ function ajaxDeleteShowing(showingId)
             $('#event-showings-table').html(result);
         }
     });
+}
+
+
+function ajaxUpdateDateType(showingId, element)
+{
+    $.ajax({
+        url: '/system/showings/'+showingId,
+        method: 'PATCH',
+        data: {
+            type: $(element).val()
+        }
+    });
+    $(element).parent().html($(element).val());
 }

@@ -6,13 +6,15 @@
 namespace Backend\Controller;
 
 
-use App\Controller\AppController;
 use App\Model\Repo\EventRepo;
 use App\Model\Repo\UserRepo;
 use App\Model\Entity\User;
 
-
-class LoginController extends AppController
+/**
+ * Class LoginController
+ * @package Backend\Controller
+ */
+class LoginController extends BackendController
 {
 
     /**

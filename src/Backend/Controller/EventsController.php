@@ -6,7 +6,6 @@
 namespace Backend\Controller;
 
 
-use App\Controller\AppController;
 use App\Hydrator;
 use App\Model\Entity\Genre;
 use App\Model\Entity\Event;
@@ -16,8 +15,11 @@ use App\Model\Repo\GenreRepo;
 use App\Model\Repo\ShowingRepo;
 use App\Pagination\Pagination;
 
-
-class EventsController extends AppController
+/**
+ * Class EventsController
+ * @package Backend\Controller
+ */
+class EventsController extends BackendController
 {
 
     /**
@@ -53,30 +55,41 @@ class EventsController extends AppController
     protected function updateEventGenres(array $genres, Event $event)
     {
         $event->clearGenres();
-        foreach($genres as $genre){
+        foreach ($genres as $genre) {
             $keyName = 'genre-' . $genre->getId();
-            if(null !== $this->app->request->post($keyName)){
+            if (null !== $this->app->request->post($keyName)) {
                 $event->addGenre($genre);
             }
         }
     }
 
 
-
     public function indexAction()
     {
-        if(null !== $this->app->request->get('page')){
+        if (null !== $this->app->request->get('page')) {
             $page = $this->app->request->get('page');
-        }else{
+        } else {
             $page = 1;
         }
 
-        $pageinator = new Pagination($this->getEventRepo()->getQueryAllSortedByDateCreated(), $this->app->request->getResourceUri());
-        $data = ['eventsPaginated' => $pageinator->getPage($page)];
-
-        if($this->app->request->isAjax()) {
-            $this->app->render('backend/events/_events-table.twig', $data);
+        if(null !== $this->app->request->get('search')){
+            $search = $this->app->request->get('search');
         }else{
+            $search = "";
+        }
+        
+        $queryBuilder = $this->getEventRepo()->getQueryBuilder();
+        $query = $queryBuilder
+            ->where($queryBuilder->expr()->like('e.title', ':title'))
+            ->orderBy('e.createdTs', 'DESC')
+            ->setParameter('title', '%' . $search . '%')->getQuery();
+        
+        $pageinator = new Pagination($query, $this->app->request->getResourceUri());
+        $data = ['eventsPaginated' => $pageinator->getPage($page)];
+        
+        if ($this->app->request->isAjax()) {
+            $this->app->render('backend/events/_events-table.twig', $data);
+        } else {
             $this->app->render('backend/events/index.twig', $data);
         }
     }
@@ -89,7 +102,7 @@ class EventsController extends AppController
         $genres = $this->getGenreRepo()->getAllSortedByName();
 
 
-        if($this->app->request->isPost()){
+        if ($this->app->request->isPost()) {
             $hydrator = new Hydrator;
             $hydrator->hydrate($event, $this->app->request->params());
             $this->updateEventGenres($genres, $event);
@@ -118,7 +131,6 @@ class EventsController extends AppController
     }
 
 
-
     public function createAction()
     {
         $type = $this->app->router->getCurrentRoute()->getParam('type');
@@ -126,7 +138,7 @@ class EventsController extends AppController
         $event->setType($type);
         $genres = $this->getGenreRepo()->getAllSortedByName();
 
-        if($this->app->request->isPost()){
+        if ($this->app->request->isPost()) {
             $hydrator = new Hydrator;
             $hydrator->hydrate($event, $this->app->request->params());
             $this->updateEventGenres($genres, $event);
@@ -141,16 +153,9 @@ class EventsController extends AppController
             'genres' => $genres
         ];
 
-        $this->app->render('backend/events/create.twig',$data);
+        $this->app->render('backend/events/create.twig', $data);
     }
-
-
-
-    public function importAction()
-    {
-        $feed = new Ticketsolve();
-        $data = $feed->downloadFeed();
-        $this->app->render('backend/events/import.twig', ['data' => $data]);
-    }
+    
+    
 
 }

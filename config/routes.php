@@ -2,15 +2,235 @@
 
 return [
 
+    /* -----------------------------------------------------------
+    **************************************************************
+    * !!! FRONTEND !!!
+    **************************************************************
+    * ----------------------------------------------------------- */
+
     [
         'pattern' => '/',
         'methods' => ['GET'],
         'paths' => [
-            'controller' => '\Frontend\Controller\IndexController',
-            'action' => 'indexAction'
+            'controller' => '\Frontend\Controller\HomeController',
+            'action' => 'homeAction'
         ]
     ],
 
+    /* -----------------------------------------------------------
+     * Calendar
+     * ----------------------------------------------------------- */
+     [
+         'pattern' => '/calendar',
+         'methods' => ['GET'],
+         'paths' => [
+             'controller' => '\Frontend\Controller\CalendarController',
+             'action' => 'calendarAction'
+         ]
+     ],
+
+
+	/* -----------------------------------------------------------
+     * Events
+     * ----------------------------------------------------------- */
+	[
+        'pattern' => '/events/:type',
+        'methods' => ['GET'],
+        'paths' => [
+            'controller' => '\Frontend\Controller\EventController',
+            'action' => 'eventListAction'
+        ]
+    ],
+    [
+        'pattern' => '/events/:id/:name',
+        'methods' => ['GET'],
+        'paths' => [
+            'controller' => '\Frontend\Controller\EventController',
+            'action' => 'eventDetailAction'
+        ]
+    ],
+
+	/* -----------------------------------------------------------
+     * Your Visit
+     * ----------------------------------------------------------- */
+	[
+        'pattern' => '/visit/find',
+        'methods' => ['GET'],
+        'paths' => [
+            'controller' => '\Frontend\Controller\VisitController',
+            'action' => 'findAction'
+        ]
+    ],
+	[
+        'pattern' => '/visit/food',
+        'methods' => ['GET'],
+        'paths' => [
+            'controller' => '\Frontend\Controller\VisitController',
+            'action' => 'foodAction'
+        ]
+    ],
+	[
+        'pattern' => '/visit/times',
+        'methods' => ['GET'],
+        'paths' => [
+            'controller' => '\Frontend\Controller\VisitController',
+            'action' => 'timeAction'
+        ]
+    ],
+	[
+        'pattern' => '/visit/booking',
+        'methods' => ['GET'],
+        'paths' => [
+            'controller' => '\Frontend\Controller\VisitController',
+            'action' => 'bookAction'
+        ]
+    ],
+	[
+        'pattern' => '/visit/auditoriums',
+        'methods' => ['GET'],
+        'paths' => [
+            'controller' => '\Frontend\Controller\VisitController',
+            'action' => 'auditoriumAction'
+        ]
+    ],
+	[
+        'pattern' => '/visit/access',
+        'methods' => ['GET'],
+        'paths' => [
+            'controller' => '\Frontend\Controller\VisitController',
+            'action' => 'accessAction'
+        ]
+    ],
+
+	/* -----------------------------------------------------------
+     * Support Us
+     * ----------------------------------------------------------- */
+	[
+        'pattern' => '/support/volunteers',
+        'methods' => ['GET'],
+        'paths' => [
+            'controller' => '\Frontend\Controller\SupportController',
+            'action' => 'volunteerAction'
+        ]
+    ],
+	[
+        'pattern' => '/support/friends',
+        'methods' => ['GET'],
+        'paths' => [
+            'controller' => '\Frontend\Controller\SupportController',
+            'action' => 'friendAction'
+        ]
+    ],
+	[
+        'pattern' => '/support/funders',
+        'methods' => ['GET'],
+        'paths' => [
+            'controller' => '\Frontend\Controller\SupportController',
+            'action' => 'funderAction'
+        ]
+    ],
+
+	/* -----------------------------------------------------------
+     * About Us
+     * ----------------------------------------------------------- */
+	[
+        'pattern' => '/about/who',
+        'methods' => ['GET'],
+        'paths' => [
+            'controller' => '\Frontend\Controller\AboutController',
+            'action' => 'whoAction'
+        ]
+    ],
+	[
+        'pattern' => '/about/history',
+        'methods' => ['GET'],
+        'paths' => [
+            'controller' => '\Frontend\Controller\AboutController',
+            'action' => 'historyAction'
+        ]
+    ],
+    [
+        'pattern' => '/about/history/:year',
+        'methods' => ['GET'],
+        'paths' => [
+            'controller' => '\Frontend\Controller\AboutController',
+            'action' => 'historyActionYear'
+        ]
+    ],
+	[
+        'pattern' => '/about/team',
+        'methods' => ['GET'],
+        'paths' => [
+            'controller' => '\Frontend\Controller\AboutController',
+            'action' => 'teamAction'
+        ]
+    ],
+	[
+        'pattern' => '/about/jobs',
+        'methods' => ['GET'],
+        'paths' => [
+            'controller' => '\Frontend\Controller\AboutController',
+            'action' => 'jobsAction'
+        ]
+    ],
+	[
+        'pattern' => '/about/news',
+        'methods' => ['GET'],
+        'paths' => [
+            'controller' => '\Frontend\Controller\AboutController',
+            'action' => 'newsAction'
+        ]
+    ],
+
+	/* -----------------------------------------------------------
+     * Hire
+     * ----------------------------------------------------------- */
+	[
+        'pattern' => '/hire/technical',
+        'methods' => ['GET'],
+        'paths' => [
+            'controller' => '\Frontend\Controller\HireController',
+            'action' => 'technicalAction'
+        ]
+    ],
+	[
+        'pattern' => '/hire/costume',
+        'methods' => ['GET'],
+        'paths' => [
+            'controller' => '\Frontend\Controller\HireController',
+            'action' => 'costumeAction'
+        ]
+    ],
+    /* -----------------------------------------------------------
+     * Terms & Conditions
+     * ----------------------------------------------------------- */
+	[
+        'pattern' => '/terms',
+        'methods' => ['GET'],
+        'paths' => [
+            'controller' => '\Frontend\Controller\OtherController',
+            'action' => 'termsAction'
+        ]
+    ],
+
+	/* -----------------------------------------------------------
+     * Sitemap
+     * ----------------------------------------------------------- */
+	[
+        'pattern' => '/sitemap',
+        'methods' => ['GET'],
+        'paths' => [
+            'controller' => '\Frontend\Controller\OtherController',
+            'action' => 'sitemapAction'
+        ]
+    ],
+
+
+    /* -----------------------------------------------------------
+    **************************************************************
+    * !!! BACKEND !!!
+    **************************************************************
+    * ----------------------------------------------------------- */
 
 
     /* -----------------------------------------------------------
@@ -85,19 +305,31 @@ return [
         ]
     ],
     [
-        'pattern' => '/system/events/import/ticketsolve',
-        'methods' => ['GET', 'POST'],
-        'paths' => [
-            'controller' => '\Backend\Controller\EventsController',
-            'action' => 'importAction'
-        ]
-    ],
-    [
         'pattern' => '/system/events/:id/update-status/:status',
         'methods' => ['PATCH'],
         'paths' => [
             'controller' => '\Backend\Controller\EventsController',
             'action' => 'updateStatusAction'
+        ]
+    ],
+
+    /* -----------------------------------------------------------
+     * Events > Ticketsolve
+     * ----------------------------------------------------------- */
+    [
+        'pattern' => '/system/events/import/ticketsolve',
+        'methods' => ['GET', 'POST'],
+        'paths' => [
+            'controller' => '\Backend\Controller\TicketsolveController',
+            'action' => 'importAction'
+        ]
+    ],
+    [
+        'pattern' => '/system/events/import/ticketsolve/create',
+        'methods' => ['POST'],
+        'paths' => [
+            'controller' => '\Backend\Controller\TicketsolveController',
+            'action' => 'createAction'
         ]
     ],
 
@@ -157,9 +389,14 @@ return [
             'action' => 'deleteShowingAction'
         ]
     ],
-
-
-
+    [
+        'pattern' => '/system/showings/:id',
+        'methods' => ['PATCH'],
+        'paths' => [
+            'controller' => '\Backend\Controller\EventShowingsController',
+            'action' => 'editShowingAction'
+        ]
+    ],
 
     /* -----------------------------------------------------------
      * Blog
@@ -186,6 +423,22 @@ return [
         ]
     ],
     [
+        'pattern' => '/system/users/:id',
+        'methods' => ['DELETE'],
+        'paths' => [
+            'controller' => '\Backend\Controller\UsersController',
+            'action' => 'deleteAction'
+        ]
+    ],
+    [
+        'pattern' => '/system/users/:id/edit',
+        'methods' => ['GET', 'POST'],
+        'paths' => [
+            'controller' => '\Backend\Controller\UsersController',
+            'action' => 'editAction'
+        ]
+    ],
+    [
         'pattern' => '/system/users/create',
         'methods' => ['GET', 'POST'],
         'paths' => [
@@ -193,7 +446,6 @@ return [
             'action' => 'createAction'
         ]
     ],
-
 
 
 ];

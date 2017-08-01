@@ -6,16 +6,12 @@
 namespace Backend\Controller;
 
 
-use App\Controller\AppController;
-use App\Model\Repo\EventRepo;
-use App\Pagination\Pagination;
-
 
 /**
  * Class BlogController
  * @package Backend\Controller
  */
-class BlogController extends AppController
+class BlogController extends BackendController
 {
 
     public function indexAction()
