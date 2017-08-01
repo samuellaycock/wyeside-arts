@@ -28,6 +28,8 @@
 	<!-- Vendor Scripts -->
 	<script src="/plugin/jquery/jquery.min.js" type="text/javascript"></script>
 	<script src="/plugin/modernizr/modernizr.min.js" type="text/javascript"></script>
+    <script src="/js/frontend/Slider.js" type="text/javascript"></script>
+	<script src="/js/frontend/Mailchimp.js" type="text/javascript"></script>
 
 	<title>{% block title %}{% endblock %} | Wyeside Arts</title>
 </head>
@@ -40,16 +42,24 @@
 	<!-- Hero Slider -->
 	{% block slider %}{% endblock %}
 
-	<!-- Page Banner -->
-	{% block banner %}{% endblock %}
+        <div class="wy-content-wrapper">
+            <!-- Page Banner -->
 
-		<section class="wy-content">
-			<!-- Main Content -->
-			{% block content %}{% endblock %}
+            {% block banner %}
+                <section class="wy-banner wy-banner-movable">
+                    <div class="wy-banner-move"></div>
+                </section>
+            {% endblock %}
 
-			<!-- Sidebar -->
-			{% include 'frontend/_partials/sidebar.twig' %}
-		</section>
+		    <section class="wy-content">
+
+                <!-- Main Content -->
+                {% block content %}{% endblock %}
+
+                <!-- Sidebar -->
+                {% include 'frontend/_partials/sidebar.twig' %}
+		    </section>
+        </div>
 
 	<!-- Footer -->
 	{% include 'frontend/_partials/footer.twig' %}
@@ -65,8 +75,9 @@
 				infinite: true,
 				autoplay: true,
 				   speed: 750,
-				   delay: 6000
+				   delay: 7000
 			});
+            new Slider();
 		});
 	</script>
 	<script>
@@ -121,7 +132,7 @@
 		function googleTranslateElementInit() {
   		new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'cy,en', layout: google.translate.TranslateElement.InlineLayout.SIMPLE}, 'google_translate_element');
 		}
-		</script>
-		<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    </script>
+    <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 </body>
 </html>

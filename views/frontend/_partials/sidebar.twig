@@ -15,7 +15,7 @@
 			</tr>
 			<tr>
 				<td>Sat &amp; Sun:</td>
-				<td>2.30pm - 9.00pm</td>
+				<td>2.00pm - 9.00pm</td>
 			</tr>
 		</table>
 		<hr>
@@ -30,7 +30,7 @@
 	</div>
 	<!-- Brochure -->
 	<div class="wy-side__item wy-side__item--brochure">
-		<a href="{{ flash.brochureURL }}">
+		<a target="_blank" href="{{ flash.brochureURL }}">
 			<span class="wy-side__icon icon-book-read-streamline"></span>
 			<h3 class="wy-side__item-title">See Our Latest<br>Brochure</h3>
 		</a>
@@ -40,12 +40,12 @@
 		<span class="wy-side__icon icon-email-mail-streamline"></span>
 		<h3 class="wy-side__item-title">Sign Up For<br>Our Newsletter</h3>
 		<hr>
-		<form>
-			<input type="text" placeholder="First Name" required>
-			<input type="text" placeholder="Last Name" required>
-			<input type="email" placeholder="Email" required>
-			<input type="submit" value="Submit">
+		<form id="email-form">
+			<input id="email-email" type="email" name="email" placeholder="Email" required>
+			<input type="button" value="Sign Up" id="emailSubscribe">
+			<div id="email-message" style="display:none;"></div>
 		</form>
+		<div id="email-response" style="display:none;">Thank you, you're now subscribed to our Newsletter!</div>
 	</div>
 	<!-- Twitter -->
 	<div class="wy-side__item wy-side__item--twitter">

@@ -5,10 +5,10 @@
 
 namespace Backend\Controller;
 
-
 use App\Hydrator;
 use App\Model\Entity\Event;
-use App\Model\Provider\Ticketsolve;
+use App\Model\Entity\Showing;
+use App\Model\Provider\TicketsolveProvider;
 use App\Model\Repo\EventRepo;
 use App\Model\Repo\GenreRepo;
 use App\Model\Repo\ShowingRepo;
@@ -47,33 +47,88 @@ class TicketsolveController extends BackendController
     }
 
 
-    public function importAction()
+    /**
+     * Syncs and existing event's 2D ticketsolve reference
+     */
+    public function syncEventsDatesAction()
     {
-        $eventRepo = $this->getEventRepo();
+        $event = $this->getEventRepo()->find($this->app->request->post('eventId'));
 
-        if ($this->app->request->isAjax()) {
-            $feed = new Ticketsolve(null, $eventRepo);
-            $models = $feed->downloadFeedModels();
-
-            $unSyncedEvents = [];
-            $syncedEvents = [];
-            foreach ($models as $model) {
-                if ($eventRepo->eventExistsForTicketsolve($model->getTicketsolveId())) {
-                    $syncedEvents[] = $model->view();
-                } else {
-                    $unSyncedEvents[] = $model->view();
-                }
-            }
-
-            header("Content-Type: application/json");
-            echo json_encode([
-                'syncedEvents' => $syncedEvents,
-                'unSyncedEvents' => $unSyncedEvents
-            ]);
-            exit;
-        } else {
-            $this->app->render('backend/events/import.twig', []);
+        foreach ($event->getShowings() as $showing) {
+            $this->em->remove($showing);
         }
+        $this->em->flush();
+
+        $provider = new TicketsolveProvider();
+
+        $tsEvent = $provider->eventByEventId($event->getTicketsolve());
+        if ($tsEvent) {
+            foreach ($tsEvent->showings() as $tsShowing) {
+                $showing = new Showing();
+                $showing->setTicketsolveIt($tsShowing->showingId());
+                $showing->setType("2D");
+                $showing->setTs($tsShowing->time());
+                $showing->setLocation($tsShowing->location());
+                $event->addShowing($showing);
+                $this->em->persist($showing);
+            }
+        }
+
+        $tsEvent = $provider->eventByEventId($event->getTicketsolve3D());
+        if ($tsEvent) {
+            foreach ($tsEvent->showings() as $tsShowing) {
+                $showing = new Showing();
+                $showing->setTicketsolveIt($tsShowing->showingId());
+                $showing->setType("3D");
+                $showing->setTs($tsShowing->time());
+                $showing->setLocation($tsShowing->location());
+                $event->addShowing($showing);
+                $this->em->persist($showing);
+            }
+        }
+
+        $this->em->flush();
+
+        $this->app->render('backend/events/_partials/event-showings-table.twig', ['event' => $event]);
+    }
+
+
+    /**
+     *
+     */
+    public function getEventsNotSyncedAjaxAction()
+    {
+        $provider = new TicketsolveProvider();
+        $events = $provider->eventsNotSynced($this->getEventRepo());
+
+        $view = [];
+        foreach ($events as $event) {
+            $view[] = $event->view();
+        }
+
+        $response = $this->app->response();
+        $response->header('Content-Type', 'application/json');
+        $response->body(json_encode($view));
+    }
+
+
+    /**
+     * Updates Ticketsolve references
+     */
+    public function updateEventTsAction()
+    {
+        $event = $this->getEventRepo()->find($this->app->request->post('eventId'));
+        $event->setTicketsolve($this->app->request->post('ticketsolveId', $event->getTicketsolve()));
+        $event->setTicketsolve3D($this->app->request->post('ticketsolveId3D', $event->getTicketsolve3D()));
+        $this->em->persist($event);
+        $this->em->flush();
+
+        $response = $this->app->response();
+        $response->header('Content-Type', 'application/json');
+        $response->body(json_encode([
+            'ticketsolveId' => $event->getTicketsolve(),
+            'ticketsolveId3D' => $event->getTicketsolve3D()
+        ]));
     }
 
 

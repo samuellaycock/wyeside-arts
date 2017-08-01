@@ -13,7 +13,8 @@
 {% endblock %}
 
 {% block banner %}
-<section class="wy-banner type--{{ type }}">
+<section class="wy-banner type--{{ type }} wy-banner-movable" >
+    <div class="wy-banner-move"></div>
     <img src="/img/frontend/logos/calendar.png" alt="Calendar" />
     <h1>Events<br />Calendar</h1>
 </section>
@@ -21,13 +22,15 @@
 
 {% block content %}
     <section class="wy-body">
-        <section>
+        <section style="overflow-x:auto;">
             <table>
               <thead>
-                <th>Day</th>
-                <th>Castle Cinema</th>
-                <th>Market Theatre</th>
-                <th>The Gallery</th>
+                  <tr>
+                    <th>Day</th>
+                    <th>Castle Cinema</th>
+                    <th>Market Theatre</th>
+                    <th>The Gallery</th>
+                  </tr>
               </thead>
               <tbody>
               {% for key, day in days %}
@@ -37,18 +40,9 @@
                   </td>
                   <td>
                     <ul>
-                      {% for showing in day %}
-                          {% if showing.getLocation() == 0 %}
-                              <li><a class="type--{{ showing.getEvent().getType() }} type--1">{{ showing.getTs()|date("g.ia") }} : {{ showing.getEvent().getTitle() }}</a></li>
-                          {% endif %}
-                      {% endfor %}
-                    </ul>
-                  </td>
-                  <td>
-                    <ul>
                         {% for showing in day %}
                             {% if showing.getLocation() == 0 %}
-                                <li><a href="{{ showing.getEvent().getEventUrl() }}" class="type--{{ showing.getEvent().getType() }} type--1">{{ showing.getTs()|date("g.ia") }} : {{ showing.getEvent().getTitle() }}</a></li>
+                                <li><a href="{{ showing.getEvent().getEventUrl() }}" class="type--{{ showing.getEvent().getType() }}">{{ showing.getTs()|date("g.ia") }} : {{ showing.getEvent().getTitle() }}{% if showing.getType() == "3D" %} (3D){% endif %}</a></li>
                             {% endif %}
                         {% endfor %}
                       </ul>
@@ -57,7 +51,7 @@
                       <ul>
                           {% for showing in day %}
                               {% if showing.getLocation() == 1 %}
-                                  <li><a href="{{ showing.getEvent().getEventUrl() }}" class="type--{{ showing.getEvent().getType() }} type--1">{{ showing.getTs()|date("g.ia") }} : {{ showing.getEvent().getTitle() }}</a></li>
+                                  <li><a href="{{ showing.getEvent().getEventUrl() }}" class="type--{{ showing.getEvent().getType() }}">{{ showing.getTs()|date("g.ia") }} : {{ showing.getEvent().getTitle() }}{% if showing.getType() == "3D" %} (3D){% endif %}</a></li>
                               {% endif %}
                           {% endfor %}
                       </ul>
@@ -66,7 +60,7 @@
                       <ul>
                           {% for showing in day %}
                               {% if showing.getLocation() == 2 %}
-                                  <li><a href="{{ showing.getEvent().getEventUrl() }}" class="type--{{ showing.getEvent().getType() }} type--1">{{ showing.getTs()|date("g.ia") }} : {{ showing.getEvent().getTitle() }}</a></li>
+                                  <li><a href="{{ showing.getEvent().getEventUrl() }}" class="type--{{ showing.getEvent().getType() }}">{{ showing.getTs()|date("g.ia") }} : {{ showing.getEvent().getTitle() }}{% if showing.getType() == "3D" %} (3D){% endif %}</a></li>
                               {% endif %}
                           {% endfor %}
                       </ul>

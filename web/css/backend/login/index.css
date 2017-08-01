@@ -1,5 +1,5 @@
 body {
-    background-color: #273A4A;
+    background-color: #151515;
 }
 
 #wrapper {
@@ -25,7 +25,7 @@ body {
 }
 
 #loginForm {
-    border: solid 6px #000;
+    border: solid 6px #F53617;
     border-radius: 4px;
     width: 400px;
     display: inline-block;
@@ -41,11 +41,20 @@ body {
 
 #loginForm p {
     font-size: 0.9em;
-    color: #777;
+    color: #F53617;
 }
 
 #loginForm input {
     padding: 12px;
     font-size: 1.1em;
     width: 100%;
+}
+
+#banner {
+    width:100%;
+    height:auto;
+    max-width: 1920px;
+    max-height: 800px;
+    border-bottom: solid 1px;
+    border-top: solid 1px;
 }

@@ -11,6 +11,11 @@ namespace Frontend\Controller;
  */
 class OtherController extends FrontendController
 {
+	
+	public function contactAction()
+    {
+        $this->app->render('frontend/contact/contact.twig', []);
+    }
 
     public function termsAction()
     {

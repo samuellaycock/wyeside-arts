@@ -2,6 +2,10 @@
 
 {% block head %}
     <link href="/css/backend/events/create.css" rel="stylesheet" type="text/css">
+    <link href="/plugin/editor/ui/trumbowyg.min.css" rel="stylesheet" type="text/css">
+
+    <script type="text/javascript" src="/js/backend/events/create.js"></script>
+    <script src="/plugin/editor/trumbowyg.min.js"></script>
 {% endblock %}
 
 {% block title %}Events{% endblock %}
@@ -12,10 +16,24 @@
     </div>
 
     <div class="block-light">
+        <h2>Import From Ticketsolve</h2>
+        <br>
+        <div id="tsWrapper">
+            <img src="/img/backend/spinner.gif" />
+        </div>
+        <div id="tsWrapper3D">
+
+        </div>
+    </div>
+
+    <div class="block-dark">
         {% include "backend/events/_events-form.twig" %}
     </div>
 
     <script type="text/javascript">
         document.getElementById('title').focus();
+        $(function () {
+            new CreateManager({% if event.getTypeName() == "Cinema" %}1{% else %}0{% endif %});
+        });
     </script>
 {% endblock %}

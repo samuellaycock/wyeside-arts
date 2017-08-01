@@ -1,4 +1,8 @@
 jQuery(document).ready(function($){
+	window.onresize = function() {
+		$("#headerBuffer").height($("#headerBar").height());
+	}
+
 	var resizing = false,
 		navigationWrapper = $('.wy-nav'),
 		navigation = navigationWrapper.children('.wy-nav__menu'),
@@ -61,6 +65,10 @@ jQuery(document).ready(function($){
     }
   });
 
+	if($('.wy-slider').length < 1) {
+		mainHeader.addClass('perm');
+	}
+
 	//add the .no-pointerevents class to the <html> if browser doesn't support pointer-events property
 	( !Modernizr.testProp('pointerEvents') ) && $('html').addClass('no-pointerevents');
 
@@ -98,7 +106,7 @@ jQuery(document).ready(function($){
 	//mobile version - open/wy-search  navigation
 	navigationTrigger.on('click', function(event){
 		event.preventDefault();
-		mainHeader.add(navigation).add(pageContent).toggleClass('nav-is-visible');
+		mainHeader.add(navigation).add(pageContent).toggleClass('nav-is-visible active');
 	});
 
 	searchTrigger.on('click', function(event){

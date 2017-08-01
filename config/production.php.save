@@ -1,0 +1,13 @@
+<?php
+
+return [
+
+    'db.user' => 'wyeside-new',
+    'db.host' => 'freetiermysql.cp7qknwxxaia.eu-west-1.rds.amazonaws.com',
+    'db.password' => '!DxD_T{pX3FHghyDx2<^G_b'bm2cCR9J',
+    'db.name' => 'wyeside-demo',
+
+    'debug' => false
+true
+
+];

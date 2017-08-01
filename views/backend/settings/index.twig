@@ -1,0 +1,22 @@
+{% extends "backend/_layouts/system.twig" %}
+
+{% block title %}Settings{% endblock %}
+
+{% block content %}
+
+    <div class="block-dark">
+      <img src="/img/backend/icons/dark/settings-64.png"> <h1>Settings</h1>
+    </div>
+
+    <div class="block-light">
+       <form method="post">
+           <label for="brochureUrl"><h2>Brochure Url</h2></label>
+           <input style="width:100%;margin-top:5px;" type="text" name="brochureUrl" id="brochureUrl" value="{{ brochureUrl }}">
+
+           <hr>
+
+           <button type="submit">Save</button>
+       </form>
+    </div>
+
+{% endblock %}

@@ -20,7 +20,6 @@
 
 {% block content %}
 <section class="wy-body">
-
     {% if eventsThisWeek|length > 0 %}
         <h2 class="wy-body__title">
 			{% if type == 'cinema' %}
@@ -29,116 +28,41 @@
 			Playing this Week
 			{% endif %}
 		</h2>
+		{% if type == 'all' %}
+		<ul class="key-list">
+			<li>KEY:</li>
+			<li class="key-list__item--cinema">Cinema</li>
+			<li class="key-list__item--live">Live</li>
+			<li class="key-list__item--satellite">Satellite Live!</li>
+			<li class="key-list__item--classes">Classes</li>
+			<li class="key-list__item--gallery">Gallery</li>
+		</ul>
+		{% endif %}
         <ul class="wy-shows--this-week">
             {% for event in eventsThisWeek %}
-            <a href="{{ event.getEventUrl() }}">
-                <li class="wy-shows__show" style="border-bottom: 2px solid {{ event.getTypePrimaryColor() }}">
-                    <div class="wy-show__img-container" style="background: url('{{ event.getMainImage().getThumbnailUrl() }}') no-repeat center center">
-                        <span class="u-text-replace">{{ event.getTitle() }}</span>
-                    </div>
-                    <ul class="wy-show__showings type--{{ event.getType() }}">
-                        <li class="wy-showings__title" >Upcoming Shows:</li>
-                        {% for showing in event.getUpcomingShowings()|slice(0, 3) %}
-                        <li>{{ showing.getTs()|date('l jS F: g:ia') }}</li>
-                        {% endfor %}
-                    </ul>
-                    <section class="wy-show__body">
-                        <h3 class="wy-show__title type--{{ event.getType() }}">
-                            {{ event.getTitle() }}
-                            {% if event.getCertificate() %}
-                            <span class="wy-show__cert">{{ "(#{event.getCertificate()})" }}</span>
-                            {% endif %}
-                        </h3>
-
-                        {% if event.getType() == 1 %}
-                        <ul class="wy-details__info--film">
-                            <li class="wy-details__info-item--film">
-                                {% for genre in event.getGenres() %}
-                                <span class="wy-details__info-item--genre">{{ genre.getName() }}</span>
-                                {% endfor %}
-                            </li>
-                            {% if event.getRunningTime() %}
-                            <li class="wy-details__info-item--divider"> | </li>
-                            <li class="wy-details__info-item--film">{{ event.getRunningTime() }} mins.</li>
-                            {% endif %}
-                        </ul>
-                        <ul class="wy-details__info--talent">
-                            <li class="wy-details__info-item--star">
-                                {{ event.getStarring() }}
-                            </li>
-                        </ul>
-                        {% else %}
-                        <ul class="wy-details__info">
-														{% if event.getType() != 3 or event.getType() != 5 %}
-                            <li class="wy-details__info-item">{{ event.getPrices() }}</li>
-														{% else %}
-														<li class="wy-details__info-item">{{ event.getLocationName() }}</li>
-														{% endif %}
-                            {% if event.getType() == 3 %}
-                            <li class="wy-details__info-item">Wyeside Community</li>
-                            {% elseif event.getType() == 5 %}
-                            <li class="wy-details__info-item">Wyeside Workshop</li>
-                            {% endif %}
-                        </ul>
-                        {% endif %}
-                    </section>
-                </li>
-            </a>
+                {% include 'frontend/events/_partials/listingItem.twig' %}
             {% endfor %}
         </ul>
 		<hr />
     {% endif %}
 
     <h2 class="wy-body__title">Coming Soon</h2>
+		{% if type == 'all' %}
+		<ul class="key-list">
+			<li>KEY:</li>
+			<li class="key-list__item--cinema">Cinema</li>
+			<li class="key-list__item--live">Live</li>
+			<li class="key-list__item--satellite">Satellite Live!</li>
+			<li class="key-list__item--classes">Classes</li>
+			<li class="key-list__item--gallery">Gallery</li>
+		</ul>
+		{% endif %}
     <ul class="wy-shows--coming-soon">
         {% if futureEvents|length < 1 %}
         <p>There are no {{ type|capitalize }} shows to display here. Check back again soon.</p>
         {% endif %}
         {% for event in futureEvents %}
-        <a href="{{ event.getEventUrl() }}">
-            <li class="wy-shows__show" style="border-bottom: 2px solid {{ event.getTypePrimaryColor() }}">
-                <div class="wy-show__img-container" style="background: url('{{ event.getMainImage().getThumbnailUrl() }}') no-repeat center center">
-                    <span class="u-text-replace">{{ event.getTitle() }}</span>
-                </div>
-                <ul class="wy-show__showings type--{{ event.getType() }}">
-                    <li class="wy-showings__title" >Upcoming Shows:</li>
-                    {% for showing in event.getUpcomingShowings()|slice(0, 3) %}
-                    <li>{{ showing.getTs()|date('l jS F: g:ia') }}</li>
-                    {% endfor %}
-                </ul>
-                <section class="wy-show__body">
-                    <h3 class="wy-show__title type--{{ event.getType() }}">
-                        {{ event.getTitle() }}
-                        {% if event.getCertificate() %}
-                        <span class="wy-show__cert">{{ "(#{event.getCertificate()})" }}</span>
-                        {% endif %}
-                    </h3>
-
-                    {% if event.getType() == 1 %}
-                    <ul class="wy-details__info--film">
-                        <li class="wy-details__info-item--film">
-                            {% for genre in event.getGenres() %}
-                            <span class="wy-details__info-item--genre">{{ genre.getName() }}</span>
-                            {% endfor %}
-                        </li>
-                        {% if event.getRunningTime() %}
-                        <li class="wy-details__info-item--divider"> | </li>
-                        <li class="wy-details__info-item--film">{{ event.getRunningTime() }} mins.</li>
-                        {% endif %}
-                    </ul>
-                    <ul class="wy-details__info--talent">
-                        <li class="wy-details__info-item--star">
-                            {{ event.getStarring() }}
-                        </li>
-                    </ul>
-                    {% else %}
-                    <ul class="wy-details__info">
-                        <li class="wy-details__info-item">{{ event.getPrices() }}</li>
-                    </ul>
-                    {% endif %}
-                </section
-            </li>
-        </a>
+            {% include 'frontend/events/_partials/listingItem.twig' %}
         {% endfor %}
     </ul>
 

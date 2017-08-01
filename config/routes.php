@@ -17,6 +17,15 @@ return [
         ]
     ],
 
+    [
+        'pattern' => '/email-subscribe',
+        'methods' => ['POST'],
+        'paths' => [
+            'controller' => '\Frontend\Controller\MailchimpController',
+            'action' => 'subscribeAction'
+        ]
+    ],
+
     /* -----------------------------------------------------------
      * Calendar
      * ----------------------------------------------------------- */
@@ -193,7 +202,7 @@ return [
             'action' => 'technicalAction'
         ]
     ],
-	[
+    [
         'pattern' => '/hire/costume',
         'methods' => ['GET'],
         'paths' => [
@@ -201,6 +210,19 @@ return [
             'action' => 'costumeAction'
         ]
     ],
+    
+    /* -----------------------------------------------------------
+     * Contact
+     * ----------------------------------------------------------- */
+	[
+        'pattern' => '/contact',
+        'methods' => ['GET'],
+        'paths' => [
+            'controller' => '\Frontend\Controller\OtherController',
+            'action' => 'contactAction'
+        ]
+    ],
+
     /* -----------------------------------------------------------
      * Terms & Conditions
      * ----------------------------------------------------------- */
@@ -312,16 +334,40 @@ return [
             'action' => 'updateStatusAction'
         ]
     ],
+    [
+        'pattern' => '/system/events/action/deleteEvent',
+        'methods' => ['POST'],
+        'paths' => [
+            'controller' => '\Backend\Controller\EventsController',
+            'action' => 'deleteEventAction'
+        ]
+    ],
 
     /* -----------------------------------------------------------
      * Events > Ticketsolve
      * ----------------------------------------------------------- */
     [
-        'pattern' => '/system/events/import/ticketsolve',
-        'methods' => ['GET', 'POST'],
+        'pattern' => '/system/ticketsolve/sync-event-dates',
+        'methods' => ['POST'],
         'paths' => [
             'controller' => '\Backend\Controller\TicketsolveController',
-            'action' => 'importAction'
+            'action' => 'syncEventsDatesAction'
+        ]
+    ],
+    [
+        'pattern' => '/system/ticketsolve/not-synced-events.ajax',
+        'methods' => ['GET'],
+        'paths' => [
+            'controller' => '\Backend\Controller\TicketsolveController',
+            'action' => 'getEventsNotSyncedAjaxAction'
+        ]
+    ],
+    [
+        'pattern' => '/system/ticketsolve/update-event-ts.ajax',
+        'methods' => ['POST'],
+        'paths' => [
+            'controller' => '\Backend\Controller\TicketsolveController',
+            'action' => 'updateEventTsAction'
         ]
     ],
     [
@@ -332,6 +378,27 @@ return [
             'action' => 'createAction'
         ]
     ],
+
+    /* -----------------------------------------------------------
+        * Events > TMDB
+        * ----------------------------------------------------------- */
+    [
+        'pattern' => '/system/tmdb/find-images-for-event',
+        'methods' => ['POST'],
+        'paths' => [
+            'controller' => '\Backend\Controller\TmdbController',
+            'action' => 'findBackdropImagesAction'
+        ]
+    ],
+    [
+        'pattern' => '/system/tmdb/copy-image',
+        'methods' => ['POST'],
+        'paths' => [
+            'controller' => '\Backend\Controller\TmdbController',
+            'action' => 'copyImageAction'
+        ]
+    ],
+
 
     /* -----------------------------------------------------------
      * Events > Images
@@ -397,15 +464,23 @@ return [
             'action' => 'editShowingAction'
         ]
     ],
+    [
+        'pattern' => '/system/showings/update-date-location',
+        'methods' => ['POST'],
+        'paths' => [
+            'controller' => '\Backend\Controller\EventShowingsController',
+            'action' => 'updateLocationShowingAction'
+        ]
+    ],
 
     /* -----------------------------------------------------------
-     * Blog
+     * Settings
      * ----------------------------------------------------------- */
     [
-        'pattern' => '/system/blog',
-        'methods' => ['GET'],
+        'pattern' => '/system/settings',
+        'methods' => ['GET', 'POST'],
         'paths' => [
-            'controller' => '\Backend\Controller\BlogController',
+            'controller' => '\Backend\Controller\SettingsController',
             'action' => 'indexAction'
         ]
     ],

@@ -6,6 +6,8 @@
 
 namespace App\Model\Entity;
 
+use App\Model\Provider\TicketsolveProvider;
+
 /**
  * @Entity(repositoryClass="App\Model\Repo\EventRepo")
  * @Table(name="event")
@@ -31,6 +33,12 @@ class Event
      * @var string
      */
     protected $title;
+
+    /**
+     * @Column(type="string", name="eventTagline")
+     * @var string
+     */
+    protected $tagline;
 
     /**
      * @Column(type="string", name="eventCertificate")
@@ -177,6 +185,22 @@ class Event
     public function setTitle($title)
     {
         $this->title = $title;
+    }
+
+    /**
+     * @return string
+     */
+    public function getTagline()
+    {
+        return $this->tagline;
+    }
+
+    /**
+     * @param $tagline
+     */
+    public function setTagline($tagline)
+    {
+        $this->tagline = trim($tagline, " ");
     }
 
     /**
@@ -453,12 +477,12 @@ class Event
      */
     public function getMainImage()
     {
-        foreach ($this->getImages() as $image){
-            if($image->getIsMain()){
+        foreach ($this->getImages() as $image) {
+            if ($image->getIsMain()) {
                 return $image;
             }
         }
-        foreach ($this->getImages() as $image){
+        foreach ($this->getImages() as $image) {
             return $image;
         }
         return null;
@@ -501,14 +525,13 @@ class Event
     {
         $now = new \DateTime();
         $rtn = [];
-        foreach($this->getShowings() as $showing){
-            if($showing->getTs()->format('Y-m-d') >= $now->format('Y-m-d')){
+        foreach ($this->getShowings() as $showing) {
+            if ($showing->getTs()->format('Y-m-d') >= $now->format('Y-m-d')) {
                 $rtn[] = $showing;
             }
         }
         return $rtn;
     }
-
 
 
     /**

@@ -5,7 +5,6 @@
 font-family: 'Gill Sans';
 	src: url('/css/frontend/typefaces/gill-sans.eot');
 	src: url('/css/frontend/typefaces/gill-sans.eot?#iefix') format('embedded-opentype'),
-	     url('/css/frontend/typefaces/gill-sans.woff2') format('woff2'),
 	     url('/css/frontend/typefaces/gill-sans.woff') format('woff'),
 	     url('/css/frontend/typefaces/gill-sans.ttf')  format('truetype');
 }
@@ -15,7 +14,8 @@ body {
   font-size: 1.6rem;
   font-family: 'Gill Sans', Arial, sans-serif;
   color: #222;
-  background-color: #d4dadd; }
+  background-color: #c6ced2;
+}
 @media only screen and (max-width: 1169px) {
   body.nav-on-left.overflow-hidden {
     overflow: hidden; }
@@ -26,7 +26,7 @@ a {
 img {
   max-width: 100%; }
 hr {
-  background: #ddd;
+  background: #ccc;
   border: none;
   height: 1px; }
 
@@ -37,7 +37,8 @@ hr {
 	margin: 0 auto;
 	z-index: 1; }
 .wy-body {
-	padding: 15px; }
+	padding: 15px;
+	background: #dee3e5 }
 .wy-contain {
 	display: flex;
 	overflow:auto; }
@@ -46,7 +47,7 @@ hr {
     display: inline-block;
     margin: 0 0 5px;
     width: 100%;
-    height: 40px;
+    height: auto;
     overflow: hidden; }
     @media screen and (max-width: 649px) {
         .wy-shows__show {
@@ -54,7 +55,7 @@ hr {
     }
     @media screen and (min-width: 650px) and (max-width: 1023px) {
         .wy-shows__show {
-            margin: 0 15px 25px 0;
+            margin: 0 8px 25px;
             height: 350px;
             width: calc(33.33333% - 20px);
 						border: 1px solid rgba(0,0,0,0.1);
@@ -62,7 +63,7 @@ hr {
     }
 	@media screen and (min-width: 1024px) and (max-width: 1299px) {
 		.wy-shows__show {
-            margin: 0 15px 25px 0;
+            margin: 0 8px 25px;
             height: 325px;
             width: calc(50% - 20px);
 						border: 1px solid rgba(0,0,0,0.1);
@@ -70,7 +71,7 @@ hr {
 	}
     @media screen and (min-width: 1300px) {
         .wy-shows__show {
-            margin: 0 15px 25px 0;
+            margin: 0 8px 25px;
             height: 325px;
             width: calc(33.3333% - 20px);
 						border: 1px solid rgba(0,0,0,0.1);
@@ -111,26 +112,36 @@ hr {
     }
 .wy-showings__title {
     margin-bottom: 1em;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     font-size: 1.2em; }
 .wy-show__body {
-    height: 125px;
+    height:100%;
     width: 100%;  }
     @media screen and (min-width: 650px) {
         .wy-show__body {
-            padding: 0.5em; }
+            padding: 0.5em;
+						background: #fff; }
     }
 .wy-show__title {
   display: inline-block;
   margin: 0;
 	padding: 0.1em 0.3em;
   max-width: calc(100% - 1px);
-  font-size: 1.6em;
-	text-transform: uppercase;
+	/* text-transform: uppercase; */
 	font-weight: 800;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis; }
+	@media screen and (max-width: 649px) {
+		.wy-show__title {
+			display: block;
+			padding:12px;
+			}
+	}
+	@media screen and (min-width: 1023px) {
+		.wy-show__title {
+			font-size: 1.6em; }
+	}
 .wy-show__cert {
 	vertical-align: top;
 	opacity: 0.7;
@@ -153,7 +164,7 @@ hr {
 .wy-details__info-item--trailer {
 	display: inline; }
 .wy-details__info-item--film {
-	color: #B0D817 }
+	color: #333 }
 .wy-details__info-item--genre::after {
 	content: ','; }
 .wy-details__info-item--genre:last-child::after {
@@ -173,14 +184,9 @@ hr {
 	display: inline-block;
 	float: left;
 	margin: 1em 0.5em;
-	width: calc(50% - 1em);
+	width: calc(33.33333% - 1em);
 	-webkit-transition: all 0.3s ease-out;
 	transition: all 0.3s ease-out; }
-	@media screen and (min-width: 400px) {
-		.wy-button--logo {
-			width: calc(33.33333% - 1em);
-		}
-	}
 	@media screen and (min-width: 650px) {
 		.wy-button--logo {
 			width: calc(20% - 1em);
@@ -205,7 +211,7 @@ hr {
   border-radius: 3px;
   text-align: center;
 	cursor: pointer;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   -webkit-transition: all 0.3s ease-out;
   transition: all 0.3s ease-out; }
 .wy-button:hover {
@@ -223,40 +229,30 @@ hr {
    Slider
 -------------------------------- */
 .unslider {
-	position: relative;
-	background: #d4dadd; }
+    z-index: -1;
+    position: relative;
+	background: #d4dadd;  }
 .wy-slider {
-	max-height: 250px;
- 	background: #292f33; }
+	margin: auto;
+	max-width: 1920px;
+	max-height: 800px;}
 .wy-slider__slide {
 	position: relative;
- 	max-height: 250px;
 	-webkit-transition: all 0.3s ease-out;
 	transition: all 0.3s ease-out; }
-	@media screen and (min-width: 650px) and (max-width: 1023px) {
-		.wy-slider,
-		.wy-slider__slide {
-			max-height: 450px;
-		}
-	}
-	@media screen and (min-width: 1024px) {
-		.wy-slider,
-		.wy-slider__slide {
-			max-height: 550px;
-		}
-	}
 .wy-slider__slide img {
 	width: 100%;
-	height: 100%; }
+ 	object-fit: cover;
+ 	object-position: top; }
 .wy-slider__title {
 	position: absolute;
-	bottom: 5%;
+	top: 8%;
 	right: 5%;
 	padding: 0.1em 0.3em;
 	max-width: 350px;
 	font-size: 2em;
 	font-weight: 800;
-	text-transform: uppercase;
+	/* text-transform: uppercase; */
 	text-align: center;
 	z-index: 3; }
 .wy-slider__overlay {
@@ -276,9 +272,6 @@ hr {
 			display: none;
 		}
 	}
-.wy-slider__slide:hover {
-	opacity: 0.75;
-}
 .unslider-arrow {
 	display: inline-block;
 	position: absolute;
@@ -296,7 +289,7 @@ hr {
 		right: 0;
 		height: 80px;
 		width: 20px;
-		background: url(../../../img/frontend/icons/arrow-icon.svg) no-repeat center center; }
+		background: url(/img/frontend/icons/arrow-icon.svg) no-repeat center center; }
 	.unslider-arrow.prev::before {
 		left: 0;
 		-webkit-transform: rotate(180deg);
@@ -334,10 +327,62 @@ hr {
    Banner
 -------------------------------- */
 .wy-banner {
+  position: relative;
 	display: block;
-	padding: 0 0 0.25em;
+	padding:2px;
+	margin: 0 auto 0;
 	background: #292f33;
-	text-align: center; }
+	text-align: center;
+	border-radius: 0.35em 0.35em 0 0;
+  -webkit-transition: margin 0.2s ease-in-out;
+  -moz-transition: margin 0.2s ease-in-out;
+  -o-transition: margin 0.2s ease-in-out;
+  transition: margin 0.2s ease-in-out;
+}
+.wy-banner-move {
+    opacity: 0.7;
+    position: absolute;
+    left:0;
+    bottom:0;
+    width:50px;
+    height:30px;
+    cursor:pointer;
+    background: #292f33;
+    background-image: url("/img/frontend/icons/arrow-down.png");
+    background-size: 18px 18px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.wy-banner-move:hover {
+    opacity: 0.9;
+}
+.wy-banner-move.wy-full-images {
+    background-image: url("/img/frontend/icons/arrow-up.png");
+}
+.wy-banner {
+	margin-top: 75px;
+}
+.wy-banner-movable {
+	margin-top: 0;
+}
+@media screen and (max-width: 649px) {
+	.wy-banner.wy-banner-movable { margin-top:0; }
+}
+@media screen and (min-width: 650px) and (max-width: 1023px) {
+	.wy-banner.wy-banner-movable { margin-top:-100px; }
+}
+@media screen and (min-width: 1024px) and (max-width: 1299px) {
+	.wy-banner.wy-banner-movable { margin-top:-100px; }
+}
+@media screen and (min-width: 1300px) and (max-width: 1599px) {
+	.wy-banner.wy-banner-movable { margin-top:-200px; }
+}
+@media screen and (min-width: 1600px) {
+    .wy-banner.wy-banner-movable { margin-top:-300px; }
+}
+.wy-banner.wy-full-images {
+    margin-top:-4px; !important;
+}
 .wy-banner > * {
 	display: inline-block; }
 .wy-banner img {
@@ -345,35 +390,29 @@ hr {
 	vertical-align: middle; }
 .wy-banner h1 {
 	color: #fff;
-	font-size: 1.5em;
+	font-size: 1.2em;
 	line-height: 1em;
-	text-transform: uppercase;
+	/* text-transform: uppercase; */
 	text-align: left;
 	vertical-align: middle; }
 	@media screen and (min-width: 650px) {
-		.wy-banner {
-			padding: 0.25em 0 0.5em; }
 		.wy-banner img {
 			height: 60px; }
 		.wy-banner h1 {
 			color: #fff;
-			font-size: 1.75em; }
-	}
-	@media screen and (min-width: 1200px) {
-		.wy-banner img {
-			height: 70px; }
-		.wy-banner h1 {
-			font-size: 2em; }
+			font-size: 1.5em; }
 	}
 
 /* --------------------------------
    Content
 -------------------------------- */
-.wy-content {
+.wy-content-wrapper {
 	margin: auto;
 	width: 100%;
 	max-width: 1400px;
-	background: #fff; }
+}
+.wy-content {
+	background-color: #f1f1f1;}
 	@media screen and (min-width: 1024px) {
 		.wy-content {
 			display: flex; }
@@ -382,7 +421,7 @@ hr {
 	display: block;
 	margin: 0;
 	padding: 1em 0 0.6em;
-	text-transform: uppercase;
+	/* text-transform: uppercase; */
 	font-weight: 200; }
 .wy-body__title:first-child {
 	padding-top: 0.25em;
@@ -400,7 +439,7 @@ hr {
 	display: inline-block;
 	margin: 0 0 0 0.5em;
 	color: #fff;
-	text-transform: uppercase;
+	/* text-transform: uppercase; */
 	font-size: 1.2em;
 	font-weight: 200; }
 .wy-side__icon {
@@ -489,13 +528,29 @@ hr {
 .wy-side__item--email input {
 	padding: 0.5em 0;
 	width: 100%;
-	color: #222;
+	color: #fff;
 	background: transparent;
-	border: none; }
+	border: none;
+	padding:12px;
+	border:dotted 1px #ccc;
+	margin-bottom: 5px;
+}
+::-webkit-input-placeholder {
+	color: #fff;
+}
+:-moz-placeholder { /* Firefox 18- */
+	color: #fff;
+}
+::-moz-placeholder {  /* Firefox 19+ */
+	color: #fff;
+}
+:-ms-input-placeholder {
+	color: #fff;
+}
 .wy-side__item--email input[type="submit"] {
 	background: #444;
 	color: #fff;
-	text-transform: uppercase; }
+	/* text-transform: uppercase; */ }
 .wy-side__item--twitter {
 	position: relative; }
 .wy-side__item--twitter .wy-twitter__bubble {
@@ -543,7 +598,6 @@ hr {
 .wy-side__item--twitter .tweet::after {
 	content: '”'; }
 
-
 /* --------------------------------
    Footer
 -------------------------------- */
@@ -555,7 +609,7 @@ hr {
 	max-width: 1400px;
 	color: #fff;
 	font-size: 1.3em;
-	text-transform: uppercase;
+	/* text-transform: uppercase; */
 	font-weight: 200; }
 .wy-foot__slider {
 	margin: 0 auto 1em;
@@ -573,7 +627,7 @@ hr {
 	white-space: nowrap;
 	overflow: hidden;
 	text-overflow: ellipsis;
-	text-transform: uppercase;
+	/* text-transform: uppercase; */
 	text-align: center;
 	font-size: 1.5em; }
 .slick-slider {
@@ -630,7 +684,8 @@ hr {
 [dir='rtl'] .slick-slide {
     float: right; }
 .slick-slide img {
-    display: block; }
+    display: block;
+	max-height: 136px;  }
 .slick-slide.slick-loading img {
     display: none; }
 .slick-slide.dragging img {
@@ -667,6 +722,10 @@ hr {
 	transform: rotate(-180deg) translatey(50%); }
 .slick-next {
 	right: 0; }
+.wy-foot__upcoming,
+.wy-foot__details {
+	padding: 0 1em;
+}
 .wy-foot__details {
 	color: #fff;
 	background: #202428; }

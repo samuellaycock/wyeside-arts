@@ -23,13 +23,14 @@
 -------------------------------- */
 .type--1,
 .type--cinema,
+.type--3,
+.type--5,
+.type--classes {
+	color: #444; }
 .type--2,
 .type--live,
-.type--3,
 .type--4,
 .type--satellite,
-.type--5,
-.type--classes,
 .type--6,
 .type--gallery {
 	color: #FFF; }
@@ -69,4 +70,7 @@
 	color: #999; }
 .type--all {
 	background-color: #374045;
+}
+.hide {
+	display: none;
 }

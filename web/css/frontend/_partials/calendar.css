@@ -108,7 +108,7 @@
     margin: 0 auto;
     padding: 0.75em !important;
     text-align: center;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     font-weight: 200;
     z-index: 1;
 }
@@ -182,7 +182,7 @@
 }
 .event-item-name {
     font-size: 1.2em;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
 }
 .wy-button--event {
     display: block;
@@ -191,7 +191,7 @@
     max-width: 260px;
     border-radius: 3px;
     text-align: center;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     -webkit-transition: all 0.3s ease-out;
     transition: all 0.3s ease-out;
 }
@@ -206,19 +206,18 @@
   overflow: hidden; }
 .wy-body table {
   width: 100%;
-  min-width: 750px;
+  min-width: 720px;
   margin-bottom: 1.2em;
   border-collapse: collapse;
   table-layout: fixed;
-  border: 1px solid rgba(0,0,0,0.1);
-  overflow: auto; }
+  border: 1px solid rgba(0,0,0,0.1); }
 .wy-body tr {
   border-bottom: 1px solid rgba(0,0,0,0.1); }
 .wy-body thead {
   background: #374045;
   color: #fff;
   font-size: 1.2em;
-  text-transform: uppercase; }
+  /* text-transform: uppercase; */ }
 .wy-body tr:last-child {
   border: none; }
 .wy-body tr:hover {
@@ -229,7 +228,8 @@
 .wy-body th,
 .wy-body td {
   padding:0.7em;
-  width: 100%; }
+  width: 100%;
+  min-width: 200px; }
 .wy-body th:first-child,
 .wy-body td:first-child {
   width: 150px; }
@@ -238,6 +238,7 @@
   margin-bottom: 0.3em; }
 .wy-body td ul li a {
   display: inline-block;
+  min-width: 100%;
   padding: 0.3em 1em;
   border-radius: 3px;
   line-height: 1.2em; }

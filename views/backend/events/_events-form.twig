@@ -1,26 +1,29 @@
 <form method="post">
+    <input type="hidden" name="ticketsolveIdCreate" id="ticketsolveIdCreate">
+    <input type="hidden" name="ticketsolveIdCreate3D" id="ticketsolveIdCreate3D">
+
     <input type="text" name="title" id="title" placeholder="Title" class="dbl" value="{{ event.getTitle() }}"
            style="width:100%;">
 
     <br>
-    <label for="ticketsolve">Ticketsolve ID</label>
-    <input type="text" id="ticketsolve" name="ticketsolve" value="{{ event.getTicketsolve() }}">
+    <label for="tagline">Tagline</label>
+    <input type="text" maxlength="90" id="tagline" name="tagline" value="{{ event.getTagline() }}" style="width:calc(100% - 126px);">
 
-    {% if event.getType() == 1 %}
+    {% if event.getType() != 1 %}
         <br>
-        <label for="ticketsolve">Ticketsolve 3D</label>
-        <input type="text" id="ticketsolve3D" name="ticketsolve3D" value="{{ event.getTicketsolve3D() }}">
+        <label for="eventPrices">Event Prices</label>
+        <input type="text" maxlength="90" id="eventPrices" name="eventPrices" value="{{ event.getPrices() }}" style="width:calc(100% - 126px);">
     {% endif %}
 
     <br>
     <label for="trailer">YouTube Trailer</label>
     <input type="text" id="trailer" name="trailer" value="{{ event.getTrailer() }}">
     <img
-        src="/img/backend/youtube-play.png"
-        style="height:26px;vertical-align: middle;"
-        alt="Search YouTube"
-        title="Search YouTube"
-        onclick="window.open('https://www.youtube.com/results?search_query='+$('#title').val()+' Trailer')"
+            src="/img/backend/youtube-play.png"
+            style="height:26px;vertical-align: middle;"
+            alt="Search YouTube"
+            title="Search YouTube"
+            onclick="window.open('https://www.youtube.com/results?search_query='+$('#title').val()+' Trailer')"
     >
 
     {% if event.getType() != 1 %}

@@ -17,6 +17,12 @@ use Doctrine\ORM\EntityRepository;
 class PostRepo extends EntityRepository
 {
 
-
+    /**
+     * @return \Doctrine\ORM\QueryBuilder
+     */
+    public function getQueryBuilder()
+    {
+        return $this->createQueryBuilder('p');
+    }
 
 }

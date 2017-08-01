@@ -1,57 +1,89 @@
 h1 {
-    color:#fff;
-    padding:10px 90px 10px 130px;
+    color: #fff;
+    padding: 10px 90px 10px 130px;
     position: relative;
 }
 
 .image-wrapper {
     display: inline-block;
     background-color: #fff;
-    padding:3px;
+    padding: 3px;
     border-radius: 2px;
-    margin-right:10px;
+    margin-right: 10px;
     margin-bottom: 10px;
     -webkit-box-shadow: 4px 4px 5px 0px rgba(50, 50, 50, 0.5);
-    -moz-box-shadow:    4px 4px 5px 0px rgba(50, 50, 50, 0.5);
-    box-shadow:         4px 4px 5px 0px rgba(50, 50, 50, 0.5);
+    -moz-box-shadow: 4px 4px 5px 0px rgba(50, 50, 50, 0.5);
+    box-shadow: 4px 4px 5px 0px rgba(50, 50, 50, 0.5);
 }
+
 .image-controls {
     background-color: #222;
-    padding:8px;
+    padding: 8px;
     text-align: center;
     border-radius: 2px 2px 0px 0px;
-    font-size:0.8em;
-    color:#fff;
+    font-size: 0.8em;
+    color: #fff;
 }
-.image-main .image-controls{
+
+.image-main .image-controls {
     background-color: red;
 }
+
 .image-controls a {
-    color:#fff;
+    color: #fff;
     text-decoration: none;
 }
+
 .image-controls a:hover {
     text-decoration: underline;
 }
+
 .event-status {
     position: absolute;
-    left:0;
-    top:0;
-    bottom:0;
-    color:#fff;
-    font-size:0.6em;
-    border-right:solid 5px #fff;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    color: #fff;
+    font-size: 0.6em;
+    border-right: solid 5px #fff;
     text-align: center;
-    padding:18px 20px;
+    padding: 18px 20px;
     width: 70px;
     cursor: pointer;
 }
+
 .event-status:hover {
     opacity: 0.8;
 }
-.status-closed{
+
+.status-closed {
     background-color: red;
 }
-.status-open{
+
+.status-open {
     background-color: green;
+}
+
+.ticketsolveSelection {
+    font-size: 1.1em;
+    letter-spacing: 0.1em;
+    text-align: center;
+    width: 95%;
+}
+
+#tmdbImages img {
+    max-width: 900px;
+    max-height: 900px;
+    transition: all .2s ease-in-out;
+    margin-bottom: 10px;
+}
+
+#tmdbImages img:hover {
+    transform: scale(1.05);
+    margin-top: 14px;
+    margin-bottom: 24px;
+}
+
+.tmdb-image img {
+    border: solid 1px #fff;
 }

@@ -45,7 +45,7 @@ class DoctrineService
         ];
 
         $config = Setup::createAnnotationMetadataConfiguration($paths, $isDevMode);
-        $config->setProxyDir('/var/www/wyeside-arts/cache/proxy');
+        $config->setProxyDir('/tmp/wyeside-arts/cache/proxy');
         $em = EntityManager::create($dbParams, $config);
         $this->app->container->offsetSet('em', $em);
         return $em;

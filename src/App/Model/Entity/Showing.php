@@ -22,6 +22,12 @@ class Showing
     protected $id;
 
     /**
+     * @Column(type="string")
+     * @var string
+     */
+    protected $ticketsolveId;
+
+    /**
      * @Column(type="datetime", name="dateTime")
      * @var \DateTime
      */
@@ -121,6 +127,23 @@ class Showing
         return $this->event;
     }
 
+
+    /**
+     * @return string
+     */
+    public function getTicketsolveId()
+    {
+        return $this->ticketsolveId;
+    }
+
+    /**
+     * @param $id
+     */
+    public function setTicketsolveIt($id)
+    {
+        $this->ticketsolveId = $id;
+    }
+
     /**
      * @param Event $event
      */
@@ -138,6 +161,20 @@ class Showing
             return self::getLocationMap()[$id];
         }
         return 'Unknown';
+    }
+
+    /**
+     * @return string
+     */
+    public function ticketsolveUrl()
+    {
+        if ($this->type == "3D") {
+            $eventId = $this->event->getTicketsolve3D();
+        } else {
+            $eventId = $this->event->getTicketsolve();
+        }
+        return "https://wyeside.ticketsolve.com/shows/{$eventId}/events/{$this->ticketsolveId}";
+        //return "https://wyeside.ticketsolve.com/#/seated-events/" . $this->ticketsolveId . "?enable_features=ticketbooth,ticketbooth_iframe";
     }
 
     /**

@@ -6,9 +6,11 @@
 namespace Frontend\Controller;
 
 use App\Controller\AppController;
+use App\Model\Entity\Config;
 use App\Model\Entity\Event;
 use App\Model\Entity\Showing;
 use App\Model\Entity\Tweet;
+use App\Model\Repo\ConfigRepo;
 use App\Model\Repo\EventRepo;
 use App\Model\Repo\ShowingRepo;
 use App\Model\Repo\TweetRepo;
@@ -41,6 +43,14 @@ class FrontendController extends AppController
     }
 
     /**
+     * @return ConfigRepo
+     */
+    protected function getConfigRepo()
+    {
+        return $this->em->getRepository(Config::class);
+    }
+
+    /**
      * @return ShowingRepo
      */
     protected function getShowingsRepo()
@@ -64,7 +74,7 @@ class FrontendController extends AppController
         $eventRepo = $this->getEventRepo();
         $app->flashNow('upcomingEvents', $eventRepo->getXUpcoming(12));
         $app->flashNow('latestTweet', Tweet::getOne($this->getTweetRepo(), $this->em));
-        $app->flashNow('brochureUrl', 'http://wyeside.co.uk'); // todo: we need to store the latest brochure URL somewhere!
+        $app->flashNow('brochureURL', $this->getConfigRepo()->findOneByName('brochureUrl')->getValue());
     }
 
     /**

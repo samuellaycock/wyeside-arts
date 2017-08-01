@@ -1,0 +1,42 @@
+<form method="post" onsubmit="return false;">
+
+    <div class="block-dark">
+        <h2>Primary Ticketsolve ID</h2>
+        <p style="padding-top:10px; padding-bottom:10px;">
+            The Ticketsolve ID allows the event to be kept in-sync with changes from Ticketsolve.
+        </p>
+        <div style="text-align: center">
+            <div id="ticketsolveId1Display">
+                <input id="ticketsolve1Value" class="ticketsolveSelection" disabled type="text" value="{{ event.getTicketsolve() }}">
+                <br>
+                <button id="changeSyncTs1">Select New Ticketsolve Reference</button>
+            </div>
+            <div id="ticketsolveId1Spinner" style="display: none;"><img src="/img/backend/spinner.gif" /></div>
+            <div id="ticketsolveId1Modify" style="display: none;"></div>
+        </div>
+    </div>
+
+    <br>
+
+    {% if event.getType() == 1 %}
+        <div class="block-dark">
+            <h2>3D Ticketsolve ID</h2>
+            <p style="padding-top:10px; padding-bottom:10px;">
+               You can add a secondary Ticketsolve ID to Cinema events for 3D screenings.
+                This means we can have a single event for both the 2D and 3D screenings
+                even if we have separate Ticketsolve events.
+            </p>
+            <div style="text-align: center">
+                <div id="ticketsolveId2Display">
+                    <input id="ticketsolve2Value" class="ticketsolveSelection" disabled type="text" value="{{ event.getTicketsolve3D() }}">
+                    <br>
+                    <button id="changeSyncTs2">Select New Ticketsolve Reference</button>
+                </div>
+                <div id="ticketsolveId2Spinner" style="display: none;"><img src="/img/backend/spinner.gif" /></div>
+                <div id="ticketsolveId2Modify" style="display: none;"></div>
+            </div>
+
+        </div>
+    {% endif %}
+
+</form>
